@@ -1,0 +1,45 @@
+import Image from "next/image";
+
+const LOGOS = [
+  { src: "/assets/certs/trex-logo.jpg", alt: "Trex" },
+  { src: "/assets/certs/trex-platinum.png", alt: "Trex Platinum Pro" },
+  { src: "/assets/certs/timber-tech.jpg", alt: "TimberTech" },
+  { src: "/assets/certs/deckorators-pro-elite.jpg", alt: "Deckorators Pro Elite" },
+];
+
+const WORDMARKS = ["Fortress", "Westbury", "AZEK", "Fiberon", "Wolf"];
+
+export function BrandLogoMarquee() {
+  const items = [...LOGOS, ...WORDMARKS.map((label) => ({ label }))];
+  const doubled = [...items, ...items, ...items];
+  return (
+    <section
+      aria-label="Brands we install"
+      className="border-border/30 bg-card/40 overflow-hidden border-y py-10"
+    >
+      <div className="marquee" data-pausable>
+        <div className="marquee-track marquee-slow items-center">
+          {doubled.map((item, i) =>
+            "src" in item ? (
+              <Image
+                key={`${item.src}-${i}`}
+                src={item.src}
+                alt={item.alt}
+                width={140}
+                height={40}
+                className="text-foreground/70 mx-10 h-7 w-auto shrink-0 object-contain grayscale brightness-[2] contrast-[0.8] opacity-70"
+              />
+            ) : (
+              <span
+                key={`${item.label}-${i}`}
+                className="text-foreground/40 font-display mx-10 shrink-0 text-2xl font-medium tracking-tight whitespace-nowrap uppercase"
+              >
+                {item.label}
+              </span>
+            ),
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}

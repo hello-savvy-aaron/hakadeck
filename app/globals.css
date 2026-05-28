@@ -1,0 +1,183 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* Type — Inter for body, Bricolage Grotesque for display.
+     The live site uses Nohemi (Pangram Pangram) for headings; we picked the
+     closest free Google Font alternative to avoid the commercial license. */
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+  --font-heading: var(--font-display);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Brand palette — extracted from hakadeck.com 2026-05-23.
+     Source: cdn.prod.website-files.com/.../hakadeck.webflow.shared.d7502db52.css */
+  --color-haka-navy: #0f1e36;      /* dominant bg, 57x in source */
+  --color-haka-navy-card: #0e1b31; /* card / nested section variant, 20x */
+  --color-haka-navy-deep: #0a0a0d; /* deepest shade (footer / overlays), 8x */
+  --color-haka-cream: #fcf2e8;     /* warm CTA accent, 9x — the only warm note */
+  --color-haka-charcoal: #525252;  /* mid-gray text */
+  --color-haka-cloud: #d8d8d8;     /* light gray borders / muted text */
+
+  /* shadcn semantic tokens → re-export as Tailwind colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Display text sizes — match the live site's responsive scale.
+     big-text-v5 powers the hero H1 ("Custom Colorado Decks") on the homepage. */
+  --text-display: clamp(2.8rem, 14.83vw, 15rem);
+  --text-display-xl: clamp(2.8rem, 20.83vw, 25rem);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/* Single dark theme — hakadeck.com has no light mode.
+   Values mapped from the brand palette above. */
+:root {
+  --background: #0f1e36;
+  --foreground: #ffffff;
+  --card: #0e1b31;
+  --card-foreground: #ffffff;
+  --popover: #0e1b31;
+  --popover-foreground: #ffffff;
+  --primary: #fcf2e8;
+  --primary-foreground: #0f1e36;
+  --secondary: #1a2845;
+  --secondary-foreground: #ffffff;
+  --muted: #1a2845;
+  --muted-foreground: #d8d8d8;
+  --accent: #fcf2e8;
+  --accent-foreground: #0f1e36;
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: rgb(255 255 255 / 10%);
+  --input: rgb(255 255 255 / 15%);
+  --ring: #fcf2e8;
+  --radius: 0.625rem;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    line-height: 1.04;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .marquee-track,
+  .marquee-slow {
+    animation: none !important;
+  }
+}
+
+/* Infinite horizontal marquee. Author markup as:
+   <div class="marquee"><div class="marquee-track">…items…</div></div>
+   The track is duplicated in JSX so the loop reads seamlessly. */
+.marquee {
+  --marquee-duration: 40s;
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--marquee-duration) linear infinite;
+  will-change: transform;
+}
+.marquee-slow {
+  --marquee-duration: 60s;
+}
+.marquee[data-pausable]:hover .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Custom prose for Haka — applied via `prose prose-invert prose-haka` */
+.prose-haka {
+  --tw-prose-body: var(--foreground);
+  --tw-prose-headings: var(--foreground);
+  --tw-prose-lead: var(--foreground);
+  --tw-prose-links: var(--haka-cream);
+  --tw-prose-bold: var(--foreground);
+  --tw-prose-bullets: rgb(255 255 255 / 0.4);
+  --tw-prose-hr: rgb(255 255 255 / 0.1);
+  --tw-prose-quotes: var(--foreground);
+  --tw-prose-quote-borders: var(--haka-cream);
+  --tw-prose-counters: rgb(255 255 255 / 0.5);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+.prose-haka :where(h1, h2, h3, h4) {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+  font-weight: 500;
+}
+.prose-haka :where(h2) {
+  margin-top: 2.5em;
+  font-size: 1.875rem;
+  line-height: 1.15;
+}
+.prose-haka :where(h3) {
+  margin-top: 2em;
+  font-size: 1.375rem;
+}
+.prose-haka :where(a) {
+  text-underline-offset: 4px;
+}
+.prose-haka :where(strong) {
+  color: var(--foreground);
+  font-weight: 600;
+}
