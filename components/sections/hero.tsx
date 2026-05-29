@@ -48,26 +48,26 @@ export function Hero() {
         className="absolute inset-0 -z-10 bg-gradient-to-r from-black/40 to-transparent"
       />
 
+      <a
+        href={site.reviewsUrl}
+        target="_blank"
+        rel="noreferrer"
+        className="fixed bottom-5 left-5 z-40 inline-flex items-center gap-3 rounded-full border border-black/5 bg-white px-4 py-2 text-sm text-haka-ink shadow-lg shadow-black/15 transition-colors hover:bg-white/90 sm:bottom-6 sm:left-6"
+      >
+        <span className="font-semibold">{site.rating.value.toFixed(1)}</span>
+        <span className="flex" aria-hidden>
+          {Array.from({ length: 5 }).map((_, i) => (
+            <Star key={i} className="text-haka-gold h-3.5 w-3.5 fill-current" />
+          ))}
+        </span>
+        <span className="text-foreground/70">
+          ({site.rating.count}) Google Reviews
+        </span>
+      </a>
+
       <div className="relative mx-auto w-full max-w-7xl px-5 pt-32 pb-16 sm:px-8 sm:pt-40 sm:pb-24 lg:pb-32">
         <div className="max-w-4xl">
-          <a
-            href={site.reviewsUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-3 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-sm text-white backdrop-blur-md transition-colors hover:bg-white/20"
-          >
-            <span className="font-semibold">{site.rating.value.toFixed(1)}</span>
-            <span className="flex" aria-hidden>
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} className="text-haka-gold h-3.5 w-3.5 fill-current" />
-              ))}
-            </span>
-            <span className="text-white/80">
-              ({site.rating.count}) Google Reviews
-            </span>
-          </a>
-
-          <h1 className="font-display mt-8 text-balance text-5xl leading-[0.95] font-medium tracking-tight text-white sm:text-7xl lg:text-[6.5rem] xl:text-[7.5rem]">
+          <h1 className="font-display text-balance text-5xl leading-[0.95] font-medium tracking-tight text-white sm:text-7xl lg:text-[6.5rem] xl:text-[7.5rem]">
             Custom Colorado Decks.
           </h1>
 
