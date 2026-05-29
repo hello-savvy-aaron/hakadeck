@@ -23,11 +23,11 @@ const PILLARS = [
   },
 ];
 
-const LOGOS = [
+const LOGOS: { src: string; alt: string; invert?: boolean }[] = [
   { src: "/assets/certs/deckorators-pro-elite.jpg", alt: "Deckorators Pro Elite Installer" },
   { src: "/assets/certs/trex-platinum.png", alt: "Trex Platinum Pro" },
   { src: "/assets/certs/timber-tech.jpg", alt: "TimberTech Authorized Dealer" },
-  { src: "/assets/certs/trex-logo.jpg", alt: "Trex" },
+  { src: "/assets/brand/logo-inverse.png", alt: "Haka Deck", invert: true },
 ];
 
 export function Certifications() {
@@ -59,7 +59,7 @@ export function Certifications() {
               alt={logo.alt}
               width={200}
               height={80}
-              className="h-12 w-auto max-w-[85%] object-contain"
+              className={`h-12 w-auto max-w-[85%] object-contain ${logo.invert ? "invert" : ""}`}
             />
           </div>
         ))}
