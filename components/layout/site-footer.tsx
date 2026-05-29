@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Mail, MapPin, Phone } from "lucide-react";
 import { InstagramIcon, LinkedinIcon } from "@/components/icons/social-icons";
 import { site } from "@/lib/site";
 
@@ -53,12 +52,6 @@ export function SiteFooter() {
                 {item.label}
               </FooterLink>
             ))}
-            <Button asChild size="sm" className="mt-2 self-start">
-              <Link href={site.cta.href}>
-                {site.cta.label}
-                <ArrowRight className="ml-1.5 h-4 w-4" />
-              </Link>
-            </Button>
           </FooterCol>
 
           <FooterCol heading="Visit">
@@ -85,13 +78,10 @@ export function SiteFooter() {
               <Mail className="mr-1.5 h-3.5 w-3.5 shrink-0" />
               {site.email}
             </a>
+            <p className="text-muted-foreground mt-3 text-xs">
+              © {new Date().getFullYear()} {site.name}. All rights reserved.
+            </p>
           </FooterCol>
-        </div>
-
-        <div className="border-border/40 mt-16 flex flex-col items-start justify-between gap-6 border-t pt-10 sm:flex-row sm:items-center">
-          <p className="text-muted-foreground text-xs">
-            © {new Date().getFullYear()} {site.name}. All rights reserved.
-          </p>
         </div>
       </div>
     </footer>
