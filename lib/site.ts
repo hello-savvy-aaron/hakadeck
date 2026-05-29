@@ -24,6 +24,7 @@ export const site = {
   reviewsUrl: "https://g.co/kgs/haka-deck",
   socials: {
     instagram: "https://www.instagram.com/hakaconstruction",
+    instagramHandle: "@hakaconstruction",
     linkedin: "https://www.linkedin.com/company/hakaconstruction",
   },
   nav: [

@@ -2,34 +2,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { InstagramIcon, LinkedinIcon } from "@/components/icons/social-icons";
 import { site } from "@/lib/site";
-
-function InstagramIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <rect x="3" y="3" width="18" height="18" rx="5" />
-      <circle cx="12" cy="12" r="4" />
-      <circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" stroke="none" />
-    </svg>
-  );
-}
-
-function LinkedinIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <rect x="3" y="3" width="18" height="18" rx="3" />
-      <path d="M8 10v7" />
-      <path d="M8 7.01v.01" />
-      <path d="M12 10v7" />
-      <path d="M16 17v-4a2 2 0 0 0-4 0" />
-    </svg>
-  );
-}
 
 export function SiteFooter() {
   const { address, parent } = site;
   return (
-    <footer className="bg-background text-foreground border-border/40 mt-24 border-t">
+    <footer className="bg-background text-foreground border-border/40 border-t">
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
         <p className="font-display border-border/40 mb-14 border-b pb-12 text-4xl leading-none font-medium tracking-tight sm:text-6xl lg:text-7xl">
           Denver&apos;s Deck BUILDER.

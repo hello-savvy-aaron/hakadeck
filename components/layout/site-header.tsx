@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { ArrowRight, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { InstagramIcon, LinkedinIcon } from "@/components/icons/social-icons";
 import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -62,6 +63,37 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <div className="mr-1 hidden items-center gap-1 md:flex">
+            <a
+              href={site.socials.instagram}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Haka Deck on Instagram"
+              className={cn(
+                "inline-flex h-9 w-9 items-center justify-center rounded-full transition-colors",
+                overHero
+                  ? "text-white/90 hover:bg-white/10 hover:text-white"
+                  : "text-foreground/70 hover:bg-secondary hover:text-foreground",
+              )}
+            >
+              <InstagramIcon className="h-5 w-5" />
+            </a>
+            <a
+              href={site.socials.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Haka Deck on LinkedIn"
+              className={cn(
+                "inline-flex h-9 w-9 items-center justify-center rounded-full transition-colors",
+                overHero
+                  ? "text-white/90 hover:bg-white/10 hover:text-white"
+                  : "text-foreground/70 hover:bg-secondary hover:text-foreground",
+              )}
+            >
+              <LinkedinIcon className="h-5 w-5" />
+            </a>
+          </div>
+
           <Button asChild size="sm" className="hidden md:inline-flex">
             <Link href={site.cta.href}>
               {site.cta.label}
