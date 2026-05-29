@@ -1,7 +1,7 @@
 import Image from "next/image";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Eyebrow, Section, SectionHeading } from "@/components/sections/section";
 import { CtaFinal } from "@/components/sections/cta-final";
 import { BrandLogoMarquee } from "@/components/sections/brand-logo-marquee";
@@ -100,8 +100,8 @@ export default function ServicesPage() {
                     <div className="mt-10">
                       <Button asChild size="lg" className="h-12 px-6 text-base">
                         <Link href={site.cta.href}>
-                          Get a quote for {s.title.toLowerCase()}
-                          <ArrowUpRight className="ml-1.5 h-4 w-4" />
+                          {site.cta.label}
+                          <ArrowRight className="ml-1.5 h-4 w-4" />
                         </Link>
                       </Button>
                     </div>

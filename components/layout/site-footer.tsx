@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { site } from "@/lib/site";
 
 function InstagramIcon(props: React.SVGProps<SVGSVGElement>) {
@@ -69,7 +70,12 @@ export function SiteFooter() {
                 {item.label}
               </FooterLink>
             ))}
-            <FooterLink href={site.cta.href}>{site.cta.label}</FooterLink>
+            <Button asChild size="sm" className="mt-2 self-start">
+              <Link href={site.cta.href}>
+                {site.cta.label}
+                <ArrowRight className="ml-1.5 h-4 w-4" />
+              </Link>
+            </Button>
           </FooterCol>
 
           <FooterCol heading="Visit">
