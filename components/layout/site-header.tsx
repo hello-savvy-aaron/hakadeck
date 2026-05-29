@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -12,6 +13,8 @@ import { cn } from "@/lib/utils";
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const overHero = pathname === "/" && !scrolled;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -41,7 +44,7 @@ export function SiteHeader() {
             width={140}
             height={36}
             priority
-            className="h-7 w-auto invert"
+            className={cn("h-7 w-auto transition", !overHero && "invert")}
           />
           <span className="sr-only">{site.name}</span>
         </Link>
