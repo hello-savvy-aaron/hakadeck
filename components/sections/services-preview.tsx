@@ -41,14 +41,14 @@ export function ServicesPreview() {
   }, []);
 
   return (
-    <Section id="services">
+    <Section id="services" className="bg-haka-sky">
       <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
         <div>
           <Eyebrow>What we build</Eyebrow>
           <h2 className="font-display mt-4 text-balance text-4xl leading-[1.04] font-medium tracking-tight sm:text-5xl lg:text-6xl">
             Decks, Pergolas &amp; Outdoor Living — designed for how you actually live.
           </h2>
-          <p className="text-muted-foreground mt-6 max-w-xl text-base leading-relaxed">
+          <p className="text-foreground/75 mt-6 max-w-xl text-base leading-relaxed">
             Every Haka build starts with a conversation about how you use your
             backyard — and ends with an outdoor space your neighbors ask about.
           </p>
@@ -57,7 +57,7 @@ export function ServicesPreview() {
             {TILES.map((t) => (
               <li key={t.title}>
                 <p className="font-display text-lg font-medium tracking-tight">{t.title}</p>
-                <p className="text-muted-foreground mt-1 text-sm leading-relaxed">{t.body}</p>
+                <p className="text-foreground/70 mt-1 text-sm leading-relaxed">{t.body}</p>
               </li>
             ))}
           </ul>
