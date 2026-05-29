@@ -12,34 +12,37 @@ export function CtaFinal({
   body?: string;
 }) {
   return (
-    <Section className="relative overflow-hidden">
+    <Section className="bg-haka-teal relative overflow-hidden text-white">
       <div
         aria-hidden
-        className="from-haka-cream/[0.06] absolute inset-x-0 top-0 -z-10 h-full bg-gradient-to-b to-transparent"
+        className="absolute -top-32 -right-32 -z-10 h-80 w-80 rounded-full bg-white/10 blur-3xl"
       />
-      <div className="border-border/50 bg-card/40 relative overflow-hidden rounded-3xl border p-10 sm:p-16 lg:p-24">
-        <div
-          aria-hidden
-          className="bg-haka-cream/10 absolute -top-32 -right-32 h-80 w-80 rounded-full blur-3xl"
-        />
-        <div className="relative max-w-3xl">
-          <h2 className="font-display text-balance text-4xl leading-[1.04] font-medium tracking-tight sm:text-5xl lg:text-6xl">
-            {heading}
-          </h2>
-          <p className="text-muted-foreground mt-6 max-w-2xl text-base leading-relaxed sm:text-lg">
-            {body}
-          </p>
-          <div className="mt-10 flex flex-wrap gap-3">
-            <Button asChild size="lg" className="h-12 px-6 text-base">
-              <Link href={site.cta.href}>
-                {site.cta.label}
-                <ArrowRight className="ml-1.5 h-4 w-4" />
-              </Link>
-            </Button>
-            <Button asChild size="lg" variant="ghost" className="h-12 px-6 text-base">
-              <a href={site.phoneHref}>Call {site.phone}</a>
-            </Button>
-          </div>
+      <div className="relative max-w-3xl">
+        <h2 className="font-display text-balance text-4xl leading-[1.04] font-medium tracking-tight sm:text-5xl lg:text-6xl">
+          {heading}
+        </h2>
+        <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg">
+          {body}
+        </p>
+        <div className="mt-10 flex flex-wrap gap-3">
+          <Button
+            asChild
+            size="lg"
+            className="bg-haka-ink h-12 px-6 text-base text-white hover:bg-haka-ink/85"
+          >
+            <Link href={site.cta.href}>
+              {site.cta.label}
+              <ArrowRight className="ml-1.5 h-4 w-4" />
+            </Link>
+          </Button>
+          <Button
+            asChild
+            size="lg"
+            variant="outline"
+            className="h-12 border-white/40 bg-transparent px-6 text-base text-white hover:bg-white/10 hover:text-white"
+          >
+            <a href={site.phoneHref}>Call {site.phone}</a>
+          </Button>
         </div>
       </div>
     </Section>
