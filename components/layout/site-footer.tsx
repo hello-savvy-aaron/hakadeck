@@ -35,11 +35,11 @@ export function SiteFooter() {
           <div className="space-y-5">
             <Link href="/" aria-label={`${site.name} home`} className="inline-flex">
               <Image
-                src="/assets/brand/logo-inverse.png"
+                src="/assets/brand/haka-badge.png"
                 alt=""
-                width={160}
-                height={40}
-                className="h-9 w-auto invert"
+                width={120}
+                height={126}
+                className="h-20 w-auto invert"
               />
             </Link>
             <p className="text-muted-foreground max-w-sm text-sm leading-relaxed">
