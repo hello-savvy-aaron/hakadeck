@@ -48,16 +48,20 @@ export function Certifications() {
         ))}
       </div>
 
-      <div className="border-border/40 mt-20 flex flex-wrap items-center justify-around gap-x-12 gap-y-8 border-t pt-12 opacity-90">
+      <div className="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-4">
         {LOGOS.map((logo) => (
-          <Image
+          <div
             key={logo.src}
-            src={logo.src}
-            alt={logo.alt}
-            width={160}
-            height={64}
-            className="h-12 w-auto object-contain grayscale opacity-70 transition hover:opacity-100 hover:grayscale-0"
-          />
+            className="border-border/50 bg-card flex h-28 items-center justify-center rounded-2xl border px-6 py-5"
+          >
+            <Image
+              src={logo.src}
+              alt={logo.alt}
+              width={200}
+              height={80}
+              className="h-12 w-auto max-w-[85%] object-contain"
+            />
+          </div>
         ))}
       </div>
     </Section>
