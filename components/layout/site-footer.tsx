@@ -30,7 +30,7 @@ export function SiteFooter() {
   return (
     <footer className="bg-card text-foreground border-border/40 mt-24 border-t">
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
-        <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div className="space-y-5">
             <Link href="/" aria-label={`${site.name} home`} className="inline-flex">
               <Image
@@ -38,7 +38,7 @@ export function SiteFooter() {
                 alt=""
                 width={160}
                 height={40}
-                className="h-9 w-auto"
+                className="h-9 w-auto invert"
               />
             </Link>
             <p className="text-muted-foreground max-w-sm text-sm leading-relaxed">

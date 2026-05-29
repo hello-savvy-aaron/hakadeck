@@ -4,7 +4,7 @@ const POINTS = [
   {
     title: "Composite-first, by design.",
     body:
-      "We default to Trex and TimberTech because they hold up to Colorado weather better than anything else on the market — and we pass the manufacturer's 25-year warranty straight through to you.",
+      "We default to Deckorators because it holds up to Colorado weather better than anything else on the market — and we pass the manufacturer's 25-year warranty straight through to you.",
   },
   {
     title: "Engineered for altitude, freeze-thaw, and hail.",

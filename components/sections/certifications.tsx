@@ -56,7 +56,7 @@ export function Certifications() {
             alt={logo.alt}
             width={160}
             height={64}
-            className="h-12 w-auto object-contain grayscale brightness-[2] contrast-[0.8] transition hover:grayscale-0 hover:brightness-100"
+            className="h-12 w-auto object-contain grayscale opacity-70 transition hover:opacity-100 hover:grayscale-0"
           />
         ))}
       </div>

@@ -9,7 +9,7 @@ import { Eyebrow, Section } from "./section";
 const FAQS = [
   {
     q: "What materials do you use?",
-    a: "We build almost exclusively with composite decking — Trex and TimberTech are our go-to brands, with Deckorators where the design calls for it. Composite holds up to Colorado's freeze-thaw, hail, and altitude UV in a way natural wood just doesn't, and the manufacturer warranties run 25–50 years. We'll also build in clear-grade cedar or thermally-modified hardwood when that's the look you want — we just want you to know what you're signing up for on maintenance.",
+    a: "We build almost exclusively with composite decking — Deckorators is our go-to brand, with Trex and TimberTech where the design calls for it. Composite holds up to Colorado's freeze-thaw, hail, and altitude UV in a way natural wood just doesn't, and the manufacturer warranties run 25–50 years. We'll also build in clear-grade cedar or thermally-modified hardwood when that's the look you want — we just want you to know what you're signing up for on maintenance.",
   },
   {
     q: "How long does a deck project take?",

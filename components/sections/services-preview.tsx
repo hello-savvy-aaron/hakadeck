@@ -49,9 +49,8 @@ export function ServicesPreview() {
             Decks, Pergolas &amp; Outdoor Living — designed for how you actually live.
           </h2>
           <p className="text-muted-foreground mt-6 max-w-xl text-base leading-relaxed">
-            We don&apos;t do cookie-cutter. Every Haka build starts with a
-            conversation about how you use your backyard — and ends with an
-            outdoor space your neighbors ask about.
+            Every Haka build starts with a conversation about how you use your
+            backyard — and ends with an outdoor space your neighbors ask about.
           </p>
 
           <ul className="mt-10 grid gap-x-8 gap-y-6 sm:grid-cols-2">

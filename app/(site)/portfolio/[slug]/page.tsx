@@ -96,7 +96,7 @@ export default async function ProjectPage({
       </div>
 
       <Section top="tight" bottom="tight">
-        <article className="prose prose-invert prose-haka mx-auto max-w-3xl">
+        <article className="prose prose-haka mx-auto max-w-3xl">
           <p className="text-foreground/85 lead text-xl leading-relaxed">{project.summary}</p>
           <MDXRemote source={project.body} />
         </article>

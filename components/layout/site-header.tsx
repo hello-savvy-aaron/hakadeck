@@ -41,7 +41,7 @@ export function SiteHeader() {
             width={140}
             height={36}
             priority
-            className="h-7 w-auto"
+            className="h-7 w-auto invert"
           />
           <span className="sr-only">{site.name}</span>
         </Link>

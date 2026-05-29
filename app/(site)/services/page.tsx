@@ -19,7 +19,7 @@ const SERVICES = [
   {
     title: "Composite Decks",
     body:
-      "Our default for Colorado. Trex and TimberTech composite boards stay solid through 30°-temperature swings, summer hail, and altitude UV — backed by 25-year manufacturer warranties.",
+      "Our default for Colorado. Deckorators composite boards stay solid through 30°-temperature swings, summer hail, and altitude UV — backed by 25-year manufacturer warranties.",
     bullets: ["Single-level, multi-tier, wraparound", "Full railing system + lighting", "Permit + HOA paperwork handled"],
     image: "/assets/projects/ranch-drone/02.jpeg",
   },
