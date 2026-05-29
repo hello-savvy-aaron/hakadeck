@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Menu } from "lucide-react";
+import { ArrowRight, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { site } from "@/lib/site";
@@ -63,7 +63,10 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-2">
           <Button asChild size="sm" className="hidden md:inline-flex">
-            <Link href={site.cta.href}>{site.cta.label}</Link>
+            <Link href={site.cta.href}>
+              {site.cta.label}
+              <ArrowRight className="ml-1.5 h-4 w-4" />
+            </Link>
           </Button>
 
           <Sheet open={open} onOpenChange={setOpen}>
@@ -94,6 +97,7 @@ export function SiteHeader() {
                 <Button asChild className="mt-4 w-full" size="lg">
                   <Link href={site.cta.href} onClick={() => setOpen(false)}>
                     {site.cta.label}
+                    <ArrowRight className="ml-1.5 h-4 w-4" />
                   </Link>
                 </Button>
               </nav>
