@@ -12,7 +12,7 @@ export function CtaFinal({
   body?: string;
 }) {
   return (
-    <Section className="bg-haka-teal relative overflow-hidden text-white">
+    <Section className="bg-haka-pine relative overflow-hidden text-white">
       <div
         aria-hidden
         className="absolute -top-32 -right-32 -z-10 h-80 w-80 rounded-full bg-white/10 blur-3xl"
@@ -21,7 +21,7 @@ export function CtaFinal({
         <h2 className="font-display text-balance text-4xl leading-[1.04] font-medium tracking-tight sm:text-5xl lg:text-6xl">
           {heading}
         </h2>
-        <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg">
+        <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/90 sm:text-lg">
           {body}
         </p>
         <div className="mt-10 flex flex-wrap gap-3">

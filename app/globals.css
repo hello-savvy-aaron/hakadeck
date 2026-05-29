@@ -19,7 +19,8 @@
      Sky Blue / White Smoke / Muted Teal / Almond Silk. */
   --color-haka-sky: #85c7f2;       /* sky blue accent */
   --color-haka-smoke: #f3f0f0;     /* white smoke — dominant bg */
-  --color-haka-teal: #729b79;      /* muted teal — primary brand */
+  --color-haka-teal: #729b79;      /* muted teal — bright accent (buttons, icons) */
+  --color-haka-pine: #4f6e56;      /* deep green — band bg, AA-safe with white text */
   --color-haka-almond: #ffd4ca;    /* almond silk — warm accent */
   --color-haka-ink: #22302a;       /* dark green-charcoal text */
   --color-haka-cream: #729b79;     /* legacy accent alias → teal */

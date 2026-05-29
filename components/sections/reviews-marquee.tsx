@@ -21,11 +21,11 @@ const REVIEWS = [
 export function ReviewsMarquee() {
   const doubled = [...REVIEWS, ...REVIEWS];
   return (
-    <Section className="bg-haka-teal overflow-hidden text-white" innerClassName="!px-0 max-w-none">
+    <Section className="bg-haka-pine overflow-hidden text-white" innerClassName="!px-0 max-w-none">
       <div className="mx-auto mb-14 max-w-7xl px-5 sm:px-8">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
-            <Eyebrow className="text-white/70">What homeowners say</Eyebrow>
+            <Eyebrow className="text-white/90">What homeowners say</Eyebrow>
             <h2 className="font-display mt-4 max-w-2xl text-balance text-4xl leading-[1.06] font-medium tracking-tight sm:text-5xl">
               A handshake, a walkthrough, and a homeowner who can&apos;t wait to host.
             </h2>
@@ -42,7 +42,7 @@ export function ReviewsMarquee() {
                 <Star key={i} className="text-haka-almond h-3.5 w-3.5 fill-current" />
               ))}
             </span>
-            <span className="text-white/80">({site.rating.count}) on Google</span>
+            <span className="text-white/90">({site.rating.count}) on Google</span>
           </a>
         </div>
       </div>
