@@ -53,9 +53,6 @@ async function planShowcase(srcDir: string, projectSlug: string, videoName: stri
 
 async function plan(): Promise<Op[]> {
   const ops: Op[] = [
-    // Brand
-    { src: join(DOCS, "brand", "haka logo inverse.png"), dst: join(OUT, "brand", "logo-inverse.png") },
-
     // Certifications
     { src: join(DOCS, "deckorators-cert-elite.jpg"), dst: join(OUT, "certs", "deckorators-pro-elite.jpg") },
     { src: join(DOCS, "timber-tech.jpeg"), dst: join(OUT, "certs", "timber-tech.jpg") },

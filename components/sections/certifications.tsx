@@ -27,7 +27,7 @@ const LOGOS: { src: string; alt: string; invert?: boolean }[] = [
   { src: "/assets/certs/deckorators-pro-elite.jpg", alt: "Deckorators Pro Elite Installer" },
   { src: "/assets/certs/trex-platinum.png", alt: "Trex Platinum Pro" },
   { src: "/assets/certs/timber-tech.jpg", alt: "TimberTech Authorized Dealer" },
-  { src: "/assets/brand/logo-inverse.png", alt: "Haka Deck", invert: true },
+  { src: "/assets/brand/haka-badge.png", alt: "Haka Deck", invert: true },
 ];
 
 export function Certifications() {

@@ -39,7 +39,7 @@ export function LocalBusinessJsonLd() {
       reviewCount: site.rating.count,
       bestRating: site.rating.max,
     },
-    image: `${site.url}/assets/brand/logo-inverse.png`,
+    image: `${site.url}/assets/brand/haka-badge.png`,
     priceRange: "$$$",
   };
   return (
