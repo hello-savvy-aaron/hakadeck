@@ -31,6 +31,10 @@ export function SiteFooter() {
   return (
     <footer className="bg-background text-foreground border-border/40 mt-24 border-t">
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
+        <p className="font-display border-border/40 mb-14 border-b pb-12 text-4xl leading-none font-medium tracking-tight sm:text-6xl lg:text-7xl">
+          Denver&apos;s Deck BUILDER.
+        </p>
+
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div className="space-y-5">
             <Link href="/" aria-label={`${site.name} home`} className="inline-flex">
@@ -105,10 +109,7 @@ export function SiteFooter() {
           </FooterCol>
         </div>
 
-        <div className="border-border/40 mt-16 flex flex-col items-start justify-between gap-6 border-t pt-10 sm:flex-row sm:items-end">
-          <p className="font-display text-4xl leading-none font-medium tracking-tight sm:text-6xl lg:text-7xl">
-            Denver&apos;s Deck BUILDER.
-          </p>
+        <div className="border-border/40 mt-16 flex flex-col items-start justify-between gap-6 border-t pt-10 sm:flex-row sm:items-center">
           <p className="text-muted-foreground text-xs">
             © {new Date().getFullYear()} {site.name}. All rights reserved.
           </p>
