@@ -32,19 +32,19 @@ export function SiteHeader() {
           : "bg-transparent",
       )}
     >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-5 sm:h-18 sm:px-8">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-6 px-5 sm:h-28 sm:px-8">
         <Link
           href="/"
           aria-label={`${site.name} home`}
           className="flex items-center gap-2"
         >
           <Image
-            src="/assets/brand/logo-inverse.png"
+            src="/assets/brand/haka-badge.png"
             alt=""
-            width={140}
-            height={36}
+            width={120}
+            height={126}
             priority
-            className={cn("h-7 w-auto transition", !overHero && "invert")}
+            className={cn("h-14 w-auto transition sm:h-20", !overHero && "invert")}
           />
           <span className="sr-only">{site.name}</span>
         </Link>
