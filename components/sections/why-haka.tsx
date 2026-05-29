@@ -20,7 +20,7 @@ const POINTS = [
 
 export function WhyHaka() {
   return (
-    <Section id="why-haka" className="pt-8 sm:pt-12">
+    <Section id="why-haka" className="bg-haka-sky">
       <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
         <div>
           <Eyebrow>Why Denver chooses Haka</Eyebrow>
@@ -31,13 +31,13 @@ export function WhyHaka() {
         <ul className="space-y-10">
           {POINTS.map((p, i) => (
             <li key={p.title} className="border-border/40 border-t pt-8">
-              <div className="text-muted-foreground/60 text-sm tracking-[0.18em] uppercase tabular-nums">
+              <div className="text-foreground/50 text-sm tracking-[0.18em] uppercase tabular-nums">
                 {String(i + 1).padStart(2, "0")}
               </div>
               <h3 className="font-display mt-3 text-2xl leading-tight font-medium tracking-tight sm:text-3xl">
                 {p.title}
               </h3>
-              <p className="text-muted-foreground mt-3 max-w-2xl text-base leading-relaxed">{p.body}</p>
+              <p className="text-foreground/75 mt-3 max-w-2xl text-base leading-relaxed">{p.body}</p>
             </li>
           ))}
         </ul>

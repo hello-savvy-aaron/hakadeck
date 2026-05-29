@@ -20,7 +20,7 @@ const DEFAULT_STATS: Stat[] = [
 
 export function StatsCounter({ stats = DEFAULT_STATS }: { stats?: Stat[] }) {
   return (
-    <Section id="stats" className="bg-haka-sky">
+    <Section id="stats">
       <div className="grid items-end gap-12 lg:grid-cols-[1.2fr_1.6fr]">
         <div>
           <Eyebrow>By the Numbers</Eyebrow>

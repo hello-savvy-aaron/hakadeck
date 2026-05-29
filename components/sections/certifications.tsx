@@ -32,7 +32,7 @@ const LOGOS = [
 
 export function Certifications() {
   return (
-    <Section className="bg-card border-border/30 border-y" id="certifications">
+    <Section className="bg-haka-almond border-border/30 border-y" id="certifications">
       <Eyebrow>Credentials</Eyebrow>
       <h2 className="font-display mt-4 max-w-3xl text-balance text-4xl leading-[1.06] font-medium tracking-tight sm:text-5xl lg:text-[3.5rem]">
         Certified by the people who make the materials we build with.

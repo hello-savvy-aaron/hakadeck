@@ -41,7 +41,7 @@ export function ServicesPreview() {
   }, []);
 
   return (
-    <Section id="services" className="bg-haka-almond">
+    <Section id="services">
       <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
         <div>
           <Eyebrow>What we build</Eyebrow>
