@@ -51,6 +51,37 @@ async function planShowcase(srcDir: string, projectSlug: string, videoName: stri
   return ops;
 }
 
+// Six projects dropped into docs/misc/ as p<project><shot>.jpeg (e.g. p21 = project 2, shot 1).
+const MISC_PROJECTS: Record<string, string> = {
+  "1": "walkout-covered-deck",
+  "2": "prairie-view-deck",
+  "3": "pergola-patio-screen",
+  "4": "patio-cover-tongue-groove",
+  "5": "two-tier-balcony-deck",
+  "6": "hot-tub-deck-retreat",
+};
+
+async function planMisc(srcDir: string): Promise<Op[]> {
+  const ops: Op[] = [];
+  const photos = await listJpegs(srcDir);
+  const groups = new Map<string, string[]>();
+  for (const file of photos) {
+    // p<project><shot>.jpeg — require two digits so single-digit dupes (p2.jpeg) are skipped.
+    const m = /^p(\d)\d\.jpe?g$/i.exec(file);
+    if (!m) continue;
+    (groups.get(m[1]) ?? groups.set(m[1], []).get(m[1])!).push(file);
+  }
+  for (const [project, files] of groups) {
+    const slug = MISC_PROJECTS[project];
+    if (!slug) continue;
+    files.sort().forEach((file, i) => {
+      const n = String(i + 1).padStart(2, "0");
+      ops.push({ src: join(srcDir, file), dst: join(OUT, "projects", slug, `${n}.jpeg`) });
+    });
+  }
+  return ops;
+}
+
 async function plan(): Promise<Op[]> {
   const ops: Op[] = [
     // Certifications
@@ -69,6 +100,8 @@ async function plan(): Promise<Op[]> {
 
   ops.push(...(await planShowcase(join(DOCS, "showcase-1"), "double-decker", "double-decker-drone.mp4")));
   ops.push(...(await planShowcase(join(DOCS, "showcase-2"), "ranch-drone", "ranch-drone.mp4")));
+
+  ops.push(...(await planMisc(join(DOCS, "misc"))));
 
   return ops;
 }
