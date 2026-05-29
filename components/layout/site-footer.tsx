@@ -28,7 +28,7 @@ function LinkedinIcon(props: React.SVGProps<SVGSVGElement>) {
 export function SiteFooter() {
   const { address, parent } = site;
   return (
-    <footer className="bg-card text-foreground border-border/40 mt-24 border-t">
+    <footer className="bg-background text-foreground border-border/40 mt-24 border-t">
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div className="space-y-5">
