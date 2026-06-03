@@ -16,6 +16,14 @@ function rateLimit(ip: string): boolean {
   return bucket.count <= MAX_HITS;
 }
 
+// Last-resort capture so a genuine inquiry is never lost when mail delivery
+// fails. Recover these from Vercel → Logs by searching "[contact] LEAD CAPTURE".
+// Note: this writes the submitter's details (incl. PII) to the server logs.
+function logLeadFallback(reason: string, data: unknown) {
+  console.error(`[contact] LEAD CAPTURE (${reason}) — delivery failed, recover manually:`);
+  console.error(JSON.stringify(data, null, 2));
+}
+
 export async function POST(req: Request) {
   const ip =
     req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
@@ -56,8 +64,11 @@ export async function POST(req: Request) {
   // TODO: switch `from` to `noreply@hakadeck.com` after the hakadeck.com domain
   // is verified in Resend (https://resend.com/domains). Until then, only the
   // pre-verified onboarding@resend.dev sender will pass Resend's checks.
-  const FROM = process.env.RESEND_FROM ?? "Haka Deck <onboarding@resend.dev>";
-  const TO = process.env.CONTACT_TO ?? "pete@hakaconstruction.com";
+  // Use trim()/|| (not ??) so an empty or whitespace-only env var falls back to
+  // the working default. Production had RESEND_FROM="" set, which ?? passes
+  // through to Resend as an empty sender → the send is rejected with a 502.
+  const FROM = process.env.RESEND_FROM?.trim() || "Haka Deck <onboarding@resend.dev>";
+  const TO = process.env.CONTACT_TO?.trim() || "pete@hakaconstruction.com";
 
   try {
     const { Resend } = await import("resend");
@@ -83,11 +94,13 @@ export async function POST(req: Request) {
     });
     if (result.error) {
       console.error("[contact] resend rejected:", result.error);
+      logLeadFallback("resend-rejected", parsed.data);
       return NextResponse.json({ error: "Send failed" }, { status: 502 });
     }
     return NextResponse.json({ ok: true, id: result.data?.id });
   } catch (err) {
     console.error("[contact] resend exception:", err);
+    logLeadFallback("resend-exception", parsed.data);
     return NextResponse.json({ error: "Send failed" }, { status: 500 });
   }
 }
