@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { track } from "@vercel/analytics";
 import { toast } from "sonner";
 import { ArrowRight, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -39,6 +40,9 @@ export function ContactForm() {
         body: JSON.stringify(values),
       });
       if (!res.ok) throw new Error("Submit failed");
+      // Count successful submissions in Vercel Web Analytics. projectType is a
+      // bounded enum (no PII) — name/email/message are deliberately omitted.
+      track("Contact form submitted", { projectType: values.projectType });
       setSubmitted(true);
       reset();
       toast.success("Got it — Pete will be in touch within one business day.");
