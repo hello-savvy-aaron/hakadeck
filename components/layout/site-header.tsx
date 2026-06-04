@@ -68,7 +68,7 @@ export function SiteHeader() {
               href={site.socials.instagram}
               target="_blank"
               rel="noreferrer"
-              aria-label="Haka Deck on Instagram"
+              aria-label="Haka Decks on Instagram"
               className={cn(
                 "inline-flex h-9 w-9 items-center justify-center rounded-full transition-colors",
                 overHero
@@ -82,7 +82,7 @@ export function SiteHeader() {
               href={site.socials.linkedin}
               target="_blank"
               rel="noreferrer"
-              aria-label="Haka Deck on LinkedIn"
+              aria-label="Haka Decks on LinkedIn"
               className={cn(
                 "inline-flex h-9 w-9 items-center justify-center rounded-full transition-colors",
                 overHero

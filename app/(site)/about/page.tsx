@@ -6,9 +6,9 @@ import { Reveal } from "@/components/reveal";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "About Pete & Haka Deck",
+  title: "About Pete & Haka Decks",
   description:
-    "Haka was founded in 2017 by Pete Borlase — a former pro rugby player turned Denver deck builder, with a service-first approach to outdoor living.",
+    "Haka Decks was founded in 2017 by Pete Borlase — a former pro rugby player turned Denver deck builder, with a service-first approach to outdoor living.",
 };
 
 export default function AboutPage() {
@@ -47,8 +47,8 @@ export default function AboutPage() {
               </h2>
               <div className="text-muted-foreground space-y-5 text-base leading-relaxed sm:text-lg">
                 <p>
-                  Haka was founded in 2017 by Pete Borlase. Pete is a former
-                  rugby player from New Zealand with a long line of experience
+                  Haka Decks was founded in 2017 by Pete Borlase. Pete is a
+                  former rugby player from New Zealand with a long line of experience
                   on and off the field. On the field, he played professionally
                   in several countries and coached several elite-level rugby
                   teams.
@@ -60,11 +60,10 @@ export default function AboutPage() {
                   attitude grounded in service and hard work.
                 </p>
                 <p>
-                  He founded Haka Construction so he could do this whole
-                  construction thing a bit differently from the rest — and
-                  he&apos;s excited to bring that value-added approach to your
-                  project. Today, Pete is a proud husband and father of two
-                  boys.
+                  He founded Haka Decks so he could do this whole deck-building
+                  thing a bit differently from the rest — and he&apos;s excited
+                  to bring that value-added approach to your project. Today, Pete
+                  is a proud husband and father of two boys.
                 </p>
               </div>
             </div>

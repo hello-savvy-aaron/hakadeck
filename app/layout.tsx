@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -16,29 +17,33 @@ const bricolage = Bricolage_Grotesque({
   display: "swap",
 });
 
+// Lead with the primary category + city so the home <title> matches local
+// "deck builder in Centennial" searches (per the GMB audit).
+const homeTitle = `${site.name} — Deck Builder in ${site.address.city}, ${site.address.state}`;
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — ${site.tagline}`,
+    default: homeTitle,
     template: `%s | ${site.name}`,
   },
   description: site.description,
   applicationName: site.name,
   authors: [{ name: "Pete Borlase" }],
   creator: site.name,
-  publisher: site.parent.name,
+  publisher: site.name,
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "en_US",
     siteName: site.name,
-    title: `${site.name} — ${site.tagline}`,
+    title: homeTitle,
     description: site.description,
     url: site.url,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — ${site.tagline}`,
+    title: homeTitle,
     description: site.description,
   },
 };
@@ -60,6 +65,7 @@ export default function RootLayout({
       <body className="bg-background text-foreground font-sans flex min-h-full flex-col">
         {children}
         <Analytics />
+        <GoogleAnalytics gaId={site.gaId} />
       </body>
     </html>
   );

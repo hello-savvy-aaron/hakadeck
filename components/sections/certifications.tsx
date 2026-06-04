@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Award, Calendar, Hammer } from "lucide-react";
+import { Award, ShieldCheck, Sparkles } from "lucide-react";
 import { Eyebrow, Section } from "./section";
 
 const PILLARS = [
@@ -7,19 +7,19 @@ const PILLARS = [
     icon: Award,
     title: "Pro Elite with Deckorators",
     body:
-      "Deckorators Certified Pro Elite Installer. We install the most trusted composite brands in the industry — backed by 25-year manufacturer warranties on top of our own craftsmanship guarantee.",
+      "Deckorators Certified Pro Elite Installer. We build with the most trusted composite brands in the industry — and every install is backed by our own craftsmanship guarantee.",
   },
   {
-    icon: Calendar,
-    title: "Serving Denver since 2017",
+    icon: ShieldCheck,
+    title: "All Work Guaranteed",
     body:
-      "Nearly a decade designing and building outdoor spaces engineered for Colorado's freeze-thaw, hail, and high-altitude UV.",
+      "We guarantee everything we build. If something isn't right, we make it right — no fine print, no fight. Our name goes on every project, so we stand behind all of it.",
   },
   {
-    icon: Hammer,
-    title: "The Haka Construction Family",
+    icon: Sparkles,
+    title: "We Don't Stop Until You're Happy",
     body:
-      "Haka Deck is the residential outdoor arm of Haka Construction — a full-service team with the bench depth to handle structural work most deck builders subcontract out.",
+      "We're perfectionists. If we think the work isn't perfect, we'll come back a year later to fix it. We won't quit until you're thrilled — happy is the only finish line.",
   },
 ];
 
@@ -27,7 +27,7 @@ const LOGOS: { src: string; alt: string; invert?: boolean }[] = [
   { src: "/assets/certs/deckorators-pro-elite.jpg", alt: "Deckorators Pro Elite Installer" },
   { src: "/assets/certs/trex-platinum.png", alt: "Trex Platinum Pro" },
   { src: "/assets/certs/timber-tech.jpg", alt: "TimberTech Authorized Dealer" },
-  { src: "/assets/brand/haka-badge.png", alt: "Haka Deck", invert: true },
+  { src: "/assets/brand/haka-badge.png", alt: "Haka Decks", invert: true },
 ];
 
 export function Certifications() {
@@ -41,7 +41,7 @@ export function Certifications() {
       <div className="mt-16 grid gap-10 lg:grid-cols-3">
         {PILLARS.map((p) => (
           <div key={p.title} className="space-y-4">
-            <p.icon className="text-haka-cream h-7 w-7" strokeWidth={1.5} />
+            <p.icon className="text-haka-cream h-11 w-11" strokeWidth={1.5} />
             <h3 className="font-display text-2xl font-medium tracking-tight">{p.title}</h3>
             <p className="text-muted-foreground text-sm leading-relaxed">{p.body}</p>
           </div>
@@ -52,14 +52,14 @@ export function Certifications() {
         {LOGOS.map((logo) => (
           <div
             key={logo.src}
-            className="border-border/50 bg-card flex h-28 items-center justify-center rounded-2xl border px-6 py-5"
+            className="border-border/50 bg-card flex h-32 items-center justify-center rounded-2xl border px-6 py-5"
           >
             <Image
               src={logo.src}
               alt={logo.alt}
-              width={200}
-              height={80}
-              className={`h-12 w-auto max-w-[85%] object-contain ${logo.invert ? "invert" : ""}`}
+              width={240}
+              height={96}
+              className={`h-16 w-auto max-w-[90%] object-contain ${logo.invert ? "invert" : ""}`}
             />
           </div>
         ))}

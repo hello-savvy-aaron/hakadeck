@@ -1,11 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { InstagramIcon, LinkedinIcon } from "@/components/icons/social-icons";
 import { site } from "@/lib/site";
 
 export function SiteFooter() {
-  const { address, parent } = site;
+  const { address, hours } = site;
   return (
     <footer className="bg-background text-foreground border-border/40 border-t">
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
@@ -25,16 +25,9 @@ export function SiteFooter() {
               />
             </Link>
             <p className="text-muted-foreground max-w-sm text-sm leading-relaxed">
-              {site.name} is the residential outdoor arm of{" "}
-              <Link
-                href={parent.url}
-                className="text-foreground underline-offset-4 hover:underline"
-                target="_blank"
-                rel="noreferrer"
-              >
-                {parent.name}
-              </Link>
-              , serving the {address.region}.
+              {site.name} builds custom decks, pergolas, and covered outdoor
+              living for homeowners across {address.city} and the{" "}
+              {address.region}.
             </p>
             <div className="flex gap-3">
               <SocialLink href={site.socials.instagram} label="Instagram">
@@ -61,6 +54,23 @@ export function SiteFooter() {
               <br />
               {address.city}, {address.state} {address.zip}
             </p>
+            <div className="mt-5">
+              <p className="text-foreground/60 mb-1.5 flex items-center text-xs font-medium tracking-widest uppercase">
+                <Clock className="mr-1.5 h-3.5 w-3.5" />
+                Hours
+              </p>
+              <dl className="space-y-1 text-sm">
+                {hours.display.map((h) => (
+                  <div
+                    key={h.label}
+                    className="text-muted-foreground flex justify-between gap-4"
+                  >
+                    <dt>{h.label}</dt>
+                    <dd className="text-foreground/80 tabular-nums">{h.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
           </FooterCol>
 
           <FooterCol heading="Contact">

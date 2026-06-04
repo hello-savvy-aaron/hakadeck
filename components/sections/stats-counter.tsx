@@ -12,10 +12,10 @@ type Stat = {
 };
 
 const DEFAULT_STATS: Stat[] = [
-  { value: 87, label: "5-Star Google Reviews" },
-  { value: 100, suffix: "+", label: "Decks Built in Denver" },
-  { value: 9, label: "Years in the south Denver metro" },
-  { value: 25, label: "Year Manufacturer Warranties" },
+  { value: 100, suffix: "%", label: "Five-Star Reviews" },
+  { value: 87, label: "Five-Star Google Reviews" },
+  { value: 250, suffix: "+", label: "Outdoor Projects Built" },
+  { value: 100, suffix: "%", label: "Guaranteed — we don't stop until you're happy" },
 ];
 
 export function StatsCounter({ stats = DEFAULT_STATS }: { stats?: Stat[] }) {

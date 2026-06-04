@@ -1,5 +1,6 @@
 import { Hero } from "@/components/sections/hero";
 import { StatsCounter } from "@/components/sections/stats-counter";
+import { LocalIntro } from "@/components/sections/local-intro";
 import { Certifications } from "@/components/sections/certifications";
 import { ServicesPreview } from "@/components/sections/services-preview";
 import { ReviewsMarquee } from "@/components/sections/reviews-marquee";
@@ -16,6 +17,9 @@ export default function HomePage() {
       <Hero />
       <Reveal>
         <StatsCounter />
+      </Reveal>
+      <Reveal>
+        <LocalIntro />
       </Reveal>
       <Reveal>
         <ServicesPreview />

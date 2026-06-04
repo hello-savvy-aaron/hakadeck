@@ -21,13 +21,13 @@ export function FollowBand() {
 
         <div className="flex shrink-0 items-center gap-3">
           <Button asChild size="lg" className="h-12 px-6 text-base">
-            <a href={site.socials.instagram} target="_blank" rel="noreferrer" aria-label="Follow Haka Deck on Instagram">
+            <a href={site.socials.instagram} target="_blank" rel="noreferrer" aria-label="Follow Haka Decks on Instagram">
               <InstagramIcon className="mr-2 size-5" />
               Follow on Instagram
             </a>
           </Button>
           <Button asChild size="icon-lg" variant="outline" className="size-12">
-            <a href={site.socials.linkedin} target="_blank" rel="noreferrer" aria-label="Haka Deck on LinkedIn">
+            <a href={site.socials.linkedin} target="_blank" rel="noreferrer" aria-label="Haka Decks on LinkedIn">
               <LinkedinIcon className="size-5" />
             </a>
           </Button>

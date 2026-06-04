@@ -4,7 +4,7 @@ import { site } from "@/lib/site";
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: site.name,
-    short_name: "Haka Deck",
+    short_name: "Haka Decks",
     description: site.description,
     start_url: "/",
     display: "standalone",

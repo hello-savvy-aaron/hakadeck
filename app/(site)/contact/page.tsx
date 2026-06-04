@@ -7,7 +7,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Get a Quote",
   description:
-    "Tell us about your deck, pergola, or outdoor living project. Pete will be in touch within one business day.",
+    "Get a free quote from Haka Decks, a deck builder in Centennial, CO. Tell us about your deck, pergola, or outdoor living project and Pete will be in touch within one business day.",
 };
 
 export default function ContactPage() {
@@ -52,6 +52,18 @@ export default function ContactPage() {
                     {site.address.city}, {site.address.state} {site.address.zip}
                   </p>
                 </ContactRow>
+              </dl>
+            </div>
+
+            <div>
+              <Eyebrow>Hours</Eyebrow>
+              <dl className="mt-4 space-y-1.5 text-sm">
+                {site.hours.display.map((h) => (
+                  <div key={h.label} className="flex justify-between gap-6">
+                    <dt className="text-muted-foreground">{h.label}</dt>
+                    <dd className="text-foreground/90 tabular-nums">{h.value}</dd>
+                  </div>
+                ))}
               </dl>
             </div>
 

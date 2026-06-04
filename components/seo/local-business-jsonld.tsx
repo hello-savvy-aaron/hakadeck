@@ -1,5 +1,17 @@
 import { site } from "@/lib/site";
 
+// Mirrors the services covered by dedicated landing pages, and signals the
+// GBP categories (deck builder, railing contractor, patio enclosure, etc.)
+// without spinning up thin doorway pages.
+const KNOWS_ABOUT = [
+  "Composite deck construction",
+  "Hardwood & cedar decks",
+  "Pergolas, patio covers & enclosures",
+  "Outdoor kitchens & bars",
+  "Railing systems",
+  "Deck repair & restoration",
+];
+
 export function LocalBusinessJsonLd() {
   const data = {
     "@context": "https://schema.org",
@@ -9,11 +21,6 @@ export function LocalBusinessJsonLd() {
     url: site.url,
     telephone: site.phone,
     email: site.email,
-    parentOrganization: {
-      "@type": "Organization",
-      name: site.parent.name,
-      url: site.parent.url,
-    },
     address: {
       "@type": "PostalAddress",
       streetAddress: site.address.street,
@@ -31,8 +38,15 @@ export function LocalBusinessJsonLd() {
       "Castle Rock, CO",
       "Denver, CO",
     ],
+    openingHoursSpecification: site.hours.schema.map((h) => ({
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: h.days,
+      opens: h.opens,
+      closes: h.closes,
+    })),
+    knowsAbout: KNOWS_ABOUT,
     foundingDate: String(site.founded),
-    sameAs: [site.socials.instagram, site.socials.linkedin],
+    sameAs: [site.socials.instagram, site.socials.linkedin, site.reviewsUrl],
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: site.rating.value,

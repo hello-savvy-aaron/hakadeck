@@ -67,7 +67,7 @@ export async function POST(req: Request) {
   // Use trim()/|| (not ??) so an empty or whitespace-only env var falls back to
   // the working default. Production had RESEND_FROM="" set, which ?? passes
   // through to Resend as an empty sender → the send is rejected with a 502.
-  const FROM = process.env.RESEND_FROM?.trim() || "Haka Deck <onboarding@resend.dev>";
+  const FROM = process.env.RESEND_FROM?.trim() || "Haka Decks <onboarding@resend.dev>";
   const TO = process.env.CONTACT_TO?.trim() || "pete@hakaconstruction.com";
 
   try {
