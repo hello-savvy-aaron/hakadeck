@@ -18,8 +18,9 @@ const bricolage = Bricolage_Grotesque({
 });
 
 // Lead with the primary category + city so the home <title> matches local
-// "deck builder in Centennial" searches (per the GMB audit).
-const homeTitle = `${site.name} — Deck Builder in ${site.address.city}, ${site.address.state}`;
+// "deck builder in Centennial" searches (per the GMB audit). Spelled-out
+// "Custom … Colorado" lands the title in the 50–60 char SERP sweet spot.
+const homeTitle = `${site.name} — Custom Deck Builder in ${site.address.city}, Colorado`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),

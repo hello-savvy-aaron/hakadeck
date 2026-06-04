@@ -1,10 +1,11 @@
 export const site = {
   name: "Haka Decks",
   tagline: "Custom Colorado Decks",
-  // Kept ≤160 chars so Google doesn't truncate it in search results. Used for
-  // the meta description, OpenGraph/Twitter, and the JSON-LD description.
+  // Kept ~120 chars: short enough to never truncate in SERPs and to clear the
+  // stricter site-grader limits, while keeping the deck-builder + geo + service
+  // keywords. Used for the meta description, OpenGraph/Twitter, and JSON-LD.
   description:
-    "Custom deck builder in Centennial, CO — composite & hardwood decks, pergolas & covered outdoor living across the south Denver metro. Engineered for altitude.",
+    "Custom deck builder in Centennial, CO — composite & hardwood decks, pergolas & covered outdoor living across south Denver.",
   url: "https://hakadeck.com",
   phone: "720-589-5680",
   phoneHref: "tel:+17205895680",

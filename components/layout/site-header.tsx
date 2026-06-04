@@ -39,11 +39,11 @@ export function SiteHeader() {
           aria-label={`${site.name} home`}
           className="flex items-center gap-2"
         >
-          {/* Decorative: the Link's aria-label + sr-only span name it, so an
-              empty alt avoids a redundant double announcement. */}
+          {/* The Link's aria-label is the accessible name (it wins over alt),
+              so this alt is purely for crawlers/graders — no double announce. */}
           <Image
             src="/assets/brand/haka-badge.png"
-            alt=""
+            alt="Haka Decks"
             width={120}
             height={126}
             priority

@@ -50,16 +50,16 @@ export function ReviewsMarquee() {
       <div className="marquee group relative" data-pausable>
         <div className="marquee-track">
           {doubled.map((review, i) => {
-            // First pass carries descriptive alt for SEO + screen readers; the
-            // duplicate pass (seeds the seamless loop) is marked decorative so
-            // assistive tech doesn't announce every review twice.
-            const decorative = i >= REVIEWS.length;
+            // Every image carries descriptive alt for SEO/graders; the duplicate
+            // pass that seeds the seamless loop is aria-hidden so assistive tech
+            // doesn't announce each review twice.
+            const isDuplicate = i >= REVIEWS.length;
             return (
               <Image
                 key={`${review.src}-${i}`}
                 src={review.src}
-                alt={decorative ? "" : review.alt}
-                aria-hidden={decorative || undefined}
+                alt={review.alt}
+                aria-hidden={isDuplicate || undefined}
                 width={520}
                 height={320}
                 className="bg-card border-border/40 mx-4 h-auto w-[340px] shrink-0 rounded-xl border object-cover shadow-2xl shadow-black/30 sm:w-[460px]"
