@@ -6,12 +6,12 @@ Haka Decks (formerly Haka Construction) is a service-first deck shop founded in 
 
 ## Services
 
-- [Composite Decks](https://hakadeck.com/services/composite-decks): Low-maintenance, high-durability composite decking engineered for Colorado's altitude, hail, and freeze-thaw — our default recommendation for most south Denver homes. Built as a Deckorators Pro Elite installer, Trex Platinum Pro, and TimberTech Authorized Dealer.
-- [Hardwood & Cedar Decks](https://hakadeck.com/services/hardwood-cedar-decks): Real-wood warmth for homeowners who want natural grain — clear-grade cedar and premium hardwoods, built to last in Colorado's climate.
-- [Pergolas & Patio Covers](https://hakadeck.com/services/pergolas-patio-covers): Year-round shade and shelter, from open-rafter pergolas to fully roofed pavilions and screened enclosures, engineered end to end for Colorado weather.
-- [Outdoor Kitchens & Bars](https://hakadeck.com/services/outdoor-kitchens): Built-in grills, ventilated counters, sinks, and refrigeration — engineered into the deck structure and detailed to survive Colorado winters.
-- [Railing Systems](https://hakadeck.com/services/railings): Cable, aluminum, glass-panel, or composite railing — code-compliant on every Colorado deck.
-- [Deck Repair & Restoration](https://hakadeck.com/services/deck-repair): If the bones are good, we save the structure and replace the surface; if they're not, we'll tell you straight.
+- [Composite Decks](https://www.hakadeck.com/services/composite-decks): Low-maintenance, high-durability composite decking engineered for Colorado's altitude, hail, and freeze-thaw — our default recommendation for most south Denver homes. Built as a Deckorators Pro Elite installer, Trex Platinum Pro, and TimberTech Authorized Dealer.
+- [Hardwood & Cedar Decks](https://www.hakadeck.com/services/hardwood-cedar-decks): Real-wood warmth for homeowners who want natural grain — clear-grade cedar and premium hardwoods, built to last in Colorado's climate.
+- [Pergolas & Patio Covers](https://www.hakadeck.com/services/pergolas-patio-covers): Year-round shade and shelter, from open-rafter pergolas to fully roofed pavilions and screened enclosures, engineered end to end for Colorado weather.
+- [Outdoor Kitchens & Bars](https://www.hakadeck.com/services/outdoor-kitchens): Built-in grills, ventilated counters, sinks, and refrigeration — engineered into the deck structure and detailed to survive Colorado winters.
+- [Railing Systems](https://www.hakadeck.com/services/railings): Cable, aluminum, glass-panel, or composite railing — code-compliant on every Colorado deck.
+- [Deck Repair & Restoration](https://www.hakadeck.com/services/deck-repair): If the bones are good, we save the structure and replace the surface; if they're not, we'll tell you straight.
 
 ## Service area
 
@@ -34,7 +34,7 @@ Centennial, Greenwood Village, Cherry Hills Village, Lone Tree, Highlands Ranch,
 
 ## Contact
 
-- Website: https://hakadeck.com
+- Website: https://www.hakadeck.com
 - Phone: 720-589-5680
 - Location: 9707 E Easter Ln, Centennial, CO 80112
 - Hours: Mon–Fri 8:00 AM–6:00 PM, Sat 9:00 AM–1:00 PM, Sun closed
@@ -42,9 +42,9 @@ Centennial, Greenwood Village, Cherry Hills Village, Lone Tree, Highlands Ranch,
 
 ## Key pages
 
-- [Home](https://hakadeck.com)
-- [Services](https://hakadeck.com/services)
-- [Portfolio](https://hakadeck.com/portfolio)
-- [About](https://hakadeck.com/about)
-- [Field Notes (blog)](https://hakadeck.com/blog)
-- [Contact](https://hakadeck.com/contact)
+- [Home](https://www.hakadeck.com)
+- [Services](https://www.hakadeck.com/services)
+- [Portfolio](https://www.hakadeck.com/portfolio)
+- [About](https://www.hakadeck.com/about)
+- [Field Notes (blog)](https://www.hakadeck.com/blog)
+- [Contact](https://www.hakadeck.com/contact)
