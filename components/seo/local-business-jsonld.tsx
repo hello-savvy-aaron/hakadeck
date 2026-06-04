@@ -55,6 +55,18 @@ export function LocalBusinessJsonLd() {
     },
     image: `${site.url}/assets/brand/haka-badge.png`,
     priceRange: "$$$",
+    slogan: "Denver's Deck Builder. Engineered for altitude.",
+    makesOffer: [
+      "Custom composite deck construction",
+      "Hardwood & cedar deck construction",
+      "Pergola & patio cover construction",
+      "Outdoor kitchen construction",
+      "Deck railing installation",
+      "Deck repair & restoration",
+    ].map((name) => ({
+      "@type": "Offer",
+      itemOffered: { "@type": "Service", name },
+    })),
   };
   return (
     <script

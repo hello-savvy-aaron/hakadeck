@@ -50,7 +50,12 @@ function StatNumber({ value, prefix, suffix }: { value: number; prefix?: string;
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-10%" });
   const reduce = useReducedMotion();
-  const [display, setDisplay] = useState(0);
+  // Initialize to the real value so the server-rendered HTML contains the true
+  // number (e.g. "87"), not a literal "0" that JS-free crawlers and some AEO
+  // ingestion paths would otherwise read. On the client, `animate` below drives
+  // the count-up from 0 via onUpdate once the section scrolls into view; reduced
+  // -motion users keep the real number.
+  const [display, setDisplay] = useState(value);
 
   useEffect(() => {
     if (!inView || reduce) return;
@@ -62,15 +67,13 @@ function StatNumber({ value, prefix, suffix }: { value: number; prefix?: string;
     return () => controls.stop();
   }, [inView, value, reduce]);
 
-  const shown = reduce && inView ? value : display;
-
   return (
     <span
       ref={ref}
       className="font-display block text-5xl leading-none font-medium tracking-tight tabular-nums sm:text-6xl lg:text-7xl"
     >
       {prefix}
-      {shown.toLocaleString()}
+      {display.toLocaleString()}
       {suffix}
     </span>
   );

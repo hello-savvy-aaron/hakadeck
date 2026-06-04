@@ -78,7 +78,7 @@ export default async function BlogPostPage({
           <div className="border-border/40 relative aspect-[16/9] overflow-hidden rounded-2xl border">
             <Image
               src={post.cover}
-              alt=""
+              alt={post.title}
               fill
               sizes="(min-width: 1280px) 1100px, 92vw"
               className="object-cover"

@@ -11,6 +11,8 @@ export function PostCard({ post }: { post: PostMeta }) {
     >
       {post.cover ? (
         <div className="bg-muted relative aspect-[16/10] overflow-hidden">
+          {/* Decorative: the card heading labels the link, so the thumbnail
+              uses an empty alt to avoid duplicating the title for screen readers. */}
           <Image
             src={post.cover}
             alt=""

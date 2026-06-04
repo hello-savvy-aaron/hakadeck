@@ -90,7 +90,14 @@ export default async function ProjectPage({
           </div>
         ) : (
           <div className="border-border/40 relative aspect-[16/9] overflow-hidden rounded-2xl border">
-            <Image src={project.cover} alt="" fill priority sizes="1100px" className="object-cover" />
+            <Image
+              src={project.cover}
+              alt={`${project.title} by Haka Decks in ${project.location}`}
+              fill
+              priority
+              sizes="1100px"
+              className="object-cover"
+            />
           </div>
         )}
       </div>
@@ -115,7 +122,7 @@ export default async function ProjectPage({
               >
                 <Image
                   src={src}
-                  alt=""
+                  alt={`${project.title} in ${project.location} — gallery photo ${i + 1}`}
                   fill
                   sizes="(min-width: 1024px) 33vw, 50vw"
                   className="object-cover"

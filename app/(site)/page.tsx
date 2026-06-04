@@ -9,11 +9,13 @@ import { Faq } from "@/components/sections/faq";
 import { CtaFinal } from "@/components/sections/cta-final";
 import { Reveal } from "@/components/reveal";
 import { LocalBusinessJsonLd } from "@/components/seo/local-business-jsonld";
+import { FaqJsonLd } from "@/components/seo/faq-jsonld";
 
 export default function HomePage() {
   return (
     <>
       <LocalBusinessJsonLd />
+      <FaqJsonLd />
       <Hero />
       <Reveal>
         <StatsCounter />

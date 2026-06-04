@@ -4,18 +4,18 @@ import { Eyebrow, Section } from "./section";
 import { site } from "@/lib/site";
 
 const REVIEWS = [
-  "/assets/reviews/review-1.png",
-  "/assets/reviews/review-2.png",
-  "/assets/reviews/review-3.png",
-  "/assets/reviews/review-5.png",
-  "/assets/reviews/review-6.png",
-  "/assets/reviews/review-7.png",
-  "/assets/reviews/review-8.png",
-  "/assets/reviews/review-jc.png",
-  "/assets/reviews/review-derrick.png",
-  "/assets/reviews/review-brad.png",
-  "/assets/reviews/review-louis.png",
-  "/assets/reviews/review-sue.png",
+  { src: "/assets/reviews/review-1.png", alt: "Five-star Google review for Haka Decks from a south Denver metro homeowner" },
+  { src: "/assets/reviews/review-2.png", alt: "Five-star Google review for Haka Decks from a south Denver metro homeowner" },
+  { src: "/assets/reviews/review-3.png", alt: "Five-star Google review for Haka Decks from a south Denver metro homeowner" },
+  { src: "/assets/reviews/review-5.png", alt: "Five-star Google review for Haka Decks from a south Denver metro homeowner" },
+  { src: "/assets/reviews/review-6.png", alt: "Five-star Google review for Haka Decks from a south Denver metro homeowner" },
+  { src: "/assets/reviews/review-7.png", alt: "Five-star Google review for Haka Decks from a south Denver metro homeowner" },
+  { src: "/assets/reviews/review-8.png", alt: "Five-star Google review for Haka Decks from a south Denver metro homeowner" },
+  { src: "/assets/reviews/review-jc.png", alt: "Five-star Google review for Haka Decks from JC, a south Denver metro homeowner" },
+  { src: "/assets/reviews/review-derrick.png", alt: "Five-star Google review for Haka Decks from Derrick, a south Denver metro homeowner" },
+  { src: "/assets/reviews/review-brad.png", alt: "Five-star Google review for Haka Decks from Brad, a south Denver metro homeowner" },
+  { src: "/assets/reviews/review-louis.png", alt: "Five-star Google review for Haka Decks from Louis, a south Denver metro homeowner" },
+  { src: "/assets/reviews/review-sue.png", alt: "Five-star Google review for Haka Decks from Sue, a south Denver metro homeowner" },
 ];
 
 export function ReviewsMarquee() {
@@ -49,16 +49,23 @@ export function ReviewsMarquee() {
 
       <div className="marquee group relative" data-pausable>
         <div className="marquee-track">
-          {doubled.map((src, i) => (
-            <Image
-              key={`${src}-${i}`}
-              src={src}
-              alt=""
-              width={520}
-              height={320}
-              className="bg-card border-border/40 mx-4 h-auto w-[340px] shrink-0 rounded-xl border object-cover shadow-2xl shadow-black/30 sm:w-[460px]"
-            />
-          ))}
+          {doubled.map((review, i) => {
+            // First pass carries descriptive alt for SEO + screen readers; the
+            // duplicate pass (seeds the seamless loop) is marked decorative so
+            // assistive tech doesn't announce every review twice.
+            const decorative = i >= REVIEWS.length;
+            return (
+              <Image
+                key={`${review.src}-${i}`}
+                src={review.src}
+                alt={decorative ? "" : review.alt}
+                aria-hidden={decorative || undefined}
+                width={520}
+                height={320}
+                className="bg-card border-border/40 mx-4 h-auto w-[340px] shrink-0 rounded-xl border object-cover shadow-2xl shadow-black/30 sm:w-[460px]"
+              />
+            );
+          })}
         </div>
       </div>
     </Section>

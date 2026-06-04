@@ -24,10 +24,14 @@ const PILLARS = [
 ];
 
 const LOGOS: { src: string; alt: string; invert?: boolean }[] = [
-  { src: "/assets/certs/deckorators-pro-elite.jpg", alt: "Deckorators Pro Elite Installer" },
-  { src: "/assets/certs/trex-platinum.png", alt: "Trex Platinum Pro" },
-  { src: "/assets/certs/timber-tech.jpg", alt: "TimberTech Authorized Dealer" },
-  { src: "/assets/brand/haka-badge.png", alt: "Haka Decks", invert: true },
+  { src: "/assets/certs/deckorators-pro-elite.jpg", alt: "Deckorators Certified Pro Elite Installer badge" },
+  { src: "/assets/certs/trex-platinum.png", alt: "Trex Platinum Pro contractor badge" },
+  { src: "/assets/certs/timber-tech.jpg", alt: "TimberTech Authorized Dealer badge" },
+  {
+    src: "/assets/brand/haka-badge.png",
+    alt: "Haka Decks logo — custom deck builder in Centennial, Colorado",
+    invert: true,
+  },
 ];
 
 export function Certifications() {

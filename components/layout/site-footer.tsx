@@ -16,6 +16,8 @@ export function SiteFooter() {
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div className="space-y-5">
             <Link href="/" aria-label={`${site.name} home`} className="inline-flex">
+              {/* Decorative: the Link's aria-label names it, so an empty alt
+                  avoids a redundant double announcement. */}
               <Image
                 src="/assets/brand/haka-badge.png"
                 alt=""
