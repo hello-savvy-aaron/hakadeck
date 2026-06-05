@@ -6,11 +6,11 @@ export const site = {
   // keywords. Used for the meta description, OpenGraph/Twitter, and JSON-LD.
   description:
     "Custom deck builder in Centennial, CO — composite & hardwood decks, pergolas & covered outdoor living across south Denver.",
-  // Canonical host. Uses www because Vercel serves the site at www.hakadeck.com
+  // Canonical host. Uses www because Vercel serves the site at www.hakadecks.com
   // (the bare apex 307-redirects to it); keeping canonical, sitemap, robots, and
   // schema on www matches the URL that actually returns 200 — fixes the grader's
   // canonical flag. If the apex is ever made primary in Vercel, revert to apex.
-  url: "https://www.hakadeck.com",
+  url: "https://www.hakadecks.com",
   phone: "720-589-5680",
   phoneHref: "tel:+17205895680",
   email: "pete@hakaconstruction.com",

@@ -1,4 +1,4 @@
-# Disavow file for hakadeck.com
+# Disavow file for hakadecks.com
 # Submit at: https://search.google.com/search-console/disavow-links
 #
 # IMPORTANT: Only submit this if (a) Search Console shows an "unnatural links"
@@ -7,7 +7,7 @@
 #
 # All entries are nofollow spam domains from the Semrush report (June 2026).
 # hakapatio.com is deliberately EXCLUDED — it is your own old domain that
-# 301-redirects to hakadeck.com. Never disavow your own property.
+# 301-redirects to hakadecks.com. Never disavow your own property.
 #
 # Generated 2026-06-04.
 

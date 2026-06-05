@@ -61,7 +61,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true, mode: "dev-log" });
   }
 
-  // TODO: switch `from` to `noreply@hakadeck.com` after the hakadeck.com domain
+  // TODO: switch `from` to `noreply@hakadecks.com` after the hakadecks.com domain
   // is verified in Resend (https://resend.com/domains). Until then, only the
   // pre-verified onboarding@resend.dev sender will pass Resend's checks.
   // Use trim()/|| (not ??) so an empty or whitespace-only env var falls back to

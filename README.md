@@ -1,6 +1,6 @@
-# Haka Deck — Next.js
+# Haka Decks — Next.js
 
-The hakadeck.com rebuild, off Webflow. Next.js 16 App Router, Tailwind v4, shadcn (base-nova), MDX content, deployed on Vercel.
+The hakadecks.com rebuild, off Webflow. Next.js 16 App Router, Tailwind v4, shadcn (base-nova), MDX content, deployed on Vercel.
 
 ## Stack
 
@@ -44,7 +44,7 @@ Copy `.env.example` → `.env.local` for local dev.
 | Var | Purpose |
 | --- | --- |
 | `RESEND_API_KEY` | Resend API key. If unset, `/api/contact` logs to console instead of sending mail (dev fallback). |
-| `RESEND_FROM` | Override the sender. Default: `Haka Deck <onboarding@resend.dev>` (works without any DNS). After verifying hakadeck.com in Resend, set this to `Haka Deck <noreply@hakadeck.com>`. |
+| `RESEND_FROM` | Override the sender. Default: `Haka Decks <onboarding@resend.dev>` (works without any DNS). After verifying hakadecks.com in Resend, set this to `Haka Decks <noreply@hakadecks.com>`. |
 | `CONTACT_TO` | Override the recipient. Default: `pete@hakaconstruction.com`. Useful values: `delivered@resend.dev` (Resend simulator — no real mail), `staging@yourdomain.com`. |
 
 ## Project structure
@@ -122,7 +122,7 @@ Drop a new `.mdx` file under `content/portfolio/`. Look at `content/portfolio/do
 
 ## Design system
 
-Extracted from hakadeck.com's compiled Webflow CSS (`hakadeck.webflow.shared.d7502db52.css`) on 2026-05-23. The most-used color in the source is `#0f1e36` (deep navy, 57x), with `#fcf2e8` (warm cream) as the single accent.
+Extracted from hakadecks.com's compiled Webflow CSS (`hakadeck.webflow.shared.d7502db52.css`) on 2026-05-23. The most-used color in the source is `#0f1e36` (deep navy, 57x), with `#fcf2e8` (warm cream) as the single accent.
 
 - **Background:** `#0f1e36` (haka-navy)
 - **Foreground:** `#ffffff`
@@ -152,17 +152,17 @@ vercel --prod      # full deploy
 
 Set env vars on the project (just `RESEND_API_KEY` for now). The build output is fully static except `/api/contact` which is a tiny server route. No edge config required.
 
-Recommended initial rollout: deploy to a `vercel.app` staging URL or `staging.hakadeck.com` first, point `hakadeck.com` at Vercel once you're happy.
+Recommended initial rollout: deploy to a `vercel.app` staging URL or `staging.hakadecks.com` first, point `hakadecks.com` at Vercel once you're happy.
 
 ## Known TODOs
 
 - Drone video transcoding (see Assets above)
 - Verify the actual Google reviews URL on `site.ts` (currently a best-guess `g.co/kgs/` shortlink)
 - Verify Pete's real Instagram + LinkedIn handles on `site.ts`
-- **Verify `hakadeck.com` as a Resend sending domain** so the contact form can send from `noreply@hakadeck.com` instead of the temporary `onboarding@resend.dev`. Steps: Resend → Domains → Add `hakadeck.com` → drop the SPF/DKIM/DMARC records into wherever DNS lives. Once green, set `RESEND_FROM="Haka Deck <noreply@hakadeck.com>"` on Vercel.
+- **Verify `hakadecks.com` as a Resend sending domain** so the contact form can send from `noreply@hakadecks.com` instead of the temporary `onboarding@resend.dev`. Steps: Resend → Domains → Add `hakadecks.com` → drop the SPF/DKIM/DMARC records into wherever DNS lives. Once green, set `RESEND_FROM="Haka Decks <noreply@hakadecks.com>"` on Vercel.
 - Add a real OG image at `public/og.png` referenced by `metadata.openGraph.images`
 - **Rotate the dev `RESEND_API_KEY`** before going live — the current one was pasted in chat and should be considered burnable.
 
 ## What we discarded from the original
 
-The live `/service` page on hakadeck.com was about 70% Radiant Template residue — copy about "interior architecture planning," "urban design," "3D modeling," "commercial spaces." The new `/services` page replaces all of that with real Haka content (composite decks, pergolas, outdoor kitchens, railings, repairs). The four template portfolio slugs (`deck-stairs`, `outdoor-space`, `sustainable-habitat`, `tree-house`) were template fixtures, not real projects — they redirect to the portfolio index.
+The live `/service` page on hakadecks.com was about 70% Radiant Template residue — copy about "interior architecture planning," "urban design," "3D modeling," "commercial spaces." The new `/services` page replaces all of that with real Haka content (composite decks, pergolas, outdoor kitchens, railings, repairs). The four template portfolio slugs (`deck-stairs`, `outdoor-space`, `sustainable-habitat`, `tree-house`) were template fixtures, not real projects — they redirect to the portfolio index.
