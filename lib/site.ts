@@ -43,11 +43,15 @@ export const site = {
   gaId: "G-Y02QMV6M3D",
   founded: 2017,
   rating: { value: 5.0, count: 87, max: 5 },
-  reviewsUrl: "https://g.co/kgs/haka-deck",
+  // Official Google Business Profile share link → opens the Haka Decks listing
+  // (knowledge panel + reviews). Verified 200; resolves to the GBP for kgmid
+  // /g/11sxx77nb2. Replaced the old g.co/kgs/haka-deck placeholder, which 404'd.
+  reviewsUrl: "https://share.google/dHcnAq4RwBtdhuHjF",
   socials: {
     instagram: "https://www.instagram.com/hakaconstruction",
     instagramHandle: "@hakaconstruction",
-    linkedin: "https://www.linkedin.com/company/hakaconstruction",
+    // Owner's profile — no company page exists yet (the old /company/hakaconstruction 404'd).
+    linkedin: "https://www.linkedin.com/in/pete-borlase-574913b2",
   },
   nav: [
     { href: "/about", label: "About" },

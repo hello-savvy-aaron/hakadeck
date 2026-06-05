@@ -53,7 +53,7 @@ export function LocalBusinessJsonLd() {
       reviewCount: site.rating.count,
       bestRating: site.rating.max,
     },
-    image: `${site.url}/assets/brand/haka-badge.png`,
+    image: `${site.url}/images/brand/haka-badge.png`,
     priceRange: "$$$",
     slogan: "Denver's Deck Builder. Engineered for altitude.",
     makesOffer: [

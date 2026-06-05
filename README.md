@@ -34,7 +34,7 @@ The dev port is 3001, not 3000 — easy to free up if there's something else run
 | `pnpm lint` | eslint |
 | `pnpm typecheck` | tsc --noEmit |
 | `pnpm format` | prettier --write . |
-| `pnpm tsx scripts/sync-assets.ts` | resync `public/assets/` from the parent `docs/` kit |
+| `pnpm tsx scripts/sync-assets.ts` | resync `public/images/` from the `public/library/` source kit |
 | `pnpm tsx scripts/import-blog.ts` | regenerate `content/blog/*.mdx` from `../docs/blog/*.md` |
 
 ## Environment variables
@@ -77,9 +77,10 @@ lib/
   site.ts             # name, contact, social, nav, rating — single source of truth
   blog.ts portfolio.ts contact-schema.ts utils.ts
 public/
-  assets/             # synced from ../docs/ via sync-assets.ts (~100MB of project + reviews + brand)
+  images/             # synced from public/library/ via sync-assets.ts (~100MB of project + reviews + brand)
+  library/            # gitignored local source kit — full-res originals to pull from (not committed/deployed)
 scripts/
-  sync-assets.ts      # docs/ → public/assets/, resizes JPEGs through sharp
+  sync-assets.ts      # public/library/ → public/images/, resizes JPEGs through sharp
   import-blog.ts      # docs/blog/*.md → content/blog/*.mdx
 ```
 
@@ -100,7 +101,7 @@ title: "Your Title"
 description: "One-sentence pitch."
 date: 2026-05-24
 category: "Materials"
-cover: "/assets/projects/ranch-drone/04.jpeg"
+cover: "/images/projects/ranch-drone/04.jpeg"
 readingMinutes: 4
 ---
 ```
@@ -115,7 +116,7 @@ Drop a new `.mdx` file under `content/portfolio/`. Look at `content/portfolio/do
 
 ## Assets
 
-`public/assets/` is committed because Vercel doesn't see `docs/`. Total ≈ 100MB after `sync-assets.ts` resizes the 25 iPhone JPEGs through sharp (mozjpeg q=82, max 2400px wide).
+`public/images/` is committed because Vercel doesn't see the gitignored `public/library/` source. Total ≈ 100MB after `sync-assets.ts` resizes the 25 iPhone JPEGs through sharp (mozjpeg q=82, max 2400px wide).
 
 **Known TODO:** the two drone `.mp4`s are still 48 MB and 26 MB respectively — no `ffmpeg` was available to transcode them. On cellular this is a real download hit. To improve: `brew install ffmpeg`, then add a transcode pass to `sync-assets.ts` targeting H.264 720p @ ~5 Mbps.
 

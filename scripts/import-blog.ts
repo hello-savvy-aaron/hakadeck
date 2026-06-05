@@ -23,35 +23,35 @@ const META: Record<string, Meta> = {
     description:
       "Colorado's 300 days of sun are the best reason to build a deck — and the single biggest enemy of every deck we build. Here's how to plan for it.",
     category: "Climate & Materials",
-    cover: "/assets/projects/ranch-drone/01.jpeg",
+    cover: "/images/projects/ranch-drone/01.jpeg",
   },
   "composite-vs-natural-decking-guide": {
     date: "2026-01-22",
     description:
       "Composite vs. wood is the single biggest decision in any deck project — driving budget, maintenance, and resale value. Here's the no-nonsense breakdown.",
     category: "Materials",
-    cover: "/assets/projects/double-decker/03.jpeg",
+    cover: "/images/projects/double-decker/03.jpeg",
   },
   "concrete-vs-pavers-guide": {
     date: "2025-06-04",
     description:
       "Poured concrete or pavers? Cost, lifespan, maintenance, and the Colorado climate realities most homeowners don't think about until it's too late.",
     category: "Patios",
-    cover: "/assets/projects/double-decker/06.jpeg",
+    cover: "/images/projects/double-decker/06.jpeg",
   },
   "haka-warranties-guide": {
     date: "2025-11-08",
     description:
       "Three warranties cover every Haka deck — ours, the board manufacturer's, and the railing's. Here's exactly what each one does, and what it doesn't.",
     category: "Warranties",
-    cover: "/assets/projects/ranch-drone/04.jpeg",
+    cover: "/images/projects/ranch-drone/04.jpeg",
   },
   "polycarbonate-roof-covers-guide": {
     date: "2026-03-15",
     description:
       "A patio cover quietly doubles how much you use your outdoor space. Polycarbonate is the right material for most homes — and the wrong one for some.",
     category: "Covers & Pergolas",
-    cover: "/assets/projects/double-decker/14.jpeg",
+    cover: "/images/projects/double-decker/14.jpeg",
   },
 };
 

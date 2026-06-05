@@ -1,10 +1,10 @@
 import Image from "next/image";
 
 const LOGOS = [
-  { src: "/assets/certs/trex-logo.jpg", alt: "Trex" },
-  { src: "/assets/certs/trex-platinum.png", alt: "Trex Platinum Pro" },
-  { src: "/assets/certs/timber-tech.jpg", alt: "TimberTech" },
-  { src: "/assets/certs/deckorators-pro-elite.jpg", alt: "Deckorators Pro Elite" },
+  { src: "/images/certs/trex-logo.jpg", alt: "Trex" },
+  { src: "/images/certs/trex-platinum.png", alt: "Trex Platinum Pro" },
+  { src: "/images/certs/timber-tech.jpg", alt: "TimberTech" },
+  { src: "/images/certs/deckorators-pro-elite.jpg", alt: "Deckorators Pro Elite" },
 ];
 
 const WORDMARKS = ["Fortress", "Westbury", "AZEK", "Fiberon", "Wolf"];

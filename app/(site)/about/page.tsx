@@ -30,7 +30,7 @@ export default function AboutPage() {
           <Reveal>
             <div className="border-border/40 relative aspect-[4/5] overflow-hidden rounded-2xl border">
               <Image
-                src="/assets/projects/double-decker/02.jpeg"
+                src="/images/projects/double-decker/02.jpeg"
                 alt="A double-decker composite deck Haka built in Centennial."
                 fill
                 sizes="(min-width: 1024px) 40vw, 90vw"

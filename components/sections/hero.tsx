@@ -6,8 +6,8 @@ import { ArrowRight, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { site } from "@/lib/site";
 
-const VIDEO_SRC = "/assets/projects/ranch-drone/drone.mp4";
-const POSTER = "/assets/projects/ranch-drone/drone-poster.jpeg";
+const VIDEO_SRC = "/images/projects/ranch-drone/drone.mp4";
+const POSTER = "/images/projects/ranch-drone/drone-poster.jpeg";
 
 export function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);

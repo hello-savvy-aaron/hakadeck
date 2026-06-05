@@ -4,8 +4,9 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ArrowLeft, MapPin } from "lucide-react";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { Eyebrow, Section } from "@/components/sections/section";
+import { Eyebrow, Section, SectionHeading } from "@/components/sections/section";
 import { CtaFinal } from "@/components/sections/cta-final";
+import { ProjectCard } from "@/components/portfolio/project-card";
 import { getAllProjects, getProject } from "@/lib/portfolio";
 
 export async function generateStaticParams() {
@@ -40,6 +41,10 @@ export default async function ProjectPage({
   const { slug } = await params;
   const project = await getProject(slug);
   if (!project) notFound();
+
+  // Cross-link sibling projects so every build has more than one incoming
+  // internal link (was reachable only from the /portfolio index).
+  const moreProjects = (await getAllProjects()).filter((p) => p.slug !== slug).slice(0, 3);
 
   return (
     <>
@@ -127,6 +132,22 @@ export default async function ProjectPage({
                   sizes="(min-width: 1024px) 33vw, 50vw"
                   className="object-cover"
                 />
+              </li>
+            ))}
+          </ul>
+        </Section>
+      ) : null}
+
+      {moreProjects.length > 0 ? (
+        <Section top="none">
+          <Eyebrow>More projects</Eyebrow>
+          <SectionHeading className="mt-4 text-3xl sm:text-4xl lg:text-5xl">
+            See another build.
+          </SectionHeading>
+          <ul className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {moreProjects.map((p) => (
+              <li key={p.slug}>
+                <ProjectCard project={p} />
               </li>
             ))}
           </ul>

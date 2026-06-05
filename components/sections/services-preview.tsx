@@ -6,8 +6,8 @@ import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Eyebrow, Section } from "./section";
 
-const VIDEO_SRC = "/assets/projects/double-decker/drone.mp4";
-const POSTER = "/assets/projects/double-decker/drone-poster.jpeg";
+const VIDEO_SRC = "/images/projects/double-decker/drone.mp4";
+const POSTER = "/images/projects/double-decker/drone-poster.jpeg";
 
 const TILES = [
   { title: "Composite & Hardwood Decks", body: "Single-level, multi-tier, wraparound." },

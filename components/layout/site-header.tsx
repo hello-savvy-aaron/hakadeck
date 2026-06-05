@@ -42,7 +42,7 @@ export function SiteHeader() {
           {/* The Link's aria-label is the accessible name (it wins over alt),
               so this alt is purely for crawlers/graders — no double announce. */}
           <Image
-            src="/assets/brand/haka-badge.png"
+            src="/images/brand/haka-badge.png"
             alt="Haka Decks"
             width={120}
             height={126}

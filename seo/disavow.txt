@@ -1,0 +1,31 @@
+# Disavow file for hakadeck.com
+# Submit at: https://search.google.com/search-console/disavow-links
+#
+# IMPORTANT: Only submit this if (a) Search Console shows an "unnatural links"
+# manual action, or (b) you or a vendor actually PAID for these links. Otherwise
+# Google already ignores nofollow scraper/PBN spam and you should do nothing.
+#
+# All entries are nofollow spam domains from the Semrush report (June 2026).
+# hakapatio.com is deliberately EXCLUDED — it is your own old domain that
+# 301-redirects to hakadeck.com. Never disavow your own property.
+#
+# Generated 2026-06-04.
+
+# "Backlink service" link-farm / list-page domains
+domain:toplikevideo.com
+domain:8coint.com
+
+# Auto-generated "Website Stats" scraper domains
+domain:optimizeflow.top
+domain:metamagic.top
+domain:dailymusings.top
+domain:creativeposts.top
+domain:blogsphere.top
+domain:analyticshaven.top
+
+# Paid guest-post / link seller (casino-gambling-crypto network)
+domain:jameslinks.agency
+
+# Fake "Fiverr testimonial" PBN blogs
+domain:fiverr-seo-for-business-growth.site
+domain:fiverr-quality-seo-at-affordable-rates.site

@@ -4,8 +4,9 @@ import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import type { Metadata } from "next";
 import { ArrowLeft } from "lucide-react";
-import { Eyebrow, Section } from "@/components/sections/section";
+import { Eyebrow, Section, SectionHeading } from "@/components/sections/section";
 import { CtaFinal } from "@/components/sections/cta-final";
+import { PostCard } from "@/components/blog/post-card";
 import { getAllPosts, getPost } from "@/lib/blog";
 
 export async function generateStaticParams() {
@@ -42,6 +43,10 @@ export default async function BlogPostPage({
   const { slug } = await params;
   const post = await getPost(slug);
   if (!post) notFound();
+
+  // Cross-link sibling guides so every post has more than one incoming
+  // internal link (was orphaned with only the /blog index pointing in).
+  const morePosts = (await getAllPosts()).filter((p) => p.slug !== slug).slice(0, 3);
 
   const date = new Date(post.date).toLocaleDateString("en-US", {
     year: "numeric",
@@ -93,6 +98,22 @@ export default async function BlogPostPage({
           <MDXRemote source={post.body} />
         </article>
       </Section>
+
+      {morePosts.length > 0 ? (
+        <Section top="none">
+          <Eyebrow>More field notes</Eyebrow>
+          <SectionHeading className="mt-4 text-3xl sm:text-4xl lg:text-5xl">
+            Keep reading.
+          </SectionHeading>
+          <ul className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {morePosts.map((p) => (
+              <li key={p.slug}>
+                <PostCard post={p} />
+              </li>
+            ))}
+          </ul>
+        </Section>
+      ) : null}
 
       <CtaFinal />
     </>

@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local-only source media library (full-res originals to pull from;
+# sync-assets.ts optimizes these into public/images/ — the library itself is never committed/deployed)
+/public/library

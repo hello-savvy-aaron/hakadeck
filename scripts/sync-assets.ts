@@ -1,11 +1,11 @@
 /**
- * Sync curated assets from ../docs/ into web/public/assets/ with predictable paths.
+ * Sync curated assets from public/library/ into web/public/images/ with predictable paths.
  *
  *   pnpm tsx scripts/sync-assets.ts          # run, optimizing JPEGs through sharp
  *   pnpm tsx scripts/sync-assets.ts --dry    # list operations without writing
  *   pnpm tsx scripts/sync-assets.ts --raw    # copy bytes verbatim, no resize/re-encode
  *
- * Re-run after dropping new files into docs/.
+ * Re-run after dropping new files into public/library/.
  */
 import { mkdir, copyFile, readdir, stat } from "node:fs/promises";
 import { existsSync } from "node:fs";
@@ -15,8 +15,8 @@ import sharp from "sharp";
 const DRY = process.argv.includes("--dry");
 const RAW = process.argv.includes("--raw");
 const ROOT = resolve(import.meta.dirname, "..");
-const DOCS = resolve(ROOT, "..", "docs");
-const OUT = resolve(ROOT, "public", "assets");
+const LIBRARY = resolve(ROOT, "public", "library");
+const OUT = resolve(ROOT, "public", "images");
 
 const MAX_W = 2400;
 const JPEG_Q = 82;
@@ -51,7 +51,7 @@ async function planShowcase(srcDir: string, projectSlug: string, videoName: stri
   return ops;
 }
 
-// Six projects dropped into docs/misc/ as p<project><shot>.jpeg (e.g. p21 = project 2, shot 1).
+// Six projects dropped into library's misc/ as p<project><shot>.jpeg (e.g. p21 = project 2, shot 1).
 const MISC_PROJECTS: Record<string, string> = {
   "1": "walkout-covered-deck",
   "2": "prairie-view-deck",
@@ -85,30 +85,30 @@ async function planMisc(srcDir: string): Promise<Op[]> {
 async function plan(): Promise<Op[]> {
   const ops: Op[] = [
     // Certifications
-    { src: join(DOCS, "deckorators-cert-elite.jpg"), dst: join(OUT, "certs", "deckorators-pro-elite.jpg") },
-    { src: join(DOCS, "timber-tech.jpeg"), dst: join(OUT, "certs", "timber-tech.jpg") },
-    { src: join(DOCS, "trex-logo.jpeg"), dst: join(OUT, "certs", "trex-logo.jpg") },
-    { src: join(DOCS, "trex-platinum-certified.png"), dst: join(OUT, "certs", "trex-platinum.png") },
+    { src: join(LIBRARY, "deckorators-cert-elite.jpg"), dst: join(OUT, "certs", "deckorators-pro-elite.jpg") },
+    { src: join(LIBRARY, "timber-tech.jpeg"), dst: join(OUT, "certs", "timber-tech.jpg") },
+    { src: join(LIBRARY, "trex-logo.jpeg"), dst: join(OUT, "certs", "trex-logo.jpg") },
+    { src: join(LIBRARY, "trex-platinum-certified.png"), dst: join(OUT, "certs", "trex-platinum.png") },
   ];
 
   // Reviews — copy as-is; the source already uses sensible names.
-  const reviews = await readdir(join(DOCS, "reviews"));
+  const reviews = await readdir(join(LIBRARY, "reviews"));
   for (const f of reviews) {
     if (f.startsWith(".") || !/\.png$/i.test(f)) continue;
-    ops.push({ src: join(DOCS, "reviews", f), dst: join(OUT, "reviews", f) });
+    ops.push({ src: join(LIBRARY, "reviews", f), dst: join(OUT, "reviews", f) });
   }
 
-  ops.push(...(await planShowcase(join(DOCS, "showcase-1"), "double-decker", "double-decker-drone.mp4")));
-  ops.push(...(await planShowcase(join(DOCS, "showcase-2"), "ranch-drone", "ranch-drone.mp4")));
+  ops.push(...(await planShowcase(join(LIBRARY, "showcase-1"), "double-decker", "double-decker-drone.mp4")));
+  ops.push(...(await planShowcase(join(LIBRARY, "showcase-2"), "ranch-drone", "ranch-drone.mp4")));
 
-  ops.push(...(await planMisc(join(DOCS, "misc"))));
+  ops.push(...(await planMisc(join(LIBRARY, "misc"))));
 
   return ops;
 }
 
 async function run() {
-  if (!existsSync(DOCS)) {
-    console.error(`docs/ not found at ${DOCS}`);
+  if (!existsSync(LIBRARY)) {
+    console.error(`library/ not found at ${LIBRARY}`);
     process.exit(1);
   }
   const ops = await plan();
@@ -116,7 +116,7 @@ async function run() {
   for (const { src, dst } of ops) {
     const rel = dst.replace(ROOT + "/", "");
     if (!existsSync(src)) {
-      console.warn(`  MISS  ${src.replace(DOCS + "/", "docs/")}`);
+      console.warn(`  MISS  ${src.replace(LIBRARY + "/", "library/")}`);
       continue;
     }
     const isJpeg = /\.jpe?g$/i.test(dst);
@@ -135,7 +135,7 @@ async function run() {
   }
   if (!DRY) {
     const size = await dirSize(OUT);
-    console.log(`\nwrote ${(size / 1024 / 1024).toFixed(1)} MB to public/assets/`);
+    console.log(`\nwrote ${(size / 1024 / 1024).toFixed(1)} MB to public/images/`);
   }
 }
 
