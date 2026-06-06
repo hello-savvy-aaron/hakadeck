@@ -45,7 +45,7 @@ Copy `.env.example` → `.env.local` for local dev.
 | --- | --- |
 | `RESEND_API_KEY` | Resend API key. If unset, `/api/contact` logs to console instead of sending mail (dev fallback). |
 | `RESEND_FROM` | Override the sender. Default: `Haka Decks <onboarding@resend.dev>` (works without any DNS). After verifying hakadecks.com in Resend, set this to `Haka Decks <noreply@hakadecks.com>`. |
-| `CONTACT_TO` | Override the recipient. Default: `pete@hakaconstruction.com`. Useful values: `delivered@resend.dev` (Resend simulator — no real mail), `staging@yourdomain.com`. |
+| `CONTACT_TO` | Override the recipient. Default: `pete@hakadecks.com`. Useful values: `delivered@resend.dev` (Resend simulator — no real mail), `staging@yourdomain.com`. |
 
 ## Project structure
 

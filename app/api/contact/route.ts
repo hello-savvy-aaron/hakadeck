@@ -68,7 +68,7 @@ export async function POST(req: Request) {
   // the working default. Production had RESEND_FROM="" set, which ?? passes
   // through to Resend as an empty sender → the send is rejected with a 502.
   const FROM = process.env.RESEND_FROM?.trim() || "Haka Decks <onboarding@resend.dev>";
-  const TO = process.env.CONTACT_TO?.trim() || "pete@hakaconstruction.com";
+  const TO = process.env.CONTACT_TO?.trim() || "pete@hakadecks.com";
 
   try {
     const { Resend } = await import("resend");

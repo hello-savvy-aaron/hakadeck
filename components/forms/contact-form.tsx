@@ -47,7 +47,7 @@ export function ContactForm() {
       reset();
       toast.success("Got it — Pete will be in touch within one business day.");
     } catch {
-      toast.error("Something went wrong. Try emailing pete@hakaconstruction.com directly.");
+      toast.error("Something went wrong. Try emailing pete@hakadecks.com directly.");
     }
   }
 

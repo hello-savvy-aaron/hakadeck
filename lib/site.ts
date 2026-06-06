@@ -13,8 +13,8 @@ export const site = {
   url: "https://www.hakadecks.com",
   phone: "720-589-5680",
   phoneHref: "tel:+17205895680",
-  email: "pete@hakaconstruction.com",
-  emailHref: "mailto:pete@hakaconstruction.com",
+  email: "pete@hakadecks.com",
+  emailHref: "mailto:pete@hakadecks.com",
   address: {
     street: "9707 E Easter Ln",
     city: "Centennial",
