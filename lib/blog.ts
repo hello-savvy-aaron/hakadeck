@@ -8,6 +8,9 @@ const BLOG_DIR = join(process.cwd(), "content", "blog");
 export type PostMeta = {
   slug: string;
   title: string;
+  // Optional SEO <title> (≤60 chars, brand included). Keeps the long, punchy
+  // `title` as the on-page H1 while the search title stays under the limit.
+  metaTitle?: string;
   description: string;
   date: string;
   category: string;
@@ -30,6 +33,7 @@ export async function getAllPosts(): Promise<PostMeta[]> {
       return {
         slug,
         title: data.title as string,
+        metaTitle: data.metaTitle as string | undefined,
         description: data.description as string,
         date: toDateString(data.date),
         category: data.category as string,
@@ -54,6 +58,7 @@ export async function getPost(slug: string): Promise<Post | null> {
   return {
     slug,
     title: data.title as string,
+    metaTitle: data.metaTitle as string | undefined,
     description: data.description as string,
     date: toDateString(data.date),
     category: data.category as string,

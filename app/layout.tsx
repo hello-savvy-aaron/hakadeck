@@ -34,7 +34,10 @@ export const metadata: Metadata = {
   authors: [{ name: "Pete Borlase" }],
   creator: site.name,
   publisher: site.name,
-  alternates: { canonical: "/" },
+  // No canonical here on purpose. Next merges metadata root → leaf, so a
+  // canonical set on the root layout is *inherited* by every child route that
+  // doesn't override it — pointing them all at "/". Each route now declares its
+  // own self-referencing canonical instead (home included).
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -60,11 +63,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${bricolage.variable} h-full antialiased`}
-    >
-      <body className="bg-background text-foreground font-sans flex min-h-full flex-col">
+    <html lang="en" className={`${inter.variable} ${bricolage.variable} h-full antialiased`}>
+      <body className="bg-background text-foreground flex min-h-full flex-col font-sans">
         {children}
         <Analytics />
         <SpeedInsights />

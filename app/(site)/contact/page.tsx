@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Get a Quote",
   description:
     "Get a free quote from Haka Decks, a deck builder in Centennial, CO. Tell us about your deck, pergola, or outdoor living project and Pete will be in touch within one business day.",
+  alternates: { canonical: "/contact" },
 };
 
 export default function ContactPage() {
@@ -15,13 +16,12 @@ export default function ContactPage() {
     <>
       <Section top="loose" bottom="tight">
         <Eyebrow>Get a quote</Eyebrow>
-        <h1 className="font-display mt-4 max-w-4xl text-balance text-5xl leading-[1.02] font-medium tracking-tight sm:text-6xl lg:text-7xl">
+        <h1 className="font-display mt-4 max-w-4xl text-5xl leading-[1.02] font-medium tracking-tight text-balance sm:text-6xl lg:text-7xl">
           Tell us what you&apos;re thinking.
         </h1>
         <p className="text-muted-foreground mt-6 max-w-2xl text-lg leading-relaxed">
-          Even if it&apos;s just a rough idea. We&apos;ll come take a look, talk
-          through options, and give you an honest estimate. No pressure, no
-          sales pitch.
+          Even if it&apos;s just a rough idea. We&apos;ll come take a look, talk through options,
+          and give you an honest estimate. No pressure, no sales pitch.
         </p>
       </Section>
 
@@ -70,17 +70,16 @@ export default function ContactPage() {
             <div>
               <Eyebrow>Service area</Eyebrow>
               <p className="text-muted-foreground mt-4 leading-relaxed">
-                We work across the south Denver metro — Centennial, Greenwood
-                Village, Cherry Hills, Lone Tree, Highlands Ranch, Castle Rock,
-                and surrounding neighborhoods.
+                We work across the south Denver metro — Centennial, Greenwood Village, Cherry Hills,
+                Lone Tree, Highlands Ranch, Castle Rock, and surrounding neighborhoods.
               </p>
             </div>
 
             <div>
               <Eyebrow>Response time</Eyebrow>
               <p className="text-muted-foreground mt-4 leading-relaxed">
-                Most quote requests get a reply within one business day. Site
-                visits typically happen within the week.
+                Most quote requests get a reply within one business day. Site visits typically
+                happen within the week.
               </p>
             </div>
           </aside>

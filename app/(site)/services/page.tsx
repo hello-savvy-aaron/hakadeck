@@ -14,6 +14,7 @@ export const metadata: Metadata = {
   title: "Deck Builder Services",
   description:
     "Composite and hardwood decks, pergolas and patio covers, outdoor kitchens, railings, and deck repair — built by a specialist deck builder across Centennial and the south Denver metro.",
+  alternates: { canonical: "/services" },
 };
 
 export default async function ServicesPage() {
@@ -23,14 +24,13 @@ export default async function ServicesPage() {
     <>
       <Section top="loose" bottom="tight">
         <Eyebrow>Services</Eyebrow>
-        <h1 className="font-display mt-4 max-w-4xl text-balance text-5xl leading-[1.02] font-medium tracking-tight sm:text-6xl lg:text-8xl">
+        <h1 className="font-display mt-4 max-w-4xl text-5xl leading-[1.02] font-medium tracking-tight text-balance sm:text-6xl lg:text-8xl">
           Outdoor living, engineered for Colorado.
         </h1>
         <p className="text-muted-foreground mt-6 max-w-2xl text-lg leading-relaxed">
-          We don&apos;t carry a hundred services. We build a handful of things,
-          and we build them better than the deck-and-handyman shops down the
-          street — for homeowners across {site.address.city} and the{" "}
-          {site.address.region}.
+          We don&apos;t carry a hundred services. We build a handful of things, and we build them
+          better than the deck-and-handyman shops down the street — for homeowners across{" "}
+          {site.address.city} and the {site.address.region}.
         </p>
       </Section>
 
@@ -59,7 +59,10 @@ export default async function ServicesPage() {
                           key={b}
                           className="text-foreground/85 flex items-start gap-3 text-sm sm:text-base"
                         >
-                          <span aria-hidden className="bg-haka-cream mt-2 h-1.5 w-1.5 shrink-0 rounded-full" />
+                          <span
+                            aria-hidden
+                            className="bg-haka-cream mt-2 h-1.5 w-1.5 shrink-0 rounded-full"
+                          />
                           {b}
                         </li>
                       ))}

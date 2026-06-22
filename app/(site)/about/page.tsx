@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "About Pete & Haka Decks",
   description:
     "Haka Decks was founded in 2017 by Pete Borlase — a former pro rugby player turned Denver deck builder, with a service-first approach to outdoor living.",
+  alternates: { canonical: "/about" },
 };
 
 export default function AboutPage() {
@@ -16,12 +17,12 @@ export default function AboutPage() {
     <>
       <Section top="loose" bottom="tight">
         <Eyebrow>About</Eyebrow>
-        <h1 className="font-display mt-4 max-w-4xl text-balance text-5xl leading-[1.02] font-medium tracking-tight sm:text-6xl lg:text-8xl">
+        <h1 className="font-display mt-4 max-w-4xl text-5xl leading-[1.02] font-medium tracking-tight text-balance sm:text-6xl lg:text-8xl">
           Denver&apos;s Deck Builder.
         </h1>
         <p className="text-muted-foreground mt-6 max-w-2xl text-lg leading-relaxed">
-          A south Denver deck shop with a service-first attitude, rugby roots,
-          and a stubborn opinion about how things should be built.
+          A south Denver deck shop with a service-first attitude, rugby roots, and a stubborn
+          opinion about how things should be built.
         </p>
       </Section>
 
@@ -42,28 +43,25 @@ export default function AboutPage() {
           <Reveal delay={0.05}>
             <div className="space-y-6">
               <Eyebrow>Founder</Eyebrow>
-              <h2 className="font-display text-balance text-3xl leading-[1.06] font-medium tracking-tight sm:text-4xl lg:text-5xl">
+              <h2 className="font-display text-3xl leading-[1.06] font-medium tracking-tight text-balance sm:text-4xl lg:text-5xl">
                 Meet Pete Borlase.
               </h2>
               <div className="text-muted-foreground space-y-5 text-base leading-relaxed sm:text-lg">
                 <p>
-                  Haka Decks was founded in 2017 by Pete Borlase. Pete is a
-                  former rugby player from New Zealand with a long line of experience
-                  on and off the field. On the field, he played professionally
-                  in several countries and coached several elite-level rugby
+                  Haka Decks was founded in 2017 by Pete Borlase. Pete is a former rugby player from
+                  New Zealand with a long line of experience on and off the field. On the field, he
+                  played professionally in several countries and coached several elite-level rugby
                   teams.
                 </p>
                 <p>
-                  Off the field, he&apos;s hard at work helping his customers
-                  build their outdoor dream. Pete believes in looking at
-                  projects from as many angles as possible, but always with an
-                  attitude grounded in service and hard work.
+                  Off the field, he&apos;s hard at work helping his customers build their outdoor
+                  dream. Pete believes in looking at projects from as many angles as possible, but
+                  always with an attitude grounded in service and hard work.
                 </p>
                 <p>
-                  He founded Haka Decks so he could do this whole deck-building
-                  thing a bit differently from the rest — and he&apos;s excited
-                  to bring that value-added approach to your project. Today, Pete
-                  is a proud husband and father of two boys.
+                  He founded Haka Decks so he could do this whole deck-building thing a bit
+                  differently from the rest — and he&apos;s excited to bring that value-added
+                  approach to your project. Today, Pete is a proud husband and father of two boys.
                 </p>
               </div>
             </div>

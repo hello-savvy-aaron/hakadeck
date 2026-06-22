@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Hero } from "@/components/sections/hero";
 import { StatsCounter } from "@/components/sections/stats-counter";
 import { LocalIntro } from "@/components/sections/local-intro";
@@ -10,6 +11,12 @@ import { CtaFinal } from "@/components/sections/cta-final";
 import { Reveal } from "@/components/reveal";
 import { LocalBusinessJsonLd } from "@/components/seo/local-business-jsonld";
 import { FaqJsonLd } from "@/components/seo/faq-jsonld";
+
+export const metadata: Metadata = {
+  // Title/description/OG are inherited from the root layout; home only needs to
+  // declare its own canonical now that the root no longer sets one.
+  alternates: { canonical: "/" },
+};
 
 export default function HomePage() {
   return (

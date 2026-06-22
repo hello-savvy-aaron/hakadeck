@@ -25,6 +25,7 @@ export async function generateMetadata({
   return {
     title: project.title,
     description: project.summary,
+    alternates: { canonical: `/portfolio/${slug}` },
     openGraph: {
       title: project.title,
       description: project.summary,
@@ -33,18 +34,20 @@ export async function generateMetadata({
   };
 }
 
-export default async function ProjectPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const project = await getProject(slug);
   if (!project) notFound();
 
   // Cross-link sibling projects so every build has more than one incoming
-  // internal link (was reachable only from the /portfolio index).
-  const moreProjects = (await getAllProjects()).filter((p) => p.slug !== slug).slice(0, 3);
+  // internal link. A cyclic window (the next 3 projects, wrapping around) spreads
+  // inbound links evenly; a fixed top-3 left the oldest builds reachable only
+  // from the /portfolio index.
+  const allProjects = await getAllProjects();
+  const projectIdx = allProjects.findIndex((p) => p.slug === slug);
+  const moreProjects = [1, 2, 3]
+    .map((offset) => allProjects[(projectIdx + offset) % allProjects.length])
+    .filter((p) => p.slug !== slug);
 
   return (
     <>
@@ -60,7 +63,7 @@ export default async function ProjectPage({
         <div className="mt-8 grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:items-end lg:gap-16">
           <div>
             <Eyebrow>{project.category}</Eyebrow>
-            <h1 className="font-display mt-4 text-balance text-4xl leading-[1.04] font-medium tracking-tight sm:text-5xl lg:text-7xl">
+            <h1 className="font-display mt-4 text-4xl leading-[1.04] font-medium tracking-tight text-balance sm:text-5xl lg:text-7xl">
               {project.title}
             </h1>
           </div>

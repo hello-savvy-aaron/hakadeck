@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Field Notes",
   description:
     "Plain-spoken guides on decking materials, Colorado climate, warranties, and what actually breaks decks here.",
+  alternates: { canonical: "/blog" },
 };
 
 export default async function BlogIndex() {
@@ -17,12 +18,12 @@ export default async function BlogIndex() {
     <>
       <Section top="loose" bottom="tight">
         <Eyebrow>Field Notes</Eyebrow>
-        <h1 className="font-display mt-4 max-w-4xl text-balance text-5xl leading-[1.02] font-medium tracking-tight sm:text-6xl lg:text-8xl">
+        <h1 className="font-display mt-4 max-w-4xl text-5xl leading-[1.02] font-medium tracking-tight text-balance sm:text-6xl lg:text-8xl">
           What we&apos;ve learned building decks here.
         </h1>
         <p className="text-muted-foreground mt-6 max-w-2xl text-lg leading-relaxed">
-          Plain-spoken guides on materials, climate, warranties, and the
-          questions homeowners ask Pete most.
+          Plain-spoken guides on materials, climate, warranties, and the questions homeowners ask
+          Pete most.
         </p>
       </Section>
 

@@ -23,8 +23,12 @@ export async function generateMetadata({
   const post = await getPost(slug);
   if (!post) return {};
   return {
-    title: post.title,
+    // metaTitle (when set) is an SEO-tuned ≤60-char title that already includes
+    // the brand, so `absolute` skips the "%s | Haka Decks" template. Falls back
+    // to the post title (which is also the visible H1) when none is set.
+    title: post.metaTitle ? { absolute: post.metaTitle } : post.title,
     description: post.description,
+    alternates: { canonical: `/blog/${slug}` },
     openGraph: {
       title: post.title,
       description: post.description,
@@ -35,18 +39,20 @@ export async function generateMetadata({
   };
 }
 
-export default async function BlogPostPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const post = await getPost(slug);
   if (!post) notFound();
 
-  // Cross-link sibling guides so every post has more than one incoming
-  // internal link (was orphaned with only the /blog index pointing in).
-  const morePosts = (await getAllPosts()).filter((p) => p.slug !== slug).slice(0, 3);
+  // Cross-link sibling guides so every post has more than one incoming internal
+  // link. A cyclic window (the next 3 posts, wrapping around) spreads inbound
+  // links evenly; a fixed top-3 left the oldest posts reachable only from the
+  // /blog index, so they read as orphaned.
+  const allPosts = await getAllPosts();
+  const postIdx = allPosts.findIndex((p) => p.slug === slug);
+  const morePosts = [1, 2, 3]
+    .map((offset) => allPosts[(postIdx + offset) % allPosts.length])
+    .filter((p) => p.slug !== slug);
 
   const date = new Date(post.date).toLocaleDateString("en-US", {
     year: "numeric",
@@ -67,7 +73,7 @@ export default async function BlogPostPage({
 
         <div className="mt-8 max-w-3xl">
           <Eyebrow>{post.category}</Eyebrow>
-          <h1 className="font-display mt-4 text-balance text-4xl leading-[1.04] font-medium tracking-tight sm:text-5xl lg:text-6xl">
+          <h1 className="font-display mt-4 text-4xl leading-[1.04] font-medium tracking-tight text-balance sm:text-5xl lg:text-6xl">
             {post.title}
           </h1>
           <div className="text-muted-foreground mt-6 flex items-center gap-3 text-sm">
