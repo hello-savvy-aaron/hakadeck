@@ -28,10 +28,10 @@ export function PostCard({ post }: { post: PostMeta }) {
           <span aria-hidden>•</span>
           <span>{post.readingMinutes} min read</span>
         </div>
-        <h3 className="font-display text-balance text-xl leading-tight font-medium tracking-tight sm:text-2xl">
+        <h3 className="font-display text-xl leading-tight font-medium tracking-tight text-balance sm:text-2xl">
           {post.title}
         </h3>
-        <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
+        <p className="text-muted-foreground line-clamp-3 text-sm leading-relaxed">
           {post.description}
         </p>
         <div className="text-foreground/80 group-hover:text-foreground inline-flex items-center gap-1.5 pt-2 text-sm font-medium">

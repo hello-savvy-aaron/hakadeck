@@ -56,8 +56,8 @@ export function ContactForm() {
       <div className="border-border/40 bg-card/60 rounded-2xl border p-8">
         <h3 className="font-display text-2xl font-medium tracking-tight">Got your message.</h3>
         <p className="text-muted-foreground mt-3 leading-relaxed">
-          Pete will be in touch within one business day to set up a no-pressure
-          visit. If it&apos;s urgent, give him a call at{" "}
+          Pete will be in touch within one business day to set up a no-pressure visit. If it&apos;s
+          urgent, give him a call at{" "}
           <a href="tel:+17205895680" className="text-foreground underline-offset-4 hover:underline">
             720-589-5680
           </a>
@@ -71,11 +71,7 @@ export function ContactForm() {
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Your name" error={errors.name?.message}>
-          <Input
-            autoComplete="name"
-            placeholder="Jane Homeowner"
-            {...register("name")}
-          />
+          <Input autoComplete="name" placeholder="Jane Homeowner" {...register("name")} />
         </Field>
         <Field label="Email" error={errors.email?.message}>
           <Input
@@ -89,12 +85,7 @@ export function ContactForm() {
 
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Phone (optional)" error={errors.phone?.message}>
-          <Input
-            type="tel"
-            autoComplete="tel"
-            placeholder="720-555-0142"
-            {...register("phone")}
-          />
+          <Input type="tel" autoComplete="tel" placeholder="720-555-0142" {...register("phone")} />
         </Field>
         <Field label="Project type" error={errors.projectType?.message}>
           <Controller

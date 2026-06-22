@@ -39,11 +39,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function ServicePage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function ServicePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const service = await getService(slug);
   if (!service) notFound();
@@ -71,7 +67,7 @@ export default async function ServicePage({
         <div className="mt-8 grid gap-10 lg:grid-cols-[1.5fr_1fr] lg:items-end lg:gap-16">
           <div>
             <Eyebrow>{service.category}</Eyebrow>
-            <h1 className="font-display mt-4 text-balance text-4xl leading-[1.03] font-medium tracking-tight sm:text-5xl lg:text-6xl">
+            <h1 className="font-display mt-4 text-4xl leading-[1.03] font-medium tracking-tight text-balance sm:text-5xl lg:text-6xl">
               {service.title}
             </h1>
             <p className="text-muted-foreground mt-6 max-w-2xl text-lg leading-relaxed">

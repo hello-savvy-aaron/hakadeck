@@ -24,12 +24,11 @@ export function StatsCounter({ stats = DEFAULT_STATS }: { stats?: Stat[] }) {
       <div className="grid items-end gap-12 lg:grid-cols-[1.2fr_1.6fr]">
         <div>
           <Eyebrow>By the Numbers</Eyebrow>
-          <h2 className="font-display mt-4 text-balance text-4xl leading-[1.04] font-medium tracking-tight sm:text-5xl lg:text-6xl">
+          <h2 className="font-display mt-4 text-4xl leading-[1.04] font-medium tracking-tight text-balance sm:text-5xl lg:text-6xl">
             Engineered for Altitude. Built with Pride.
           </h2>
           <p className="text-foreground/70 mt-6 max-w-md text-base leading-relaxed">
-            Composite, hardwood, and covered — across the south Denver metro
-            since 2017.
+            Composite, hardwood, and covered — across the south Denver metro since 2017.
           </p>
         </div>
 
@@ -46,7 +45,15 @@ export function StatsCounter({ stats = DEFAULT_STATS }: { stats?: Stat[] }) {
   );
 }
 
-function StatNumber({ value, prefix, suffix }: { value: number; prefix?: string; suffix?: string }) {
+function StatNumber({
+  value,
+  prefix,
+  suffix,
+}: {
+  value: number;
+  prefix?: string;
+  suffix?: string;
+}) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-10%" });
   const reduce = useReducedMotion();

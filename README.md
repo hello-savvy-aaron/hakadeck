@@ -27,25 +27,25 @@ The dev port is 3001, not 3000 — easy to free up if there's something else run
 
 ### Convenience scripts
 
-| Command | What |
-| --- | --- |
-| `pnpm dev` | start dev server |
-| `pnpm build` | production build (also runs `tsc --noEmit` via Next) |
-| `pnpm lint` | eslint |
-| `pnpm typecheck` | tsc --noEmit |
-| `pnpm format` | prettier --write . |
+| Command                           | What                                                          |
+| --------------------------------- | ------------------------------------------------------------- |
+| `pnpm dev`                        | start dev server                                              |
+| `pnpm build`                      | production build (also runs `tsc --noEmit` via Next)          |
+| `pnpm lint`                       | eslint                                                        |
+| `pnpm typecheck`                  | tsc --noEmit                                                  |
+| `pnpm format`                     | prettier --write .                                            |
 | `pnpm tsx scripts/sync-assets.ts` | resync `public/images/` from the `public/library/` source kit |
-| `pnpm tsx scripts/import-blog.ts` | regenerate `content/blog/*.mdx` from `../docs/blog/*.md` |
+| `pnpm tsx scripts/import-blog.ts` | regenerate `content/blog/*.mdx` from `../docs/blog/*.md`      |
 
 ## Environment variables
 
 Copy `.env.example` → `.env.local` for local dev.
 
-| Var | Purpose |
-| --- | --- |
-| `RESEND_API_KEY` | Resend API key. If unset, `/api/contact` logs to console instead of sending mail (dev fallback). |
-| `RESEND_FROM` | Override the sender. Default: `Haka Decks <onboarding@resend.dev>` (works without any DNS). After verifying hakadecks.com in Resend, set this to `Haka Decks <noreply@hakadecks.com>`. |
-| `CONTACT_TO` | Override the recipient. Default: `pete@hakadecks.com`. Useful values: `delivered@resend.dev` (Resend simulator — no real mail), `staging@yourdomain.com`. |
+| Var              | Purpose                                                                                                                                                                                |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `RESEND_API_KEY` | Resend API key. If unset, `/api/contact` logs to console instead of sending mail (dev fallback).                                                                                       |
+| `RESEND_FROM`    | Override the sender. Default: `Haka Decks <onboarding@resend.dev>` (works without any DNS). After verifying hakadecks.com in Resend, set this to `Haka Decks <noreply@hakadecks.com>`. |
+| `CONTACT_TO`     | Override the recipient. Default: `pete@hakadecks.com`. Useful values: `delivered@resend.dev` (Resend simulator — no real mail), `staging@yourdomain.com`.                              |
 
 ## Project structure
 

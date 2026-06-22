@@ -27,9 +27,8 @@ export function SiteFooter() {
               />
             </Link>
             <p className="text-muted-foreground max-w-sm text-sm leading-relaxed">
-              {site.name} builds custom decks, pergolas, and covered outdoor
-              living for homeowners across {address.city} and the{" "}
-              {address.region}.
+              {site.name} builds custom decks, pergolas, and covered outdoor living for homeowners
+              across {address.city} and the {address.region}.
             </p>
             <div className="flex gap-3">
               <SocialLink href={site.socials.instagram} label="Instagram">
@@ -63,10 +62,7 @@ export function SiteFooter() {
               </p>
               <dl className="space-y-1 text-sm">
                 {hours.display.map((h) => (
-                  <div
-                    key={h.label}
-                    className="text-muted-foreground flex justify-between gap-4"
-                  >
+                  <div key={h.label} className="text-muted-foreground flex justify-between gap-4">
                     <dt>{h.label}</dt>
                     <dd className="text-foreground/80 tabular-nums">{h.value}</dd>
                   </div>
@@ -103,7 +99,9 @@ export function SiteFooter() {
 function FooterCol({ heading, children }: { heading: string; children: React.ReactNode }) {
   return (
     <div className="space-y-3">
-      <h3 className="text-foreground/60 text-xs font-medium tracking-widest uppercase">{heading}</h3>
+      <h3 className="text-foreground/60 text-xs font-medium tracking-widest uppercase">
+        {heading}
+      </h3>
       <div className="flex flex-col gap-2">{children}</div>
     </div>
   );

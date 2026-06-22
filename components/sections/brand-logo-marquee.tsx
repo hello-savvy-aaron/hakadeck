@@ -27,7 +27,7 @@ export function BrandLogoMarquee() {
                 alt={item.alt}
                 width={140}
                 height={40}
-                className="mx-10 h-7 w-auto shrink-0 object-contain grayscale opacity-60"
+                className="mx-10 h-7 w-auto shrink-0 object-contain opacity-60 grayscale"
               />
             ) : (
               <span

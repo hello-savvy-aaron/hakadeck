@@ -45,12 +45,12 @@ export function ServicesPreview() {
       <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
         <div>
           <Eyebrow>What we build</Eyebrow>
-          <h2 className="font-display mt-4 text-balance text-4xl leading-[1.04] font-medium tracking-tight sm:text-5xl lg:text-6xl">
+          <h2 className="font-display mt-4 text-4xl leading-[1.04] font-medium tracking-tight text-balance sm:text-5xl lg:text-6xl">
             Decks, Pergolas &amp; Outdoor Living — designed for how you actually live.
           </h2>
           <p className="text-foreground/75 mt-6 max-w-xl text-base leading-relaxed">
-            Every Haka build starts with a conversation about how you use your
-            backyard — and ends with an outdoor space your neighbors ask about.
+            Every Haka build starts with a conversation about how you use your backyard — and ends
+            with an outdoor space your neighbors ask about.
           </p>
 
           <ul className="mt-10 grid gap-x-8 gap-y-6 sm:grid-cols-2">

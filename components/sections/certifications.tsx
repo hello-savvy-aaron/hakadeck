@@ -6,25 +6,25 @@ const PILLARS = [
   {
     icon: Award,
     title: "Pro Elite with Deckorators",
-    body:
-      "Deckorators Certified Pro Elite Installer. We build with the most trusted composite brands in the industry — and every install is backed by our own craftsmanship guarantee.",
+    body: "Deckorators Certified Pro Elite Installer. We build with the most trusted composite brands in the industry — and every install is backed by our own craftsmanship guarantee.",
   },
   {
     icon: ShieldCheck,
     title: "All Work Guaranteed",
-    body:
-      "We guarantee everything we build. If something isn't right, we make it right — no fine print, no fight. Our name goes on every project, so we stand behind all of it.",
+    body: "We guarantee everything we build. If something isn't right, we make it right — no fine print, no fight. Our name goes on every project, so we stand behind all of it.",
   },
   {
     icon: Sparkles,
     title: "We Don't Stop Until You're Happy",
-    body:
-      "We're perfectionists. If we think the work isn't perfect, we'll come back a year later to fix it. We won't quit until you're thrilled — happy is the only finish line.",
+    body: "We're perfectionists. If we think the work isn't perfect, we'll come back a year later to fix it. We won't quit until you're thrilled — happy is the only finish line.",
   },
 ];
 
 const LOGOS: { src: string; alt: string; invert?: boolean }[] = [
-  { src: "/images/certs/deckorators-pro-elite.jpg", alt: "Deckorators Certified Pro Elite Installer badge" },
+  {
+    src: "/images/certs/deckorators-pro-elite.jpg",
+    alt: "Deckorators Certified Pro Elite Installer badge",
+  },
   { src: "/images/certs/trex-platinum.png", alt: "Trex Platinum Pro contractor badge" },
   { src: "/images/certs/timber-tech.jpg", alt: "TimberTech Authorized Dealer badge" },
   {
@@ -38,7 +38,7 @@ export function Certifications() {
   return (
     <Section id="certifications">
       <Eyebrow>Credentials</Eyebrow>
-      <h2 className="font-display mt-4 max-w-3xl text-balance text-4xl leading-[1.06] font-medium tracking-tight sm:text-5xl lg:text-[3.5rem]">
+      <h2 className="font-display mt-4 max-w-3xl text-4xl leading-[1.06] font-medium tracking-tight text-balance sm:text-5xl lg:text-[3.5rem]">
         Certified by the people who make the materials we build with.
       </h2>
 

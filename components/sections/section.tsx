@@ -38,7 +38,13 @@ export function Section({
   );
 }
 
-export function Eyebrow({ children, className }: { children: React.ReactNode; className?: string }) {
+export function Eyebrow({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
   return (
     <p
       className={cn(
@@ -61,7 +67,7 @@ export function SectionHeading({
   return (
     <h2
       className={cn(
-        "font-display text-balance text-4xl leading-[1.04] font-medium tracking-tight sm:text-5xl lg:text-6xl",
+        "font-display text-4xl leading-[1.04] font-medium tracking-tight text-balance sm:text-5xl lg:text-6xl",
         className,
       )}
     >

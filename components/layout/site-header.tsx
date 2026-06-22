@@ -34,11 +34,7 @@ export function SiteHeader() {
       )}
     >
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-6 px-5 sm:h-28 sm:px-8">
-        <Link
-          href="/"
-          aria-label={`${site.name} home`}
-          className="flex items-center gap-2"
-        >
+        <Link href="/" aria-label={`${site.name} home`} className="flex items-center gap-2">
           {/* The Link's aria-label is the accessible name (it wins over alt),
               so this alt is purely for crawlers/graders — no double announce. */}
           <Image

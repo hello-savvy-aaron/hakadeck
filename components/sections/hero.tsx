@@ -54,7 +54,7 @@ export function Hero() {
             href={site.reviewsUrl}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-3 rounded-full border border-black/5 bg-white px-4 py-2 text-sm text-haka-ink shadow-lg shadow-black/15 transition-colors hover:bg-white/90"
+            className="text-haka-ink inline-flex items-center gap-3 rounded-full border border-black/5 bg-white px-4 py-2 text-sm shadow-lg shadow-black/15 transition-colors hover:bg-white/90"
           >
             <span className="font-semibold">{site.rating.value.toFixed(1)}</span>
             <span className="flex" aria-hidden>
@@ -62,18 +62,16 @@ export function Hero() {
                 <Star key={i} className="text-haka-gold h-3.5 w-3.5 fill-current" />
               ))}
             </span>
-            <span className="text-foreground/70">
-              ({site.rating.count}) Google Reviews
-            </span>
+            <span className="text-foreground/70">({site.rating.count}) Google Reviews</span>
           </a>
 
-          <h1 className="font-display mt-8 text-balance text-5xl leading-[0.95] font-medium tracking-tight text-white sm:text-7xl lg:text-[6.5rem] xl:text-[7.5rem]">
+          <h1 className="font-display mt-8 text-5xl leading-[0.95] font-medium tracking-tight text-balance text-white sm:text-7xl lg:text-[6.5rem] xl:text-[7.5rem]">
             Custom Colorado Decks.
           </h1>
 
           <p className="mt-7 max-w-xl text-lg leading-relaxed text-white/85 sm:text-xl">
-            Composite, hardwood, and covered — engineered for altitude,
-            built around how Denver homes actually live.
+            Composite, hardwood, and covered — engineered for altitude, built around how Denver
+            homes actually live.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-3">

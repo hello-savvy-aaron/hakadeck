@@ -3,7 +3,13 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import type { ProjectMeta } from "@/lib/portfolio";
 
-export function ProjectCard({ project, featured = false }: { project: ProjectMeta; featured?: boolean }) {
+export function ProjectCard({
+  project,
+  featured = false,
+}: {
+  project: ProjectMeta;
+  featured?: boolean;
+}) {
   return (
     <Link
       href={`/portfolio/${project.slug}`}
@@ -19,8 +25,8 @@ export function ProjectCard({ project, featured = false }: { project: ProjectMet
           sizes={featured ? "(min-width: 1024px) 60vw, 90vw" : "(min-width: 1024px) 50vw, 90vw"}
           className="object-cover transition-transform duration-700 group-hover:scale-105"
         />
-        <div className="absolute inset-x-0 bottom-0 from-black/70 to-transparent bg-gradient-to-t p-6">
-          <div className="text-white/70 flex items-center gap-2 text-xs tracking-widest uppercase">
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+          <div className="flex items-center gap-2 text-xs tracking-widest text-white/70 uppercase">
             <span>{project.category}</span>
             <span aria-hidden>•</span>
             <span>{project.location}</span>
@@ -31,7 +37,7 @@ export function ProjectCard({ project, featured = false }: { project: ProjectMet
         </div>
       </div>
       <div className="flex items-start justify-between gap-6 p-6">
-        <p className="text-muted-foreground max-w-md text-sm leading-relaxed line-clamp-2">
+        <p className="text-muted-foreground line-clamp-2 max-w-md text-sm leading-relaxed">
           {project.summary}
         </p>
         <div className="text-foreground/80 group-hover:text-foreground inline-flex items-center gap-1 text-sm font-medium whitespace-nowrap">

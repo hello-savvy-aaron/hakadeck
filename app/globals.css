@@ -17,16 +17,16 @@
 
   /* Brand palette — light theme (2026-05-29).
      Sky Blue / White Smoke / Muted Teal / Almond Silk. */
-  --color-haka-sky: #85c7f2;       /* sky blue accent */
-  --color-haka-smoke: #f3f0f0;     /* white smoke — dominant bg */
-  --color-haka-teal: #729b79;      /* muted teal — bright accent (buttons, icons) */
-  --color-haka-pine: #4f6e56;      /* deep green — band bg, AA-safe with white text */
-  --color-haka-almond: #ffd4ca;    /* almond silk — warm accent */
-  --color-haka-ink: #22302a;       /* dark green-charcoal text */
-  --color-haka-gold: #f5b301;      /* gold — star ratings */
-  --color-haka-cream: #729b79;     /* legacy accent alias → teal */
-  --color-haka-charcoal: #586860;  /* mid-gray text */
-  --color-haka-cloud: #586860;     /* muted text */
+  --color-haka-sky: #85c7f2; /* sky blue accent */
+  --color-haka-smoke: #f3f0f0; /* white smoke — dominant bg */
+  --color-haka-teal: #729b79; /* muted teal — bright accent (buttons, icons) */
+  --color-haka-pine: #4f6e56; /* deep green — band bg, AA-safe with white text */
+  --color-haka-almond: #ffd4ca; /* almond silk — warm accent */
+  --color-haka-ink: #22302a; /* dark green-charcoal text */
+  --color-haka-gold: #f5b301; /* gold — star ratings */
+  --color-haka-cream: #729b79; /* legacy accent alias → teal */
+  --color-haka-charcoal: #586860; /* mid-gray text */
+  --color-haka-cloud: #586860; /* muted text */
 
   /* shadcn semantic tokens → re-export as Tailwind colors */
   --color-background: var(--background);

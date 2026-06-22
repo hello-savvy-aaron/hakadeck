@@ -25,9 +25,7 @@ type Op = { src: string; dst: string };
 
 async function listJpegs(dir: string): Promise<string[]> {
   const entries = await readdir(dir);
-  return entries
-    .filter((f) => /\.jpe?g$/i.test(f) && !f.startsWith("."))
-    .sort();
+  return entries.filter((f) => /\.jpe?g$/i.test(f) && !f.startsWith(".")).sort();
 }
 
 async function planShowcase(srcDir: string, projectSlug: string, videoName: string): Promise<Op[]> {
@@ -85,10 +83,16 @@ async function planMisc(srcDir: string): Promise<Op[]> {
 async function plan(): Promise<Op[]> {
   const ops: Op[] = [
     // Certifications
-    { src: join(LIBRARY, "deckorators-cert-elite.jpg"), dst: join(OUT, "certs", "deckorators-pro-elite.jpg") },
+    {
+      src: join(LIBRARY, "deckorators-cert-elite.jpg"),
+      dst: join(OUT, "certs", "deckorators-pro-elite.jpg"),
+    },
     { src: join(LIBRARY, "timber-tech.jpeg"), dst: join(OUT, "certs", "timber-tech.jpg") },
     { src: join(LIBRARY, "trex-logo.jpeg"), dst: join(OUT, "certs", "trex-logo.jpg") },
-    { src: join(LIBRARY, "trex-platinum-certified.png"), dst: join(OUT, "certs", "trex-platinum.png") },
+    {
+      src: join(LIBRARY, "trex-platinum-certified.png"),
+      dst: join(OUT, "certs", "trex-platinum.png"),
+    },
   ];
 
   // Reviews — copy as-is; the source already uses sensible names.
@@ -98,7 +102,13 @@ async function plan(): Promise<Op[]> {
     ops.push({ src: join(LIBRARY, "reviews", f), dst: join(OUT, "reviews", f) });
   }
 
-  ops.push(...(await planShowcase(join(LIBRARY, "showcase-1"), "double-decker", "double-decker-drone.mp4")));
+  ops.push(
+    ...(await planShowcase(
+      join(LIBRARY, "showcase-1"),
+      "double-decker",
+      "double-decker-drone.mp4",
+    )),
+  );
   ops.push(...(await planShowcase(join(LIBRARY, "showcase-2"), "ranch-drone", "ranch-drone.mp4")));
 
   ops.push(...(await planMisc(join(LIBRARY, "misc"))));
