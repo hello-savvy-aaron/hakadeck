@@ -41,6 +41,10 @@ export const site = {
   },
   // Google Analytics 4 measurement ID (gtag.js).
   gaId: "G-Y02QMV6M3D",
+  // Reddit Ads pixel (advertiser) ID — e.g. "a2_xxxxxxxxxxxx". Find it in Reddit
+  // Ads Manager → Events Manager → Pixel. Public client-side ID, same class as
+  // gaId; an empty string keeps the pixel disabled (RedditPixel renders nothing).
+  redditPixelId: "",
   founded: 2017,
   rating: { value: 5.0, count: 87, max: 5 },
   // Official Google Business Profile share link → opens the Haka Decks listing

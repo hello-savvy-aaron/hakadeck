@@ -18,6 +18,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { contactSchema, PROJECT_TYPES, type ContactInput } from "@/lib/contact-schema";
+import { trackReddit } from "@/lib/reddit";
 
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
@@ -43,6 +44,9 @@ export function ContactForm() {
       // Count successful submissions in Vercel Web Analytics. projectType is a
       // bounded enum (no PII) — name/email/message are deliberately omitted.
       track("Contact form submitted", { projectType: values.projectType });
+      // Mirror the conversion to Reddit Ads — a quote request counts as a Lead
+      // for campaign optimization. No-ops if the pixel isn't configured.
+      trackReddit("Lead");
       setSubmitted(true);
       reset();
       toast.success("Got it — Pete will be in touch within one business day.");
