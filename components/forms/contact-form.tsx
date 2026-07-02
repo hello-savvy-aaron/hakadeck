@@ -32,7 +32,9 @@ const HINTS: Record<Exclude<ContactKind, null>, { text: string; tone: "pine" | "
     unknown: { text: "Enter a phone number or an email address.", tone: "warn" },
   };
 
-const HINT_DEFAULT = "One field is all Pete needs — phone or email, whichever you prefer.";
+// Empty until the visitor starts typing — the hint only speaks up to confirm or
+// correct, never to fill silence. Reserved height keeps the layout from jumping.
+const HINT_DEFAULT = "";
 
 export function ContactForm() {
   const [sentContact, setSentContact] = useState<string | null>(null);
