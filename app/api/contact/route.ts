@@ -61,12 +61,11 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true, mode: "dev-log" });
   }
 
-  // TODO: switch `from` to `noreply@hakadecks.com` after the hakadecks.com domain
-  // is verified in Resend (https://resend.com/domains). Until then, only the
-  // pre-verified onboarding@resend.dev sender will pass Resend's checks.
-  // Use trim()/|| (not ??) so an empty or whitespace-only env var falls back to
-  // the working default. Production had RESEND_FROM="" set, which ?? passes
-  // through to Resend as an empty sender → the send is rejected with a 502.
+  // Prefer RESEND_FROM (set to a sender on the verified hakadeck.com domain, which can
+  // deliver to any recipient). If it's unset/blank we fall back to onboarding@resend.dev,
+  // Resend's shared testing sender — that only reaches the account owner's own inbox and
+  // 403s for anyone else. Use trim()/|| (not ??) so an empty or whitespace-only env var
+  // still falls back to the default rather than passing "" through as the sender.
   const FROM = process.env.RESEND_FROM?.trim() || "Haka Decks <onboarding@resend.dev>";
   const TO = process.env.CONTACT_TO?.trim() || "pete@hakadecks.com";
 

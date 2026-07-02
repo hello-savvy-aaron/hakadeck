@@ -53,7 +53,12 @@ export function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-foreground/90 hover:text-foreground text-sm font-medium tracking-tight transition-colors"
+              className={cn(
+                "text-sm font-medium tracking-tight transition-colors",
+                overHero
+                  ? "text-white/90 hover:text-white"
+                  : "text-foreground/90 hover:text-foreground",
+              )}
             >
               {item.label}
             </Link>
