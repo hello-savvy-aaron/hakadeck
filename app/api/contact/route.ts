@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { contactSchema } from "@/lib/contact-schema";
+import { contactChannel, contactSchema } from "@/lib/contact-schema";
 
 const HITS = new Map<string, { count: number; first: number }>();
 const WINDOW_MS = 60_000;
@@ -73,14 +73,14 @@ export async function POST(req: Request) {
   try {
     const { Resend } = await import("resend");
     const resend = new Resend(apiKey);
-    const { name, email, phone, projectType, message, referral } = parsed.data;
+    const { contact, message, projectType } = parsed.data;
+    const channel = contactChannel(contact); // "email" | "phone"
+    const action = channel === "phone" ? "call back" : "email back";
     const text = [
-      `From: ${name} <${email}>`,
-      phone ? `Phone: ${phone}` : null,
-      `Project type: ${projectType}`,
-      referral ? `Heard via: ${referral}` : null,
+      channel === "phone" ? `Call back: ${contact}` : `Email back: ${contact}`,
+      projectType ? `About: ${projectType}` : null,
       "",
-      message,
+      message || "(no note)",
     ]
       .filter(Boolean)
       .join("\n");
@@ -88,8 +88,10 @@ export async function POST(req: Request) {
     const result = await resend.emails.send({
       from: FROM,
       to: TO,
-      replyTo: email,
-      subject: `New quote request — ${projectType}`,
+      // Only wire replyTo when the lead left an email — a phone number isn't a
+      // valid reply address and would make Resend reject the send.
+      ...(channel === "email" ? { replyTo: contact } : {}),
+      subject: `New lead — ${action}: ${contact}`,
       text,
     });
     if (result.error) {
