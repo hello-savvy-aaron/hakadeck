@@ -1,0 +1,111 @@
+<!-- @dsCard group="Foundations" name="Color palette" subtitle="Brand + semantic tokens" -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Haka Decks — Color palette</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --haka-sky: #85c7f2;
+        --haka-smoke: #f3f0f0;
+        --haka-teal: #729b79;
+        --haka-pine: #4f6e56;
+        --haka-almond: #ffd4ca;
+        --haka-ink: #22302a;
+        --haka-gold: #f5b301;
+        --haka-charcoal: #586860;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: 40px;
+        background: var(--haka-smoke);
+        color: var(--haka-ink);
+        font-family: "Inter", system-ui, sans-serif;
+      }
+      h1 {
+        margin: 0 0 4px;
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+      }
+      p.sub {
+        margin: 0 0 28px;
+        color: var(--haka-charcoal);
+        font-size: 14px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 16px;
+      }
+      .swatch {
+        background: #fff;
+        border: 1px solid rgb(34 48 42 / 12%);
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      .chip {
+        height: 92px;
+      }
+      .meta {
+        padding: 12px 14px;
+      }
+      .name {
+        font-size: 13px;
+        font-weight: 600;
+      }
+      .role {
+        font-size: 12px;
+        color: var(--haka-charcoal);
+        margin-top: 2px;
+      }
+      .hex {
+        font-size: 12px;
+        font-variant-numeric: tabular-nums;
+        color: var(--haka-charcoal);
+        margin-top: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Color</h1>
+    <p class="sub">Sky Blue / White Smoke / Muted Teal / Almond Silk — the Haka Decks light theme.</p>
+    <div class="grid" id="grid"></div>
+    <script>
+      const colors = [
+        ["Teal", "Primary — buttons, icons", "#729b79"],
+        ["Pine", "Deep bands, AA on white", "#4f6e56"],
+        ["Ink", "Body + heading text", "#22302a"],
+        ["Charcoal", "Muted / secondary text", "#586860"],
+        ["Smoke", "Dominant background", "#f3f0f0"],
+        ["Sky", "Cool accent", "#85c7f2"],
+        ["Almond", "Warm accent", "#ffd4ca"],
+        ["Gold", "Star ratings", "#f5b301"],
+      ];
+      document.getElementById("grid").innerHTML = colors
+        .map(
+          ([name, role, hex]) => `
+          <div class="swatch">
+            <div class="chip" style="background:${hex}"></div>
+            <div class="meta">
+              <div class="name">${name}</div>
+              <div class="role">${role}</div>
+              <div class="hex">${hex}</div>
+            </div>
+          </div>`,
+        )
+        .join("");
+    </script>
+  </body>
+</html>

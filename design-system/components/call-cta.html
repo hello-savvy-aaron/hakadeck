@@ -1,0 +1,92 @@
+<!-- @dsCard group="Components" name="Call CTA" subtitle="Primary / secondary / ghost" -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Haka Decks — Call CTA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --teal: #729b79;
+        --ink: #22302a;
+        --smoke: #f3f0f0;
+        --charcoal: #586860;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: 48px;
+        background: var(--smoke);
+        color: var(--ink);
+        font-family: "Inter", system-ui, sans-serif;
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+        max-width: 520px;
+      }
+      .cta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        width: 100%;
+        padding: 20px 24px;
+        border-radius: 14px;
+        font-size: 18px;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        border: 1px solid transparent;
+        transition: background 0.15s;
+      }
+      .cta svg {
+        width: 20px;
+        height: 20px;
+      }
+      .primary {
+        background: var(--teal);
+        color: #fff;
+        box-shadow: 0 1px 2px rgb(34 48 42 / 10%);
+      }
+      .primary:hover {
+        background: #67926e;
+      }
+      .secondary {
+        background: #fff;
+        color: var(--ink);
+        border-color: rgb(34 48 42 / 14%);
+      }
+      .ghost {
+        background: transparent;
+        color: var(--teal);
+      }
+      .caption {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--charcoal);
+        margin: 4px 0 -8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="caption">Primary — homepage + contact hero</div>
+    <a class="cta primary" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      Call Pete — 720-589-5680
+    </a>
+
+    <div class="caption">Secondary</div>
+    <a class="cta secondary" href="#">Get a Quote</a>
+
+    <div class="caption">Ghost</div>
+    <a class="cta ghost" href="#">See recent projects →</a>
+  </body>
+</html>

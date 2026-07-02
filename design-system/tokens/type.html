@@ -1,0 +1,101 @@
+<!-- @dsCard group="Foundations" name="Typography" subtitle="Bricolage display + Inter body" -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Haka Decks — Typography</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..600&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #22302a;
+        --charcoal: #586860;
+        --smoke: #f3f0f0;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: 48px;
+        background: var(--smoke);
+        color: var(--ink);
+        font-family: "Inter", system-ui, sans-serif;
+      }
+      .display {
+        font-family: "Bricolage Grotesque", system-ui, sans-serif;
+        font-weight: 500;
+        letter-spacing: -0.02em;
+        line-height: 1.02;
+      }
+      .row {
+        border-top: 1px solid rgb(34 48 42 / 12%);
+        padding: 20px 0;
+        display: flex;
+        align-items: baseline;
+        gap: 28px;
+      }
+      .row:first-of-type {
+        border-top: 0;
+      }
+      .label {
+        flex: 0 0 120px;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--charcoal);
+      }
+      .h1 {
+        font-size: 56px;
+      }
+      .h2 {
+        font-size: 40px;
+      }
+      .lead {
+        font-size: 20px;
+        color: rgb(34 48 42 / 70%);
+        line-height: 1.5;
+      }
+      .body {
+        font-size: 17px;
+        line-height: 1.7;
+      }
+      .eyebrow {
+        font-size: 12px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: rgb(34 48 42 / 60%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="row">
+      <div class="label">Display / H1</div>
+      <div class="display h1">Talk to Pete.</div>
+    </div>
+    <div class="row">
+      <div class="label">Display / H2</div>
+      <div class="display h2">Custom Colorado decks.</div>
+    </div>
+    <div class="row">
+      <div class="label">Eyebrow</div>
+      <div class="eyebrow">Get a quote</div>
+    </div>
+    <div class="row">
+      <div class="label">Lead</div>
+      <div class="lead">Call now, or leave your number and he'll get back to you.</div>
+    </div>
+    <div class="row">
+      <div class="label">Body</div>
+      <div class="body" style="max-width: 46ch">
+        Haka Decks builds custom decks, pergolas, and covered outdoor living for homeowners across
+        the south Denver metro.
+      </div>
+    </div>
+  </body>
+</html>
