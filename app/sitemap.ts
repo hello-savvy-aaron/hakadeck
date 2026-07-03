@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/blog";
+import { getAllLocations } from "@/lib/locations";
 import { getAllProjects } from "@/lib/portfolio";
 import { getAllServices } from "@/lib/services";
 import { site } from "@/lib/site";
@@ -8,7 +9,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = site.url.replace(/\/$/, "");
   const now = new Date();
 
-  const staticPaths = ["", "/about", "/services", "/portfolio", "/blog", "/contact"];
+  const staticPaths = ["", "/about", "/services", "/portfolio", "/blog", "/contact", "/locations"];
   const staticEntries = staticPaths.map((path) => ({
     url: `${base}${path || "/"}`,
     lastModified: now,
@@ -16,14 +17,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: path === "" ? 1 : 0.8,
   }));
 
-  const [posts, projects, services] = await Promise.all([
+  const [posts, projects, services, locations] = await Promise.all([
     getAllPosts(),
     getAllProjects(),
     getAllServices(),
+    getAllLocations(),
   ]);
 
   const serviceEntries = services.map((s) => ({
     url: `${base}/services/${s.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
+  const locationEntries = locations.map((l) => ({
+    url: `${base}/locations/${l.slug}`,
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.8,
@@ -43,5 +52,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  return [...staticEntries, ...serviceEntries, ...postEntries, ...projectEntries];
+  return [
+    ...staticEntries,
+    ...serviceEntries,
+    ...locationEntries,
+    ...postEntries,
+    ...projectEntries,
+  ];
 }

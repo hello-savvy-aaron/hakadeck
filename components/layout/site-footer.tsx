@@ -2,10 +2,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { InstagramIcon, LinkedinIcon } from "@/components/icons/social-icons";
+import { getAllLocations } from "@/lib/locations";
 import { site } from "@/lib/site";
 
-export function SiteFooter() {
+export async function SiteFooter() {
   const { address, hours } = site;
+  const locations = await getAllLocations();
   return (
     <footer className="bg-background text-foreground border-border/40 border-t">
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
@@ -13,7 +15,7 @@ export function SiteFooter() {
           Denver&apos;s Deck BUILDER.
         </p>
 
-        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1fr]">
           <div className="space-y-5">
             <Link href="/" aria-label={`${site.name} home`} className="inline-flex">
               {/* The Link's aria-label is the accessible name (it wins over
@@ -46,6 +48,15 @@ export function SiteFooter() {
                 {item.label}
               </FooterLink>
             ))}
+          </FooterCol>
+
+          <FooterCol heading="Service Areas">
+            {locations.map((l) => (
+              <FooterLink key={l.slug} href={`/locations/${l.slug}`}>
+                {l.name}, CO
+              </FooterLink>
+            ))}
+            <FooterLink href="/locations">All service areas</FooterLink>
           </FooterCol>
 
           <FooterCol heading="Visit">
