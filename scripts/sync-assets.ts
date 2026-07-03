@@ -49,14 +49,13 @@ async function planShowcase(srcDir: string, projectSlug: string, videoName: stri
   return ops;
 }
 
-// Six projects dropped into library's misc/ as p<project><shot>.jpeg (e.g. p21 = project 2, shot 1).
+// Projects dropped into library's misc/ as p<project><shot>.jpeg (e.g. p21 = project 2, shot 1).
 const MISC_PROJECTS: Record<string, string> = {
   "1": "walkout-covered-deck",
   "2": "prairie-view-deck",
   "3": "pergola-patio-screen",
   "4": "patio-cover-tongue-groove",
   "5": "two-tier-balcony-deck",
-  "6": "hot-tub-deck-retreat",
 };
 
 async function planMisc(srcDir: string): Promise<Op[]> {
