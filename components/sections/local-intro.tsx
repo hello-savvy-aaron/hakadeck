@@ -8,7 +8,7 @@ export function LocalIntro() {
         <div>
           <Eyebrow>Your local deck builder</Eyebrow>
           <SectionHeading className="mt-4">
-            The deck builder south Denver homeowners call first.
+            The deck builder Front Range homeowners call first.
           </SectionHeading>
         </div>
 

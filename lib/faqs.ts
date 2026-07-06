@@ -21,6 +21,6 @@ export const FAQS: Faq[] = [
   },
   {
     q: "Will a deck increase my home's value?",
-    a: "Yes — according to Remodeling Magazine's annual Cost vs. Value report, a composite deck addition recoups roughly 80% of its cost at resale, and outperforms most kitchen and bath remodels on a dollar-for-dollar basis. In south Denver specifically, listings with finished outdoor living spaces consistently move faster than comps without.",
+    a: "Yes — according to Remodeling Magazine's annual Cost vs. Value report, a composite deck addition recoups roughly 80% of its cost at resale, and outperforms most kitchen and bath remodels on a dollar-for-dollar basis. In the Denver area specifically, listings with finished outdoor living spaces consistently move faster than comps without.",
   },
 ];

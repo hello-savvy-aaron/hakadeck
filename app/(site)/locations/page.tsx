@@ -22,7 +22,7 @@ export default async function LocationsPage() {
       <Section top="loose" bottom="tight">
         <Eyebrow>Service Areas</Eyebrow>
         <h1 className="font-display mt-4 max-w-4xl text-5xl leading-[1.02] font-medium tracking-tight text-balance sm:text-6xl lg:text-8xl">
-          South Denver is home turf.
+          The Front Range is home turf.
         </h1>
         <p className="text-muted-foreground mt-6 max-w-2xl text-lg leading-relaxed">
           Our shop is in {site.address.city}, and we build {site.serviceArea}. The cities below are

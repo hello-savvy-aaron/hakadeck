@@ -7,7 +7,7 @@ import { getAllProjects } from "@/lib/portfolio";
 export const metadata: Metadata = {
   title: "Portfolio",
   description:
-    "A selection of decks, pergolas, and outdoor living spaces Haka has built across the south Denver metro.",
+    "A selection of decks, pergolas, and outdoor living spaces Haka has built across the Front Range.",
   alternates: { canonical: "/portfolio" },
 };
 
@@ -22,7 +22,7 @@ export default async function PortfolioPage() {
           Decks worth showing off.
         </h1>
         <p className="text-muted-foreground mt-6 max-w-2xl text-lg leading-relaxed">
-          A selection of recent builds across the south Denver metro. Each one starts with a
+          A selection of recent builds across the Front Range. Each one starts with a
           conversation, ends with a handshake, and the photos in between are everything that
           happened on the way.
         </p>
