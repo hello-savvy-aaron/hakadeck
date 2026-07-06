@@ -28,7 +28,7 @@ export function StatsCounter({ stats = DEFAULT_STATS }: { stats?: Stat[] }) {
             Engineered for Altitude. Built with Pride.
           </h2>
           <p className="text-foreground/70 mt-6 max-w-md text-base leading-relaxed">
-            Composite, hardwood, and covered — across the south Denver metro since 2017.
+            Composite, hardwood, and covered — across the Front Range since 2017.
           </p>
         </div>
 

@@ -37,7 +37,7 @@ export function ServiceJsonLd({
         },
         areaServed: {
           "@type": "AdministrativeArea",
-          name: "South Denver metro, Colorado",
+          name: "Denver & Colorado Springs metro areas, Colorado",
         },
       },
       {

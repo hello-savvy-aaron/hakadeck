@@ -29,7 +29,22 @@ export function LocalBusinessJsonLd() {
       postalCode: site.address.zip,
       addressCountry: "US",
     },
+    // Real coverage rule: anywhere within an hour of Denver or Colorado
+    // Springs. Encoded as two ~50 mi GeoCircles, plus the named cities the
+    // dedicated landing pages target.
     areaServed: [
+      {
+        "@type": "GeoCircle",
+        geoMidpoint: { "@type": "GeoCoordinates", latitude: 39.7392, longitude: -104.9903 },
+        geoRadius: "80000",
+        description: "Within an hour of Denver, CO",
+      },
+      {
+        "@type": "GeoCircle",
+        geoMidpoint: { "@type": "GeoCoordinates", latitude: 38.8339, longitude: -104.8214 },
+        geoRadius: "80000",
+        description: "Within an hour of Colorado Springs, CO",
+      },
       "Centennial, CO",
       "Greenwood Village, CO",
       "Cherry Hills Village, CO",
@@ -37,6 +52,7 @@ export function LocalBusinessJsonLd() {
       "Highlands Ranch, CO",
       "Castle Rock, CO",
       "Denver, CO",
+      "Colorado Springs, CO",
     ],
     openingHoursSpecification: site.hours.schema.map((h) => ({
       "@type": "OpeningHoursSpecification",

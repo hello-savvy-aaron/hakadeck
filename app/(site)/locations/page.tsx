@@ -10,7 +10,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Service Areas",
   description:
-    "Haka Decks builds custom composite decks, pergolas, and outdoor living spaces across the south Denver metro — Centennial, Greenwood Village, Lone Tree, and beyond.",
+    "Haka Decks builds custom composite decks, pergolas, and outdoor living spaces anywhere within an hour of Denver or Colorado Springs — Centennial, Greenwood Village, Lone Tree, and beyond.",
   alternates: { canonical: "/locations" },
 };
 
@@ -25,9 +25,10 @@ export default async function LocationsPage() {
           South Denver is home turf.
         </h1>
         <p className="text-muted-foreground mt-6 max-w-2xl text-lg leading-relaxed">
-          Our shop is in {site.address.city}, and everywhere we build is a short drive from it.
-          Every city below gets the same crew, the same materials, and the same warranty — plus a
-          builder who knows its neighborhoods, HOAs, and permit offices firsthand.
+          Our shop is in {site.address.city}, and we build {site.serviceArea}. The cities below are
+          where we work most — each gets the same crew, the same materials, and the same warranty,
+          plus a builder who knows its neighborhoods, HOAs, and permit offices firsthand. Outside
+          them but within the radius? We&apos;ll come to you too.
         </p>
       </Section>
 

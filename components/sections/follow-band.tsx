@@ -15,7 +15,7 @@ export function FollowBand() {
           <p className="text-foreground/75 mt-4 text-base leading-relaxed">
             From first cut to final railing. Follow{" "}
             <span className="text-foreground font-medium">{site.socials.instagramHandle}</span> for
-            fresh project photos across the south Denver metro.
+            fresh project photos across the Front Range.
           </p>
         </div>
 

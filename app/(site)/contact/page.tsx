@@ -25,7 +25,7 @@ export default function ContactPage() {
         <ContactForm />
 
         <p className="text-muted-foreground mt-6 text-center text-sm">
-          Serving Centennial &amp; the south Denver metro · Prefer email?{" "}
+          Serving anywhere within an hour of Denver or Colorado Springs · Prefer email?{" "}
           <a href={site.emailHref} className="text-foreground font-medium">
             {site.email}
           </a>
@@ -61,10 +61,10 @@ export default function ContactPage() {
               ))}
             </dl>
             <p className="text-foreground/70 mt-4 text-sm leading-relaxed">
-              {site.name} is a licensed deck builder based in {site.address.city}, serving the south
-              Denver metro — including Greenwood Village, Littleton, Lone Tree, Highlands Ranch, and
-              Parker. Building custom Colorado decks since {site.founded}, rated {site.rating.value}{" "}
-              stars across {site.rating.count} reviews.
+              {site.name} is a licensed deck builder based in {site.address.city}, serving{" "}
+              {site.serviceArea} — including Greenwood Village, Littleton, Lone Tree, Highlands
+              Ranch, Parker, Castle Rock, and Monument. Building custom Colorado decks since{" "}
+              {site.founded}, rated {site.rating.value} stars across {site.rating.count} reviews.
             </p>
           </div>
         </div>

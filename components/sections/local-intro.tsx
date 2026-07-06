@@ -16,9 +16,9 @@ export function LocalIntro() {
           <p>
             {site.name} is a licensed deck builder based in {site.address.city},{" "}
             {site.address.state}, building custom decks, pergolas, and covered outdoor living for
-            homeowners across the {site.address.region}. Since {site.founded} we&apos;ve designed
-            and built outdoor spaces in Greenwood Village, Cherry Hills Village, Lone Tree,
-            Highlands Ranch, Castle Rock, and the surrounding Denver suburbs.
+            homeowners {site.serviceArea}. Since {site.founded} we&apos;ve designed and built
+            outdoor spaces in Greenwood Village, Cherry Hills Village, Lone Tree, Highlands Ranch,
+            Castle Rock, and the surrounding Denver suburbs.
           </p>
           <p>
             Decks here have to survive 300-plus days of high-altitude sun, summer hail, and a
@@ -31,7 +31,7 @@ export function LocalIntro() {
             Whether you want a low-maintenance composite deck, a cedar or hardwood build, a pergola
             or patio cover, an outdoor kitchen, or new railings, we handle the design, HOA and
             permit paperwork, and the build end to end. Most projects start with a free on-site
-            walkthrough across {site.address.city} and the south Denver area.
+            walkthrough, anywhere in the service area.
           </p>
         </div>
       </div>
