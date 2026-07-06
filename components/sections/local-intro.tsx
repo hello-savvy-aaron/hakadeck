@@ -14,9 +14,8 @@ export function LocalIntro() {
 
         <div className="text-muted-foreground space-y-5 text-base leading-relaxed sm:text-lg">
           <p>
-            {site.name} is a licensed deck builder based in {site.address.city},{" "}
-            {site.address.state}, building custom decks, pergolas, and covered outdoor living for
-            homeowners {site.serviceArea}. Since {site.founded} we&apos;ve designed and built
+            {site.name} is a licensed deck builder based in the {site.address.district}, building
+            custom decks, pergolas, and covered outdoor living for homeowners {site.serviceArea}. Since {site.founded} we&apos;ve designed and built
             outdoor spaces in Greenwood Village, Cherry Hills Village, Lone Tree, Highlands Ranch,
             Castle Rock, and the surrounding Denver suburbs.
           </p>

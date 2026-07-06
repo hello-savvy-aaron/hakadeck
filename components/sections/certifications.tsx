@@ -29,7 +29,7 @@ const LOGOS: { src: string; alt: string; invert?: boolean }[] = [
   { src: "/images/certs/timber-tech.jpg", alt: "TimberTech Authorized Dealer badge" },
   {
     src: "/images/brand/haka-badge.png",
-    alt: "Haka Decks logo — custom deck builder in Centennial, Colorado",
+    alt: "Haka Decks logo — custom deck builder in the Denver Tech Center",
     invert: true,
   },
 ];

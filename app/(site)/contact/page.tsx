@@ -6,7 +6,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Get a Quote",
   description:
-    "Talk to Pete at Haka Decks, a deck builder in Centennial, CO. Call, or leave a number or email and he'll get back to you.",
+    "Talk to Pete at Haka Decks, a deck builder in the Denver Tech Center. Call, or leave a number or email and he'll get back to you.",
   alternates: { canonical: "/contact" },
 };
 
@@ -61,7 +61,7 @@ export default function ContactPage() {
               ))}
             </dl>
             <p className="text-foreground/70 mt-4 text-sm leading-relaxed">
-              {site.name} is a licensed deck builder based in {site.address.city}, serving{" "}
+              {site.name} is a licensed deck builder based in the {site.address.district}, serving{" "}
               {site.serviceArea} — including Greenwood Village, Littleton, Lone Tree, Highlands
               Ranch, Parker, Castle Rock, and Monument. Building custom Colorado decks since{" "}
               {site.founded}, rated {site.rating.value} stars across {site.rating.count} reviews.

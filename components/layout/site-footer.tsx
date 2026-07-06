@@ -30,7 +30,7 @@ export async function SiteFooter() {
             </Link>
             <p className="text-muted-foreground max-w-sm text-sm leading-relaxed">
               {site.name} builds custom decks, pergolas, and covered outdoor living for homeowners
-              across {address.city} and the {address.region}.
+              across the {address.region}, from our shop in the {address.district}.
             </p>
             <div className="flex gap-3">
               <SocialLink href={site.socials.instagram} label="Instagram">

@@ -25,7 +25,8 @@ export default async function LocationsPage() {
           The Front Range is home turf.
         </h1>
         <p className="text-muted-foreground mt-6 max-w-2xl text-lg leading-relaxed">
-          Our shop is in {site.address.city}, and we build {site.serviceArea}. The cities below are
+          Our shop is in the {site.address.district}, and we build {site.serviceArea}. The cities
+          below are
           where we work most — each gets the same crew, the same materials, and the same warranty,
           plus a builder who knows its neighborhoods, HOAs, and permit offices firsthand. Outside
           them but within the radius? We&apos;ll come to you too.

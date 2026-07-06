@@ -29,8 +29,8 @@ export default async function ServicesPage() {
         </h1>
         <p className="text-muted-foreground mt-6 max-w-2xl text-lg leading-relaxed">
           We don&apos;t carry a hundred services. We build a handful of things, and we build them
-          better than the deck-and-handyman shops down the street — for homeowners across{" "}
-          {site.address.city} and the {site.address.region}.
+          better than the deck-and-handyman shops down the street — from our shop in the{" "}
+          {site.address.district}, for homeowners across the {site.address.region}.
         </p>
       </Section>
 

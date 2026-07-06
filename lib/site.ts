@@ -5,7 +5,7 @@ export const site = {
   // stricter site-grader limits, while keeping the deck-builder + geo + service
   // keywords. Used for the meta description, OpenGraph/Twitter, and JSON-LD.
   description:
-    "Custom deck builder in Centennial, CO — composite & hardwood decks, pergolas & covered outdoor living across the Front Range.",
+    "Denver Tech Center deck builder — composite & hardwood decks, pergolas & covered outdoor living across the Front Range.",
   // Canonical host. Uses www because Vercel serves the site at www.hakadecks.com
   // (the bare apex 307-redirects to it); keeping canonical, sitemap, robots, and
   // schema on www matches the URL that actually returns 200 — fixes the grader's
@@ -17,9 +17,13 @@ export const site = {
   emailHref: "mailto:pete@hakadecks.com",
   address: {
     street: "9707 E Easter Ln",
+    // Postal city — must stay "Centennial" to match the Google Business
+    // Profile NAP (footer address, JSON-LD addressLocality). Brand copy leads
+    // with `district` instead.
     city: "Centennial",
     state: "CO",
     zip: "80112",
+    district: "Denver Tech Center",
     region: "Front Range",
   },
   // The real coverage rule — quoted anywhere the site states the service area

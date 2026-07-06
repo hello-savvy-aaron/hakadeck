@@ -21,7 +21,7 @@ export default function AboutPage() {
           Denver&apos;s Deck Builder.
         </h1>
         <p className="text-muted-foreground mt-6 max-w-2xl text-lg leading-relaxed">
-          A Centennial deck shop with a service-first attitude, rugby roots, and a stubborn
+          A Denver Tech Center deck shop with a service-first attitude, rugby roots, and a stubborn
           opinion about how things should be built.
         </p>
       </Section>
