@@ -113,7 +113,6 @@ export function ContactForm() {
       {/* Primary path — call. Highest-intent, zero-friction for a homeowner. */}
       <a
         href={site.phoneHref}
-        onClick={() => track("Contact call clicked")}
         className="bg-primary text-primary-foreground hover:bg-primary/90 focus-visible:ring-ring flex items-center justify-center gap-3 rounded-xl px-6 py-[18px] text-lg font-semibold shadow-sm transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
       >
         <Phone className="h-5 w-5" />

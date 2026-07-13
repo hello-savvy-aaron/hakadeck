@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { RedditPixel } from "@/components/analytics/reddit-pixel";
+import { CtaAnalytics } from "@/components/analytics/cta-analytics";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -71,6 +72,7 @@ export default function RootLayout({
         <SpeedInsights />
         <GoogleAnalytics gaId={site.gaId} />
         <RedditPixel pixelId={site.redditPixelId} />
+        <CtaAnalytics />
       </body>
     </html>
   );
