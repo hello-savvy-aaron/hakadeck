@@ -64,6 +64,15 @@ export default function AboutPage() {
                   approach to your project. Today, Pete is a proud husband and father of two boys.
                 </p>
               </div>
+              <div className="border-border/40 relative aspect-[607/504] overflow-hidden rounded-2xl border">
+                <Image
+                  src="/images/about/pete.jpg"
+                  alt="Pete Borlase carrying the ball during his professional rugby days."
+                  fill
+                  sizes="(min-width: 1024px) 55vw, 90vw"
+                  className="object-cover"
+                />
+              </div>
             </div>
           </Reveal>
         </div>

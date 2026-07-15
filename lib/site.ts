@@ -13,8 +13,8 @@ export const site = {
   url: "https://www.hakadecks.com",
   phone: "720-589-5680",
   phoneHref: "tel:+17205895680",
-  email: "pete@hakadecks.com",
-  emailHref: "mailto:pete@hakadecks.com",
+  email: "contact@hakadecks.com",
+  emailHref: "mailto:contact@hakadecks.com",
   address: {
     street: "9707 E Easter Ln",
     // Postal city — must stay "Centennial" to match the Google Business
@@ -54,7 +54,7 @@ export const site = {
   // gaId; an empty string keeps the pixel disabled (RedditPixel renders nothing).
   redditPixelId: "",
   founded: 2017,
-  rating: { value: 5.0, count: 87, max: 5 },
+  rating: { value: 5.0, count: 89, max: 5 },
   // Official Google Business Profile share link → opens the Haka Decks listing
   // (knowledge panel + reviews). Verified 200; resolves to the GBP for kgmid
   // /g/11sxx77nb2. Replaced the old g.co/kgs/haka-deck placeholder, which 404'd.

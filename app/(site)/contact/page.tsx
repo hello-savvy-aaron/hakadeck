@@ -6,7 +6,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Get a Quote",
   description:
-    "Talk to Pete at Haka Decks, a deck builder in the Denver Tech Center. Call, or leave a number or email and he'll get back to you.",
+    "Contact Haka Decks, a deck builder in the Denver Tech Center. Call, or leave a number or email and we'll get back to you.",
   alternates: { canonical: "/contact" },
 };
 
@@ -16,10 +16,10 @@ export default function ContactPage() {
       <div className="mx-auto max-w-[540px]">
         <Eyebrow className="mb-3.5">Get a quote</Eyebrow>
         <h1 className="font-display text-foreground text-[52px] leading-[1.02] font-medium tracking-tight text-balance">
-          Talk to Pete.
+          Get in touch.
         </h1>
         <p className="text-foreground/70 mt-4 mb-7 text-lg leading-relaxed">
-          Call now, or leave your number and he&apos;ll get back to you.
+          Call now, or leave your number and we&apos;ll get back to you.
         </p>
 
         <ContactForm />
@@ -41,11 +41,11 @@ export default function ContactPage() {
               What happens next
             </h2>
             <p className="text-foreground/70 mt-3 text-sm leading-relaxed">
-              Leave a call, text, or email and Pete gets back to you personally — usually within one
-              business day. He&apos;ll ask about your yard, the deck or cover you&apos;re picturing,
-              and your timeline, then come take a look, talk through options, and give you an
-              honest, itemized estimate. No pressure, no sales pitch. If the project moves forward,
-              Haka handles the permits and inspections.
+              Leave a call, text, or email and we&apos;ll get back to you personally — usually within
+              one business day. We&apos;ll ask about your yard, the deck or cover you&apos;re
+              picturing, and your timeline, then come take a look, talk through options, and give you
+              an honest, itemized estimate. No pressure, no sales pitch. If the project moves
+              forward, Haka handles the permits and inspections.
             </p>
           </div>
           <div>

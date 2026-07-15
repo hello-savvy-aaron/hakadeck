@@ -25,8 +25,8 @@ import { site } from "@/lib/site";
 // gates submission. `pine` reads as success, `soft` as neutral, `warn` as error.
 const HINTS: Record<Exclude<ContactKind, null>, { text: string; tone: "pine" | "soft" | "warn" }> =
   {
-    phone: { text: "✓ Looks good — Pete will call or text this number.", tone: "pine" },
-    email: { text: "✓ Looks good — Pete will email you back.", tone: "pine" },
+    phone: { text: "✓ Looks good — we'll call or text this number.", tone: "pine" },
+    email: { text: "✓ Looks good — we'll email you back.", tone: "pine" },
     "partial-email": { text: "Almost — that email looks incomplete.", tone: "soft" },
     "partial-phone": { text: "Keep going — 10 digits for a phone number.", tone: "soft" },
     unknown: { text: "Enter a phone number or an email address.", tone: "warn" },
@@ -74,7 +74,7 @@ export function ContactForm() {
       setSentContact(values.contact.trim());
       reset();
     } catch {
-      toast.error("Something went wrong. Try calling Pete at " + site.phone + ".");
+      toast.error("Something went wrong. Try calling us at " + site.phone + ".");
     }
   }
 
@@ -88,7 +88,7 @@ export function ContactForm() {
           Got it.
         </p>
         <p className="text-foreground/70 mt-3 leading-relaxed">
-          Pete will reach out at <strong className="text-foreground">{sentContact}</strong> within
+          We&apos;ll reach out at <strong className="text-foreground">{sentContact}</strong> within
           one business day.
         </p>
         <p className="text-muted-foreground mt-5 text-sm">
@@ -116,12 +116,12 @@ export function ContactForm() {
         className="bg-primary text-primary-foreground hover:bg-primary/90 focus-visible:ring-ring flex items-center justify-center gap-3 rounded-xl px-6 py-[18px] text-lg font-semibold shadow-sm transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
       >
         <Phone className="h-5 w-5" />
-        Call Pete — {site.phone}
+        Call us — {site.phone}
       </a>
 
       <div className="my-6 flex items-center gap-4">
         <span className="bg-border h-px flex-1" />
-        <span className="text-muted-foreground text-sm font-medium">or have Pete reach out</span>
+        <span className="text-muted-foreground text-sm font-medium">or have us reach out</span>
         <span className="bg-border h-px flex-1" />
       </div>
 
@@ -151,7 +151,7 @@ export function ContactForm() {
           {errors.contact?.message ?? hint.text}
         </p>
 
-        {/* Optional project chips — single-select toggle, purely to help Pete prep. */}
+        {/* Optional project chips — single-select toggle, purely to help us prep. */}
         <fieldset className="mt-4">
           <legend className="text-muted-foreground text-xs font-medium tracking-[0.14em] uppercase">
             What&apos;s it about?{" "}
@@ -184,8 +184,8 @@ export function ContactForm() {
 
         <Textarea
           rows={3}
-          placeholder="Anything else Pete should know? (optional)"
-          aria-label="Anything else Pete should know?"
+          placeholder="Anything else we should know? (optional)"
+          aria-label="Anything else we should know?"
           className="mt-4 text-base"
           {...register("message")}
         />
@@ -211,7 +211,7 @@ export function ContactForm() {
           ) : (
             <ArrowRight className="mr-2 h-5 w-5" />
           )}
-          {isSubmitting ? "Sending…" : "Send to Pete"}
+          {isSubmitting ? "Sending…" : "Send message"}
         </Button>
 
         <p className="text-muted-foreground mt-3.5 text-center text-[13px]">
