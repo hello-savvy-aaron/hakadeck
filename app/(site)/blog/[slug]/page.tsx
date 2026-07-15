@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import remarkGfm from "remark-gfm";
 import type { Metadata } from "next";
 import { ArrowLeft } from "lucide-react";
 import { Eyebrow, Section, SectionHeading } from "@/components/sections/section";
@@ -101,7 +102,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
       <Section top="tight">
         <article className="prose prose-invert prose-haka mx-auto max-w-3xl">
-          <MDXRemote source={post.body} />
+          <MDXRemote
+            source={post.body}
+            options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+          />
         </article>
       </Section>
 
