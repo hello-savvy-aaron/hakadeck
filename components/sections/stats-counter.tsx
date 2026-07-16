@@ -13,14 +13,12 @@ type Stat = {
 
 const DEFAULT_STATS: Stat[] = [
   { value: 100, suffix: "%", label: "Five-Star Reviews" },
-  { value: 87, label: "Five-Star Google Reviews" },
   { value: 250, suffix: "+", label: "Outdoor Projects Built" },
-  { value: 100, suffix: "%", label: "Guaranteed — we don't stop until you're happy" },
 ];
 
 export function StatsCounter({ stats = DEFAULT_STATS }: { stats?: Stat[] }) {
   return (
-    <Section id="stats">
+    <Section id="stats" top="tight" bottom="tight">
       <div className="grid items-end gap-12 lg:grid-cols-[1.2fr_1.6fr]">
         <div>
           <Eyebrow>By the Numbers</Eyebrow>
@@ -32,7 +30,7 @@ export function StatsCounter({ stats = DEFAULT_STATS }: { stats?: Stat[] }) {
           </p>
         </div>
 
-        <ul className="grid grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-2">
+        <ul className="grid grid-cols-2 gap-x-8">
           {stats.map((stat) => (
             <li key={stat.label}>
               <StatNumber value={stat.value} prefix={stat.prefix} suffix={stat.suffix} />

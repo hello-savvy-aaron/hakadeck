@@ -28,15 +28,15 @@ export default function HomePage() {
         <StatsCounter />
       </Reveal>
       <Reveal>
-        <LocalIntro />
-      </Reveal>
-      <Reveal>
         <ServicesPreview />
       </Reveal>
       <Reveal>
         <Certifications />
       </Reveal>
       <ReviewsMarquee />
+      <Reveal>
+        <LocalIntro />
+      </Reveal>
       <FollowBand />
       <Reveal>
         <Faq />
