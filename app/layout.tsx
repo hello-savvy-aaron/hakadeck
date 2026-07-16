@@ -53,6 +53,12 @@ export const metadata: Metadata = {
     title: homeTitle,
     description: site.description,
   },
+  verification: {
+    // Bing Webmaster Tools — must stay in place to keep the site verified.
+    other: {
+      "msvalidate.01": "19724853BB7CB3D0C416D573EA9E0F02",
+    },
+  },
 };
 
 export const viewport: Viewport = {
