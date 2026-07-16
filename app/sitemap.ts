@@ -9,7 +9,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = site.url.replace(/\/$/, "");
   const now = new Date();
 
-  const staticPaths = ["", "/about", "/services", "/portfolio", "/blog", "/contact", "/locations"];
+  const staticPaths = [
+    "",
+    "/about",
+    "/services",
+    "/portfolio",
+    "/blog",
+    "/contact",
+    "/locations",
+    "/deck-cost-calculator",
+  ];
   const staticEntries = staticPaths.map((path) => ({
     url: `${base}${path || "/"}`,
     lastModified: now,

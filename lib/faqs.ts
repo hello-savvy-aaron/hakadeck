@@ -17,7 +17,7 @@ export const FAQS: Faq[] = [
   },
   {
     q: "How much does a new deck cost?",
-    a: "It depends on size, materials, and features — but a typical 300–400 sq ft composite deck in the Denver area runs $15,000–$30,000 fully installed, with stairs, railing, and permits included. Pergolas and covered structures, outdoor kitchens, multi-level designs, and structural foundations all move the number. We give itemized estimates so you can see exactly where the budget goes.",
+    a: "It depends on size, materials, and features — but a typical 300–400 sq ft composite deck in the Denver area runs $15,000–$30,000 fully installed, with stairs, railing, and permits included. Pergolas and covered structures, outdoor kitchens, multi-level designs, and structural foundations all move the number. Our free deck cost calculator gives you a planning range in thirty seconds, and we give itemized estimates so you can see exactly where the budget goes.",
   },
   {
     q: "Will a deck increase my home's value?",

@@ -5,11 +5,15 @@ export function ServiceJsonLd({
   description,
   slug,
   category,
+  cities = [],
 }: {
   name: string;
   description: string;
   slug: string;
   category: string;
+  // City names with dedicated location pages (from getAllLocations) — emitted
+  // as schema.org City entries alongside the broad AdministrativeArea.
+  cities?: string[];
 }) {
   const url = `${site.url}/services/${slug}`;
   const data = {
@@ -35,10 +39,16 @@ export function ServiceJsonLd({
             addressCountry: "US",
           },
         },
-        areaServed: {
-          "@type": "AdministrativeArea",
-          name: "Denver & Colorado Springs metro areas, Colorado",
-        },
+        areaServed: [
+          {
+            "@type": "AdministrativeArea",
+            name: "Denver & Colorado Springs metro areas, Colorado",
+          },
+          ...cities.map((city) => ({
+            "@type": "City",
+            name: `${city}, CO`,
+          })),
+        ],
       },
       {
         "@type": "BreadcrumbList",

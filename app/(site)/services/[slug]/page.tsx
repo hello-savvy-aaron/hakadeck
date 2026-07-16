@@ -9,6 +9,7 @@ import { CtaFinal } from "@/components/sections/cta-final";
 import { Button } from "@/components/ui/button";
 import { ServiceJsonLd } from "@/components/seo/service-jsonld";
 import { getAllServices, getService } from "@/lib/services";
+import { getAllLocations } from "@/lib/locations";
 import { site } from "@/lib/site";
 
 export async function generateStaticParams() {
@@ -44,7 +45,10 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
   const service = await getService(slug);
   if (!service) notFound();
 
-  const others = (await getAllServices()).filter((s) => s.slug !== slug);
+  const [others, locations] = await Promise.all([
+    getAllServices().then((all) => all.filter((s) => s.slug !== slug)),
+    getAllLocations(),
+  ]);
 
   return (
     <>
@@ -53,6 +57,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         description={service.metaDescription}
         slug={slug}
         category={service.category}
+        cities={locations.map((l) => l.name)}
       />
 
       <Section top="loose" bottom="tight">
@@ -117,6 +122,27 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
           <MDXRemote source={service.body} />
         </article>
       </Section>
+
+      {locations.length > 0 ? (
+        <Section top="none" bottom="tight">
+          <Eyebrow>Where we build</Eyebrow>
+          <SectionHeading className="mt-4 text-3xl sm:text-4xl">
+            {service.name} across the south metro.
+          </SectionHeading>
+          <ul className="mt-8 flex flex-wrap gap-3">
+            {locations.map((l) => (
+              <li key={l.slug}>
+                <Link
+                  href={`/locations/${l.slug}`}
+                  className="border-border/40 hover:border-foreground/30 hover:bg-card/40 inline-flex items-center rounded-full border px-4 py-2 text-sm transition-colors"
+                >
+                  {l.name}, CO
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </Section>
+      ) : null}
 
       <Section top="none">
         <Eyebrow>More services</Eyebrow>
