@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { Clock, Mail, MapPin, Phone, Star } from "lucide-react";
 import { InstagramIcon, LinkedinIcon } from "@/components/icons/social-icons";
 import { getAllLocations } from "@/lib/locations";
 import { site } from "@/lib/site";
@@ -96,6 +96,15 @@ export async function SiteFooter() {
             >
               <Mail className="mr-1.5 h-3.5 w-3.5 shrink-0" />
               {site.email}
+            </a>
+            <a
+              href={site.reviewWriteUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="text-muted-foreground hover:text-foreground inline-flex items-center text-sm"
+            >
+              <Star className="mr-1.5 h-3.5 w-3.5" />
+              Leave us a review
             </a>
             <p className="text-muted-foreground mt-3 text-xs">
               © {new Date().getFullYear()} {site.name}. All rights reserved.

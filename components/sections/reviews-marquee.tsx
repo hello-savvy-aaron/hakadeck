@@ -66,20 +66,31 @@ export function ReviewsMarquee() {
               A handshake, a walkthrough, and a homeowner who can&apos;t wait to host.
             </h2>
           </div>
-          <a
-            href={site.reviewsUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-3 rounded-full border border-white/40 bg-white/10 px-4 py-2 text-sm backdrop-blur transition-colors hover:bg-white/20"
-          >
-            <span className="font-semibold">{site.rating.value.toFixed(1)}</span>
-            <span className="flex" aria-hidden>
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} className="text-haka-gold h-3.5 w-3.5 fill-current" />
-              ))}
-            </span>
-            <span className="text-white/90">({site.rating.count}) on Google</span>
-          </a>
+          <div className="flex flex-wrap items-center gap-3">
+            <a
+              href={site.reviewsUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-3 rounded-full border border-white/40 bg-white/10 px-4 py-2 text-sm backdrop-blur transition-colors hover:bg-white/20"
+            >
+              <span className="font-semibold">{site.rating.value.toFixed(1)}</span>
+              <span className="flex" aria-hidden>
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} className="text-haka-gold h-3.5 w-3.5 fill-current" />
+                ))}
+              </span>
+              <span className="text-white/90">({site.rating.count}) on Google</span>
+            </a>
+            <a
+              href={site.reviewWriteUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="text-haka-pine inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-white/90"
+            >
+              <Star className="h-3.5 w-3.5 fill-current" />
+              Leave a review
+            </a>
+          </div>
         </div>
       </div>
 

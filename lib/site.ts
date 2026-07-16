@@ -59,6 +59,10 @@ export const site = {
   // (knowledge panel + reviews). Verified 200; resolves to the GBP for kgmid
   // /g/11sxx77nb2. Replaced the old g.co/kgs/haka-deck placeholder, which 404'd.
   reviewsUrl: "https://share.google/dHcnAq4RwBtdhuHjF",
+  // Direct "write a review" link from GBP (Ask for reviews → share). Opens the
+  // Google review dialog one click from the stars — use this anywhere we ask
+  // for a review, not reviewsUrl (which opens the profile).
+  reviewWriteUrl: "https://g.page/r/CX-fRHFH4pMdEAE/review",
   socials: {
     instagram: "https://www.instagram.com/hakaconstruction",
     instagramHandle: "@hakaconstruction",
