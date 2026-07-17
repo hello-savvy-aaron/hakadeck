@@ -62,7 +62,7 @@ export default function ContactPage() {
             </dl>
             <p className="text-foreground/70 mt-4 text-sm leading-relaxed">
               {site.name} is a licensed deck builder based in the {site.address.district}, serving{" "}
-              {site.serviceArea} — including Greenwood Village, Littleton, Lone Tree, Highlands
+              {site.serviceArea}. That includes Greenwood Village, Littleton, Lone Tree, Highlands
               Ranch, Parker, Castle Rock, and Monument. Building custom Colorado decks since{" "}
               {site.founded}, rated {site.rating.value} stars across {site.rating.count} reviews.
             </p>

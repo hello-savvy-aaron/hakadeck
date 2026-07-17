@@ -10,7 +10,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Service Areas",
   description:
-    "Haka Decks builds custom composite decks, pergolas, and outdoor living spaces anywhere within an hour of Denver or Colorado Springs — Centennial, Greenwood Village, Lone Tree, and beyond.",
+    "Haka Decks builds custom composite decks, pergolas, and outdoor living spaces across the Front Range — Fort Collins to Colorado Springs, the Denver metro, foothills, and mountain towns.",
   alternates: { canonical: "/locations" },
 };
 
@@ -69,6 +69,31 @@ export default async function LocationsPage() {
             </li>
           ))}
         </ul>
+      </Section>
+
+      {/* The complete GBP service area — every city and town, grouped by
+          region. Plain text on purpose: these back up the areaServed schema
+          without spinning up thin doorway pages. */}
+      <Section top="tight">
+        <h2 className="font-display text-3xl font-medium tracking-tight sm:text-4xl">
+          Everywhere we build
+        </h2>
+        <p className="text-muted-foreground mt-4 max-w-2xl leading-relaxed">
+          The full list, so there&apos;s no guessing. If your town is on it — or even just near it —
+          we&apos;ll come take a look.
+        </p>
+        <div className="mt-10 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+          {site.serviceAreaRegions.map((group) => (
+            <div key={group.region}>
+              <h3 className="text-muted-foreground text-xs font-medium tracking-widest uppercase">
+                {group.region}
+              </h3>
+              <p className="text-foreground/80 mt-3 text-sm leading-relaxed">
+                {group.cities.join(" · ")}
+              </p>
+            </div>
+          ))}
+        </div>
       </Section>
 
       <CtaFinal />
