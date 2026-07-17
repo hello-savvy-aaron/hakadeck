@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { track } from "@vercel/analytics";
+import { trackGa } from "@/lib/gtag";
 import { toast } from "sonner";
 import { ArrowRight, Check, Loader2, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -64,10 +65,14 @@ export function ContactForm() {
       if (!res.ok) throw new Error("Submit failed");
       // Count successful submissions in Vercel Web Analytics. Both fields are
       // bounded (no PII) — the contact string and note are omitted.
-      track("Contact form submitted", {
-        channel: contactChannel(values.contact) ?? "unknown",
-        projectType: values.projectType ?? "unspecified",
-      });
+      const channel = contactChannel(values.contact) ?? "unknown";
+      const projectType = values.projectType ?? "unspecified";
+      track("Contact form submitted", { channel, projectType });
+      // Land the actual conversion in GA4 too. `generate_lead` is GA4's
+      // recommended lead event — mark it as a key event in the GA4 UI to count
+      // it as a conversion. Free and unlimited, unlike the Vercel event above
+      // (which needs a paid plan), so this is the reliable home for the signal.
+      trackGa("generate_lead", { channel, projectType });
       // Mirror the conversion to Reddit Ads — a quote request counts as a Lead
       // for campaign optimization. No-ops if the pixel isn't configured.
       trackReddit("Lead");
