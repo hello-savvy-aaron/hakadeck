@@ -17,6 +17,10 @@ export function LocalBusinessJsonLd() {
     "@context": "https://schema.org",
     "@type": "GeneralContractor",
     name: site.name,
+    // Prior trading name (the biz rebranded from "Haka Construction"; the
+    // Instagram handle is still @hakaconstruction). Lets brand queries for
+    // "haka construction" and "haka decks" both resolve to this entity.
+    alternateName: ["Haka Construction", "Haka Decks & Construction"],
     description: site.description,
     url: site.url,
     telephone: site.phone,

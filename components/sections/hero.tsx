@@ -70,8 +70,8 @@ export function Hero() {
           </h1>
 
           <p className="mt-7 max-w-xl text-lg leading-relaxed text-white/85 sm:text-xl">
-            Composite, hardwood, and covered — engineered for altitude, built around how Denver
-            homes actually live.
+            Composite, hardwood, and covered — custom decks engineered for altitude, built around
+            how Denver homes actually live.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-3">
