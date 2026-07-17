@@ -9,6 +9,7 @@ import { Eyebrow, Section, SectionHeading } from "@/components/sections/section"
 import { CtaFinal } from "@/components/sections/cta-final";
 import { PostCard } from "@/components/blog/post-card";
 import { BreadcrumbJsonLd } from "@/components/seo/breadcrumb-jsonld";
+import { ArticleJsonLd } from "@/components/seo/article-jsonld";
 import { getAllPosts, getPost } from "@/lib/blog";
 
 export async function generateStaticParams() {
@@ -69,6 +70,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           { name: "Blog", path: "/blog" },
           { name: post.title, path: `/blog/${slug}` },
         ]}
+      />
+      <ArticleJsonLd
+        title={post.title}
+        description={post.description}
+        date={post.date}
+        slug={slug}
+        cover={post.cover}
       />
       <Section top="loose" bottom="tight">
         <Link
