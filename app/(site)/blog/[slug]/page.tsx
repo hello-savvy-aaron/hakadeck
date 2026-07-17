@@ -8,6 +8,7 @@ import { ArrowLeft } from "lucide-react";
 import { Eyebrow, Section, SectionHeading } from "@/components/sections/section";
 import { CtaFinal } from "@/components/sections/cta-final";
 import { PostCard } from "@/components/blog/post-card";
+import { BreadcrumbJsonLd } from "@/components/seo/breadcrumb-jsonld";
 import { getAllPosts, getPost } from "@/lib/blog";
 
 export async function generateStaticParams() {
@@ -63,6 +64,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Blog", path: "/blog" },
+          { name: post.title, path: `/blog/${slug}` },
+        ]}
+      />
       <Section top="loose" bottom="tight">
         <Link
           href="/blog"

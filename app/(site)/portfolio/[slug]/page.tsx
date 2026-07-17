@@ -7,6 +7,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { Eyebrow, Section, SectionHeading } from "@/components/sections/section";
 import { CtaFinal } from "@/components/sections/cta-final";
 import { ProjectCard } from "@/components/portfolio/project-card";
+import { BreadcrumbJsonLd } from "@/components/seo/breadcrumb-jsonld";
 import { getAllProjects, getProject } from "@/lib/portfolio";
 
 export async function generateStaticParams() {
@@ -51,6 +52,12 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Portfolio", path: "/portfolio" },
+          { name: project.title, path: `/portfolio/${slug}` },
+        ]}
+      />
       <Section top="loose" bottom="tight">
         <Link
           href="/portfolio"
