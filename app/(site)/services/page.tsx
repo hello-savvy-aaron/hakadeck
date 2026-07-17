@@ -13,7 +13,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Deck Builder Services",
   description:
-    "Composite and hardwood decks, pergolas and patio covers, outdoor kitchens, railings, and deck repair — built by a specialist deck builder across the Denver and Colorado Springs areas.",
+    "Composite and hardwood decks, pergolas and patio covers, outdoor kitchens, railings, and deck repair — built by a specialist deck company, not handymen or general contractors, across the Denver and Colorado Springs areas.",
   alternates: { canonical: "/services" },
 };
 

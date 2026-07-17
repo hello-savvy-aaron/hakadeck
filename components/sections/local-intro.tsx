@@ -21,10 +21,10 @@ export function LocalIntro() {
           </p>
           <p>
             Decks here have to survive 300-plus days of high-altitude sun, summer hail, and a
-            freeze-thaw cycle that tears apart anything built to flatland standards. As a specialist
-            deck contractor — not a general construction company that builds decks on the side —
-            every structure we engineer is permitted, code-compliant, and built for Colorado&apos;s
-            climate from the footings up.
+            freeze-thaw cycle that tears apart anything built to flatland standards. As a dedicated
+            deck company — deck contractors and installers who do this and nothing else, not a
+            general construction outfit that builds decks on the side — every structure we engineer
+            is permitted, code-compliant, and built for Colorado&apos;s climate from the footings up.
           </p>
           <p>
             Whether you want a low-maintenance composite deck, a cedar or hardwood build, a pergola
