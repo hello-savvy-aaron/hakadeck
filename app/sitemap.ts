@@ -3,6 +3,7 @@ import { getAllPosts } from "@/lib/blog";
 import { getAllLocations } from "@/lib/locations";
 import { getAllProjects } from "@/lib/portfolio";
 import { getAllServices } from "@/lib/services";
+import { guideRoutes } from "@/lib/guides";
 import { site } from "@/lib/site";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -18,6 +19,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/contact",
     "/locations",
     "/deck-cost-calculator",
+    // Free Guides & Tools system (hub + guides + gallery). The phase-two
+    // estimator is intentionally excluded — it's unlinked and noindexed.
+    ...guideRoutes,
   ];
   const staticEntries = staticPaths.map((path) => ({
     url: `${base}${path || "/"}`,
