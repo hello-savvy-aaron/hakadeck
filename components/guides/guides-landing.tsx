@@ -1,15 +1,11 @@
 import Link from "next/link";
 import { Chip, GuideRow } from "@/components/guides/guide-bits";
+import { LandingCostSlider } from "@/components/guides/landing-cost-slider";
 import { costGuide, guides, GUIDES_HUB } from "@/lib/guides";
 
 // Homepage "Free Guides & Tools" section — sits below the hero. White band on
 // the smoke page, 1080px column, header row + two-column grid (featured cost
 // card / guides list). Stacks to a single column on mobile, card first.
-const PRICE_ROWS = [
-  { label: "12×16 composite, installed", value: "$8k – $13k" },
-  { label: "16×20 composite, installed", value: "$13k – $25k" },
-  { label: "20×24 composite, installed", value: "$19k – $37k" },
-];
 
 // The three downloadable guides (the gallery lives on the hub, linked below).
 const LANDING_GUIDES = guides.filter((g) => g.chip === "GUIDE · PDF");
@@ -49,21 +45,7 @@ export function GuidesLanding() {
               guide shows the honest math: material prices, what installation adds, and what each
               deck size actually runs installed.
             </p>
-            <div className="bg-card flex flex-col gap-2 rounded-[10px] px-4 py-4">
-              {PRICE_ROWS.map((r, i) => (
-                <div
-                  key={r.label}
-                  className={
-                    i === 0
-                      ? "flex justify-between text-sm"
-                      : "border-border/60 flex justify-between border-t pt-2 text-sm"
-                  }
-                >
-                  <span className="text-muted-foreground">{r.label}</span>
-                  <b className="text-foreground font-semibold whitespace-nowrap">{r.value}</b>
-                </div>
-              ))}
-            </div>
+            <LandingCostSlider />
             <Link
               href={costGuide.href}
               className="bg-primary hover:bg-primary/85 rounded-[10px] px-4 py-3.5 text-center text-[15px] font-semibold text-white transition-colors"
