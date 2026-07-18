@@ -3,14 +3,14 @@ import { cn } from "@/lib/utils";
 type Pad = "default" | "tight" | "loose" | "none";
 
 const TOP: Record<Pad, string> = {
-  default: "pt-20 sm:pt-28 lg:pt-36",
+  default: "pt-14 sm:pt-20 lg:pt-24",
   tight: "pt-12 sm:pt-16 lg:pt-20",
   loose: "pt-32 sm:pt-40 lg:pt-44",
   none: "",
 };
 
 const BOTTOM: Record<Pad, string> = {
-  default: "pb-20 sm:pb-28 lg:pb-36",
+  default: "pb-14 sm:pb-20 lg:pb-24",
   tight: "pb-8 sm:pb-12 lg:pb-16",
   loose: "pb-32 sm:pb-40 lg:pb-44",
   none: "",

@@ -72,12 +72,15 @@ export async function POST(req: Request) {
   try {
     const { Resend } = await import("resend");
     const resend = new Resend(apiKey);
-    const { contact, message, projectType } = parsed.data;
+    const { contact, message, projectType, squareFootage, levels, features } = parsed.data;
     const channel = contactChannel(contact); // "email" | "phone"
     const action = channel === "phone" ? "call back" : "email back";
     const text = [
       channel === "phone" ? `Call back: ${contact}` : `Email back: ${contact}`,
       projectType ? `About: ${projectType}` : null,
+      squareFootage ? `Approx. size: ${squareFootage} sq ft` : null,
+      levels ? `Levels: ${levels}` : null,
+      features && features.length ? `Features: ${features.join(", ")}` : null,
       "",
       message || "(no note)",
     ]

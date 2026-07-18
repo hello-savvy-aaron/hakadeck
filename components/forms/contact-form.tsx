@@ -14,6 +14,8 @@ import { cn } from "@/lib/utils";
 import {
   contactChannel,
   contactSchema,
+  DECK_FEATURES,
+  DECK_LEVELS,
   detectContact,
   PROJECT_CHIPS,
   type ContactInput,
@@ -52,6 +54,8 @@ export function ContactForm() {
 
   const contactValue = useWatch({ control, name: "contact" }) ?? "";
   const selectedChip = useWatch({ control, name: "projectType" });
+  const selectedLevel = useWatch({ control, name: "levels" });
+  const selectedFeatures = useWatch({ control, name: "features" }) ?? [];
   const kind = detectContact(contactValue);
   const hint = kind ? HINTS[kind] : { text: HINT_DEFAULT, tone: "soft" as const };
 
@@ -173,6 +177,94 @@ export function ContactForm() {
                   onClick={() =>
                     setValue("projectType", on ? undefined : label, { shouldDirty: true })
                   }
+                  className={cn(
+                    "rounded-full border px-4 py-2.5 text-sm font-medium transition-colors",
+                    on
+                      ? "border-primary bg-primary text-primary-foreground"
+                      : "border-input bg-card text-foreground hover:bg-muted/60",
+                  )}
+                >
+                  {label}
+                </button>
+              );
+            })}
+          </div>
+        </fieldset>
+
+        {/* Optional deck detail — every field skippable; helps Pete quote faster. */}
+        <fieldset className="mt-5">
+          <legend className="text-muted-foreground text-xs font-medium tracking-[0.14em] uppercase">
+            Tell us about your deck{" "}
+            <span className="font-normal tracking-normal normal-case">(all optional)</span>
+          </legend>
+          <p className="text-muted-foreground mt-1.5 text-[13px] leading-relaxed">
+            A few details now means a faster, more accurate quote — Pete will just ask anyway.
+          </p>
+
+          <div className="mt-3 grid gap-3 sm:grid-cols-2">
+            <div>
+              <label htmlFor="sqft" className="text-foreground/80 text-sm font-medium">
+                Approx. size
+              </label>
+              <div className="relative mt-1.5">
+                <Input
+                  id="sqft"
+                  inputMode="numeric"
+                  placeholder="e.g. 300"
+                  aria-label="Approximate deck size in square feet"
+                  className="h-12 pr-14 text-base"
+                  {...register("squareFootage")}
+                />
+                <span className="text-muted-foreground pointer-events-none absolute top-1/2 right-4 -translate-y-1/2 text-sm">
+                  sq ft
+                </span>
+              </div>
+            </div>
+            <div>
+              <span className="text-foreground/80 text-sm font-medium">Levels</span>
+              <div className="mt-1.5 flex gap-2">
+                {DECK_LEVELS.map((label) => {
+                  const on = selectedLevel === label;
+                  return (
+                    <button
+                      key={label}
+                      type="button"
+                      aria-pressed={on}
+                      onClick={() =>
+                        setValue("levels", on ? undefined : label, { shouldDirty: true })
+                      }
+                      className={cn(
+                        "flex-1 rounded-full border px-3 py-2.5 text-sm font-medium transition-colors",
+                        on
+                          ? "border-primary bg-primary text-primary-foreground"
+                          : "border-input bg-card text-foreground hover:bg-muted/60",
+                      )}
+                    >
+                      {label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          <span className="text-foreground/80 mt-4 block text-sm font-medium">
+            Features &amp; add-ons
+          </span>
+          <div className="mt-1.5 flex flex-wrap gap-2">
+            {DECK_FEATURES.map((label) => {
+              const on = selectedFeatures.includes(label);
+              return (
+                <button
+                  key={label}
+                  type="button"
+                  aria-pressed={on}
+                  onClick={() => {
+                    const next = on
+                      ? selectedFeatures.filter((f) => f !== label)
+                      : [...selectedFeatures, label];
+                    setValue("features", next.length ? next : undefined, { shouldDirty: true });
+                  }}
                   className={cn(
                     "rounded-full border px-4 py-2.5 text-sm font-medium transition-colors",
                     on

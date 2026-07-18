@@ -63,7 +63,7 @@ export function ReviewsMarquee() {
           <div>
             <Eyebrow className="text-white/90">What homeowners say</Eyebrow>
             <h2 className="font-display mt-4 max-w-2xl text-4xl leading-[1.06] font-medium tracking-tight text-balance sm:text-5xl">
-              A handshake, a walkthrough, and a homeowner who can&apos;t wait to host.
+              100% 5-star reviews. Satisfaction is truly guaranteed.
             </h2>
           </div>
           <div className="flex flex-wrap items-center gap-3">

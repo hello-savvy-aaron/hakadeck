@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { animate, useInView, useReducedMotion } from "motion/react";
 import { Star } from "lucide-react";
 import { Eyebrow, Section } from "./section";
+import { Button } from "@/components/ui/button";
+import { InstagramIcon } from "@/components/icons/social-icons";
 import { site } from "@/lib/site";
 
 type Stat = {
@@ -45,6 +47,17 @@ export function StatsCounter({ stats = DEFAULT_STATS }: { stats?: Stat[] }) {
             </span>
             <span className="text-foreground/70">({site.rating.count}) Google Reviews</span>
           </a>
+          <Button asChild size="lg" className="mt-6 h-12 px-6 text-base">
+            <a
+              href={site.socials.instagram}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Follow Haka Decks on Instagram"
+            >
+              <InstagramIcon className="mr-2 size-5" />
+              Follow on Instagram
+            </a>
+          </Button>
         </div>
 
         <ul className="grid grid-cols-2 gap-x-8">

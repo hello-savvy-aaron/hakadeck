@@ -2,11 +2,9 @@ import type { Metadata } from "next";
 import { Hero } from "@/components/sections/hero";
 import { GuidesLanding } from "@/components/guides/guides-landing";
 import { StatsCounter } from "@/components/sections/stats-counter";
-import { LocalIntro } from "@/components/sections/local-intro";
 import { Certifications } from "@/components/sections/certifications";
 import { ServicesPreview } from "@/components/sections/services-preview";
 import { ReviewsMarquee } from "@/components/sections/reviews-marquee";
-import { FollowBand } from "@/components/sections/follow-band";
 import { Faq } from "@/components/sections/faq";
 import { CtaFinal } from "@/components/sections/cta-final";
 import { Reveal } from "@/components/reveal";
@@ -38,10 +36,6 @@ export default function HomePage() {
         <Certifications />
       </Reveal>
       <ReviewsMarquee />
-      <Reveal>
-        <LocalIntro />
-      </Reveal>
-      <FollowBand />
       <Reveal>
         <Faq />
       </Reveal>
