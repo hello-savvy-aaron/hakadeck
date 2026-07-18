@@ -2,7 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import { animate, useInView, useReducedMotion } from "motion/react";
+import { Star } from "lucide-react";
 import { Eyebrow, Section } from "./section";
+import { site } from "@/lib/site";
 
 type Stat = {
   value: number;
@@ -28,6 +30,21 @@ export function StatsCounter({ stats = DEFAULT_STATS }: { stats?: Stat[] }) {
           <p className="text-foreground/70 mt-6 max-w-md text-base leading-relaxed">
             Composite, hardwood, and covered — across the Front Range since 2017.
           </p>
+          {/* Same Google Reviews pill as the hero, restyled for the light band. */}
+          <a
+            href={site.reviewsUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="border-border bg-card text-haka-ink hover:bg-card/80 mt-6 inline-flex items-center gap-3 rounded-full border px-4 py-2 text-sm shadow-sm transition-colors"
+          >
+            <span className="font-semibold">{site.rating.value.toFixed(1)}</span>
+            <span className="flex" aria-hidden>
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star key={i} className="text-haka-gold h-3.5 w-3.5 fill-current" />
+              ))}
+            </span>
+            <span className="text-foreground/70">({site.rating.count}) Google Reviews</span>
+          </a>
         </div>
 
         <ul className="grid grid-cols-2 gap-x-8">
