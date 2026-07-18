@@ -1,0 +1,35 @@
+# Production deploys are triggered HERE, not by Vercel's git integration.
+#
+# Why: the Vercel GitHub-App webhook intermittently drops push deliveries
+# (observed 2026-07-16 and 2026-07-18), silently leaving production stale.
+# GitHub Actions fire reliably, so this workflow POSTs the project's Deploy
+# Hook on every push to main. To guarantee exactly ONE deployment per push,
+# vercel.json sets `git.deploymentEnabled.main: false`, which makes Vercel
+# skip webhook-triggered deploys of main — the hook below is the only prod
+# trigger. (PR/branch preview deploys still come from the git integration.)
+#
+# VERCEL_DEPLOY_HOOK is a repo secret: Deploy Hook "github-action-main"
+# on the hakadecks project, ref main. Rotate/recreate it in Vercel →
+# Settings → Git → Deploy Hooks if it ever leaks.
+name: Deploy to Vercel (production)
+
+on:
+  push:
+    branches: [main]
+
+# Rapid consecutive pushes queue up one at a time; each hook call builds the
+# branch tip anyway, so the last one always ships the latest commit.
+concurrency:
+  group: vercel-prod-deploy
+
+jobs:
+  trigger-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Vercel Deploy Hook
+        run: |
+          curl --silent --show-error --fail --retry 3 --retry-delay 5 \
+            -X POST "$DEPLOY_HOOK" > /dev/null
+          echo "Deploy hook triggered for $GITHUB_SHA"
+        env:
+          DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
