@@ -19,6 +19,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/contact",
     "/locations",
     "/deck-cost-calculator",
+    "/process",
+    "/warranty",
+    "/faq",
+    "/financing",
     // Free Guides & Tools system (hub + guides + gallery). The phase-two
     // estimator is intentionally excluded — it's unlinked and noindexed.
     ...guideRoutes,

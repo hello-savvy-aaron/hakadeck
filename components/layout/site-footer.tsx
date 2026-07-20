@@ -61,6 +61,11 @@ export async function SiteFooter() {
                 {item.label}
               </FooterLink>
             ))}
+            <FooterLink href="/process">Our Process</FooterLink>
+            <FooterLink href="/warranty">Warranty &amp; Guarantee</FooterLink>
+            <FooterLink href="/faq">FAQ</FooterLink>
+            <FooterLink href="/financing">Financing</FooterLink>
+            <FooterLink href="/deck-guides-and-tools">Free Guides &amp; Tools</FooterLink>
           </FooterCol>
 
           <FooterCol heading="Service Areas" className="sm:col-span-2 lg:col-span-1">

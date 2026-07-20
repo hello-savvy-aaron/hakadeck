@@ -1,4 +1,5 @@
-import { Star } from "lucide-react";
+import Link from "next/link";
+import { ShieldCheck, Star } from "lucide-react";
 import { Section } from "./section";
 import { quotesFor } from "@/lib/reviews";
 import { site } from "@/lib/site";
@@ -48,8 +49,15 @@ export function ReviewQuotes({ seed }: { seed: string }) {
           </figure>
         ))}
       </div>
-      <div className="mt-6">
+      <div className="mt-6 flex flex-wrap items-center gap-3">
         <ProofBadge />
+        <Link
+          href="/warranty"
+          className="border-border/50 bg-card/60 text-foreground/85 hover:border-foreground/30 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-[13px] transition-colors"
+        >
+          <ShieldCheck className="text-haka-cream h-3.5 w-3.5" aria-hidden />
+          Everything we build is guaranteed
+        </Link>
       </div>
     </Section>
   );

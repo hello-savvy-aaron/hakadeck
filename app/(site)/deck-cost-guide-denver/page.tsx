@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { CtaFinal } from "@/components/sections/cta-final";
 import { GuideLayout } from "@/components/guides/guide-layout";
@@ -107,6 +108,68 @@ export default function DeckCostGuidePage() {
         <Muted>
           For calibration: the 2025 Zonda Cost vs Value report puts the national-average 16×20
           composite deck addition at about $25,000 — and wood at about $18,000.
+        </Muted>
+
+        <H2>What your budget builds</H2>
+        <P>
+          Numbers anchor better with pictures. Real Haka projects, typical of what each range
+          delivers in the Denver metro:
+        </P>
+        <div className="mb-5 grid gap-3 sm:grid-cols-2">
+          {[
+            {
+              tier: "$8K–15K",
+              label: "Single-level composite, simple footprint",
+              slug: "prairie-view-deck",
+              img: "/images/projects/prairie-view-deck/01.jpeg",
+            },
+            {
+              tier: "$15K–25K",
+              label: "Full-size deck, railing & stairs",
+              slug: "ranch-deck",
+              img: "/images/projects/ranch-drone/02.jpeg",
+            },
+            {
+              tier: "$25K–40K",
+              label: "Walk-out height or covered section",
+              slug: "walkout-covered-deck",
+              img: "/images/projects/walkout-covered-deck/01.jpeg",
+            },
+            {
+              tier: "$40K+",
+              label: "Multi-level outdoor living",
+              slug: "double-decker",
+              img: "/images/projects/double-decker/03.jpeg",
+            },
+          ].map((t) => (
+            <Link
+              key={t.slug}
+              href={`/portfolio/${t.slug}`}
+              className="group border-border overflow-hidden rounded-[10px] border"
+            >
+              <div className="relative aspect-[16/10]">
+                <Image
+                  src={t.img}
+                  alt={`${t.label} — Haka Decks project in the ${t.tier} range`}
+                  fill
+                  sizes="320px"
+                  className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                />
+              </div>
+              <div className="px-3 py-2.5">
+                <div className="text-foreground text-[13.5px] font-semibold">{t.tier}</div>
+                <div className="text-muted-foreground text-[12.5px]">{t.label}</div>
+              </div>
+            </Link>
+          ))}
+        </div>
+        <Muted>
+          Ranges bracket what projects of each shape typically land at — every yard prices
+          differently. The calculator gives your number; the{" "}
+          <Link href="/portfolio" className="text-primary font-semibold hover:underline">
+            portfolio
+          </Link>{" "}
+          shows what it looks like.
         </Muted>
 
         <H2>…and by material</H2>

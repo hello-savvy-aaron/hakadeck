@@ -1,8 +1,15 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Award, ShieldCheck, Sparkles } from "lucide-react";
 import { Eyebrow, Section } from "./section";
 
-const PILLARS = [
+const PILLARS: {
+  icon: typeof Award;
+  title: string;
+  body: string;
+  href?: string;
+  linkLabel?: string;
+}[] = [
   {
     icon: Award,
     title: "Pro Elite with Deckorators",
@@ -12,6 +19,8 @@ const PILLARS = [
     icon: ShieldCheck,
     title: "All Work Guaranteed",
     body: "We guarantee everything we build. If something isn't right, we make it right — no fine print, no fight. Our name goes on every project, so we stand behind all of it.",
+    href: "/warranty",
+    linkLabel: "Read the guarantee",
   },
   {
     icon: Sparkles,
@@ -48,6 +57,14 @@ export function Certifications() {
             <p.icon className="text-haka-cream h-11 w-11" strokeWidth={1.5} />
             <h3 className="font-display text-2xl font-medium tracking-tight">{p.title}</h3>
             <p className="text-muted-foreground text-sm leading-relaxed">{p.body}</p>
+            {p.href ? (
+              <Link
+                href={p.href}
+                className="text-foreground/80 hover:text-foreground inline-flex text-sm font-medium underline underline-offset-4"
+              >
+                {p.linkLabel}
+              </Link>
+            ) : null}
           </div>
         ))}
       </div>
