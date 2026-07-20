@@ -2,6 +2,7 @@ import { readdir, readFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import matter from "gray-matter";
+import type { Faq } from "@/lib/faqs";
 
 const LOCATIONS_DIR = join(process.cwd(), "content", "locations");
 
@@ -22,6 +23,8 @@ export type LocationMeta = {
   // Query string for the embedded Google map (e.g. "Centennial, CO").
   mapQuery: string;
   order: number;
+  // City-specific Q&As rendered as an accordion + FAQPage JSON-LD.
+  faqs: Faq[];
 };
 
 export type Location = LocationMeta & {
@@ -63,5 +66,6 @@ function locationFromFrontmatter(slug: string, data: Record<string, unknown>): L
     projects: (data.projects as string[]) ?? [],
     mapQuery: data.mapQuery as string,
     order: (data.order as number) ?? 99,
+    faqs: (data.faqs as Faq[]) ?? [],
   };
 }

@@ -6,6 +6,8 @@ import { ArrowLeft, ArrowRight, Check, MapPin, Phone } from "lucide-react";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Eyebrow, Section, SectionHeading } from "@/components/sections/section";
 import { CtaFinal } from "@/components/sections/cta-final";
+import { Faq } from "@/components/sections/faq";
+import { FaqJsonLd } from "@/components/seo/faq-jsonld";
 import { Button } from "@/components/ui/button";
 import { ProjectCard } from "@/components/portfolio/project-card";
 import { LocationJsonLd } from "@/components/seo/location-jsonld";
@@ -60,6 +62,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
         description={location.metaDescription}
         slug={slug}
       />
+      {location.faqs.length > 0 ? <FaqJsonLd faqs={location.faqs} /> : null}
 
       <Section top="loose" bottom="tight">
         <Link
@@ -123,6 +126,10 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
           <MDXRemote source={location.body} />
         </article>
       </Section>
+
+      {location.faqs.length > 0 ? (
+        <Faq faqs={location.faqs} heading={`Deck questions ${location.name} homeowners ask.`} />
+      ) : null}
 
       {cityProjects.length > 0 ? (
         <Section top="none" bottom="tight">

@@ -6,6 +6,8 @@ import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Eyebrow, Section, SectionHeading } from "@/components/sections/section";
 import { CtaFinal } from "@/components/sections/cta-final";
+import { Faq } from "@/components/sections/faq";
+import { FaqJsonLd } from "@/components/seo/faq-jsonld";
 import { Button } from "@/components/ui/button";
 import { ServiceJsonLd } from "@/components/seo/service-jsonld";
 import { getAllServices, getService } from "@/lib/services";
@@ -59,6 +61,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         category={service.category}
         cities={locations.map((l) => l.name)}
       />
+      {service.faqs.length > 0 ? <FaqJsonLd faqs={service.faqs} /> : null}
 
       <Section top="loose" bottom="tight">
         <Link
@@ -122,6 +125,13 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
           <MDXRemote source={service.body} />
         </article>
       </Section>
+
+      {service.faqs.length > 0 ? (
+        <Faq
+          faqs={service.faqs}
+          heading={`${service.name}: what homeowners ask us.`}
+        />
+      ) : null}
 
       {locations.length > 0 ? (
         <Section top="none" bottom="tight">

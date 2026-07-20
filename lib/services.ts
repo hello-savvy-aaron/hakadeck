@@ -2,6 +2,7 @@ import { readdir, readFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import matter from "gray-matter";
+import type { Faq } from "@/lib/faqs";
 
 const SERVICES_DIR = join(process.cwd(), "content", "services");
 
@@ -19,6 +20,8 @@ export type ServiceMeta = {
   image: string;
   bullets: string[];
   order: number;
+  // Service-specific Q&As rendered as an accordion + FAQPage JSON-LD.
+  faqs: Faq[];
 };
 
 export type Service = ServiceMeta & {
@@ -59,5 +62,6 @@ function serviceFromFrontmatter(slug: string, data: Record<string, unknown>): Se
     image: data.image as string,
     bullets: (data.bullets as string[]) ?? [],
     order: (data.order as number) ?? 99,
+    faqs: (data.faqs as Faq[]) ?? [],
   };
 }
