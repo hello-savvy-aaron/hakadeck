@@ -56,6 +56,20 @@ export const contactSchema = z
     levels: z.enum(DECK_LEVELS).optional(),
     features: z.array(z.enum(DECK_FEATURES)).optional(),
     message: z.string().trim().max(2000).optional().or(z.literal("")),
+    // Client-compressed photos (base64), attached to the lead email. The form
+    // downscales to ≤1600px JPEG before submit, so each stays well under the
+    // ~1.5MB-binary cap this limit encodes (and the request under Vercel's
+    // 4.5MB body limit).
+    photos: z
+      .array(
+        z.object({
+          name: z.string().trim().min(1).max(120),
+          type: z.string().regex(/^image\//),
+          data: z.string().min(1).max(1_500_000),
+        }),
+      )
+      .max(3)
+      .optional(),
     // Honeypot — must be empty.
     website: z.string().max(0).optional().or(z.literal("")),
   })

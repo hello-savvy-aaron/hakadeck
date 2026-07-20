@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { track } from "@vercel/analytics";
 import { trackGa } from "@/lib/gtag";
 import { toast } from "sonner";
-import { ArrowRight, Check, Loader2, Phone } from "lucide-react";
+import { ArrowRight, Camera, Check, Loader2, Phone, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -39,8 +39,59 @@ const HINTS: Record<Exclude<ContactKind, null>, { text: string; tone: "pine" | "
 // correct, never to fill silence. Reserved height keeps the layout from jumping.
 const HINT_DEFAULT = "";
 
+const MAX_PHOTOS = 3;
+const MAX_PHOTO_BYTES = 10 * 1024 * 1024;
+// Binary ceiling per photo after compression — keeps each base64 payload under
+// the schema's 1.5M-char cap and the whole request under Vercel's body limit.
+const MAX_COMPRESSED_BYTES = 1_000_000;
+
+// Downscale to ≤1600px JPEG in the browser so a 10 MB phone photo becomes a
+// few hundred KB before it rides the JSON payload as base64. Returns null when
+// the browser can't decode the file (e.g. HEIC outside Safari) and it's too
+// big to send as-is.
+async function compressPhoto(
+  file: File,
+): Promise<{ name: string; type: string; data: string } | null> {
+  const toBase64 = (blob: Blob) =>
+    new Promise<string>((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve((reader.result as string).split(",")[1] ?? "");
+      reader.onerror = () => reject(reader.error);
+      reader.readAsDataURL(blob);
+    });
+
+  try {
+    const bitmap = await createImageBitmap(file);
+    const scale = Math.min(1, 1600 / Math.max(bitmap.width, bitmap.height));
+    const canvas = document.createElement("canvas");
+    canvas.width = Math.max(1, Math.round(bitmap.width * scale));
+    canvas.height = Math.max(1, Math.round(bitmap.height * scale));
+    canvas.getContext("2d")!.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+    bitmap.close();
+
+    for (const quality of [0.8, 0.6, 0.4]) {
+      const blob = await new Promise<Blob | null>((resolve) =>
+        canvas.toBlob(resolve, "image/jpeg", quality),
+      );
+      if (blob && blob.size <= MAX_COMPRESSED_BYTES) {
+        const base = file.name.replace(/\.[^.]+$/, "") || "photo";
+        return { name: `${base}.jpg`, type: "image/jpeg", data: await toBase64(blob) };
+      }
+    }
+    return null;
+  } catch {
+    // Undecodable format — pass the original through only if it's small enough.
+    if (file.size <= MAX_COMPRESSED_BYTES && file.type.startsWith("image/")) {
+      return { name: file.name, type: file.type, data: await toBase64(file) };
+    }
+    return null;
+  }
+}
+
 export function ContactForm() {
   const [sentContact, setSentContact] = useState<string | null>(null);
+  const [photos, setPhotos] = useState<File[]>([]);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const {
     register,
     handleSubmit,
@@ -59,12 +110,44 @@ export function ContactForm() {
   const kind = detectContact(contactValue);
   const hint = kind ? HINTS[kind] : { text: HINT_DEFAULT, tone: "soft" as const };
 
+  function addPhotos(list: FileList | null) {
+    if (!list) return;
+    const incoming = Array.from(list).filter((f) => {
+      if (!f.type.startsWith("image/")) return false;
+      if (f.size > MAX_PHOTO_BYTES) {
+        toast.error(`${f.name} is over 10 MB — try a smaller photo.`);
+        return false;
+      }
+      return true;
+    });
+    setPhotos((prev) => [...prev, ...incoming].slice(0, MAX_PHOTOS));
+  }
+
   async function onSubmit(values: ContactInput) {
     try {
+      // Photos compress in the browser and ride the payload as attachments. A
+      // photo that can't be processed never blocks the lead — it's dropped
+      // with a heads-up instead.
+      let attached: NonNullable<ContactInput["photos"]> = [];
+      if (photos.length) {
+        const results = await Promise.all(photos.map(compressPhoto));
+        attached = results.filter((r) => r !== null);
+        if (attached.length < photos.length) {
+          toast.warning(
+            attached.length
+              ? "One of the photos couldn't be attached — sending the rest."
+              : "The photos couldn't be attached — sending your message without them.",
+          );
+        }
+      }
+
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
+        body: JSON.stringify({
+          ...values,
+          ...(attached.length ? { photos: attached } : {}),
+        }),
       });
       if (!res.ok) throw new Error("Submit failed");
       // Count successful submissions in Vercel Web Analytics. Both fields are
@@ -81,6 +164,7 @@ export function ContactForm() {
       // for campaign optimization. No-ops if the pixel isn't configured.
       trackReddit("Lead");
       setSentContact(values.contact.trim());
+      setPhotos([]);
       reset();
     } catch {
       toast.error("Something went wrong. Try calling us at " + site.phone + ".");
@@ -278,6 +362,52 @@ export function ContactForm() {
             })}
           </div>
         </fieldset>
+
+        {/* Optional photos — especially useful for repair/replacement leads. */}
+        <div className="mt-4">
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/*"
+            multiple
+            className="hidden"
+            aria-label="Add photos of your deck or yard"
+            onChange={(e) => {
+              addPhotos(e.target.files);
+              e.target.value = "";
+            }}
+          />
+          <div className="flex flex-wrap items-center gap-2">
+            <button
+              type="button"
+              onClick={() => fileInputRef.current?.click()}
+              disabled={photos.length >= MAX_PHOTOS}
+              className="border-input text-foreground hover:bg-muted/60 inline-flex items-center gap-2 rounded-full border border-dashed px-4 py-2.5 text-sm font-medium transition-colors disabled:opacity-50"
+            >
+              <Camera className="h-4 w-4" />
+              {photos.length ? "Add another photo" : "Add photos of your deck or yard"}
+            </button>
+            {photos.map((f, i) => (
+              <span
+                key={`${f.name}-${i}`}
+                className="border-input bg-muted/40 text-foreground/80 inline-flex max-w-[180px] items-center gap-1.5 rounded-full border px-3 py-2 text-xs"
+              >
+                <span className="truncate">{f.name}</span>
+                <button
+                  type="button"
+                  aria-label={`Remove ${f.name}`}
+                  onClick={() => setPhotos((prev) => prev.filter((_, j) => j !== i))}
+                  className="hover:text-foreground shrink-0"
+                >
+                  <X className="h-3.5 w-3.5" />
+                </button>
+              </span>
+            ))}
+          </div>
+          <p className="text-muted-foreground mt-1.5 px-0.5 text-[13px]">
+            Optional — up to 3 photos, 10 MB each. Great for repairs and replacements.
+          </p>
+        </div>
 
         <Textarea
           rows={3}

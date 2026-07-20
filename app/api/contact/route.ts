@@ -19,9 +19,12 @@ function rateLimit(ip: string): boolean {
 // Last-resort capture so a genuine inquiry is never lost when mail delivery
 // fails. Recover these from Vercel → Logs by searching "[contact] LEAD CAPTURE".
 // Note: this writes the submitter's details (incl. PII) to the server logs.
-function logLeadFallback(reason: string, data: unknown) {
+// Photo payloads are megabytes of base64 — logged as a count, never inline.
+function logLeadFallback(reason: string, data: Record<string, unknown>) {
+  const { photos, ...rest } = data;
+  const summary = Array.isArray(photos) ? { ...rest, photos: `${photos.length} attached` } : rest;
   console.error(`[contact] LEAD CAPTURE (${reason}) — delivery failed, recover manually:`);
-  console.error(JSON.stringify(data, null, 2));
+  console.error(JSON.stringify(summary, null, 2));
 }
 
 export async function POST(req: Request) {
@@ -56,8 +59,15 @@ export async function POST(req: Request) {
 
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
+    const { photos: devPhotos, ...devRest } = parsed.data;
     console.log("[contact] RESEND_API_KEY unset — logging instead of sending:");
-    console.log(JSON.stringify(parsed.data, null, 2));
+    console.log(
+      JSON.stringify(
+        devPhotos ? { ...devRest, photos: `${devPhotos.length} attached` } : devRest,
+        null,
+        2,
+      ),
+    );
     return NextResponse.json({ ok: true, mode: "dev-log" });
   }
 
@@ -72,7 +82,8 @@ export async function POST(req: Request) {
   try {
     const { Resend } = await import("resend");
     const resend = new Resend(apiKey);
-    const { contact, message, projectType, squareFootage, levels, features } = parsed.data;
+    const { contact, message, projectType, squareFootage, levels, features, photos } =
+      parsed.data;
     const channel = contactChannel(contact); // "email" | "phone"
     const action = channel === "phone" ? "call back" : "email back";
     const text = [
@@ -81,6 +92,7 @@ export async function POST(req: Request) {
       squareFootage ? `Approx. size: ${squareFootage} sq ft` : null,
       levels ? `Levels: ${levels}` : null,
       features && features.length ? `Features: ${features.join(", ")}` : null,
+      photos && photos.length ? `Photos: ${photos.length} attached` : null,
       "",
       message || "(no note)",
     ]
@@ -95,6 +107,14 @@ export async function POST(req: Request) {
       ...(channel === "email" ? { replyTo: contact } : {}),
       subject: `New lead — ${action}: ${contact}`,
       text,
+      ...(photos && photos.length
+        ? {
+            attachments: photos.map((p, i) => ({
+              filename: p.name || `photo-${i + 1}.jpg`,
+              content: p.data,
+            })),
+          }
+        : {}),
     });
     if (result.error) {
       console.error("[contact] resend rejected:", result.error);
