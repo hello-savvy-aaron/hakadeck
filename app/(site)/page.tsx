@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/sections/hero";
 import { GuidesLanding } from "@/components/guides/guides-landing";
-import { StatsCounter } from "@/components/sections/stats-counter";
 import { Certifications } from "@/components/sections/certifications";
 import { ServicesPreview } from "@/components/sections/services-preview";
 import { ReviewsMarquee } from "@/components/sections/reviews-marquee";
@@ -26,16 +25,13 @@ export default function HomePage() {
       <Reveal>
         <GuidesLanding />
       </Reveal>
-      <Reveal>
-        <StatsCounter />
-      </Reveal>
+      <ReviewsMarquee />
       <Reveal>
         <ServicesPreview />
       </Reveal>
       <Reveal>
         <Certifications />
       </Reveal>
-      <ReviewsMarquee />
       <Reveal>
         <Faq />
       </Reveal>

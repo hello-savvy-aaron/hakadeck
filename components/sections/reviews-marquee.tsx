@@ -66,30 +66,40 @@ export function ReviewsMarquee() {
               100% 5-star reviews. Satisfaction is truly guaranteed.
             </h2>
           </div>
-          <div className="flex flex-wrap items-center gap-3">
-            <a
-              href={site.reviewsUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-3 rounded-full border border-white/40 bg-white/10 px-4 py-2 text-sm backdrop-blur transition-colors hover:bg-white/20"
-            >
-              <span className="font-semibold">{site.rating.value.toFixed(1)}</span>
-              <span className="flex" aria-hidden>
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className="text-haka-gold h-3.5 w-3.5 fill-current" />
-                ))}
+          <div className="flex flex-col items-start gap-5 sm:items-end">
+            <p>
+              <span className="font-display block text-6xl leading-none font-medium tracking-tight tabular-nums sm:text-7xl lg:text-8xl">
+                250+
               </span>
-              <span className="text-white/90">({site.rating.count}) on Google</span>
-            </a>
-            <a
-              href={site.reviewWriteUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="text-haka-pine inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-white/90"
-            >
-              <Star className="h-3.5 w-3.5 fill-current" />
-              Leave a review
-            </a>
+              <span className="mt-2 block text-sm leading-snug text-white/80 sm:text-right">
+                Decks Built
+              </span>
+            </p>
+            <div className="flex flex-wrap items-center gap-3">
+              <a
+                href={site.reviewsUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-3 rounded-full border border-white/40 bg-white/10 px-4 py-2 text-sm backdrop-blur transition-colors hover:bg-white/20"
+              >
+                <span className="font-semibold">{site.rating.value.toFixed(1)}</span>
+                <span className="flex" aria-hidden>
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} className="text-haka-gold h-3.5 w-3.5 fill-current" />
+                  ))}
+                </span>
+                <span className="text-white/90">({site.rating.count}) on Google</span>
+              </a>
+              <a
+                href={site.reviewWriteUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="text-haka-pine inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-white/90"
+              >
+                <Star className="h-3.5 w-3.5 fill-current" />
+                Leave a review
+              </a>
+            </div>
           </div>
         </div>
       </div>

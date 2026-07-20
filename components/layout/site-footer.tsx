@@ -7,7 +7,8 @@ import { site } from "@/lib/site";
 
 export async function SiteFooter() {
   const { address, hours } = site;
-  const locations = await getAllLocations();
+  // Footer list reads alphabetically; elsewhere locations keep their curated `order`.
+  const locations = (await getAllLocations()).toSorted((a, b) => a.name.localeCompare(b.name));
   return (
     <footer className="bg-background text-foreground border-border/40 border-t">
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
@@ -71,11 +72,11 @@ export async function SiteFooter() {
                 <Clock className="mr-1.5 h-3.5 w-3.5" />
                 Hours
               </p>
-              <dl className="space-y-1 text-sm">
+              <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm">
                 {hours.display.map((h) => (
-                  <div key={h.label} className="text-muted-foreground flex justify-between gap-4">
-                    <dt>{h.label}</dt>
-                    <dd className="text-foreground/80 tabular-nums">{h.value}</dd>
+                  <div key={h.label} className="text-muted-foreground contents">
+                    <dt className="whitespace-nowrap">{h.label}</dt>
+                    <dd className="text-foreground/80 whitespace-nowrap tabular-nums">{h.value}</dd>
                   </div>
                 ))}
               </dl>
@@ -92,7 +93,7 @@ export async function SiteFooter() {
             </a>
             <a
               href={site.emailHref}
-              className="text-muted-foreground hover:text-foreground inline-flex items-center text-sm break-all"
+              className="text-muted-foreground hover:text-foreground inline-flex items-center text-sm whitespace-nowrap"
             >
               <Mail className="mr-1.5 h-3.5 w-3.5 shrink-0" />
               {site.email}
@@ -108,6 +109,17 @@ export async function SiteFooter() {
             </a>
             <p className="text-muted-foreground mt-3 text-xs">
               © {new Date().getFullYear()} {site.name}. All rights reserved.
+            </p>
+            <p className="text-muted-foreground text-xs">
+              Site by{" "}
+              <a
+                href="https://www.hellosavvy.design"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-foreground underline-offset-4 hover:underline"
+              >
+                hellosavvy.design
+              </a>
             </p>
           </FooterCol>
         </div>
