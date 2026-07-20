@@ -7,6 +7,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { Eyebrow, Section, SectionHeading } from "@/components/sections/section";
 import { CtaFinal } from "@/components/sections/cta-final";
 import { Faq } from "@/components/sections/faq";
+import { ReviewQuotes } from "@/components/sections/review-quotes";
 import { FaqJsonLd } from "@/components/seo/faq-jsonld";
 import { Button } from "@/components/ui/button";
 import { ProjectCard } from "@/components/portfolio/project-card";
@@ -211,6 +212,8 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
           </ul>
         </Section>
       ) : null}
+
+      <ReviewQuotes seed={slug} />
 
       <CtaFinal />
     </>

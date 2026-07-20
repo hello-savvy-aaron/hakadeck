@@ -12,18 +12,8 @@ const REVIEWS = [
     src: "/images/reviews/review-2.png",
     alt: "Five-star Google review for Haka Decks from a Colorado homeowner",
   },
-  {
-    src: "/images/reviews/review-3.png",
-    alt: "Five-star Google review for Haka Decks from a Colorado homeowner",
-  },
-  {
-    src: "/images/reviews/review-5.png",
-    alt: "Five-star Google review for Haka Decks from a Colorado homeowner",
-  },
-  {
-    src: "/images/reviews/review-6.png",
-    alt: "Five-star Google review for Haka Decks from a Colorado homeowner",
-  },
+  // review-3/5/6 were byte-identical copies of review-2 (same reviewer shown
+  // four times in the loop) — dropped until fresh screenshots replace them.
   {
     src: "/images/reviews/review-7.png",
     alt: "Five-star Google review for Haka Decks from a Colorado homeowner",
