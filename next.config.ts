@@ -13,6 +13,8 @@ const nextConfig: NextConfig = {
         destination: "/blog/composite-vs-natural-decking-guide",
         permanent: true,
       },
+      // Retired project page (removed July 2026)
+      { source: "/portfolio/pergola-patio-screen", destination: "/portfolio", permanent: true },
       // Template-residue portfolio slugs → portfolio index (no real pages to redirect to)
       { source: "/portfolio/deck-stairs", destination: "/portfolio", permanent: true },
       { source: "/portfolio/outdoor-space", destination: "/portfolio", permanent: true },

@@ -41,11 +41,6 @@ const TILES: { slug: string; caption: string; blurb: string }[] = [
     blurb: "Engineered posts and beams for 6 ft+ heights — common south of Denver.",
   },
   {
-    slug: "pergola-patio-screen",
-    caption: "Pergola & shade.",
-    blurb: "Filtered shade over the deck without closing off the sky.",
-  },
-  {
     slug: "double-decker",
     caption: "Two-tier composite.",
     blurb: "Two levels of living space stacked on a sloped lot.",
