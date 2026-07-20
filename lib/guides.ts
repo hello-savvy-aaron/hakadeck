@@ -40,7 +40,7 @@ export const costGuide = {
   landingTitle: "What does a deck really cost?",
   hubTitle: "The Deck Cost Guide",
   pdf: "/guides/deck-cost-guide-denver.pdf",
-  readLabel: "6 min read",
+  readLabel: "10 min read",
   updated: "July 2026",
 } as const;
 
@@ -79,10 +79,11 @@ export const guides: Guide[] = [
     slug: "diy-deck-building-checklist",
     href: "/diy-deck-building-checklist",
     number: "03",
-    hubTitle: "The DIY Deck Building Checklist",
-    hubBlurb: "Every step from footings to fascia, in the right order — printable.",
-    landingTitle: "The DIY Build Checklist",
-    landingBlurb: "Every step from footings to fascia, in the right order.",
+    hubTitle: "The DIY Deck Building Guide & Checklist",
+    hubBlurb:
+      "Real instructions for every step — plus span tables, a worked 12×16 plan, and tool list. Printable.",
+    landingTitle: "The DIY Build Guide & Checklist",
+    landingBlurb: "Real instructions for every step, with span tables and a worked example plan.",
     chip: "GUIDE · PDF",
     pdf: "/guides/diy-deck-building-checklist.pdf",
     readLabel: "Printable",

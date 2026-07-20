@@ -30,12 +30,12 @@ export default function HomePage() {
         <ServicesPreview />
       </Reveal>
       <Reveal>
-        <Certifications />
-      </Reveal>
-      <Reveal>
         <Faq />
       </Reveal>
       <CtaFinal />
+      <Reveal>
+        <Certifications />
+      </Reveal>
     </>
   );
 }

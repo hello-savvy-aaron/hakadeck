@@ -4,11 +4,23 @@ import { Clock, Mail, MapPin, Phone, Star } from "lucide-react";
 import { InstagramIcon, LinkedinIcon } from "@/components/icons/social-icons";
 import { getAllLocations } from "@/lib/locations";
 import { site } from "@/lib/site";
+import { cn } from "@/lib/utils";
+
+// GBP cities without their own location page, shown to round the footer list
+// out to two columns of seven. They link to the /locations hub, which lists
+// the full service area.
+const EXTRA_AREAS = ["Castle Pines", "Englewood", "Golden", "Lakewood"];
 
 export async function SiteFooter() {
   const { address, hours } = site;
   // Footer list reads alphabetically; elsewhere locations keep their curated `order`.
-  const locations = (await getAllLocations()).toSorted((a, b) => a.name.localeCompare(b.name));
+  const locations = await getAllLocations();
+  const areas = [
+    ...locations.map((l) => ({ href: `/locations/${l.slug}`, label: `${l.name}, CO` })),
+    ...EXTRA_AREAS.map((name) => ({ href: "/locations", label: `${name}, CO` })),
+  ].toSorted((a, b) => a.label.localeCompare(b.label));
+  areas.push({ href: "/locations", label: "All service areas" });
+  const areaColumns = [areas.slice(0, 7), areas.slice(7)];
   return (
     <footer className="bg-background text-foreground border-border/40 border-t">
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
@@ -16,7 +28,7 @@ export async function SiteFooter() {
           Denver&apos;s Deck BUILDER.
         </p>
 
-        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1fr]">
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.3fr_0.8fr_1.8fr_1fr_1fr]">
           <div className="space-y-5">
             <Link href="/" aria-label={`${site.name} home`} className="inline-flex">
               {/* The Link's aria-label is the accessible name (it wins over
@@ -51,13 +63,18 @@ export async function SiteFooter() {
             ))}
           </FooterCol>
 
-          <FooterCol heading="Service Areas">
-            {locations.map((l) => (
-              <FooterLink key={l.slug} href={`/locations/${l.slug}`}>
-                {l.name}, CO
-              </FooterLink>
-            ))}
-            <FooterLink href="/locations">All service areas</FooterLink>
+          <FooterCol heading="Service Areas" className="sm:col-span-2 lg:col-span-1">
+            <div className="grid grid-cols-2 gap-x-4">
+              {areaColumns.map((column, i) => (
+                <div key={i} className="flex flex-col gap-2">
+                  {column.map((area) => (
+                    <FooterLink key={area.label} href={area.href}>
+                      {area.label}
+                    </FooterLink>
+                  ))}
+                </div>
+              ))}
+            </div>
           </FooterCol>
 
           <FooterCol heading="Visit">
@@ -128,9 +145,17 @@ export async function SiteFooter() {
   );
 }
 
-function FooterCol({ heading, children }: { heading: string; children: React.ReactNode }) {
+function FooterCol({
+  heading,
+  children,
+  className,
+}: {
+  heading: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
   return (
-    <div className="space-y-3">
+    <div className={cn("space-y-3", className)}>
       <h3 className="text-foreground/60 text-xs font-medium tracking-widest uppercase">
         {heading}
       </h3>

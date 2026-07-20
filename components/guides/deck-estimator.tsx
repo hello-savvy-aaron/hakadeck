@@ -81,7 +81,9 @@ export function DeckEstimator() {
   const [sent, setSent] = useState(false);
 
   const A = size;
-  const base: Range = { composite: [95, 125], hardwood: [115, 150], redwood: [85, 110] }[
+  // $/sq ft installed — must agree with the cost guide's size table and the
+  // $40–70 composite anchor published across the blog and calculator.
+  const base: Range = { composite: [40, 70], hardwood: [50, 85], redwood: [25, 45] }[
     material
   ] as Range;
   const hm = { ground: 1, mid: 1.08, walkout: 1.2 }[height]!;

@@ -42,7 +42,7 @@ export default function MaterialsGuidePage() {
           <DataTable
             headers={["", "Composite", "Hardwood"]}
             rows={[
-              ["Installed cost", "$95–125 / sq ft", "$115–150 / sq ft"],
+              ["Installed cost", "$40–70 / sq ft", "$50–85 / sq ft"],
               ["Annual upkeep", "Soap and water", "Clean, sand spots, re-oil every 1–2 yrs"],
               ["Lifespan", "25–50 yrs (warrantied)", "20–40 yrs (maintained)"],
               ["Colorado UV", "Fade-warrantied caps", "Silvers fast without oil"],
@@ -68,7 +68,7 @@ export default function MaterialsGuidePage() {
 
         <H2>What about redwood or cedar?</H2>
         <P>
-          The budget-friendly classic. Lower upfront cost ($85–110 / sq ft installed), but softer
+          The budget-friendly classic. Lower upfront cost ($25–45 / sq ft installed), but softer
           boards and yearly staining in our climate. Fine for ground-level decks you plan to replace
           in 15–20 years; we&apos;d steer walk-outs and high decks to composite.
         </P>
