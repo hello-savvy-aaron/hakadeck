@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { CtaFinal } from "@/components/sections/cta-final";
 import { GuideLayout } from "@/components/guides/guide-layout";
+import { GuideArticleJsonLd } from "@/components/seo/guide-article-jsonld";
 import { Lead, H2, P, Callout, StatRows, Steps } from "@/components/guides/guide-content";
 import { guideBySlug } from "@/lib/guides";
 import { site } from "@/lib/site";
@@ -21,6 +22,13 @@ export const metadata: Metadata = {
 export default function PermitsGuidePage() {
   return (
     <>
+      <GuideArticleJsonLd
+        title={title}
+        description={description}
+        path="/deck-permits-south-denver-metro"
+        datePublished="2026-07-17"
+        dateModified="2026-07-20"
+      />
       <GuideLayout
         guideKey={guide.key}
         pdfHref={guide.pdf!}

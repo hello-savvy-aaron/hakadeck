@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CtaFinal } from "@/components/sections/cta-final";
 import { GuideLayout } from "@/components/guides/guide-layout";
+import { GuideArticleJsonLd } from "@/components/seo/guide-article-jsonld";
 import {
   Lead,
   H2,
@@ -30,6 +31,13 @@ export const metadata: Metadata = {
 export default function DeckCostGuidePage() {
   return (
     <>
+      <GuideArticleJsonLd
+        title={title}
+        description={description}
+        path="/deck-cost-guide-denver"
+        datePublished="2026-07-17"
+        dateModified="2026-07-20"
+      />
       <GuideLayout
         guideKey={costGuide.key}
         pdfHref={costGuide.pdf}

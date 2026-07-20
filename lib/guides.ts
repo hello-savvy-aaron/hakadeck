@@ -56,7 +56,7 @@ export const guides: Guide[] = [
     landingBlurb: "The honest materials comparison — cost, upkeep, and how each holds up at altitude.",
     chip: "GUIDE · PDF",
     pdf: "/guides/composite-vs-hardwood-decking-colorado.pdf",
-    readLabel: "5 min read",
+    readLabel: "7 min read",
     updated: "July 2026",
   },
   {
