@@ -16,6 +16,9 @@ export function LocalBusinessJsonLd() {
   const data = {
     "@context": "https://schema.org",
     "@type": "GeneralContractor",
+    // Stable entity id so per-page Service blocks can reference this business
+    // with { "@id": ... } instead of re-embedding the whole NAP.
+    "@id": `${site.url}/#business`,
     name: site.name,
     // Prior trading name (the biz rebranded from "Haka Construction"; the
     // Instagram handle is still @hakaconstruction). Lets brand queries for
@@ -32,6 +35,11 @@ export function LocalBusinessJsonLd() {
       addressRegion: site.address.state,
       postalCode: site.address.zip,
       addressCountry: "US",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 39.58691,
+      longitude: -104.87673,
     },
     // Mirrors the Google Business Profile service area: two broad GeoCircles
     // around the metro anchors, plus every city/town from site.serviceAreaRegions
@@ -59,14 +67,19 @@ export function LocalBusinessJsonLd() {
     })),
     knowsAbout: KNOWS_ABOUT,
     foundingDate: String(site.founded),
-    sameAs: [site.socials.instagram, site.socials.linkedin, site.reviewsUrl],
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: site.rating.value,
-      reviewCount: site.rating.count,
-      bestRating: site.rating.max,
-    },
+    sameAs: [
+      site.socials.instagram,
+      site.socials.linkedin,
+      site.reviewsUrl,
+      "https://maps.google.com/maps?cid=2131295845147254655",
+      "https://maps.apple.com/place?auid=4817596912492427351",
+      "https://www.yelp.com/biz/haka-decks-centennial",
+    ],
+    // No aggregateRating/review here: Google treats rating markup fed by a
+    // business's own site as self-serving and it can draw a manual action.
+    // The star rating in search comes from the Google Business Profile.
     image: `${site.url}/images/brand/haka-badge.png`,
+    logo: `${site.url}/images/brand/haka-badge.png`,
     priceRange: "$$$",
     slogan: "Denver's Deck Builder. Engineered for altitude.",
     makesOffer: [

@@ -25,20 +25,9 @@ export function ServiceJsonLd({
         description,
         serviceType: category,
         url,
-        provider: {
-          "@type": "GeneralContractor",
-          name: site.name,
-          url: site.url,
-          telephone: site.phone,
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: site.address.street,
-            addressLocality: site.address.city,
-            addressRegion: site.address.state,
-            postalCode: site.address.zip,
-            addressCountry: "US",
-          },
-        },
+        // References the site-wide GeneralContractor block (rendered in the
+        // (site) layout) instead of duplicating the NAP.
+        provider: { "@id": `${site.url}/#business` },
         areaServed: [
           {
             "@type": "AdministrativeArea",
