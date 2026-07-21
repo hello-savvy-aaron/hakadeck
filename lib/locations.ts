@@ -16,6 +16,10 @@ export type LocationMeta = {
   metaDescription: string;
   summary: string;
   image: string;
+  // Optional override for the hero image's alt text. The default asserts the
+  // build is "near" this city — set this on pages whose hero shows a project
+  // from elsewhere so the alt stays truthful.
+  imageAlt?: string;
   bullets: string[];
   // Portfolio slugs of real builds in or near this city — curated, not
   // auto-matched, so "near" stays honest.
@@ -62,6 +66,7 @@ function locationFromFrontmatter(slug: string, data: Record<string, unknown>): L
     metaDescription: data.metaDescription as string,
     summary: data.summary as string,
     image: data.image as string,
+    imageAlt: data.imageAlt as string | undefined,
     bullets: (data.bullets as string[]) ?? [],
     projects: (data.projects as string[]) ?? [],
     mapQuery: data.mapQuery as string,

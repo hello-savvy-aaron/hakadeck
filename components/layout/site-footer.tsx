@@ -8,8 +8,8 @@ import { cn } from "@/lib/utils";
 
 // GBP cities without their own location page yet — they link to the /locations
 // hub, which lists the full service area. Towns get pulled out of this list as
-// they earn a dedicated page.
-const EXTRA_AREAS = ["Arvada", "Golden"];
+// they earn a dedicated page; every town listed here now has one, so it's empty.
+const EXTRA_AREAS: string[] = [];
 
 export async function SiteFooter() {
   const { address, hours } = site;

@@ -113,7 +113,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
         <div className="border-border/40 relative aspect-[16/9] overflow-hidden rounded-2xl border">
           <Image
             src={location.image}
-            alt={`Deck built by ${site.name} near ${location.name}, CO`}
+            alt={location.imageAlt ?? `Deck built by ${site.name} near ${location.name}, CO`}
             fill
             priority
             sizes="1100px"
