@@ -6,19 +6,20 @@ import { getAllLocations } from "@/lib/locations";
 import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
-// GBP cities without their own location page yet — they link to the /locations
-// hub, which lists the full service area. Towns get pulled out of this list as
-// they earn a dedicated page; every town listed here now has one, so it's empty.
-const EXTRA_AREAS: string[] = [];
+// How many town links the footer shows. Every location page is reachable from
+// the /locations hub (and the sitemap); the footer surfaces the core service
+// area by curated `order` so it doesn't turn into a 30-link wall.
+const FOOTER_AREA_LIMIT = 14;
 
 export async function SiteFooter() {
   const { address, hours } = site;
-  // Footer list reads alphabetically; elsewhere locations keep their curated `order`.
   const locations = await getAllLocations();
-  const areas = [
-    ...locations.map((l) => ({ href: `/locations/${l.slug}`, label: `${l.name}, CO` })),
-    ...EXTRA_AREAS.map((name) => ({ href: "/locations", label: `${name}, CO` })),
-  ].toSorted((a, b) => a.label.localeCompare(b.label));
+  // Take the closest/highest-priority towns by curated `order`, then present
+  // them alphabetically — elsewhere locations keep their `order`.
+  const areas = locations
+    .slice(0, FOOTER_AREA_LIMIT)
+    .map((l) => ({ href: `/locations/${l.slug}`, label: `${l.name}, CO` }))
+    .toSorted((a, b) => a.label.localeCompare(b.label));
   areas.push({ href: "/locations", label: "All service areas" });
   // Split evenly so the two columns stay balanced as towns are added.
   const half = Math.ceil(areas.length / 2);

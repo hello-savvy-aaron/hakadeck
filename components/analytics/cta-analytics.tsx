@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { track } from "@vercel/analytics";
 import { trackGa } from "@/lib/gtag";
+import { trackReddit } from "@/lib/reddit";
 import { site } from "@/lib/site";
 
 // Site-wide click tracking for the two primary CTAs — "Call" and "Get a Quote".
@@ -21,6 +22,14 @@ import { site } from "@/lib/site";
 // Analytics (custom events need a paid plan, so a no-op on Hobby but harmless).
 // Every event is tagged with the page it fired on, so Pete can see which pages
 // drive calls and quote requests.
+//
+// A call click is additionally mirrored to Reddit Ads as a `Lead` conversion.
+// Most quote requests arrive by phone, not through the form, so without this
+// the ad platform only ever sees the minority of leads that submit
+// `contact-form.tsx` and badly undercounts campaign performance. Quote clicks
+// are deliberately NOT mirrored: they only signal intent to open /contact, and
+// the form fires its own `Lead` on actual submit — counting both would
+// double-report a single lead.
 export function CtaAnalytics() {
   const pathname = usePathname();
 
@@ -32,6 +41,7 @@ export function CtaAnalytics() {
       if (anchor.protocol === "tel:") {
         trackGa("call_click", { source: pathname });
         track("Call clicked", { source: pathname });
+        trackReddit("Lead");
       } else if (
         (anchor.protocol === "http:" || anchor.protocol === "https:") &&
         anchor.pathname === site.cta.href
