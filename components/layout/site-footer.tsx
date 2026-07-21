@@ -6,10 +6,10 @@ import { getAllLocations } from "@/lib/locations";
 import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
-// GBP cities without their own location page, shown to round the footer list
-// out to two columns of seven. They link to the /locations hub, which lists
-// the full service area.
-const EXTRA_AREAS = ["Castle Pines", "Englewood", "Golden", "Lakewood"];
+// GBP cities without their own location page yet — they link to the /locations
+// hub, which lists the full service area. Towns get pulled out of this list as
+// they earn a dedicated page.
+const EXTRA_AREAS = ["Arvada", "Golden"];
 
 export async function SiteFooter() {
   const { address, hours } = site;
@@ -20,7 +20,9 @@ export async function SiteFooter() {
     ...EXTRA_AREAS.map((name) => ({ href: "/locations", label: `${name}, CO` })),
   ].toSorted((a, b) => a.label.localeCompare(b.label));
   areas.push({ href: "/locations", label: "All service areas" });
-  const areaColumns = [areas.slice(0, 7), areas.slice(7)];
+  // Split evenly so the two columns stay balanced as towns are added.
+  const half = Math.ceil(areas.length / 2);
+  const areaColumns = [areas.slice(0, half), areas.slice(half)];
   return (
     <footer className="bg-background text-foreground border-border/40 border-t">
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
