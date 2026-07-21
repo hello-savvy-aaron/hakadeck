@@ -110,7 +110,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               alt={`${project.title} by Haka Decks in ${project.location}`}
               fill
               priority
-              sizes="1100px"
+              sizes="(min-width: 1216px) 1088px, 100vw"
               className="object-cover"
             />
           </div>

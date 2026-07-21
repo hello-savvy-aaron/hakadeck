@@ -1,6 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  images: {
+    // AVIF first, WebP fallback. AVIF runs ~20–30% smaller than WebP on the
+    // deck photos (large areas of sky and decking compress well), and the
+    // encode cost is paid once per variant then cached at the edge.
+    formats: ["image/avif", "image/webp"],
+    // The default 60s means Vercel re-optimizes far more often than these
+    // assets change — they're content-hashed by path and only change on deploy.
+    minimumCacheTTL: 31_536_000,
+  },
   async redirects() {
     return [
       // Old Webflow URLs → new App Router paths

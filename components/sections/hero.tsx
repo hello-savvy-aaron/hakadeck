@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import { ArrowRight, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { site } from "@/lib/site";
+import { shouldLoadHeavyVideo } from "@/lib/heavy-media";
 
 const VIDEO_SRC = "/images/projects/ranch-drone/drone.mp4";
 const POSTER = "/images/projects/ranch-drone/drone-poster.jpeg";
@@ -12,14 +13,11 @@ const POSTER = "/images/projects/ranch-drone/drone-poster.jpeg";
 export function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  // Ships sourceless so the poster is all a phone pays for; see shouldLoadHeavyVideo.
   useEffect(() => {
     const v = videoRef.current;
-    if (!v) return;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) {
-      v.pause();
-      return;
-    }
+    if (!v || !shouldLoadHeavyVideo()) return;
+    v.src = VIDEO_SRC;
     v.play().catch(() => {});
   }, []);
 
@@ -31,13 +29,10 @@ export function Hero() {
         playsInline
         muted
         loop
-        autoPlay
-        preload="metadata"
+        preload="none"
         poster={POSTER}
         aria-hidden
-      >
-        <source src={VIDEO_SRC} type="video/mp4" />
-      </video>
+      />
 
       <div
         aria-hidden

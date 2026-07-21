@@ -115,7 +115,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
             alt={service.name}
             fill
             priority
-            sizes="1100px"
+            sizes="(min-width: 1216px) 1088px, 100vw"
             className="object-cover"
           />
         </div>
@@ -128,10 +128,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
       </Section>
 
       {service.faqs.length > 0 ? (
-        <Faq
-          faqs={service.faqs}
-          heading={`${service.name}: what homeowners ask us.`}
-        />
+        <Faq faqs={service.faqs} heading={`${service.name}: what homeowners ask us.`} />
       ) : null}
 
       {locations.length > 0 ? (

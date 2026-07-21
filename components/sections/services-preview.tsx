@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Eyebrow, Section } from "./section";
+import { shouldLoadHeavyVideo } from "@/lib/heavy-media";
 
 const VIDEO_SRC = "/images/projects/double-decker/drone.mp4";
 const POSTER = "/images/projects/double-decker/drone-poster.jpeg";
@@ -19,19 +20,20 @@ const TILES = [
 export function ServicesPreview() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  // Ships sourceless (see shouldLoadHeavyVideo); the source is attached on first
+  // intersection so the clip costs nothing to visitors who never scroll this far.
   useEffect(() => {
     const v = videoRef.current;
-    if (!v) return;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) {
-      v.pause();
-      return;
-    }
+    if (!v || !shouldLoadHeavyVideo()) return;
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) v.play().catch(() => {});
-          else v.pause();
+          if (!entry.isIntersecting) {
+            v.pause();
+            return;
+          }
+          if (!v.src) v.src = VIDEO_SRC;
+          v.play().catch(() => {});
         });
       },
       { threshold: 0.25 },
@@ -82,12 +84,10 @@ export function ServicesPreview() {
             playsInline
             muted
             loop
-            preload="metadata"
+            preload="none"
             poster={POSTER}
             aria-hidden
-          >
-            <source src={VIDEO_SRC} type="video/mp4" />
-          </video>
+          />
           <div
             aria-hidden
             className="from-background/40 absolute inset-0 bg-gradient-to-t to-transparent"

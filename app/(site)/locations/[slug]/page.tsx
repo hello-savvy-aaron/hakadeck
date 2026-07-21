@@ -116,7 +116,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
             alt={location.imageAlt ?? `Deck built by ${site.name} near ${location.name}, CO`}
             fill
             priority
-            sizes="1100px"
+            sizes="(min-width: 1216px) 1088px, 100vw"
             className="object-cover"
           />
         </div>

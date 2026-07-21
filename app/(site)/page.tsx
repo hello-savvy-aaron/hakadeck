@@ -30,10 +30,10 @@ export default function HomePage() {
       <Reveal>
         <Faq />
       </Reveal>
-      <CtaFinal />
       <Reveal>
         <Certifications />
       </Reveal>
+      <CtaFinal />
     </>
   );
 }
