@@ -190,7 +190,7 @@ export const site = {
   // Reddit Ads pixel (advertiser) ID — e.g. "a2_xxxxxxxxxxxx". Find it in Reddit
   // Ads Manager → Events Manager → Pixel. Public client-side ID, same class as
   // gaId; an empty string keeps the pixel disabled (RedditPixel renders nothing).
-  redditPixelId: "",
+  redditPixelId: "a2_j8eyxrhfn1k2",
   founded: 2017,
   rating: { value: 5.0, count: 89, max: 5 },
   // Official Google Business Profile share link → opens the Haka Decks listing

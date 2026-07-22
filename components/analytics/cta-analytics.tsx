@@ -14,6 +14,8 @@ import { site } from "@/lib/site";
 // destinations. Rather than thread an onClick into every one, we listen once at
 // the document and classify clicks by where the anchor points:
 //   • any `tel:` link      → a "Call" (every phone link is call intent)
+//   • any `mailto:` link   → an "Email" (footer + contact page both link the
+//     one address; every mailto on the site is contact intent)
 //   • any link to /contact → a "Get a Quote" (the CTA is the only thing that
 //     routes there — verified no other /contact links exist)
 //
@@ -23,13 +25,14 @@ import { site } from "@/lib/site";
 // Every event is tagged with the page it fired on, so Pete can see which pages
 // drive calls and quote requests.
 //
-// A call click is additionally mirrored to Reddit Ads as a `Lead` conversion.
-// Most quote requests arrive by phone, not through the form, so without this
-// the ad platform only ever sees the minority of leads that submit
-// `contact-form.tsx` and badly undercounts campaign performance. Quote clicks
-// are deliberately NOT mirrored: they only signal intent to open /contact, and
-// the form fires its own `Lead` on actual submit — counting both would
-// double-report a single lead.
+// Call and email clicks are additionally mirrored to Reddit Ads as a `Lead`
+// conversion. Most quote requests arrive by phone or email, not through the
+// form, so without this the ad platform only ever sees the minority of leads
+// that submit `contact-form.tsx` and badly undercounts campaign performance.
+// Both are terminal actions — nothing else fires afterwards — so each maps to
+// exactly one `Lead`. Quote clicks are deliberately NOT mirrored: they only
+// signal intent to open /contact, and the form fires its own `Lead` on actual
+// submit — counting both would double-report a single lead.
 export function CtaAnalytics() {
   const pathname = usePathname();
 
@@ -41,6 +44,10 @@ export function CtaAnalytics() {
       if (anchor.protocol === "tel:") {
         trackGa("call_click", { source: pathname });
         track("Call clicked", { source: pathname });
+        trackReddit("Lead");
+      } else if (anchor.protocol === "mailto:") {
+        trackGa("email_click", { source: pathname });
+        track("Email clicked", { source: pathname });
         trackReddit("Lead");
       } else if (
         (anchor.protocol === "http:" || anchor.protocol === "https:") &&
