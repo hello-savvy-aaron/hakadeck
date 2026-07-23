@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { track } from "@vercel/analytics";
 import { trackGa } from "@/lib/gtag";
+import { trackAdsConversion } from "@/lib/google-ads";
 import { trackReddit } from "@/lib/reddit";
 import { site } from "@/lib/site";
 
@@ -25,6 +26,10 @@ import { site } from "@/lib/site";
 // Every event is tagged with the page it fired on, so Pete can see which pages
 // drive calls and quote requests.
 //
+// Phone clicks additionally fire the Google Ads "Click to call" conversion
+// (site.googleAdsConversions.call) so the Ads account records calls started from
+// the site, matching the conversion action set up in Google Ads.
+//
 // Call and email clicks are additionally mirrored to Reddit Ads as a `Lead`
 // conversion. Most quote requests arrive by phone or email, not through the
 // form, so without this the ad platform only ever sees the minority of leads
@@ -45,6 +50,12 @@ export function CtaAnalytics() {
         trackGa("call_click", { source: pathname });
         track("Call clicked", { source: pathname });
         trackReddit("Lead");
+        // Google Ads "Click to call" conversion. Value mirrors Google's event
+        // snippet; every tel: click is call intent (see the tel: note above).
+        trackAdsConversion(site.googleAdsConversions.call, {
+          value: 1.0,
+          currency: "USD",
+        });
       } else if (anchor.protocol === "mailto:") {
         trackGa("email_click", { source: pathname });
         track("Email clicked", { source: pathname });

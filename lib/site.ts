@@ -192,6 +192,14 @@ export const site = {
   // copy — it's just an additional gtag `config` destination (see GoogleAds), so
   // it depends on gaId staying set. An empty string keeps it disabled.
   googleAdsId: "AW-18214331613",
+  // Google Ads conversion "send_to" labels ("AW-<id>/<label>"), one per
+  // conversion action created in Ads. Copy the label out of the action's event
+  // snippet. CtaAnalytics fires the matching one on the corresponding CTA click;
+  // an empty string skips that conversion.
+  googleAdsConversions: {
+    // "Click to call" — fired on any `tel:` link click, site-wide.
+    call: "AW-18214331613/LgZ9CM7WmNUcEN3Jou1D",
+  },
   // Reddit Ads pixel (advertiser) ID — e.g. "a2_xxxxxxxxxxxx". Find it in Reddit
   // Ads Manager → Events Manager → Pixel. Public client-side ID, same class as
   // gaId; an empty string keeps the pixel disabled (RedditPixel renders nothing).
