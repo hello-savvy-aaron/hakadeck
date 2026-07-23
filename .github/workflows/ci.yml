@@ -1,0 +1,54 @@
+# Pull-request gate.
+#
+# Content now arrives by PR from the Haka content agent as well as by hand, so
+# this workflow is the reviewer for machine-authored changes: nothing merges
+# unless the frontmatter validates, the types check, and the site actually
+# builds. Merging main triggers a production deploy (see vercel-deploy.yml),
+# which is exactly why the bar sits here.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      # Cheapest checks first so an obvious mistake fails in seconds, not after
+      # a full Next build.
+      - name: Validate content frontmatter and links
+        run: pnpm run content:validate
+
+      # No format:check step. 29 files in the existing tree predate Prettier
+      # being enforced, so gating on it would fail every PR — including the
+      # content agent's — for reasons unrelated to the change. Run
+      # `pnpm run format` and reformat the tree in its own commit first, then
+      # add the step back here.
+
+      - name: Lint
+        run: pnpm run lint
+
+      - name: Typecheck
+        run: pnpm run typecheck
+
+      - name: Build
+        run: pnpm run build
