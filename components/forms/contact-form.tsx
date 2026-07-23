@@ -93,6 +93,15 @@ export function ContactForm() {
   const [sentContact, setSentContact] = useState<string | null>(null);
   const [photos, setPhotos] = useState<File[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  // Fire quote_form_start once per mount, on the first focus of any field —
+  // the funnel step between quote_click (opening /contact) and generate_lead
+  // (submitting). Feeds the "Quote form starts" stat on the agency dashboard.
+  const formStarted = useRef(false);
+  function trackFormStart() {
+    if (formStarted.current) return;
+    formStarted.current = true;
+    trackGa("quote_form_start");
+  }
   const {
     register,
     handleSubmit,
@@ -225,7 +234,7 @@ export function ContactForm() {
         <span className="bg-border h-px flex-1" />
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} onFocusCapture={trackFormStart}>
         <Input
           autoComplete="email"
           enterKeyHint="send"
