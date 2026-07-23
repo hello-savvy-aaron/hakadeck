@@ -187,6 +187,11 @@ export const site = {
   },
   // Google Analytics 4 measurement ID (gtag.js).
   gaId: "G-Y02QMV6M3D",
+  // Google Ads account/conversion ID ("AW-…"), for Ads conversion tracking and
+  // remarketing. Reuses the gaId gtag.js loader rather than loading a second
+  // copy — it's just an additional gtag `config` destination (see GoogleAds), so
+  // it depends on gaId staying set. An empty string keeps it disabled.
+  googleAdsId: "AW-18214331613",
   // Reddit Ads pixel (advertiser) ID — e.g. "a2_xxxxxxxxxxxx". Find it in Reddit
   // Ads Manager → Events Manager → Pixel. Public client-side ID, same class as
   // gaId; an empty string keeps the pixel disabled (RedditPixel renders nothing).

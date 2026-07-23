@@ -3,6 +3,7 @@ import { Bricolage_Grotesque, Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
+import { GoogleAds } from "@/components/analytics/google-ads";
 import { RedditPixel } from "@/components/analytics/reddit-pixel";
 import { CtaAnalytics } from "@/components/analytics/cta-analytics";
 import { site } from "@/lib/site";
@@ -79,6 +80,7 @@ export default function RootLayout({
         <Analytics />
         <SpeedInsights />
         <GoogleAnalytics gaId={site.gaId} />
+        <GoogleAds adsId={site.googleAdsId} />
         <RedditPixel pixelId={site.redditPixelId} />
         <CtaAnalytics />
       </body>
