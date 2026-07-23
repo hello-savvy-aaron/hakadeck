@@ -15,7 +15,9 @@ const KNOWS_ABOUT = [
 export function LocalBusinessJsonLd() {
   const data = {
     "@context": "https://schema.org",
-    "@type": "GeneralContractor",
+    // GeneralContractor is schema.org's subtype of HomeAndConstructionBusiness;
+    // both are declared because SEO graders string-match the parent type.
+    "@type": ["GeneralContractor", "HomeAndConstructionBusiness"],
     // Stable entity id so per-page Service blocks can reference this business
     // with { "@id": ... } instead of re-embedding the whole NAP.
     "@id": `${site.url}/#business`,

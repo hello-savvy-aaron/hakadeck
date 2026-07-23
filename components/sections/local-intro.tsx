@@ -14,10 +14,10 @@ export function LocalIntro() {
 
         <div className="text-muted-foreground space-y-5 text-base leading-relaxed sm:text-lg">
           <p>
-            {site.name} is a licensed deck builder based in the {site.address.district}, building
-            custom decks, pergolas, and covered outdoor living for homeowners {site.serviceArea}. Since {site.founded} we&apos;ve designed and built
-            outdoor spaces in Greenwood Village, Cherry Hills Village, Lone Tree, Highlands Ranch,
-            Castle Rock, and the surrounding Denver suburbs.
+            {site.name} is a licensed deck builder based in the {site.address.district} — custom
+            deck and patio design, pergola builders, and covered outdoor living for homeowners {site.serviceArea}. Since {site.founded} we&apos;ve designed and built
+            backyard decks and outdoor spaces in Greenwood Village, Cherry Hills Village, Lone
+            Tree, Highlands Ranch, Castle Rock, and the surrounding Denver suburbs.
           </p>
           <p>
             Decks here have to survive 300-plus days of high-altitude sun, summer hail, and a
@@ -28,8 +28,10 @@ export function LocalIntro() {
           </p>
           <p>
             Whether you want a low-maintenance composite deck, a cedar or hardwood build, a pergola
-            or patio cover, an outdoor kitchen, or new railings, we handle the design, HOA and
-            permit paperwork, and the build end to end. Most projects start with a free on-site
+            or patio roof, roof decking over an exposed slab, an outdoor kitchen, or new deck and
+            stair railings, we handle the design, HOA and permit paperwork, and the build end to
+            end. Recycled-core composite boards make for genuinely eco-friendly decks that shrug
+            off Denver sun without a drop of stain. Most projects start with a free on-site
             walkthrough, anywhere in the service area.
           </p>
         </div>
