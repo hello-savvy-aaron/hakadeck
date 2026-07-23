@@ -199,6 +199,14 @@ export const site = {
   googleAdsConversions: {
     // "Click to call" — fired on any `tel:` link click, site-wide.
     call: "AW-18214331613/LgZ9CM7WmNUcEN3Jou1D",
+    // Email click — fired on any `mailto:` link click. Paste the "AW-…/label"
+    // from the email-click conversion action's event snippet; empty = disabled.
+    email: "",
+    // Contact form submit — fired once the form POSTs successfully. Paste the
+    // "AW-…/label" from the form conversion action's event snippet; empty =
+    // disabled. These two match what Reddit already counts as a Lead, so both
+    // channels track the same call + email + form set for a fair comparison.
+    form: "",
   },
   // Reddit Ads pixel (advertiser) ID — e.g. "a2_xxxxxxxxxxxx". Find it in Reddit
   // Ads Manager → Events Manager → Pixel. Public client-side ID, same class as

@@ -60,6 +60,12 @@ export function CtaAnalytics() {
         trackGa("email_click", { source: pathname });
         track("Email clicked", { source: pathname });
         trackReddit("Lead");
+        // Google Ads email-click conversion — matches the tel: conversion above
+        // so Ads counts email leads too (see the Reddit note below).
+        trackAdsConversion(site.googleAdsConversions.email, {
+          value: 1.0,
+          currency: "USD",
+        });
       } else if (
         (anchor.protocol === "http:" || anchor.protocol === "https:") &&
         anchor.pathname === site.cta.href

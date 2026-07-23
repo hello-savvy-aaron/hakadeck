@@ -21,6 +21,7 @@ import {
   type ContactInput,
   type ContactKind,
 } from "@/lib/contact-schema";
+import { trackAdsConversion } from "@/lib/google-ads";
 import { trackReddit } from "@/lib/reddit";
 import { site } from "@/lib/site";
 
@@ -163,6 +164,12 @@ export function ContactForm() {
       // Mirror the conversion to Reddit Ads — a quote request counts as a Lead
       // for campaign optimization. No-ops if the pixel isn't configured.
       trackReddit("Lead");
+      // And to Google Ads as the form-submit conversion, so Ads counts form
+      // leads alongside calls and emails. No-ops until the label is configured.
+      trackAdsConversion(site.googleAdsConversions.form, {
+        value: 1.0,
+        currency: "USD",
+      });
       setSentContact(values.contact.trim());
       setPhotos([]);
       reset();
