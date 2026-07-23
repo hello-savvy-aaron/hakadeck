@@ -4,8 +4,10 @@ import { ArrowRight } from "lucide-react";
 import { Eyebrow, Section, SectionHeading } from "@/components/sections/section";
 import { CtaFinal } from "@/components/sections/cta-final";
 import { BreadcrumbJsonLd } from "@/components/seo/breadcrumb-jsonld";
+import { FaqJsonLd } from "@/components/seo/faq-jsonld";
 import { Button } from "@/components/ui/button";
 import { site } from "@/lib/site";
+import type { Faq } from "@/lib/faqs";
 
 const title = "Deck Financing in Colorado — The Honest Options | Haka Decks";
 const description =
@@ -17,6 +19,22 @@ export const metadata: Metadata = {
   alternates: { canonical: "/financing" },
   openGraph: { title, description, url: `${site.url}/financing` },
 };
+
+// Rendered below AND fed to FaqJsonLd — schema must match visible copy.
+const FAQS: Faq[] = [
+  {
+    q: "Does Haka Decks offer in-house financing?",
+    a: "Not currently — and that's deliberate. Contractor-arranged financing in home improvement often carries promotional terms that don't survive comparison with your own bank, and we'd rather compete on the deck than on the loan. What we do provide is an itemized, fixed quote you can take to any lender, and honest guidance on which routes tend to fit which project sizes.",
+  },
+  {
+    q: "What credit options work best for a deck project?",
+    a: "For most Denver-metro homeowners it comes down to home equity — a HELOC or home equity loan — because rates run well below unsecured borrowing and Front Range homes tend to carry real equity. Personal home-improvement loans make sense for smaller projects where speed matters more than rate. And phasing the project — deck now, cover later, designed for it from day one — is the option people overlook most.",
+  },
+  {
+    q: "Can I get a quote before talking to a lender?",
+    a: "That's exactly the right order. Lenders want a number, and a guess isn't one. Our free on-site consultation produces an itemized written quote — every line visible, fixed scope — that you can hand directly to a bank or credit union. The cost calculator on our site gets you a planning range even earlier, in about thirty seconds.",
+  },
+];
 
 const OPTIONS = [
   {
@@ -45,6 +63,7 @@ export default function FinancingPage() {
   return (
     <>
       <BreadcrumbJsonLd items={[{ name: "Financing", path: "/financing" }]} />
+      <FaqJsonLd faqs={FAQS} />
 
       <Section top="loose" bottom="tight">
         <Eyebrow>Paying for it</Eyebrow>
@@ -114,6 +133,26 @@ export default function FinancingPage() {
               <ArrowRight className="ml-1.5 h-4 w-4" />
             </Link>
           </Button>
+        </div>
+      </Section>
+
+      <Section top="none" bottom="tight">
+        <div className="grid gap-8 lg:grid-cols-[1fr_1.6fr] lg:gap-20">
+          <div>
+            <h2 className="font-display text-2xl leading-tight font-medium tracking-tight sm:text-3xl">
+              Financing questions, answered straight.
+            </h2>
+          </div>
+          <div className="w-full">
+            {FAQS.map((item, i) => (
+              <details key={i} className="group border-border/40 not-last:border-b">
+                <summary className="font-display flex cursor-pointer list-none items-start justify-between gap-3 rounded-lg py-2.5 text-left text-lg font-medium tracking-tight hover:underline sm:text-xl [&::-webkit-details-marker]:hidden">
+                  {item.q}
+                </summary>
+                <p className="text-muted-foreground pb-3 text-base leading-relaxed">{item.a}</p>
+              </details>
+            ))}
+          </div>
         </div>
       </Section>
 

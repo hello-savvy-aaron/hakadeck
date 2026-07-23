@@ -29,13 +29,22 @@ const PILLARS: {
   },
 ];
 
-const LOGOS: { src: string; alt: string; invert?: boolean }[] = [
+const LOGOS: { src: string; alt: string; href?: string; invert?: boolean }[] = [
   {
     src: "/images/certs/deckorators-pro-elite.jpg",
     alt: "Deckorators Certified Pro Elite Installer badge",
+    href: "/deckorators-deck-builder-denver",
   },
-  { src: "/images/certs/trex-platinum.png", alt: "Trex Platinum Pro contractor badge" },
-  { src: "/images/certs/timber-tech.jpg", alt: "TimberTech Authorized Dealer badge" },
+  {
+    src: "/images/certs/trex-platinum.png",
+    alt: "Trex Platinum Pro contractor badge",
+    href: "/trex-deck-builder-denver",
+  },
+  {
+    src: "/images/certs/timber-tech.jpg",
+    alt: "TimberTech Authorized Dealer badge",
+    href: "/timbertech-deck-builder-denver",
+  },
   {
     src: "/images/brand/haka-badge.png",
     alt: "Haka Decks logo — custom deck builder in the Denver Tech Center",
@@ -70,11 +79,8 @@ export function Certifications() {
       </div>
 
       <div className="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-4">
-        {LOGOS.map((logo) => (
-          <div
-            key={logo.src}
-            className="border-border/50 bg-card flex h-32 items-center justify-center rounded-2xl border px-6 py-5"
-          >
+        {LOGOS.map((logo) => {
+          const card = (
             <Image
               src={logo.src}
               alt={logo.alt}
@@ -82,8 +88,24 @@ export function Certifications() {
               height={96}
               className={`h-16 w-auto max-w-[90%] object-contain ${logo.invert ? "invert" : ""}`}
             />
-          </div>
-        ))}
+          );
+          const cardClass =
+            "border-border/50 bg-card flex h-32 items-center justify-center rounded-2xl border px-6 py-5";
+          // Certification badges link to their brand page; the Haka badge stays plain.
+          return logo.href ? (
+            <Link
+              key={logo.src}
+              href={logo.href}
+              className={`${cardClass} hover:border-foreground/30 transition-colors`}
+            >
+              {card}
+            </Link>
+          ) : (
+            <div key={logo.src} className={cardClass}>
+              {card}
+            </div>
+          );
+        })}
       </div>
     </Section>
   );
