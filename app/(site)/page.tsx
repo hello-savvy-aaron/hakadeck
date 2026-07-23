@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/sections/hero";
+import { LocalIntro } from "@/components/sections/local-intro";
 import { GuidesLanding } from "@/components/guides/guides-landing";
 import { Certifications } from "@/components/sections/certifications";
 import { ServicesPreview } from "@/components/sections/services-preview";
@@ -20,6 +21,9 @@ export default function HomePage() {
     <>
       <FaqJsonLd />
       <Hero />
+      <Reveal>
+        <LocalIntro />
+      </Reveal>
       <Reveal>
         <GuidesLanding />
       </Reveal>

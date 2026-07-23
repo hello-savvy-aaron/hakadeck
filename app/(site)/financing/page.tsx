@@ -54,8 +54,9 @@ export default function FinancingPage() {
         <p className="text-muted-foreground mt-6 max-w-2xl text-lg leading-relaxed">
           A quality composite deck in the Denver metro runs $15,000–$50,000+, and most homeowners
           don&apos;t pay that from a checking account. Here are the routes Colorado homeowners
-          actually take. One thing up front: we build decks, we don&apos;t give financial advice —
-          treat this as a map, and talk to your bank about which route fits your situation.
+          actually take — wherever in the metro you are, the options and the math are the same.
+          One thing up front: we build decks, we don&apos;t give financial advice — treat this as
+          a map, and talk to your bank about which route fits your situation.
         </p>
       </Section>
 
