@@ -5,9 +5,9 @@ import { CtaFinal } from "@/components/sections/cta-final";
 import { DeckCostCalculator } from "@/components/forms/deck-cost-calculator";
 import { site } from "@/lib/site";
 
-const title = "Deck Cost Calculator — Denver Metro (2026) | Haka Decks";
+const title = "Deck Cost Calculator — Free Deck Estimate, Denver Metro (2026) | Haka Decks";
 const description =
-  "Estimate what your deck will cost in the Denver metro. Real 2026 installed ranges by size, material, and height — from the builder, not a lead-gen site.";
+  "Get a free deck estimate for the Denver metro in thirty seconds. Real 2026 installed ranges by size, material, and height — from the builder, not a lead-gen site.";
 
 export const metadata: Metadata = {
   title: { absolute: title },

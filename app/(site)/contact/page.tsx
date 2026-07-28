@@ -4,9 +4,9 @@ import { Eyebrow, Section } from "@/components/sections/section";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Get a Quote",
+  title: "Get a Quote — Free Deck Estimates in Denver",
   description:
-    "Contact Haka Decks, a deck builder in the Denver Tech Center. Call, or leave a number or email and we'll get back to you.",
+    "Get a free deck estimate from Haka Decks, a deck builder in the Denver Tech Center — call, or leave a number or email and we'll get back to you with an honest, itemized quote.",
   alternates: { canonical: "/contact" },
 };
 
@@ -19,7 +19,8 @@ export default function ContactPage() {
           Get in touch.
         </h1>
         <p className="text-foreground/70 mt-4 mb-7 text-lg leading-relaxed">
-          Call now, or leave your number and we&apos;ll get back to you.
+          Call now, or leave your number and we&apos;ll get back to you — free on-site deck
+          estimates across the Denver metro.
         </p>
 
         <ContactForm />
