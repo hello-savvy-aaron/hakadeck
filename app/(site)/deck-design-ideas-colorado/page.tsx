@@ -97,6 +97,41 @@ export default async function GalleryPage() {
           ))}
         </div>
 
+        <div className="mt-6 flex flex-col gap-2">
+          <video
+            controls
+            playsInline
+            muted
+            preload="none"
+            poster="/images/projects/ranch-drone/drone-poster.jpeg"
+            src="/images/projects/ranch-drone/drone.mp4"
+            className="border-border aspect-[4/3] w-full rounded-xl border object-cover"
+          />
+          <p className="text-[13.5px]">
+            <span className="text-foreground font-semibold">Flyover.</span>{" "}
+            <span className="text-muted-foreground">
+              The ground-level build above from the air — how a Colorado custom deck sits in its
+              yard.
+            </span>
+          </p>
+        </div>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "VideoObject",
+              name: "Colorado custom deck flyover — ground-level composite build",
+              description:
+                "Drone flyover of a Haka Decks ground-level composite deck in the south Denver metro.",
+              thumbnailUrl: `${site.url}/images/projects/ranch-drone/drone-poster.jpeg`,
+              contentUrl: `${site.url}/images/projects/ranch-drone/drone.mp4`,
+              uploadDate: "2026-06-05",
+              publisher: { "@id": `${site.url}/#business` },
+            }),
+          }}
+        />
+
         <div className="mt-6 flex flex-wrap gap-2.5">
           <Button asChild className="h-11">
             <Link href="/deck-cost-guide-denver">What one like this costs →</Link>
