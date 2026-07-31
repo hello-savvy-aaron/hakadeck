@@ -74,6 +74,7 @@ export default function MaterialsGuidePage() {
             rows={[
               ["Installed cost", "$40–70 / sq ft", "$50–85 / sq ft"],
               ["Annual upkeep", "Soap and water", "Clean, sand spots, re-oil every 1–2 yrs"],
+              ["10-yr upkeep budget", "≈ $0 beyond soap", "$3,000–5,000 hired out"],
               ["Lifespan", "25–50 yrs (warrantied)", "20–40 yrs (maintained)"],
               ["Colorado UV", "Fade-warrantied caps", "Silvers fast without oil"],
               ["Hail", "Cap resists pitting", "Dents; refinish hides it"],
@@ -96,8 +97,9 @@ export default function MaterialsGuidePage() {
           Three things do most of the damage here. <strong className="font-semibold">UV</strong>:
           our sun is roughly 25% stronger than sea level, and it bleaches stain and dries wood
           fibers until boards check and split. <strong className="font-semibold">Freeze-thaw</strong>:
-          thirty-degree daily swings in spring and fall work moisture in and out of wood, backing
-          fasteners out and opening end-grain. <strong className="font-semibold">Hail</strong>:
+          the Front Range runs roughly 35–90 freeze-thaw cycles a year, and the thirty-degree
+          daily swings of spring and fall work moisture in and out of wood, backing fasteners out
+          and opening end-grain. <strong className="font-semibold">Hail</strong>:
           the Front Range sits in one of the most hail-prone corridors in the country, and soft,
           finished surfaces show every strike. Composite&apos;s polymer cap was effectively
           designed for this checklist — which is why about 90% of what we build is composite. The
@@ -148,7 +150,8 @@ export default function MaterialsGuidePage() {
           they&apos;re what we spec for full-sun walk-outs and rooftop decks. And on the wood side,
           thermally-modified ash splits the difference: real wood that&apos;s been kiln-treated for
           dimensional stability, so it rides out our freeze-thaw cycle far better than untreated
-          hardwood while keeping genuine grain underfoot.
+          hardwood while keeping genuine grain underfoot — typically $40–60 / sq ft installed,
+          squarely in composite territory.
         </P>
 
         <H2>The ten-year math</H2>
@@ -156,7 +159,8 @@ export default function MaterialsGuidePage() {
           Day one, wood wins the invoice. Year ten is a different story: a wood deck that&apos;s
           been professionally cleaned and re-stained every other year has quietly spent
           $3,000–5,000 on upkeep — while fighting fade the whole time — and composite has spent
-          roughly nothing. Past year ten, composite is simply ahead, which is why we describe the
+          roughly nothing. On a 320 sq ft deck, that closes most of the gap between a roughly
+          $9,000 pressure-treated build and a $16,000 composite one. Past year ten, composite is simply ahead, which is why we describe the
           choice as paying for the maintenance up front versus paying for it forever. Either way,
           the substructure should outlast the surface: same engineered framing, footings below
           frost line, and{" "}

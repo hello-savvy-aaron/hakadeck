@@ -34,12 +34,12 @@ const QUESTIONS: { q: string; why: string; good: string }[] = [
   {
     q: "What's the footing and framing spec?",
     why: "“Per code” with no numbers is a shrug in writing. Colorado decks need frost-depth footings and snow-load framing.",
-    good: "Actual numbers: footing depth and diameter, joist size and spacing, and how the ledger will be flashed and fastened.",
+    good: "Actual numbers: footing depth and diameter (30–36 inches covers frost depth here), joist size and spacing (16 inches on center is the composite standard), and how the ledger will be flashed and fastened.",
   },
   {
     q: "Are you licensed and insured — and can I see it?",
     why: "If anything goes wrong on your property, the builder's general liability and workers' comp are what stand between the incident and your homeowner's policy.",
-    good: "Certificates on request without flinching, naming real coverage amounts.",
+    good: "Certificates on request without flinching, naming real coverage amounts — $1M in general liability is the residential norm.",
   },
   {
     q: "Who is actually on my site each day?",
@@ -59,11 +59,11 @@ const QUESTIONS: { q: string; why: string; good: string }[] = [
   {
     q: "What's the payment schedule?",
     why: "A deposit should cover materials mobilization, not shift the job's whole risk onto you before a post is set.",
-    good: "A modest deposit, payments tied to milestones, and the balance due at the final walkthrough — never half down.",
+    good: "A modest deposit (10–30% is typical in Colorado), payments tied to milestones, and the balance due at the final walkthrough — never half down.",
   },
   {
     q: "What's the realistic timeline — in writing?",
-    why: "“We can start next week” usually means the permit hasn't been thought about. Front Range approvals run 2–4 weeks.",
+    why: "“We can start next week” usually means the permit hasn't been thought about. South-metro permit review alone runs 1–3 weeks, before HOA sign-off and scheduling.",
     good: "A written schedule that includes the permit window, the on-site days, and what happens when weather interrupts.",
   },
   {

@@ -24,7 +24,7 @@ const CHECKS: { area: string; look: string; worry: string }[] = [
   {
     area: "The ledger (where the deck meets the house)",
     look: "From underneath, find the horizontal board bolted against the house. Look for metal flashing over its top edge, real bolts or structural screws (not just nails), and dry, solid wood.",
-    worry: "No visible flashing, rust streaks, soft or dark wet wood, or a ledger attached with nails alone. This is where most catastrophic deck collapses start — anything suspicious here is a call-a-pro finding, not a watch-it finding.",
+    worry: "No visible flashing, rust streaks, soft or dark wet wood, or a ledger attached with nails alone. Industry post-mortems trace the large majority of catastrophic deck collapses to this one connection — anything suspicious here is a call-a-pro finding, not a watch-it finding.",
   },
   {
     area: "Footings and posts",
@@ -38,12 +38,12 @@ const CHECKS: { area: string; look: string; worry: string }[] = [
   },
   {
     area: "Railings and posts",
-    look: "Grab the top rail and push hard, at several points. It should feel like part of the structure, not furniture. Check that balusters are tight and spacing is under 4 inches.",
+    look: "Grab the top rail and push hard, at several points — code expects a guardrail to resist a 200-pound load in any direction. It should feel like part of the structure, not furniture. Check that balusters are tight and spacing is under 4 inches.",
     worry: "Any visible movement at the post base. A railing that wobbles today fails on the day someone actually falls against it — and post connections are the most common failure we find on older and DIY decks.",
   },
   {
     area: "Stairs",
-    look: "Walk them heavily. Check the stringers (the sawtooth boards) where they meet the deck and the ground, the tread fasteners, and the handrail's steadiness.",
+    look: "Walk them heavily. Check the stringers (the sawtooth boards) where they meet the deck and the ground, the tread fasteners, and the handrail's steadiness. Eyeball the geometry too — risers over 7¾ inches or treads under 10 inches fail code.",
     worry: "Bounce or flex mid-flight, stringers resting on bare dirt, treads cupped enough to hold water, or a handrail you wouldn't trust with your full weight. Stairs are where most deck injuries actually happen.",
   },
   {
@@ -127,8 +127,9 @@ export default function InspectionGuidePage() {
           <Link href="/services/deck-replacement" className="text-primary font-semibold hover:underline">
             full replacement
           </Link>{" "}
-          — which is why an honest structural verdict is worth real dollars, and why ours comes as
-          a written report, free.
+          — as of 2026, about $20–35 per sq ft to re-deck over sound framing versus $40–70 per
+          sq ft (plus $1,500–3,500 of tear-out) to rebuild in composite. An honest structural
+          verdict is worth real dollars, which is why ours comes as a written report, free.
         </Muted>
 
         <H2>When to run this</H2>
@@ -137,7 +138,8 @@ export default function InspectionGuidePage() {
           winter, and you want to find what moved before the deck&apos;s busiest season. Run it
           too when you&apos;re buying a house (an unpermitted or failing deck is a classic
           inspection-report surprise), and before any big party puts thirty people on a structure
-          built for ten.
+          built for ten. The odds aren&apos;t trivial: of the roughly 40 million residential decks
+          in the U.S., industry groups estimate about half are past their intended service life.
         </P>
 
         <Callout>

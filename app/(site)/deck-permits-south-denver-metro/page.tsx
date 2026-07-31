@@ -2,7 +2,17 @@ import type { Metadata } from "next";
 import { CtaFinal } from "@/components/sections/cta-final";
 import { GuideLayout } from "@/components/guides/guide-layout";
 import { GuideArticleJsonLd } from "@/components/seo/guide-article-jsonld";
-import { Lead, H2, P, Callout, StatRows, Steps } from "@/components/guides/guide-content";
+import Link from "next/link";
+import {
+  Lead,
+  H2,
+  P,
+  Muted,
+  Callout,
+  StatRows,
+  DataTable,
+  Steps,
+} from "@/components/guides/guide-content";
 import { guideBySlug } from "@/lib/guides";
 import { site } from "@/lib/site";
 
@@ -54,7 +64,8 @@ export default function PermitsGuidePage() {
             <>
               <strong className="font-semibold">Framing plan.</strong> Footings, posts, beams,
               joists, ledger attachment, railing height. Front Range frost depth means footings go
-              30–36&quot; down.
+              30–36&quot; down — Douglas County reviewers expect the full 36&quot;, while most
+              Arapahoe County jurisdictions accept 30&quot;.
             </>,
             <>
               <strong className="font-semibold">Submit &amp; wait.</strong> Most south-metro cities
@@ -75,22 +86,49 @@ export default function PermitsGuidePage() {
             { label: "Minimum residential guardrail height", value: '36"' },
             { label: 'Max gap in railing (the "4-inch sphere" rule)', value: '< 4"' },
             { label: "Stair rise / run limits", value: '7¾" / 10"' },
+            { label: "Stair handrail height", value: '34–38"' },
+            { label: "Guardrail design load, any direction", value: "200 lb" },
             { label: "Footing depth (frost line, Front Range)", value: '30–36"' },
           ]}
         />
 
         <H2>Where to file, by city</H2>
         <P>
-          Centennial · Greenwood Village · Cherry Hills Village · Lone Tree · Castle Rock file with
-          their own building departments. Highlands Ranch files through{" "}
-          <strong className="font-semibold">Douglas County</strong>. Unincorporated Arapahoe County
-          addresses file with the county. Every one of them also wants HOA sign-off first if you have
-          one — check that before drawing anything.
+          Centennial, Greenwood Village, Cherry Hills Village, Lone Tree, and Castle Rock file with
+          their own building departments. Highlands Ranch is unincorporated — permits go through{" "}
+          <strong className="font-semibold">Douglas County</strong>, and the HRCA wants its
+          architectural review done before you submit. Unincorporated Arapahoe County addresses
+          file with the county. Every jurisdiction wants HOA sign-off first if you have one —
+          check that before drawing anything.
         </P>
+        <DataTable
+          headers={["Where you file", "Typical review", "Typical fees"]}
+          rows={[
+            ["Centennial", "1–2 weeks", "$150–350"],
+            ["Greenwood Village", "1–2 weeks", "$150–350"],
+            ["Lone Tree", "2–3 weeks", "$200–400"],
+            ["Castle Rock", "2–3 weeks", "$200–450"],
+            ["Douglas County (Highlands Ranch)", "2–3 weeks", "$200–500"],
+            ["Arapahoe County (unincorporated)", "2–3 weeks", "$150–400"],
+          ]}
+        />
+        <Muted>
+          Fees are valuation-based, so a bigger deck files higher; re-review after corrections and
+          HOA fees are extra. Ranges reflect typical single-family deck permits in 2026 — the fee
+          shows up as a line item in an honest bid, as the{" "}
+          <Link href="/deck-cost-guide-denver" className="text-primary font-semibold hover:underline">
+            cost guide
+          </Link>{" "}
+          shows.
+        </Muted>
         <Callout>
-          Codes change and cities amend them. Treat this as orientation, and confirm specifics with
-          your building department — or have us pull the permit; it&apos;s included in every Haka
-          build.
+          Codes change, cities amend them, and fee schedules get updated. Treat this as
+          orientation, and confirm specifics with your building department — or have us pull the
+          permit; it&apos;s included in{" "}
+          <Link href="/process" className="text-primary font-semibold hover:underline">
+            every Haka build
+          </Link>
+          .
         </Callout>
       </GuideLayout>
 

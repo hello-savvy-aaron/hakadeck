@@ -115,13 +115,17 @@ export default function DiyChecklistPage() {
         <Muted>
           Quantities include normal cut waste on decking but no mistakes allowance — first build,
           buy one extra board per bunk. Every metal part (hangers, post bases, screws) must be
-          hot-dip galvanized or better; modern pressure-treated lumber corrodes bare steel.
+          hot-dip galvanized or better; modern pressure-treated lumber corrodes bare steel. At
+          2026 prices this bill of materials lands around $4,500–6,500 — the labor you&apos;re
+          supplying is the $15–35 per sq ft a crew would charge. Budget 3–4 full weekends for a
+          first build; a pro crew frames and decks this size in about a week.
         </Muted>
 
         <H2>The tools that actually get used</H2>
         <P>
           Beyond a normal homeowner kit (drill, tape, hammer, speed square, chalk line):
-          a <strong className="font-semibold">two-person power auger</strong> (rent it),
+          a <strong className="font-semibold">two-person power auger</strong> (rent it — about
+          $75–100 a day),
           a <strong className="font-semibold">4-ft level</strong> plus a string or laser level for
           post heights, an <strong className="font-semibold">impact driver</strong> — structural
           ledger screws will smoke a drill — a circular saw, a miter saw for railing and decking

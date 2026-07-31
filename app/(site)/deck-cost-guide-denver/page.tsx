@@ -68,7 +68,7 @@ export default function DeckCostGuidePage() {
 
         <H2>Step 2 — Add 50–100% for installation</H2>
         <P>
-          Industry-wide, labor runs 50–60% of a finished deck&apos;s total cost — professional
+          Industry-wide, labor runs 40–60% of a finished deck&apos;s total cost — professional
           installation adds <strong className="font-semibold">$15–35 per sq ft</strong> on top of
           materials. The rule of thumb: take your materials number and add 50–100%. A $12,000
           materials list is a $18,000–24,000 finished deck. Height, slope, access, and design
@@ -244,7 +244,7 @@ export default function DeckCostGuidePage() {
             { label: "Railing, installed (style decides)", value: "$30–90 / lin ft" },
             { label: "Stairs, installed", value: "$150–400 / step" },
             { label: "Concrete footings (4–8 per deck)", value: "$150–600 each" },
-            { label: "Permit fees, south Denver metro", value: "$200–500" },
+            { label: "Permit fees, south Denver metro", value: "$150–500" },
             { label: "Tear-out of an old deck", value: "$1,500–3,500" },
           ]}
         />
