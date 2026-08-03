@@ -187,6 +187,9 @@ export const site = {
   },
   // Google Analytics 4 measurement ID (gtag.js).
   gaId: "G-Y02QMV6M3D",
+  // Google Tag Manager container ID ("GTM-…"). Loads gtm.js site-wide via
+  // GoogleTagManager in the root layout; an empty string keeps it disabled.
+  gtmId: "GTM-PVS8HPFV",
   // Google Ads account/conversion ID ("AW-…"), for Ads conversion tracking and
   // remarketing. Reuses the gaId gtag.js loader rather than loading a second
   // copy — it's just an additional gtag `config` destination (see GoogleAds), so

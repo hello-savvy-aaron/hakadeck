@@ -3,6 +3,7 @@ import { Bricolage_Grotesque, Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
+import { GoogleTagManager } from "@/components/analytics/google-tag-manager";
 import { GoogleAds } from "@/components/analytics/google-ads";
 import { RedditPixel } from "@/components/analytics/reddit-pixel";
 import { CtaAnalytics } from "@/components/analytics/cta-analytics";
@@ -76,6 +77,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${bricolage.variable} h-full antialiased`}>
       <body className="bg-background text-foreground flex min-h-full flex-col font-sans">
+        <GoogleTagManager gtmId={site.gtmId} />
         {children}
         <Analytics />
         <SpeedInsights />
