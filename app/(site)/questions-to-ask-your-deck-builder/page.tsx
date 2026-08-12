@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CtaFinal } from "@/components/sections/cta-final";
 import { GuideLayout } from "@/components/guides/guide-layout";
-import { Lead, H2, P, Muted, Callout } from "@/components/guides/guide-content";
+import { Lead, H2, P, Muted, Callout, InlineCta } from "@/components/guides/guide-content";
 import { GuideArticleJsonLd } from "@/components/seo/guide-article-jsonld";
 import { guideBySlug } from "@/lib/guides";
 import { site } from "@/lib/site";
@@ -120,6 +120,11 @@ export default function ContractChecklistPage() {
             </div>
           ))}
         </div>
+
+        <InlineCta
+          heading="Want our answers to all ten?"
+          body="Book a free consultation and grill us with this exact list — we'll bring the COI, the certifications, and the itemized bid format."
+        />
 
         <H2>Why we publish this</H2>
         <P>

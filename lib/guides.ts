@@ -72,7 +72,7 @@ export const guides: Guide[] = [
     chip: "GUIDE · PDF",
     pdf: "/guides/deck-permits-south-denver-metro.pdf",
     readLabel: "4 min read",
-    updated: "July 2026",
+    updated: "August 2026",
   },
   {
     key: "diy-checklist",

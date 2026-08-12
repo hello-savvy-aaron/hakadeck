@@ -10,6 +10,7 @@ import {
   P,
   Muted,
   Callout,
+  InlineCta,
   StatRows,
   DataTable,
   CostBar,
@@ -195,6 +196,11 @@ export default function DeckCostGuidePage() {
           </Link>
           .
         </Muted>
+
+        <InlineCta
+          heading="Sized your budget? Get the real number."
+          body="Ranges are planning tools — a free on-site consultation turns yours into a fixed, itemized quote for your actual yard."
+        />
 
         <H2>The three multipliers bids get judged on</H2>
         <StatRows

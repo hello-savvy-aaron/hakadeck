@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 // Editorial primitives for the inside of a guide's white content card. Compact,
@@ -33,6 +34,33 @@ export function Callout({ children }: { children: React.ReactNode }) {
   return (
     <div className="bg-secondary text-muted-foreground rounded-lg px-3.5 py-3 text-[13px] leading-relaxed">
       {children}
+    </div>
+  );
+}
+
+// Mid-guide conversion nudge — two low-friction paths out of the content.
+// Links to /contact are counted as quote_click by CtaAnalytics automatically.
+export function InlineCta({
+  heading = "Want a real number for your yard?",
+  body = "A free on-site consultation gets you an itemized quote — or start with a planning range right now.",
+}: {
+  heading?: string;
+  body?: string;
+}) {
+  return (
+    <div className="border-primary/25 bg-primary/5 my-5 rounded-xl border px-5 py-4">
+      <p className="font-display text-foreground text-[15.5px] font-medium tracking-tight">
+        {heading}
+      </p>
+      <p className="text-muted-foreground mt-1 text-[13.5px] leading-relaxed">{body}</p>
+      <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1.5 text-[13.5px] font-semibold">
+        <Link href="/contact" className="text-primary hover:underline">
+          Get a free quote →
+        </Link>
+        <Link href="/deck-cost-calculator" className="text-primary hover:underline">
+          Try the 30-second calculator →
+        </Link>
+      </div>
     </div>
   );
 }

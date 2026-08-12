@@ -2,7 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CtaFinal } from "@/components/sections/cta-final";
 import { GuideLayout } from "@/components/guides/guide-layout";
-import { Lead, H2, P, Muted, Callout, StatRows } from "@/components/guides/guide-content";
+import {
+  Lead,
+  H2,
+  P,
+  Muted,
+  Callout,
+  InlineCta,
+  StatRows,
+} from "@/components/guides/guide-content";
 import { GuideArticleJsonLd } from "@/components/seo/guide-article-jsonld";
 import { guideBySlug } from "@/lib/guides";
 import { site } from "@/lib/site";
@@ -131,6 +139,11 @@ export default function InspectionGuidePage() {
           sq ft (plus $1,500–3,500 of tear-out) to rebuild in composite. An honest structural
           verdict is worth real dollars, which is why ours comes as a written report, free.
         </Muted>
+
+        <InlineCta
+          heading="Not sure what you're looking at?"
+          body="A free on-site structural inspection gets you the repair / re-deck / replace verdict in writing — no judgment, no pressure."
+        />
 
         <H2>When to run this</H2>
         <P>

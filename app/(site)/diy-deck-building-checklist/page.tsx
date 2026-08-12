@@ -10,6 +10,7 @@ import {
   P,
   Muted,
   Callout,
+  InlineCta,
   DataTable,
   StatRows,
 } from "@/components/guides/guide-content";
@@ -133,6 +134,11 @@ export default function DiyChecklistPage() {
           the manufacturer&apos;s hidden-fastener bit saves hours. Budget rental days, not
           ownership, for the auger and (if you skirt the deck) a small concrete mixer.
         </P>
+
+        <InlineCta
+          heading="Priced the DIY version — want ours to compare?"
+          body="A free consultation gets you an itemized pro bid to hold against your materials list. Sometimes the delta surprises people."
+        />
 
         <H2>Where DIY builds actually go wrong</H2>
         <P>

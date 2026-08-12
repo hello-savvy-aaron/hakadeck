@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef } from "react";
-import { ArrowRight, Star } from "lucide-react";
+import { ArrowRight, Check, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { site } from "@/lib/site";
 import { shouldLoadHeavyVideo } from "@/lib/heavy-media";
@@ -69,7 +69,7 @@ export function Hero() {
             built around how Denver homes actually live.
           </p>
 
-          <div className="mt-10 flex flex-wrap gap-3">
+          <div className="mt-10 flex flex-wrap items-center gap-3">
             <Button asChild size="lg" className="h-12 px-6 text-base">
               <Link href={site.cta.href}>
                 {site.cta.label}
@@ -84,7 +84,27 @@ export function Hero() {
             >
               <Link href="/portfolio">See our work</Link>
             </Button>
+            <Link
+              href="/deck-cost-calculator"
+              className="inline-flex h-12 items-center px-1 text-base text-white/85 underline-offset-4 transition-colors hover:text-white hover:underline"
+            >
+              30-second cost estimate
+              <ArrowRight className="ml-1.5 h-4 w-4" />
+            </Link>
           </div>
+
+          <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/80">
+            {[
+              "Permits & HOA approvals handled",
+              "2-year workmanship warranty",
+              "Trex, TimberTech & Deckorators certified",
+            ].map((item) => (
+              <li key={item} className="flex items-center gap-2">
+                <Check className="text-haka-gold h-3.5 w-3.5 shrink-0" aria-hidden />
+                {item}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

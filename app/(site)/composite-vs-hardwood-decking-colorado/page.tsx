@@ -2,7 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CtaFinal } from "@/components/sections/cta-final";
 import { GuideLayout } from "@/components/guides/guide-layout";
-import { Lead, H2, P, Muted, Callout, DataTable } from "@/components/guides/guide-content";
+import {
+  Lead,
+  H2,
+  P,
+  Muted,
+  Callout,
+  InlineCta,
+  DataTable,
+} from "@/components/guides/guide-content";
 import { GuideArticleJsonLd } from "@/components/seo/guide-article-jsonld";
 import { FaqJsonLd } from "@/components/seo/faq-jsonld";
 import { guideBySlug } from "@/lib/guides";
@@ -153,6 +161,11 @@ export default function MaterialsGuidePage() {
           hardwood while keeping genuine grain underfoot — typically $40–60 / sq ft installed,
           squarely in composite territory.
         </P>
+
+        <InlineCta
+          heading="Still torn? Hold the boards first."
+          body="A free design consultation comes with samples of both — composite and hardwood — and honest numbers for each in your yard."
+        />
 
         <H2>The ten-year math</H2>
         <P>

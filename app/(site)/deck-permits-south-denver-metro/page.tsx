@@ -9,6 +9,7 @@ import {
   P,
   Muted,
   Callout,
+  InlineCta,
   StatRows,
   DataTable,
   Steps,
@@ -37,7 +38,7 @@ export default function PermitsGuidePage() {
         description={description}
         path="/deck-permits-south-denver-metro"
         datePublished="2026-07-17"
-        dateModified="2026-07-20"
+        dateModified="2026-08-12"
       />
       <GuideLayout
         guideKey={guide.key}
@@ -92,10 +93,16 @@ export default function PermitsGuidePage() {
           ]}
         />
 
+        <InlineCta
+          heading="Rather never touch a permit counter?"
+          body="Drawings, submission, HOA paperwork, and inspections are part of every Haka build — get a quote and the permit becomes our problem."
+        />
+
         <H2>Where to file, by city</H2>
         <P>
-          Centennial, Greenwood Village, Cherry Hills Village, Lone Tree, and Castle Rock file with
-          their own building departments. Highlands Ranch is unincorporated — permits go through{" "}
+          Most metro cities — Centennial, Greenwood Village, Cherry Hills Village, Lone Tree,
+          Castle Rock, Parker, Littleton, and Englewood among them — file with their own building
+          departments. Highlands Ranch is unincorporated — permits go through{" "}
           <strong className="font-semibold">Douglas County</strong>, and the HRCA wants its
           architectural review done before you submit. Unincorporated Arapahoe County addresses
           file with the county. Every jurisdiction wants HOA sign-off first if you have one —
@@ -106,10 +113,14 @@ export default function PermitsGuidePage() {
           rows={[
             ["Centennial", "1–2 weeks", "$150–350"],
             ["Greenwood Village", "1–2 weeks", "$150–350"],
+            ["Littleton", "1–2 weeks", "$150–350"],
+            ["Englewood", "1–2 weeks", "$150–350"],
             ["Lone Tree", "2–3 weeks", "$200–400"],
+            ["Parker", "2–3 weeks", "$200–450"],
             ["Castle Rock", "2–3 weeks", "$200–450"],
             ["Douglas County (Highlands Ranch)", "2–3 weeks", "$200–500"],
             ["Arapahoe County (unincorporated)", "2–3 weeks", "$150–400"],
+            ["Denver & Aurora", "2–4 weeks", "$200–600"],
           ]}
         />
         <Muted>
