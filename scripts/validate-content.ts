@@ -28,6 +28,12 @@ const SITE_ROUTES = join(ROOT, "app", "(site)");
 
 const Faq = z.object({ q: z.string().min(1), a: z.string().min(1) });
 
+const LocationEvent = z.object({
+  name: z.string().min(1),
+  when: z.string().min(1),
+  note: z.string().min(1),
+});
+
 // YAML gives us a Date for unquoted dates and a string for quoted ones; the
 // blog loader normalizes both, so accept both here.
 const DateLike = z.union([z.date(), z.string().min(1)]);
@@ -55,6 +61,7 @@ const LocationFrontmatter = z.object({
   bullets: z.array(z.string().min(1)).min(1),
   projects: z.array(z.string().min(1)),
   faqs: z.array(Faq).min(1),
+  events: z.array(LocationEvent).optional(),
 });
 
 const ServiceFrontmatter = z.object({

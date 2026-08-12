@@ -6,6 +6,15 @@ import type { Faq } from "@/lib/faqs";
 
 const LOCATIONS_DIR = join(process.cwd(), "content", "locations");
 
+// A recurring community event shown in the "Around town" section. `when` is a
+// human-readable recurrence ("Every September", "Sept 12–13, 2026"), not a
+// machine date — these are freshness/local-relevance signals, not a calendar.
+export type LocationEvent = {
+  name: string;
+  when: string;
+  note: string;
+};
+
 export type LocationMeta = {
   slug: string;
   // City name for cards, headings, and areaServed (e.g. "Centennial").
@@ -29,6 +38,9 @@ export type LocationMeta = {
   order: number;
   // City-specific Q&As rendered as an accordion + FAQPage JSON-LD.
   faqs: Faq[];
+  // Verified recurring community events in this city — curated by hand, not
+  // scraped, so names and venues stay real.
+  events: LocationEvent[];
 };
 
 export type Location = LocationMeta & {
@@ -72,5 +84,6 @@ function locationFromFrontmatter(slug: string, data: Record<string, unknown>): L
     mapQuery: data.mapQuery as string,
     order: (data.order as number) ?? 99,
     faqs: (data.faqs as Faq[]) ?? [],
+    events: (data.events as LocationEvent[]) ?? [],
   };
 }

@@ -183,6 +183,37 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
         </div>
       </Section>
 
+      {location.events.length > 0 ? (
+        <Section top="none" bottom="tight">
+          <Eyebrow>Around town</Eyebrow>
+          <SectionHeading className="mt-4 text-3xl sm:text-4xl">
+            Out and about in {location.name}.
+          </SectionHeading>
+          <p className="text-muted-foreground mt-5 max-w-2xl text-sm leading-relaxed sm:text-base">
+            Outdoor season is what a deck is for — and {location.name}&apos;s community calendar
+            is a good reminder of how much of the year gets lived outside here.
+          </p>
+          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {location.events.map((event) => (
+              <li
+                key={event.name}
+                className="border-border/40 bg-card/40 flex h-full flex-col rounded-2xl border p-6"
+              >
+                <span className="text-muted-foreground text-xs tracking-widest uppercase">
+                  {event.when}
+                </span>
+                <span className="font-display mt-2 text-xl font-medium tracking-tight">
+                  {event.name}
+                </span>
+                <span className="text-muted-foreground mt-3 text-sm leading-relaxed">
+                  {event.note}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </Section>
+      ) : null}
+
       {others.length > 0 ? (
         <Section top="none">
           <Eyebrow>More service areas</Eyebrow>
