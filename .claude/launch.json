@@ -7,6 +7,13 @@
       "runtimeArgs": ["dev", "--port", "3001"],
       "port": 3001,
       "autoPort": false
+    },
+    {
+      "name": "haka-web-mail-off",
+      "runtimeExecutable": "env",
+      "runtimeArgs": ["RESEND_API_KEY=", "pnpm", "dev", "--port", "3001"],
+      "port": 3001,
+      "autoPort": false
     }
   ]
 }

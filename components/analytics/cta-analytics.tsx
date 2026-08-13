@@ -3,6 +3,8 @@
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { track } from "@vercel/analytics";
+import { captureAttribution } from "@/lib/attribution";
+import { notifyCallClick } from "@/lib/call-notify";
 import { trackGa } from "@/lib/gtag";
 import { trackAdsConversion } from "@/lib/google-ads";
 import { trackReddit } from "@/lib/reddit";
@@ -38,8 +40,17 @@ import { site } from "@/lib/site";
 // exactly one `Lead`. Quote clicks are deliberately NOT mirrored: they only
 // signal intent to open /contact, and the form fires its own `Lead` on actual
 // submit — counting both would double-report a single lead.
+// Phone clicks also POST to /api/call-notify, which emails Pete the caller's
+// context (page, first-touch attribution, rough location) as the phone rings.
 export function CtaAnalytics() {
   const pathname = usePathname();
+
+  // First-touch attribution must be recorded before the visitor navigates
+  // away from the landing page (referrer and UTM params exist only there).
+  // Runs on every mount but only the session's first call writes.
+  useEffect(() => {
+    captureAttribution();
+  }, []);
 
   useEffect(() => {
     function onClick(event: MouseEvent) {
@@ -47,6 +58,7 @@ export function CtaAnalytics() {
       if (!anchor) return;
 
       if (anchor.protocol === "tel:") {
+        notifyCallClick(anchor.href, pathname);
         trackGa("call_click", { source: pathname });
         track("Call clicked", { source: pathname });
         trackReddit("Lead");
