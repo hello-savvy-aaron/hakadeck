@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { contactChannel, contactSchema } from "@/lib/contact-schema";
+import { contactSchema } from "@/lib/contact-schema";
+import { attributionSchema, visitorContextLines } from "@/lib/visitor-context";
 
 const HITS = new Map<string, { count: number; first: number }>();
 const WINDOW_MS = 60_000;
@@ -52,6 +53,14 @@ export async function POST(req: Request) {
     );
   }
 
+  // First-touch attribution rides alongside the form fields (see
+  // lib/attribution.ts). Never required — a malformed one is dropped, not a
+  // reason to reject a lead.
+  const attributionParsed = attributionSchema.safeParse(
+    (body as { attribution?: unknown }).attribution,
+  );
+  const attribution = attributionParsed.success ? attributionParsed.data : null;
+
   // Honeypot — silently succeed on bot fills so they don't probe further.
   if (parsed.data.website) {
     return NextResponse.json({ ok: true });
@@ -68,6 +77,7 @@ export async function POST(req: Request) {
         2,
       ),
     );
+    console.log(visitorContextLines(req, attribution).join("\n"));
     return NextResponse.json({ ok: true, mode: "dev-log" });
   }
 
@@ -82,21 +92,26 @@ export async function POST(req: Request) {
   try {
     const { Resend } = await import("resend");
     const resend = new Resend(apiKey);
-    const { contact, message, projectType, squareFootage, levels, features, photos } =
+    const { phone, email, referralSource, message, projectType, squareFootage, features, photos } =
       parsed.data;
-    const channel = contactChannel(contact); // "email" | "phone"
-    const action = channel === "phone" ? "call back" : "email back";
+    // Phone leads first — schema guarantees at least one of the two exists.
+    const action = phone ? "call back" : "email back";
+    const reachBack = phone || email!;
     const text = [
-      channel === "phone" ? `Call back: ${contact}` : `Email back: ${contact}`,
+      phone ? `Phone: ${phone}` : null,
+      email ? `Email: ${email}` : null,
+      `How they found us (their answer): ${referralSource}`,
       projectType ? `About: ${projectType}` : null,
       squareFootage ? `Approx. size: ${squareFootage} sq ft` : null,
-      levels ? `Levels: ${levels}` : null,
       features && features.length ? `Features: ${features.join(", ")}` : null,
       photos && photos.length ? `Photos: ${photos.length} attached` : null,
       "",
       message || "(no note)",
+      "",
+      "— Visitor context —",
+      ...visitorContextLines(req, attribution),
     ]
-      .filter(Boolean)
+      .filter((line): line is string => line !== null)
       .join("\n");
 
     const result = await resend.emails.send({
@@ -104,8 +119,8 @@ export async function POST(req: Request) {
       to: TO,
       // Only wire replyTo when the lead left an email — a phone number isn't a
       // valid reply address and would make Resend reject the send.
-      ...(channel === "email" ? { replyTo: contact } : {}),
-      subject: `New lead — ${action}: ${contact}`,
+      ...(email ? { replyTo: email } : {}),
+      subject: `New lead — ${action}: ${reachBack}`,
       text,
       ...(photos && photos.length
         ? {

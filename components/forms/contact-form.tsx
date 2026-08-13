@@ -6,39 +6,38 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { track } from "@vercel/analytics";
 import { trackGa } from "@/lib/gtag";
 import { toast } from "sonner";
-import { ArrowRight, Camera, Check, Loader2, Phone, X } from "lucide-react";
+import { ArrowRight, Camera, Check, ChevronDown, Loader2, Phone, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
+import { getAttribution } from "@/lib/attribution";
 import {
-  contactChannel,
   contactSchema,
   DECK_FEATURES,
-  DECK_LEVELS,
-  detectContact,
+  isValidEmail,
+  isValidPhone,
   PROJECT_CHIPS,
+  REFERRAL_SOURCES,
   type ContactInput,
-  type ContactKind,
 } from "@/lib/contact-schema";
 import { trackAdsConversion } from "@/lib/google-ads";
 import { trackReddit } from "@/lib/reddit";
 import { site } from "@/lib/site";
 
-// Live guidance shown under the contact field, keyed off the same detector that
-// gates submission. `pine` reads as success, `soft` as neutral, `warn` as error.
-const HINTS: Record<Exclude<ContactKind, null>, { text: string; tone: "pine" | "soft" | "warn" }> =
-  {
-    phone: { text: "✓ Looks good — we'll call or text this number.", tone: "pine" },
-    email: { text: "✓ Looks good — we'll email you back.", tone: "pine" },
-    "partial-email": { text: "Almost — that email looks incomplete.", tone: "soft" },
-    "partial-phone": { text: "Keep going — 10 digits for a phone number.", tone: "soft" },
-    unknown: { text: "Enter a phone number or an email address.", tone: "warn" },
-  };
-
-// Empty until the visitor starts typing — the hint only speaks up to confirm or
-// correct, never to fill silence. Reserved height keeps the layout from jumping.
-const HINT_DEFAULT = "";
+// Live guidance shown under the phone/email pair, keyed off the same
+// validators that gate submission. Speaks up only to confirm or correct, never
+// to fill silence; in-progress typing gets guidance before valid input gets a
+// checkmark. `pine` reads as success, `soft` as neutral.
+function liveHint(phone: string, email: string): { text: string; tone: "pine" | "soft" } {
+  if (phone && !isValidPhone(phone))
+    return { text: "Keep going — 10 digits for a phone number.", tone: "soft" };
+  if (email && !isValidEmail(email))
+    return { text: "Almost — that email looks incomplete.", tone: "soft" };
+  if (phone) return { text: "✓ Looks good — we'll call or text this number.", tone: "pine" };
+  if (email) return { text: "✓ Looks good — we'll email you back.", tone: "pine" };
+  return { text: "", tone: "soft" };
+}
 
 const MAX_PHOTOS = 3;
 const MAX_PHOTO_BYTES = 10 * 1024 * 1024;
@@ -113,12 +112,12 @@ export function ContactForm() {
     resolver: zodResolver(contactSchema),
   });
 
-  const contactValue = useWatch({ control, name: "contact" }) ?? "";
+  const phoneValue = useWatch({ control, name: "phone" }) ?? "";
+  const emailValue = useWatch({ control, name: "email" }) ?? "";
   const selectedChip = useWatch({ control, name: "projectType" });
-  const selectedLevel = useWatch({ control, name: "levels" });
   const selectedFeatures = useWatch({ control, name: "features" }) ?? [];
-  const kind = detectContact(contactValue);
-  const hint = kind ? HINTS[kind] : { text: HINT_DEFAULT, tone: "soft" as const };
+  const referralValue = useWatch({ control, name: "referralSource" });
+  const hint = liveHint(phoneValue, emailValue);
 
   function addPhotos(list: FileList | null) {
     if (!list) return;
@@ -157,19 +156,23 @@ export function ContactForm() {
         body: JSON.stringify({
           ...values,
           ...(attached.length ? { photos: attached } : {}),
+          // First-touch attribution (landing page, referrer, UTMs) — emailed
+          // to Pete as visitor context alongside the lead.
+          attribution: getAttribution(),
         }),
       });
       if (!res.ok) throw new Error("Submit failed");
-      // Count successful submissions in Vercel Web Analytics. Both fields are
-      // bounded (no PII) — the contact string and note are omitted.
-      const channel = contactChannel(values.contact) ?? "unknown";
+      // Count successful submissions in Vercel Web Analytics. All fields are
+      // bounded (no PII) — the phone/email and note are omitted.
+      const channel = values.phone ? "phone" : "email";
       const projectType = values.projectType ?? "unspecified";
-      track("Contact form submitted", { channel, projectType });
+      const referralSource = values.referralSource;
+      track("Contact form submitted", { channel, projectType, referralSource });
       // Land the actual conversion in GA4 too. `generate_lead` is GA4's
       // recommended lead event — mark it as a key event in the GA4 UI to count
       // it as a conversion. Free and unlimited, unlike the Vercel event above
       // (which needs a paid plan), so this is the reliable home for the signal.
-      trackGa("generate_lead", { channel, projectType });
+      trackGa("generate_lead", { channel, projectType, referralSource });
       // Mirror the conversion to Reddit Ads — a quote request counts as a Lead
       // for campaign optimization. No-ops if the pixel isn't configured.
       trackReddit("Lead");
@@ -179,7 +182,7 @@ export function ContactForm() {
         value: 1.0,
         currency: "USD",
       });
-      setSentContact(values.contact.trim());
+      setSentContact((values.phone || values.email || "").trim());
       setPhotos([]);
       reset();
     } catch {
@@ -235,30 +238,75 @@ export function ContactForm() {
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} onFocusCapture={trackFormStart}>
-        <Input
-          autoComplete="email"
-          enterKeyHint="send"
-          placeholder="Your phone number or email"
-          aria-label="Your phone number or email"
-          aria-describedby="contact-hint"
-          className="h-14 text-base"
-          {...register("contact")}
-        />
+        {/* Phone and email — at least one required, enforced by the schema. */}
+        <div className="grid gap-3 sm:grid-cols-2">
+          <Input
+            type="tel"
+            inputMode="tel"
+            autoComplete="tel"
+            placeholder="Phone number"
+            aria-label="Phone number"
+            aria-describedby="contact-hint"
+            className="h-14 text-base"
+            {...register("phone")}
+          />
+          <Input
+            type="email"
+            inputMode="email"
+            autoComplete="email"
+            placeholder="Email address"
+            aria-label="Email address"
+            aria-describedby="contact-hint"
+            className="h-14 text-base"
+            {...register("email")}
+          />
+        </div>
         <p
           id="contact-hint"
           className={cn(
             "mt-2 min-h-[18px] px-0.5 text-[13px]",
-            errors.contact
+            errors.phone || errors.email
               ? "text-[#a05252]"
               : hint.tone === "pine"
                 ? "text-haka-pine"
-                : hint.tone === "warn"
-                  ? "text-[#a05252]"
-                  : "text-muted-foreground",
+                : "text-muted-foreground",
           )}
         >
-          {errors.contact?.message ?? hint.text}
+          {errors.phone?.message ?? errors.email?.message ?? hint.text}
         </p>
+
+        {/* Required — Pete's favorite question, answered before he picks up the
+            phone. Native select for the built-in mobile picker. */}
+        <div className="mt-3">
+          <label htmlFor="referral-source" className="text-foreground/80 text-sm font-medium">
+            How did you find us?
+          </label>
+          <div className="relative mt-1.5">
+            <select
+              id="referral-source"
+              defaultValue=""
+              aria-invalid={errors.referralSource ? true : undefined}
+              className={cn(
+                "border-input focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 h-12 w-full appearance-none rounded-lg border bg-transparent px-2.5 py-1 pr-10 text-base transition-colors outline-none focus-visible:ring-3 aria-invalid:ring-3",
+                referralValue ? "text-foreground" : "text-muted-foreground",
+              )}
+              {...register("referralSource")}
+            >
+              <option value="" disabled>
+                Select one…
+              </option>
+              {REFERRAL_SOURCES.map((source) => (
+                <option key={source} value={source}>
+                  {source}
+                </option>
+              ))}
+            </select>
+            <ChevronDown className="text-muted-foreground pointer-events-none absolute top-1/2 right-3.5 h-4 w-4 -translate-y-1/2" />
+          </div>
+          <p className="mt-1.5 min-h-[18px] px-0.5 text-[13px] text-[#a05252]">
+            {errors.referralSource?.message ?? ""}
+          </p>
+        </div>
 
         {/* Optional project chips — single-select toggle, purely to help us prep. */}
         <fieldset className="mt-4">
@@ -318,32 +366,6 @@ export function ContactForm() {
                 <span className="text-muted-foreground pointer-events-none absolute top-1/2 right-4 -translate-y-1/2 text-sm">
                   sq ft
                 </span>
-              </div>
-            </div>
-            <div>
-              <span className="text-foreground/80 text-sm font-medium">Levels</span>
-              <div className="mt-1.5 flex gap-2">
-                {DECK_LEVELS.map((label) => {
-                  const on = selectedLevel === label;
-                  return (
-                    <button
-                      key={label}
-                      type="button"
-                      aria-pressed={on}
-                      onClick={() =>
-                        setValue("levels", on ? undefined : label, { shouldDirty: true })
-                      }
-                      className={cn(
-                        "flex-1 rounded-full border px-3 py-2.5 text-sm font-medium transition-colors",
-                        on
-                          ? "border-primary bg-primary text-primary-foreground"
-                          : "border-input bg-card text-foreground hover:bg-muted/60",
-                      )}
-                    >
-                      {label}
-                    </button>
-                  );
-                })}
               </div>
             </div>
           </div>
@@ -420,9 +442,6 @@ export function ContactForm() {
               </span>
             ))}
           </div>
-          <p className="text-muted-foreground mt-1.5 px-0.5 text-[13px]">
-            Optional — up to 3 photos, 10 MB each. Great for repairs and replacements.
-          </p>
         </div>
 
         <Textarea
