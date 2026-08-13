@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { DeckEstimator, EstimatorFooterLinks } from "@/components/guides/deck-estimator";
+import { WhatMovesTheNumberFigure } from "@/components/guides/figure-charts";
 import { GUIDES_HUB } from "@/lib/guides";
 
 // Phase two: built but intentionally unlinked (not in nav, not in the sitemap).
@@ -33,6 +34,9 @@ export default function DeckCostEstimatorPage() {
       </p>
 
       <DeckEstimator />
+      <div className="mt-6">
+        <WhatMovesTheNumberFigure />
+      </div>
       <EstimatorFooterLinks />
     </div>
   );

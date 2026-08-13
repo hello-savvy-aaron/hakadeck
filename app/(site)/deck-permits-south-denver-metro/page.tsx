@@ -14,6 +14,7 @@ import {
   DataTable,
   Steps,
 } from "@/components/guides/guide-content";
+import { PermitTimelineFigure } from "@/components/guides/figure-process";
 import { guideBySlug } from "@/lib/guides";
 import { site } from "@/lib/site";
 
@@ -79,6 +80,7 @@ export default function PermitsGuidePage() {
             </>,
           ]}
         />
+        <PermitTimelineFigure />
 
         <H2>Code numbers that trip people up</H2>
         <StatRows

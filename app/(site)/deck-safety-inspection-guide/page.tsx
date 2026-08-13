@@ -12,6 +12,7 @@ import {
   StatRows,
 } from "@/components/guides/guide-content";
 import { GuideArticleJsonLd } from "@/components/seo/guide-article-jsonld";
+import { InspectionMapFigure } from "@/components/guides/figure-diagrams";
 import { guideBySlug } from "@/lib/guides";
 import { site } from "@/lib/site";
 
@@ -86,6 +87,10 @@ export default function InspectionGuidePage() {
           Print it, walk your deck, and you&apos;ll know whether you&apos;re looking at nothing,
           a repair, or a real problem before anyone quotes you a dollar.
         </Lead>
+
+        <div className="mt-5">
+          <InspectionMapFigure />
+        </div>
 
         <div className="mt-5 flex flex-col gap-5">
           {CHECKS.map((c, i) => (

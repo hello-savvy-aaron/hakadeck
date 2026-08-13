@@ -12,6 +12,7 @@ import {
   DataTable,
 } from "@/components/guides/guide-content";
 import { GuideArticleJsonLd } from "@/components/seo/guide-article-jsonld";
+import { SurfaceCostRangeFigure } from "@/components/guides/figure-charts";
 import { FaqJsonLd } from "@/components/seo/faq-jsonld";
 import { guideBySlug } from "@/lib/guides";
 import { site } from "@/lib/site";
@@ -161,6 +162,7 @@ export default function MaterialsGuidePage() {
           hardwood while keeping genuine grain underfoot — typically $40–60 / sq ft installed,
           squarely in composite territory.
         </P>
+        <SurfaceCostRangeFigure />
 
         <InlineCta
           heading="Still torn? Hold the boards first."

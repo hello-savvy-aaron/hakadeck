@@ -3,6 +3,7 @@ import Link from "next/link";
 import { CtaFinal } from "@/components/sections/cta-final";
 import { GuideLayout } from "@/components/guides/guide-layout";
 import { Lead, H2, P, Muted, Callout, InlineCta } from "@/components/guides/guide-content";
+import { BidComparisonFigure } from "@/components/guides/figure-process";
 import { GuideArticleJsonLd } from "@/components/seo/guide-article-jsonld";
 import { guideBySlug } from "@/lib/guides";
 import { site } from "@/lib/site";
@@ -97,6 +98,10 @@ export default function ContractChecklistPage() {
           will enjoy answering them. No email required for the PDF; do the homework, we&apos;ll
           wait.
         </Lead>
+
+        <div className="mt-5">
+          <BidComparisonFigure />
+        </div>
 
         <div className="mt-5 flex flex-col gap-5">
           {QUESTIONS.map((item, i) => (

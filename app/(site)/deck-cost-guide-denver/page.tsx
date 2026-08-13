@@ -16,6 +16,7 @@ import {
   CostBar,
   Steps,
 } from "@/components/guides/guide-content";
+import { TenYearCostFigure } from "@/components/guides/figure-charts";
 import { costGuide } from "@/lib/guides";
 import { site } from "@/lib/site";
 
@@ -281,6 +282,7 @@ export default function DeckCostGuidePage() {
           narrows to a few thousand dollars over a decade — and past year ten, composite is
           simply ahead.
         </P>
+        <TenYearCostFigure />
 
         <H2>How to read a bid — the red flags</H2>
         <Steps

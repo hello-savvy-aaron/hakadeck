@@ -4,6 +4,7 @@ import { CtaFinal } from "@/components/sections/cta-final";
 import { GuideLayout } from "@/components/guides/guide-layout";
 import { GuideArticleJsonLd } from "@/components/seo/guide-article-jsonld";
 import { DiyChecklist } from "@/components/guides/diy-checklist";
+import { DeckAnatomyFigure } from "@/components/guides/figure-diagrams";
 import {
   Lead,
   H2,
@@ -98,6 +99,7 @@ export default function DiyChecklistPage() {
           ledger on the house wall, one doubled 2×10 beam on three posts near the outer edge, and
           2×8 joists at 16&quot; on center spanning the 12 ft between them.
         </P>
+        <DeckAnatomyFigure />
         <StatRows
           rows={[
             { label: "Footings — 12\" dia × 36\" deep", value: "3" },

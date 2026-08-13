@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Eyebrow, Section, SectionHeading } from "@/components/sections/section";
 import { CtaFinal } from "@/components/sections/cta-final";
 import { DeckCostCalculator } from "@/components/forms/deck-cost-calculator";
+import { WhatMovesTheNumberFigure } from "@/components/guides/figure-charts";
 import { site } from "@/lib/site";
 
 const title = "Deck Cost Calculator — Free Deck Estimate, Denver Metro (2026) | Haka Decks";
@@ -51,6 +52,9 @@ export default function DeckCostCalculatorPage() {
             a ground-level build of the same size. Covers, stairs, teardown of an old deck, and
             premium railing are added as the flat ranges we actually see on quotes.
           </p>
+          <div className="not-prose">
+            <WhatMovesTheNumberFigure />
+          </div>
           <p>
             For the full breakdown of where the money goes, read our{" "}
             <Link href="/blog/composite-deck-cost-denver">composite deck cost guide</Link> and the{" "}

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { CtaFinal } from "@/components/sections/cta-final";
+import { DeckStyleChooserFigure } from "@/components/guides/figure-process";
 import { NewsletterSignup } from "@/components/guides/newsletter-signup";
 import { getAllProjects } from "@/lib/portfolio";
 import { guideBySlug, GUIDES_HUB } from "@/lib/guides";
@@ -74,6 +75,10 @@ export default async function GalleryPage() {
         <p className="text-muted-foreground mt-2 text-sm leading-relaxed">
           Every photo is a Haka project in the south Denver metro. Steal freely.
         </p>
+
+        <div className="mt-6">
+          <DeckStyleChooserFigure />
+        </div>
 
         <div className="mt-6 grid grid-cols-1 gap-5">
           {tiles.map(({ slug, caption, blurb, project }) => (
