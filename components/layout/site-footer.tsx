@@ -138,7 +138,7 @@ export async function SiteFooter() {
             <p className="text-muted-foreground text-xs">
               Site by{" "}
               <a
-                href="https://www.hellosavvy.design"
+                href="https://hellosavvy.design"
                 target="_blank"
                 rel="noreferrer"
                 className="hover:text-foreground underline-offset-4 hover:underline"
