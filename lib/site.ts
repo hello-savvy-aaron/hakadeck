@@ -216,7 +216,7 @@ export const site = {
   // gaId; an empty string keeps the pixel disabled (RedditPixel renders nothing).
   redditPixelId: "a2_j8eyxrhfn1k2",
   founded: 2017,
-  rating: { value: 5.0, count: 89, max: 5 },
+  rating: { value: 5.0, count: 90, max: 5 },
   // Official Google Business Profile share link → opens the Haka Decks listing
   // (knowledge panel + reviews). Verified 200; resolves to the GBP for kgmid
   // /g/11sxx77nb2. Replaced the old g.co/kgs/haka-deck placeholder, which 404'd.
