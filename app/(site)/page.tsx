@@ -22,12 +22,12 @@ export default function HomePage() {
       <FaqJsonLd />
       <Hero />
       <Reveal>
-        <LocalIntro />
-      </Reveal>
-      <Reveal>
         <GuidesLanding />
       </Reveal>
       <ReviewsMarquee />
+      <Reveal>
+        <LocalIntro />
+      </Reveal>
       <Reveal>
         <ServicesPreview />
       </Reveal>
