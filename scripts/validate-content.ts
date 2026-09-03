@@ -46,6 +46,9 @@ const BlogFrontmatter = z.object({
   category: z.string().min(1),
   cover: z.string().startsWith("/").optional(),
   readingMinutes: z.number().int().positive(),
+  // Optional Q&As rendered as a "Quick answers" section + FAQPage JSON-LD —
+  // the visible copy and the schema stay in sync (Google requirement).
+  faqs: z.array(Faq).optional(),
 });
 
 const LocationFrontmatter = z.object({

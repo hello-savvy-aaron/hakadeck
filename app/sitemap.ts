@@ -26,6 +26,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/trex-deck-builder-denver",
     "/deckorators-deck-builder-denver",
     "/timbertech-deck-builder-denver",
+    "/small-deck-builder-denver",
     // Free Guides & Tools system (hub + guides + gallery). The phase-two
     // estimator is intentionally excluded — it's unlinked and noindexed.
     ...guideRoutes,

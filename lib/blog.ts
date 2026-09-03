@@ -2,6 +2,7 @@ import { readdir, readFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import matter from "gray-matter";
+import type { Faq } from "@/lib/faqs";
 
 const BLOG_DIR = join(process.cwd(), "content", "blog");
 
@@ -20,6 +21,8 @@ export type PostMeta = {
 
 export type Post = PostMeta & {
   body: string;
+  // Optional Q&As shown as a "Quick answers" accordion + FAQPage JSON-LD.
+  faqs: Faq[];
 };
 
 export async function getAllPosts(): Promise<PostMeta[]> {
@@ -65,5 +68,6 @@ export async function getPost(slug: string): Promise<Post | null> {
     cover: data.cover as string | undefined,
     readingMinutes: data.readingMinutes as number,
     body: content,
+    faqs: (data.faqs as Faq[]) ?? [],
   };
 }

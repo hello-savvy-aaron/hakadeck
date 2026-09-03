@@ -16,6 +16,7 @@ export const metadata: Metadata = {
 // categories (content:validate doesn't enforce it, so unknown categories fall
 // through to the end rather than vanish).
 const CATEGORY_ORDER = [
+  "Repair & Maintenance",
   "Cost & Budget",
   "Design & Materials",
   "Covers & Pergolas",
@@ -23,6 +24,7 @@ const CATEGORY_ORDER = [
 ];
 
 const CATEGORY_BLURBS: Record<string, string> = {
+  "Repair & Maintenance": "Symptoms, fixes, and honest repair-vs-replace calls for aging decks.",
   "Cost & Budget": "Real 2026 Denver-metro numbers — per-square-foot ranges, labor, financing.",
   "Design & Materials": "Composite vs. wood, brand comparisons, and designs that fit Colorado lots.",
   "Covers & Pergolas": "Roofs, pergolas, and screened rooms — what shelter actually costs and solves.",

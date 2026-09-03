@@ -10,6 +10,8 @@ import { CtaFinal } from "@/components/sections/cta-final";
 import { PostCard } from "@/components/blog/post-card";
 import { BreadcrumbJsonLd } from "@/components/seo/breadcrumb-jsonld";
 import { ArticleJsonLd } from "@/components/seo/article-jsonld";
+import { Faq } from "@/components/sections/faq";
+import { FaqJsonLd } from "@/components/seo/faq-jsonld";
 import { getAllPosts, getPost } from "@/lib/blog";
 
 export async function generateStaticParams() {
@@ -123,6 +125,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           />
         </article>
       </Section>
+
+      {post.faqs.length > 0 ? (
+        <>
+          <FaqJsonLd faqs={post.faqs} />
+          <Faq faqs={post.faqs} heading="Quick answers." />
+        </>
+      ) : null}
 
       {morePosts.length > 0 ? (
         <Section top="none">

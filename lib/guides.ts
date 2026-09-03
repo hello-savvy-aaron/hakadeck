@@ -11,7 +11,7 @@ export const GUIDES_HUB = "/deck-guides-and-tools";
 // Phase-two estimator: built, but deliberately not linked from nav yet.
 export const ESTIMATOR_HREF = "/deck-cost-estimator-denver";
 
-export type Chip = "GUIDE · PDF" | "GALLERY";
+export type Chip = "GUIDE · PDF" | "GUIDE" | "GALLERY";
 
 export type Guide = {
   /** Lead key — recorded with every PDF capture; also the stable identity. */
@@ -131,6 +131,20 @@ export const guides: Guide[] = [
     chip: "GALLERY",
     readLabel: "Gallery",
     updated: "July 2026",
+  },
+  {
+    key: "anatomy-guide",
+    slug: "deck-anatomy-guide",
+    href: "/deck-anatomy-guide",
+    number: "07",
+    hubTitle: "Deck Anatomy — How a Colorado Deck Holds Together",
+    hubBlurb:
+      "Ledger, footings, framing, hardware — the structure under the boards, with diagrams and the numbers that matter.",
+    landingTitle: "Deck Anatomy",
+    landingBlurb: "The structure under the boards, diagrammed — ledger, footings, framing, hardware.",
+    chip: "GUIDE",
+    readLabel: "8 min read",
+    updated: "September 2026",
   },
 ];
 

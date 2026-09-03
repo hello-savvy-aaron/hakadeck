@@ -262,3 +262,102 @@ export function InspectionMapFigure() {
     </Figure>
   );
 }
+
+// ---------------------------------------------------------------------------
+// Ledger connection detail — the one connection that decides whether a deck
+// stays on the house. Drawn as a close-up section: flashing lapped over the
+// ledger, structural screws into the rim, joist on a hanger.
+// Used on /deck-anatomy-guide.
+// ---------------------------------------------------------------------------
+export function LedgerDetailFigure() {
+  return (
+    <Figure
+      caption={
+        <>
+          The ledger connection in close-up. Water is the enemy: flashing laps over the
+          ledger&apos;s top edge so runoff sheds outward, structural screws (never nails) carry
+          the load into the house rim, and the joist hangs on a full-fastened hanger. Every
+          catastrophic deck collapse post-mortem starts with one of these three details missing.
+        </>
+      }
+    >
+      <svg
+        viewBox="0 0 620 300"
+        role="img"
+        aria-label="Cross-section detail of a deck ledger connection: metal flashing lapped over the top of the ledger board and behind the siding, structural screws fastening the ledger through sheathing into the house rim joist, and a deck joist supported by a joist hanger with fasteners in every hole. Labels warn that nails alone and missing flashing are the classic failure causes."
+        style={{ width: "100%", height: "auto", display: "block" }}
+      >
+        {/* House wall: siding + sheathing + rim joist */}
+        <rect x={40} y={20} width={26} height={250} fill="#e3dfda" stroke={FIG.ink} strokeOpacity="0.3" strokeWidth="1" />
+        <text x={53} y={160} fontSize="11" fill={FIG.muted} textAnchor="middle" transform="rotate(-90 53 160)">
+          house rim joist
+        </text>
+        <rect x={66} y={20} width={10} height={250} fill="#d5cec5" stroke={FIG.ink} strokeOpacity="0.25" strokeWidth="0.75" />
+
+        {/* Siding above flashing */}
+        <rect x={76} y={20} width={14} height={92} fill="#cfc7bb" stroke={FIG.ink} strokeOpacity="0.25" strokeWidth="0.75" />
+        <text x={122} y={44} fontSize="11" fill={FIG.muted}>
+          siding
+        </text>
+
+        {/* Flashing: down behind siding, over ledger top, kicked out */}
+        <path
+          d="M 80 96 L 80 118 L 132 118 L 132 126"
+          fill="none"
+          stroke={FIG.green}
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <text x={146} y={112} fontSize="11.5" fontWeight="600" fill={FIG.green}>
+          flashing laps OVER the ledger
+        </text>
+        <text x={146} y={127} fontSize="10.5" fill={FIG.muted}>
+          water sheds outward, never behind
+        </text>
+
+        {/* Ledger board */}
+        <rect x={76} y={118} width={56} height={120} fill={FIG.board} stroke={FIG.ink} strokeOpacity="0.4" strokeWidth="1" />
+        <text x={104} y={182} fontSize="11" fill={FIG.ink} textAnchor="middle" transform="rotate(-90 104 182)">
+          ledger
+        </text>
+
+        {/* Structural screws into rim */}
+        {[140, 176, 212].map((y) => (
+          <g key={y}>
+            <line x1={128} y1={y} x2={52} y2={y} stroke={FIG.pine} strokeWidth="3.5" strokeLinecap="round" />
+            <circle cx={128} cy={y} r={4.5} fill={FIG.pine} />
+          </g>
+        ))}
+        <text x={146} y={162} fontSize="11.5" fontWeight="600" fill={FIG.pine}>
+          structural screws into the rim
+        </text>
+        <text x={146} y={177} fontSize="10.5" fill={FIG.warn}>
+          nails alone = the classic failure
+        </text>
+
+        {/* Joist hanger + joist */}
+        <path
+          d="M 132 196 L 152 196 L 152 240 L 132 240"
+          fill="none"
+          stroke={FIG.teal}
+          strokeWidth="3"
+          strokeLinecap="round"
+        />
+        <rect x={152} y={200} width={420} height={36} fill={FIG.board} stroke={FIG.ink} strokeOpacity="0.35" strokeWidth="1" />
+        <text x={340} y={222} fontSize="11" fill={FIG.ink} textAnchor="middle">
+          deck joist
+        </text>
+        <text x={146} y={262} fontSize="11.5" fontWeight="600" fill={FIG.teal}>
+          joist hanger — a fastener in every hole
+        </text>
+
+        {/* Decking on top */}
+        <Boards from={140} to={575} y={186} />
+        <text x={430} y={178} fontSize="10.5" fill={FIG.muted}>
+          decking, gapped for drainage
+        </text>
+      </svg>
+    </Figure>
+  );
+}
