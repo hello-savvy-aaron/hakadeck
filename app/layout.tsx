@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { AnalyticsGate } from "@/components/analytics/analytics-gate";
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { GoogleTagManager } from "@/components/analytics/google-tag-manager";
 import { GoogleAds } from "@/components/analytics/google-ads";
@@ -77,14 +78,20 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${bricolage.variable} h-full antialiased`}>
       <body className="bg-background text-foreground flex min-h-full flex-col font-sans">
-        <GoogleTagManager gtmId={site.gtmId} />
         {children}
-        <Analytics />
+        {/* SpeedInsights stays outside the gate: it reports page timings, not
+            visits, so owner traffic doesn't skew the numbers that matter. */}
         <SpeedInsights />
-        <GoogleAnalytics gaId={site.gaId} />
-        <GoogleAds adsId={site.googleAdsId} />
-        <RedditPixel pixelId={site.redditPixelId} />
-        <CtaAnalytics />
+        {/* Everything that counts visits/events loads through the gate — the
+            owner opts this browser out once at /no-track. */}
+        <AnalyticsGate>
+          <GoogleTagManager gtmId={site.gtmId} />
+          <Analytics />
+          <GoogleAnalytics gaId={site.gaId} />
+          <GoogleAds adsId={site.googleAdsId} />
+          <RedditPixel pixelId={site.redditPixelId} />
+          <CtaAnalytics />
+        </AnalyticsGate>
       </body>
     </html>
   );

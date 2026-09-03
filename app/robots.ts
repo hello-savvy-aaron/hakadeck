@@ -4,7 +4,7 @@ import { site } from "@/lib/site";
 export default function robots(): MetadataRoute.Robots {
   const base = site.url.replace(/\/$/, "");
   return {
-    rules: [{ userAgent: "*", allow: "/", disallow: ["/api/"] }],
+    rules: [{ userAgent: "*", allow: "/", disallow: ["/api/", "/no-track"] }],
     sitemap: `${base}/sitemap.xml`,
     host: base,
   };
