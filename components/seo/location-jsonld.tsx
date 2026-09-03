@@ -25,7 +25,8 @@ export function LocationJsonLd({
         // (site) layout) instead of duplicating the NAP.
         provider: { "@id": `${site.url}/#business` },
         areaServed: {
-          "@type": "City",
+          // County hub pages serve an administrative area, not a city.
+          "@type": city.endsWith("County") ? "AdministrativeArea" : "City",
           name: `${city}, Colorado`,
         },
       },

@@ -49,11 +49,15 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
   const location = await getLocation(slug);
   if (!location) notFound();
 
-  const [projects, others] = await Promise.all([
+  const [projects, allOthers] = await Promise.all([
     Promise.all(location.projects.map((p) => getProject(p))),
     getAllLocations().then((all) => all.filter((l) => l.slug !== slug)),
   ]);
   const cityProjects = projects.filter((p) => p !== null);
+  // County hub pages get a compact strip; the card grid stays cities-only so
+  // it doesn't balloon further.
+  const counties = allOthers.filter((l) => l.slug.endsWith("-county"));
+  const others = allOthers.filter((l) => !l.slug.endsWith("-county"));
 
   return (
     <>
@@ -220,6 +224,22 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
           <SectionHeading className="mt-4 text-3xl sm:text-4xl lg:text-5xl">
             Everywhere else we build.
           </SectionHeading>
+          {counties.length > 0 ? (
+            <p className="text-muted-foreground mt-6 text-sm leading-relaxed">
+              Browse by county:{" "}
+              {counties.map((c, i) => (
+                <span key={c.slug}>
+                  {i > 0 ? " · " : null}
+                  <Link
+                    href={`/locations/${c.slug}`}
+                    className="text-foreground/85 hover:text-foreground font-medium underline underline-offset-4"
+                  >
+                    {c.name}
+                  </Link>
+                </span>
+              ))}
+            </p>
+          ) : null}
           <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {others.map((l) => (
               <li key={l.slug}>

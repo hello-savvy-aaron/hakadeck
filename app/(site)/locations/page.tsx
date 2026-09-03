@@ -15,7 +15,12 @@ export const metadata: Metadata = {
 };
 
 export default async function LocationsPage() {
-  const locations = await getAllLocations();
+  const all = await getAllLocations();
+  // County hub pages (slug convention: "*-county") lead the page — homeowners
+  // shouldn't have to find their exact town in a 50-card grid to know we
+  // serve them. City pages keep the image-card grid below.
+  const counties = all.filter((l) => l.slug.endsWith("-county"));
+  const locations = all.filter((l) => !l.slug.endsWith("-county"));
 
   return (
     <>
@@ -25,16 +30,43 @@ export default async function LocationsPage() {
           The Front Range is home turf.
         </h1>
         <p className="text-muted-foreground mt-6 max-w-2xl text-lg leading-relaxed">
-          Our shop is in the {site.address.district}, and we build {site.serviceArea}. The cities
-          below are
-          where we work most — each gets the same crew, the same materials, and the same warranty,
-          plus a builder who knows its neighborhoods, HOAs, and permit offices firsthand. Outside
-          them but within the radius? We&apos;ll come to you too.
+          Our shop is in the {site.address.district}, and we build {site.serviceArea}. Naming
+          every town would take all day, so start with your county — if it&apos;s below, so are
+          you. Every project gets the same crew, the same materials, and the same warranty,
+          whichever line of the map you live on.
         </p>
       </Section>
 
+      {counties.length > 0 ? (
+        <Section top="none" bottom="tight">
+          <Eyebrow>By county</Eyebrow>
+          <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {counties.map((county) => (
+              <li key={county.slug}>
+                <Link
+                  href={`/locations/${county.slug}`}
+                  className="border-border/40 hover:border-foreground/30 hover:bg-card/40 group flex h-full flex-col rounded-2xl border p-6 transition-colors"
+                >
+                  <span className="text-muted-foreground text-xs tracking-widest uppercase">
+                    {county.name}
+                  </span>
+                  <span className="font-display mt-2 text-lg font-medium tracking-tight">
+                    {county.title}
+                  </span>
+                  <span className="text-foreground/80 mt-4 inline-flex items-center text-sm font-medium">
+                    See the county
+                    <ArrowRight className="ml-1 h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </Section>
+      ) : null}
+
       <Section top="none">
-        <ul className="grid gap-8 lg:grid-cols-2">
+        <Eyebrow>By city</Eyebrow>
+        <ul className="mt-6 grid gap-8 lg:grid-cols-2">
           {locations.map((location) => (
             <li key={location.slug}>
               <Link
