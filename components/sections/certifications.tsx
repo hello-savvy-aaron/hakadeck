@@ -54,7 +54,7 @@ const LOGOS: { src: string; alt: string; href?: string; invert?: boolean }[] = [
 
 export function Certifications() {
   return (
-    <Section id="certifications">
+    <Section id="certifications" className="bg-haka-sky">
       <Eyebrow>Credentials</Eyebrow>
       <h2 className="font-display mt-4 max-w-3xl text-4xl leading-[1.06] font-medium tracking-tight text-balance sm:text-5xl lg:text-[3.5rem]">
         Certified by the people who make the materials we build with.
@@ -65,7 +65,9 @@ export function Certifications() {
           <div key={p.title} className="space-y-4">
             <p.icon className="text-haka-cream h-11 w-11" strokeWidth={1.5} />
             <h3 className="font-display text-2xl font-medium tracking-tight">{p.title}</h3>
-            <p className="text-muted-foreground text-sm leading-relaxed">{p.body}</p>
+            {/* Darker than the usual muted tone — this section sits on the Sky
+                background, where muted-foreground falls below AA contrast. */}
+            <p className="text-foreground/80 text-sm leading-relaxed">{p.body}</p>
             {p.href ? (
               <Link
                 href={p.href}
