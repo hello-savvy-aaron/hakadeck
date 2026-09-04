@@ -27,15 +27,30 @@ export const attributionSchema = z
     referrer: z.string().max(500),
     params: paramsSchema,
     sessionStart: z.number(),
+    // The browser's first-ever visit — survives across sessions, so a
+    // returning "direct" caller still reports how they originally found us.
+    firstTouch: z
+      .object({
+        landingPage: z.string().max(500),
+        referrer: z.string().max(500),
+        params: paramsSchema,
+        firstSeen: z.number(),
+      })
+      .optional(),
   })
   .nullable()
   .optional();
 
 export type AttributionPayload = z.infer<typeof attributionSchema>;
 
+type SourceSignals = {
+  referrer: string;
+  params: z.infer<typeof paramsSchema>;
+};
+
 // One-line answer to "how did they get to the site?", from strongest signal
 // (an ad click ID) down to weakest (no referrer at all).
-export function describeSource(attribution: AttributionPayload): string {
+export function describeSource(attribution: SourceSignals | null | undefined): string {
   if (!attribution) return "Unknown (visited before this update, or storage blocked)";
   const p = attribution.params;
 
@@ -100,8 +115,19 @@ export function visitorContextLines(req: Request, attribution: AttributionPayloa
   const device = /mobile|iphone|android/i.test(userAgent) ? "Mobile" : "Desktop";
   const timeOnSite = describeTimeOnSite(attribution?.sessionStart);
 
+  // Only shown when the browser's first-ever visit meaningfully predates this
+  // session — that's the "they found us days ago and came back" signal.
+  const first = attribution?.firstTouch;
+  let firstTouchLine: string | null = null;
+  if (first && attribution?.sessionStart && first.firstSeen < attribution.sessionStart - 3_600_000) {
+    const days = Math.round((Date.now() - first.firstSeen) / 86_400_000);
+    const when = days <= 0 ? "earlier today" : days === 1 ? "yesterday" : `${days} days ago`;
+    firstTouchLine = `First found the site ${when}: ${describeSource(first)} — landed on ${first.landingPage}`;
+  }
+
   return [
     `How they got to the site: ${describeSource(attribution)}`,
+    firstTouchLine,
     attribution?.landingPage ? `Landed on: ${attribution.landingPage}` : null,
     timeOnSite ? `Time on site: ${timeOnSite}` : null,
     location ? `Location (approx., from IP): ${location}` : null,
