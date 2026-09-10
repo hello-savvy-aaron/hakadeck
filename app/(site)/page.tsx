@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/sections/hero";
+import { SeasonBand } from "@/components/sections/season-band";
 import { LocalIntro } from "@/components/sections/local-intro";
 import { GuidesLanding } from "@/components/guides/guides-landing";
 import { Certifications } from "@/components/sections/certifications";
@@ -21,6 +22,7 @@ export default function HomePage() {
     <>
       <FaqJsonLd />
       <Hero />
+      <SeasonBand />
       <Reveal>
         <GuidesLanding />
       </Reveal>
