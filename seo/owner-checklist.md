@@ -42,7 +42,20 @@ Priority order:
 - [ ] **Facebook — create a business page** (none exists; needed for Nextdoor tie-ins and
       review diversity)
 - [ ] **Nextdoor — create a business page** (competitors are established there in the same geo)
-- [ ] Confirm **hakaconstruction.com 301s** to hakadecks.com (old domain still live per audit)
+- [ ] **hakaconstruction.com → 301 to www.hakadecks.com** — it is still LIVE (200, "HOME |
+      Haka Construction") and, per the 2026-09-11 Semrush pull, holds our best links:
+      Yellow Pages (AS 60), HomeAdvisor (54), DexKnows (35), Superpages (35), n49 (32),
+      bikestreets.com (26). One DNS/host change roughly doubles our real referring
+      domains. Then update those five listings to link the new domain directly.
+      Full target list: `seo/backlink-plan.md`.
+- [ ] **Manufacturer installer locators** — Trex "Find a Builder" (Platinum Pro), Deckorators
+      Pro Elite locator, TimberTech contractor locator. Competitors already hold trex.com
+      (AS 55) and deckorators.com (AS 43) links; we have neither. One email to each rep.
+- [ ] **expertise.com** nomination ("Best Deck Builders in Denver", AS 44 — 3 of 5
+      competitors listed), **Pinterest** business account (AS 100, verify the site),
+      **ProvenExpert** profile (AS 51). All free.
+- [ ] **Chambers**: Castle Rock Chamber (castlerockco.com links a competitor) and South Metro
+      Denver Chamber — directory links are legitimate and local.
 
 ## Phase 5 — Measurement
 

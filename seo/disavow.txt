@@ -51,3 +51,56 @@ domain:betulcrime.com
 domain:aloysionunes.com
 domain:southfwb.com
 # NOT disavowed: dexknows.com (legitimate directory, AS 35 — keep).
+
+# --- Added 2026-09-11 (second sweep, Semrush backlinks + refdomains) ---
+# Profile: 68 referring domains, AS 2. Only dexknows.com, decks101.com, parse.gl
+# (a shared ChatGPT answer citing our Trex post) and hellosavvy.design are real.
+# Everything below is a link farm. Same rule as the header: submit only under
+# (a) a manual action or (b) if someone actually bought links.
+# PBN "all/…/24.html" link-farm listing pages (dofollow, identical spam anchor)
+domain:cvillico.com
+domain:daechul.co.com
+domain:digitalchatni.com
+domain:dupurgeniefr.com
+domain:fashionclothingnews.com
+domain:fastlifesite.com
+domain:ggmap.us.com
+domain:gladeflowers.com
+domain:homesforsaleoldgreenwichct.com
+domain:kkinsider.com
+domain:lawyerinjeddah.com
+domain:libyanatravel.com
+domain:lydiaroyrealestate.com
+domain:marinasone.com
+domain:masihnyata.com
+domain:onlineshoppingidea.com
+domain:onvaxs.com
+domain:phanerosart.com
+domain:plrdownloadshub.com
+domain:plumeriamarketing.com
+domain:quotesblom.com
+domain:royaldb.us.com
+domain:sahammurah.com
+domain:techbumppy.com
+domain:thedocmag.com
+# "Guest posting / buy backlinks" sellers (.shop / .site)
+domain:fiverr-affordable-seo-services.site
+domain:fiverr-cost-effective-seo.site
+domain:fiverr-seo-for-small-businesses.site
+domain:high-traffic-backlinks.site
+domain:linknora.shop
+domain:linkvexa.shop
+domain:pbnlinks.shop
+domain:pbnlinksmaster.shop
+domain:seo-growth-authority-boost-hub.shop
+domain:seo-growth-optimization-hub.shop
+domain:seopxl-organic-boost-lab.shop
+domain:seopxl-performance-authority-engine.shop
+domain:seopxl-ranking-boost-lab.shop
+domain:seopxl-traffic-growth-lab.shop
+domain:seovora.shop
+# Domain-scraper listing pages
+domain:domraider.br.com
+domain:domraider.eu.com
+domain:domraider.gb.net
+domain:domraider.it.com
