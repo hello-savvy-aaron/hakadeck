@@ -29,3 +29,25 @@ domain:jameslinks.agency
 # Fake "Fiverr testimonial" PBN blogs
 domain:fiverr-seo-for-business-growth.site
 domain:fiverr-quality-seo-at-affordable-rates.site
+
+# --- Added 2026-09-11 from Semrush backlinks_refdomains pull ---
+# Same guidance as above applies: submit only under (a) or (b).
+# Casino / gambling / gaming spam
+domain:m98ufa.com
+domain:bestnz-poker-casinoslot.com
+domain:hotonlinegaming.com
+# Link-farm / scraper / "guest post" sellers
+domain:buzzshrink.website
+domain:publicleads.com
+domain:firstguestpost.com
+domain:mediaboooster.com
+domain:urls-shortener.eu
+domain:parse.gl
+domain:smartstimer.com
+domain:wecelebrities.com
+domain:blogerreviewers.com
+domain:clifflisting.com
+domain:betulcrime.com
+domain:aloysionunes.com
+domain:southfwb.com
+# NOT disavowed: dexknows.com (legitimate directory, AS 35 — keep).
