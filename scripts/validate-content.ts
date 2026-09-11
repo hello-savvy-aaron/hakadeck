@@ -28,6 +28,18 @@ const SITE_ROUTES = join(ROOT, "app", "(site)");
 
 const Faq = z.object({ q: z.string().min(1), a: z.string().min(1) });
 
+const LocationResource = z.object({
+  label: z.string().min(1),
+  name: z.string().min(1),
+  // Loose: "303-271-8260", "(303) 271-8260", "719-687-9246 ext. 2"
+  phone: z
+    .string()
+    .regex(/^\(?\d{3}\)?[-. ]\d{3}[-. ]\d{4}/)
+    .optional(),
+  url: z.string().url().optional(),
+  note: z.string().min(1).optional(),
+});
+
 const LocationEvent = z.object({
   name: z.string().min(1),
   when: z.string().min(1),
@@ -54,6 +66,7 @@ const BlogFrontmatter = z.object({
 });
 
 const LocationFrontmatter = z.object({
+  county: z.string().min(1).optional(),
   name: z.string().min(1),
   title: z.string().min(1),
   metaTitle: z.string().min(1),
@@ -67,6 +80,7 @@ const LocationFrontmatter = z.object({
   projects: z.array(z.string().min(1)),
   faqs: z.array(Faq).min(1),
   events: z.array(LocationEvent).optional(),
+  resources: z.array(LocationResource).optional(),
 });
 
 const ServiceFrontmatter = z.object({

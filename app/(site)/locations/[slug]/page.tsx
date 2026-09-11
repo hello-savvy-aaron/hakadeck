@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ArrowLeft, ArrowRight, Check, MapPin, Phone } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, ExternalLink, MapPin, Phone } from "lucide-react";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Eyebrow, Section, SectionHeading } from "@/components/sections/section";
 import { CtaFinal } from "@/components/sections/cta-final";
@@ -12,7 +12,7 @@ import { FaqJsonLd } from "@/components/seo/faq-jsonld";
 import { Button } from "@/components/ui/button";
 import { ProjectCard } from "@/components/portfolio/project-card";
 import { LocationJsonLd } from "@/components/seo/location-jsonld";
-import { getAllLocations, getLocation } from "@/lib/locations";
+import { countySlug, getAllLocations, getLocation } from "@/lib/locations";
 import { getProject } from "@/lib/portfolio";
 import { site } from "@/lib/site";
 
@@ -44,6 +44,12 @@ export async function generateMetadata({
   };
 }
 
+// "303-235-2855 Option 1" → "tel:3032352855"; "811" stays "tel:811".
+function telHref(phone: string): string {
+  const m = phone.match(/\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}/);
+  return `tel:${(m ? m[0] : phone).replace(/\D/g, "")}`;
+}
+
 export default async function LocationPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const location = await getLocation(slug);
@@ -54,10 +60,31 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
     getAllLocations().then((all) => all.filter((l) => l.slug !== slug)),
   ]);
   const cityProjects = projects.filter((p) => p !== null);
-  // County hub pages get a compact strip; the card grid stays cities-only so
-  // it doesn't balloon further.
+  // County hub pages get a compact strip. The card grid is trimmed to real
+  // neighbors — same county when the page declares one, else the same
+  // service-area region from site.ts — so a 100-page site doesn't put a
+  // 100-card grid under every city.
   const counties = allOthers.filter((l) => l.slug.endsWith("-county"));
-  const others = allOthers.filter((l) => !l.slug.endsWith("-county"));
+  const cities = allOthers.filter((l) => !l.slug.endsWith("-county"));
+  const isCounty = slug.endsWith("-county");
+  const region = site.serviceAreaRegions.find((r) =>
+    r.cities.some((c) => c.toLowerCase() === location.name.toLowerCase()),
+  );
+  const sameCounty = location.county ? cities.filter((l) => l.county === location.county) : [];
+  const sameRegion = region
+    ? cities.filter((l) => region.cities.some((c) => c.toLowerCase() === l.name.toLowerCase()))
+    : [];
+  const others = isCounty
+    ? cities.filter((l) => l.county === location.name)
+    : sameCounty.length >= 3
+      ? sameCounty
+      : sameRegion.length > 0
+        ? sameRegion
+        : cities.slice(0, 12);
+  const countyHub =
+    location.county && !isCounty
+      ? counties.find((c) => c.slug === countySlug(location.county as string))
+      : undefined;
 
   return (
     <>
@@ -80,7 +107,17 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
 
         <div className="mt-8 grid gap-10 lg:grid-cols-[1.5fr_1fr] lg:items-end lg:gap-16">
           <div>
-            <Eyebrow>{location.name}, Colorado</Eyebrow>
+            <Eyebrow>
+              {location.name}, Colorado
+              {countyHub ? (
+                <>
+                  {" · "}
+                  <Link href={`/locations/${countyHub.slug}`} className="hover:text-foreground">
+                    {countyHub.name}
+                  </Link>
+                </>
+              ) : null}
+            </Eyebrow>
             <h1 className="font-display mt-4 text-4xl leading-[1.03] font-medium tracking-tight text-balance sm:text-5xl lg:text-6xl">
               {location.title}
             </h1>
@@ -134,6 +171,71 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
 
       {location.faqs.length > 0 ? (
         <Faq faqs={location.faqs} heading={`Deck questions ${location.name} homeowners ask.`} />
+      ) : null}
+
+      {location.resources.length > 0 ? (
+        <Section top="none" bottom="tight">
+          <Eyebrow>Local resources</Eyebrow>
+          <SectionHeading className="mt-4 text-3xl sm:text-4xl">
+            Who to call in {location.name}.
+          </SectionHeading>
+          <p className="text-muted-foreground mt-5 max-w-2xl text-sm leading-relaxed sm:text-base">
+            The offices that actually touch a deck project here — permits, inspections, the planning
+            counter. We handle the filing on every build; these are for when you want to check
+            something yourself.
+          </p>
+          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              ...location.resources,
+              {
+                label: "Before you dig",
+                name: "Colorado 811",
+                phone: "811",
+                url: "https://colorado811.org/",
+                note: "Free utility locates, required by state law before any footing goes in.",
+              },
+            ].map((r) => (
+              <li
+                key={`${r.label}-${r.name}`}
+                className="border-border/40 bg-card/40 flex h-full flex-col rounded-2xl border p-6"
+              >
+                <span className="text-muted-foreground text-xs tracking-widest uppercase">
+                  {r.label}
+                </span>
+                <span className="font-display mt-2 text-lg font-medium tracking-tight">
+                  {r.name}
+                </span>
+                {r.note ? (
+                  <span className="text-muted-foreground mt-2 text-sm leading-relaxed">
+                    {r.note}
+                  </span>
+                ) : null}
+                <span className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm">
+                  {r.phone ? (
+                    <a
+                      href={telHref(r.phone)}
+                      className="text-foreground/85 hover:text-foreground inline-flex items-center gap-1.5 font-medium"
+                    >
+                      <Phone className="h-3.5 w-3.5" />
+                      {r.phone}
+                    </a>
+                  ) : null}
+                  {r.url ? (
+                    <a
+                      href={r.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-foreground/85 hover:text-foreground inline-flex items-center gap-1.5 font-medium"
+                    >
+                      <ExternalLink className="h-3.5 w-3.5" />
+                      {new URL(r.url).hostname.replace(/^www\./, "")}
+                    </a>
+                  ) : null}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </Section>
       ) : null}
 
       {cityProjects.length > 0 ? (
@@ -194,8 +296,8 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
             Out and about in {location.name}.
           </SectionHeading>
           <p className="text-muted-foreground mt-5 max-w-2xl text-sm leading-relaxed sm:text-base">
-            Outdoor season is what a deck is for — and {location.name}&apos;s community calendar
-            is a good reminder of how much of the year gets lived outside here.
+            Outdoor season is what a deck is for — and {location.name}&apos;s community calendar is
+            a good reminder of how much of the year gets lived outside here.
           </p>
           <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {location.events.map((event) => (
@@ -222,7 +324,13 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
         <Section top="none">
           <Eyebrow>More service areas</Eyebrow>
           <SectionHeading className="mt-4 text-3xl sm:text-4xl lg:text-5xl">
-            Everywhere else we build.
+            {isCounty
+              ? `Towns we build in across ${location.name}.`
+              : location.county && sameCounty.length >= 3
+                ? `Nearby in ${location.county}.`
+                : region
+                  ? `Nearby in ${region.region}.`
+                  : "Everywhere else we build."}
           </SectionHeading>
           {counties.length > 0 ? (
             <p className="text-muted-foreground mt-6 text-sm leading-relaxed">

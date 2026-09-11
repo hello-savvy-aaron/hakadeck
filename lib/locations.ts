@@ -15,8 +15,22 @@ export type LocationEvent = {
   note: string;
 };
 
+// A verified local office a homeowner might actually call — building
+// department, permit portal, town hall. Phone/URL are copied from the
+// official site; `label` is the homeowner-facing purpose ("Deck permits").
+export type LocationResource = {
+  label: string;
+  name: string;
+  phone?: string;
+  url?: string;
+  note?: string;
+};
+
 export type LocationMeta = {
   slug: string;
+  // County display name ("Douglas County"). Links the city page to its county
+  // hub (/locations/<kebab>) and groups neighbors in the footer strip.
+  county?: string;
   // City name for cards, headings, and areaServed (e.g. "Centennial").
   name: string;
   // Local-intent H1 for the detail page (e.g. "Deck Builder in Centennial, Colorado").
@@ -41,6 +55,8 @@ export type LocationMeta = {
   // Verified recurring community events in this city — curated by hand, not
   // scraped, so names and venues stay real.
   events: LocationEvent[];
+  // Verified civic contacts for this city (see LocationResource).
+  resources: LocationResource[];
 };
 
 export type Location = LocationMeta & {
@@ -72,6 +88,7 @@ export async function getLocation(slug: string): Promise<Location | null> {
 function locationFromFrontmatter(slug: string, data: Record<string, unknown>): LocationMeta {
   return {
     slug,
+    county: data.county as string | undefined,
     name: data.name as string,
     title: data.title as string,
     metaTitle: data.metaTitle as string,
@@ -85,5 +102,14 @@ function locationFromFrontmatter(slug: string, data: Record<string, unknown>): L
     order: (data.order as number) ?? 99,
     faqs: (data.faqs as Faq[]) ?? [],
     events: (data.events as LocationEvent[]) ?? [],
+    resources: (data.resources as LocationResource[]) ?? [],
   };
+}
+
+/** Slug of a county hub page from its display name ("Douglas County" → "douglas-county"). */
+export function countySlug(county: string): string {
+  return county
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
 }

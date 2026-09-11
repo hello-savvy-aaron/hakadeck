@@ -136,6 +136,32 @@ call_click (needed before any AI-channel conversion math); Bing Webmaster
 "IndexNow" report check after the first submission; consider a
 `speakable` block on the FAQ page if voice-assistant traffic shows up.
 
+## Workstream 6 — Service-area build-out to the full GBP list (SHIPPED 2026-09-11)
+
+Every one of the 103 GBP service-area towns now has a page, plus 15 county
+hubs (121 location pages total; 63 new today). Every city and county page
+carries a verified **"Local resources"** block — building department,
+permit portal, town/city hall, planning, wildfire-code office — with phone
+numbers and links copied from official sites, plus the Colorado 811 line.
+Frontmatter: `county:` (links the county hub, groups neighbors),
+`resources:`, `events:`. Research lives in the session scratchpad JSON
+(5 regional files); facts came only from fetched official pages, and
+where an office could not be verified (Ward, Empire) the page says so.
+
+Why it should move traffic: the pages target the long tail the blitz
+skipped (mountain and plains towns with no competitor page at all),
+carry the snow-load / frost-depth / WUI figures the county publishes
+(matches what AI Overviews and PAA quote), and the resources block is the
+kind of genuinely useful local content that earns .gov-adjacent
+relevance and dwell time. Nav: /locations is now linked region lists +
+county cards (the 100-image card grid is gone); each city page shows
+same-county neighbors instead of every other city.
+
+Maintenance: events are annual — refresh each winter with the location
+events sweep; resources phone/URL rot should be spot-checked twice a
+year (a broken .gov link is worse than none). Two counties have no hub on
+purpose: Denver and Broomfield are city-counties with one page each.
+
 ## Measurement cadence
 
 - **Fridays**: channel scorecard (ads plan doc) — GA4 puller once the key

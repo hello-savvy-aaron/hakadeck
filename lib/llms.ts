@@ -208,6 +208,17 @@ export async function buildLlmsFull(): Promise<string> {
       cleanBody(l.body),
       "",
       ...faqBlock(l.faqs, `#### Deck questions ${l.name} homeowners ask`),
+      ...(l.resources.length
+        ? [
+            `#### Local resources in ${l.name}`,
+            "",
+            ...l.resources.map(
+              (r) =>
+                `- ${r.label}: ${r.name}${r.phone ? ` — ${r.phone}` : ""}${r.url ? ` — ${r.url}` : ""}${r.note ? `. ${r.note}` : ""}`,
+            ),
+            "",
+          ]
+        : []),
       "---",
       "",
     );

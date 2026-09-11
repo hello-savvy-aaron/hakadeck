@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
@@ -21,6 +20,12 @@ export default async function LocationsPage() {
   // serve them. City pages keep the image-card grid below.
   const counties = all.filter((l) => l.slug.endsWith("-county"));
   const locations = all.filter((l) => !l.slug.endsWith("-county"));
+  const bySlugName = new Map(locations.map((l) => [l.name.toLowerCase(), l]));
+  // City pages whose name isn't in the GBP region list (e.g. Roxborough Park).
+  const listed = new Set(
+    site.serviceAreaRegions.flatMap((r) => r.cities.map((c) => c.toLowerCase())),
+  );
+  const unlisted = locations.filter((l) => !listed.has(l.name.toLowerCase()));
 
   return (
     <>
@@ -30,10 +35,10 @@ export default async function LocationsPage() {
           The Front Range is home turf.
         </h1>
         <p className="text-muted-foreground mt-6 max-w-2xl text-lg leading-relaxed">
-          Our shop is in the {site.address.district}, and we build {site.serviceArea}. Naming
-          every town would take all day, so start with your county — if it&apos;s below, so are
-          you. Every project gets the same crew, the same materials, and the same warranty,
-          whichever line of the map you live on.
+          Our shop is in the {site.address.district}, and we build {site.serviceArea}. Naming every
+          town would take all day, so start with your county — if it&apos;s below, so are you. Every
+          project gets the same crew, the same materials, and the same warranty, whichever line of
+          the map you live on.
         </p>
       </Section>
 
@@ -64,55 +69,18 @@ export default async function LocationsPage() {
         </Section>
       ) : null}
 
+      {/* Every city and town in the GBP service area, grouped by region, with
+          a link wherever a page exists. This replaced the image-card grid once
+          the page count passed 100 — a card per city was a 100-image page. */}
       <Section top="none">
         <Eyebrow>By city</Eyebrow>
-        <ul className="mt-6 grid gap-8 lg:grid-cols-2">
-          {locations.map((location) => (
-            <li key={location.slug}>
-              <Link
-                href={`/locations/${location.slug}`}
-                className="border-border/40 hover:border-foreground/30 group block overflow-hidden rounded-2xl border transition-colors"
-              >
-                <div className="relative aspect-[16/9] overflow-hidden">
-                  <Image
-                    src={location.image}
-                    alt={`Deck by ${site.name} near ${location.name}, CO`}
-                    fill
-                    sizes="(min-width: 1024px) 550px, 100vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                  />
-                </div>
-                <div className="p-6">
-                  <span className="text-muted-foreground text-xs tracking-widest uppercase">
-                    {location.name}, CO
-                  </span>
-                  <h2 className="font-display mt-2 text-2xl font-medium tracking-tight">
-                    {location.title}
-                  </h2>
-                  <p className="text-muted-foreground mt-2 text-sm leading-relaxed">
-                    {location.summary}
-                  </p>
-                  <span className="text-foreground/80 mt-4 inline-flex items-center text-sm font-medium">
-                    See our work in {location.name}
-                    <ArrowRight className="ml-1 h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-                  </span>
-                </div>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </Section>
-
-      {/* The complete GBP service area — every city and town, grouped by
-          region. Plain text on purpose: these back up the areaServed schema
-          without spinning up thin doorway pages. */}
-      <Section top="tight">
-        <h2 className="font-display text-3xl font-medium tracking-tight sm:text-4xl">
+        <h2 className="font-display mt-4 text-3xl font-medium tracking-tight sm:text-4xl">
           Everywhere we build
         </h2>
         <p className="text-muted-foreground mt-4 max-w-2xl leading-relaxed">
-          The full list, so there&apos;s no guessing. If your town is on it — or even just near it —
-          we&apos;ll come take a look.
+          The full list, so there&apos;s no guessing. Linked towns have their own page — permits,
+          snow loads, local offices, what we build there. If your town is on the list, or even just
+          near it, we&apos;ll come take a look.
         </p>
         <div className="mt-10 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
           {site.serviceAreaRegions.map((group) => (
@@ -120,12 +88,45 @@ export default async function LocationsPage() {
               <h3 className="text-muted-foreground text-xs font-medium tracking-widest uppercase">
                 {group.region}
               </h3>
-              <p className="text-foreground/80 mt-3 text-sm leading-relaxed">
-                {group.cities.join(" · ")}
-              </p>
+              <ul className="mt-3 flex flex-wrap gap-x-1.5 gap-y-1 text-sm leading-relaxed">
+                {group.cities.map((city, i) => {
+                  const page = bySlugName.get(city.toLowerCase());
+                  return (
+                    <li key={city} className="text-foreground/80">
+                      {i > 0 ? <span className="text-muted-foreground/60 mr-1.5">·</span> : null}
+                      {page ? (
+                        <Link
+                          href={`/locations/${page.slug}`}
+                          className="text-foreground decoration-border hover:decoration-foreground font-medium underline underline-offset-4"
+                        >
+                          {city}
+                        </Link>
+                      ) : (
+                        city
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
           ))}
         </div>
+        {unlisted.length > 0 ? (
+          <p className="text-muted-foreground mt-8 text-sm leading-relaxed">
+            Also:{" "}
+            {unlisted.map((l, i) => (
+              <span key={l.slug}>
+                {i > 0 ? " · " : null}
+                <Link
+                  href={`/locations/${l.slug}`}
+                  className="text-foreground decoration-border hover:decoration-foreground font-medium underline underline-offset-4"
+                >
+                  {l.name}
+                </Link>
+              </span>
+            ))}
+          </p>
+        ) : null}
       </Section>
 
       <CtaFinal />
