@@ -43,6 +43,8 @@ const BlogFrontmatter = z.object({
   metaTitle: z.string().min(1).optional(),
   description: z.string().min(1),
   date: DateLike,
+  // Last substantive edit — see PostMeta.updated in lib/blog.ts.
+  updated: DateLike.optional(),
   category: z.string().min(1),
   cover: z.string().startsWith("/").optional(),
   readingMinutes: z.number().int().positive(),
@@ -78,6 +80,15 @@ const ServiceFrontmatter = z.object({
   order: z.number().int(),
   bullets: z.array(z.string().min(1)).min(1),
   faqs: z.array(Faq).min(1),
+  // Optional installed price range, emitted as a schema.org Offer on the
+  // Service JSON-LD so "how much does X cost" answers can cite a number.
+  offer: z
+    .object({
+      minPrice: z.number().positive(),
+      maxPrice: z.number().positive(),
+      unit: z.string().min(1),
+    })
+    .optional(),
 });
 
 const ProjectFrontmatter = z.object({

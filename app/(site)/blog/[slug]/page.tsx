@@ -39,6 +39,7 @@ export async function generateMetadata({
       description: post.description,
       type: "article",
       publishedTime: post.date,
+      modifiedTime: post.updated ?? post.date,
       images: post.cover ? [post.cover] : undefined,
     },
   };
@@ -59,11 +60,19 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     .map((offset) => allPosts[(postIdx + offset) % allPosts.length])
     .filter((p) => p.slug !== slug);
 
-  const date = new Date(post.date).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+  // Frontmatter dates are bare YYYY-MM-DD, which Date parses as UTC midnight;
+  // format in UTC too or the Mountain-time render shows the previous day.
+  const fmt = (iso: string) =>
+    new Date(iso).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      timeZone: "UTC",
+    });
+  const date = fmt(post.date);
+  // Visible freshness stamp, only when the post was substantively revised.
+  const updated = post.updated && post.updated !== post.date ? fmt(post.updated) : null;
+  const wordCount = post.body.split(/\s+/).filter(Boolean).length;
 
   return (
     <>
@@ -77,8 +86,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         title={post.title}
         description={post.description}
         date={post.date}
+        updated={post.updated}
         slug={slug}
         cover={post.cover}
+        category={post.category}
+        wordCount={wordCount}
       />
       <Section top="loose" bottom="tight">
         <Link
@@ -96,6 +108,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </h1>
           <div className="text-muted-foreground mt-6 flex items-center gap-3 text-sm">
             <time dateTime={post.date}>{date}</time>
+            {updated ? (
+              <>
+                <span aria-hidden>•</span>
+                <span>
+                  Updated <time dateTime={post.updated}>{updated}</time>
+                </span>
+              </>
+            ) : null}
             <span aria-hidden>•</span>
             <span>{post.readingMinutes} min read</span>
           </div>
@@ -119,10 +139,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
       <Section top="tight">
         <article className="prose prose-invert prose-haka mx-auto max-w-3xl">
-          <MDXRemote
-            source={post.body}
-            options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
-          />
+          <MDXRemote source={post.body} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />
         </article>
       </Section>
 

@@ -61,6 +61,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         slug={slug}
         category={service.category}
         cities={locations.map((l) => l.name)}
+        offer={service.offer}
       />
       {service.faqs.length > 0 ? <FaqJsonLd faqs={service.faqs} /> : null}
 

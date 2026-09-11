@@ -22,7 +22,11 @@ export type ServiceMeta = {
   order: number;
   // Service-specific Q&As rendered as an accordion + FAQPage JSON-LD.
   faqs: Faq[];
+  // Optional installed price range → schema.org Offer on the Service JSON-LD.
+  offer?: ServiceOffer;
 };
+
+export type ServiceOffer = { minPrice: number; maxPrice: number; unit: string };
 
 export type Service = ServiceMeta & {
   body: string;
@@ -63,5 +67,6 @@ function serviceFromFrontmatter(slug: string, data: Record<string, unknown>): Se
     bullets: (data.bullets as string[]) ?? [],
     order: (data.order as number) ?? 99,
     faqs: (data.faqs as Faq[]) ?? [],
+    offer: data.offer as ServiceOffer | undefined,
   };
 }

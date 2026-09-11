@@ -100,6 +100,42 @@ position_asc). Success = the pushed terms crossing into top 10.
 - [ ] Watch GSC coverage as the 20 new city + 8 county pages index
 - Ignore: text/HTML-ratio warnings; the 1 low-word-count page.
 
+## Workstream 5 — AI / answer-engine readiness (SHIPPED 2026-09-11)
+
+Baseline that motivated it: GA4 shows an "AI Assistant" channel at 83%
+engagement and 3 of 13 generate_lead events in the last 28 days — ChatGPT,
+Perplexity, and friends are already a lead source. What shipped:
+
+- `/llms.txt` is now generated from the content libs (`lib/llms.ts`) —
+  every post, city, county, service, guide, and brand page, with dates.
+  `/llms-full.txt` adds every page's full markdown body (~110k words) so an
+  LLM can ingest the site in one fetch. Both static, cached a day.
+- `robots.txt` names 17 AI crawlers (GPTBot, OAI-SearchBot, ClaudeBot,
+  PerplexityBot, Google-Extended, Applebot-Extended, Bingbot, …) with an
+  explicit Allow; `<meta name="robots">` opts into max-snippet:-1 and
+  max-image-preview:large on every page.
+- Entity graph: the site-wide JSON-LD is now a `@graph` of the business
+  (+ founder, hasCredential ×3 manufacturer tiers, contactPoint), a Person
+  node for Pete (`/about#pete-borlase`), and a WebSite node. Articles,
+  guides, services, and locations reference those by `@id` — one entity,
+  not a copy per page. `/about` gained an AboutPage node + an "At a
+  glance" facts `<dl>` (founded, HQ, area, certs, warranty, phone).
+- Freshness: blog frontmatter supports `updated:`; it drives
+  `dateModified`, the sitemap, OG `modifiedTime`, and a visible stamp.
+- Answer-first leads on all 31 posts (bold 35–60-word direct answer with
+  the post's own numbers) and FAQ schema on all 31 (13 posts gained 3
+  Q&As each — 39 new PAA-shaped answers).
+- Service price ranges as schema.org `Offer` / `UnitPriceSpecification`
+  on composite-decks and deck-replacement ($40–$70/sq ft).
+- IndexNow: key file in `public/`, `npm run indexnow` pushes every sitemap
+  URL to Bing/Copilot/DuckDuckGo (ChatGPT search rides on Bing). Run it
+  after each content deploy.
+
+Not done (owner-side or later): GA4 key-event flags for generate_lead /
+call_click (needed before any AI-channel conversion math); Bing Webmaster
+"IndexNow" report check after the first submission; consider a
+`speakable` block on the FAQ page if voice-assistant traffic shows up.
+
 ## Measurement cadence
 
 - **Fridays**: channel scorecard (ads plan doc) — GA4 puller once the key

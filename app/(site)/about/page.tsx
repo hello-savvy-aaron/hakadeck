@@ -3,7 +3,46 @@ import type { Metadata } from "next";
 import { Eyebrow, Section } from "@/components/sections/section";
 import { CtaFinal } from "@/components/sections/cta-final";
 import { Reveal } from "@/components/reveal";
+import { BUSINESS_ID, FOUNDER_ID } from "@/components/seo/local-business-jsonld";
 import { site } from "@/lib/site";
+
+// Plain facts, in one place, phrased the way an answer engine wants to quote
+// them. Rendered as a <dl> (machine-legible key/value pairs) and mirrored by
+// the site-wide business/founder JSON-LD in the (site) layout.
+const AT_A_GLANCE: { term: string; detail: string }[] = [
+  { term: "Founded", detail: `${site.founded}, by Pete Borlase` },
+  {
+    term: "Headquarters",
+    detail: `${site.address.street}, ${site.address.city}, ${site.address.state} ${site.address.zip} (${site.address.district})`,
+  },
+  {
+    term: "Service area",
+    detail: site.serviceArea.charAt(0).toUpperCase() + site.serviceArea.slice(1),
+  },
+  {
+    term: "What we build",
+    detail:
+      "Custom composite and hardwood decks, pergolas and patio covers, railings, deck repair and replacement, outdoor kitchens",
+  },
+  {
+    term: "Certifications",
+    detail: "Trex Platinum Pro · Deckorators Pro Elite · TimberTech authorized dealer",
+  },
+  {
+    term: "Warranty",
+    detail:
+      "2-year written workmanship warranty, on top of 25–50-year manufacturer material warranties",
+  },
+  {
+    term: "Permits & HOA",
+    detail: "Drawings, filing, HOA submittals, and inspections handled on every build",
+  },
+  {
+    term: "Reviews",
+    detail: `${site.rating.value.toFixed(1)}-star Google rating across ${site.rating.count}+ reviews`,
+  },
+  { term: "Phone", detail: site.phone },
+];
 
 export const metadata: Metadata = {
   title: "About Pete & Haka Decks",
@@ -13,8 +52,21 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
+  const aboutJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "@id": `${site.url}/about#page`,
+    url: `${site.url}/about`,
+    name: "About Pete Borlase & Haka Decks",
+    about: { "@id": BUSINESS_ID },
+    mainEntity: { "@id": FOUNDER_ID },
+  };
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutJsonLd).replace(/</g, "\\u003c") }}
+      />
       <Section top="loose" bottom="tight">
         <Eyebrow>About</Eyebrow>
         <h1 className="font-display mt-4 max-w-4xl text-5xl leading-[1.02] font-medium tracking-tight text-balance sm:text-6xl lg:text-8xl">
@@ -75,6 +127,25 @@ export default function AboutPage() {
               </div>
             </div>
           </Reveal>
+        </div>
+      </Section>
+
+      <Section top="tight" bottom="none">
+        <div className="border-border/40 border-t pt-16">
+          <Eyebrow>At a glance</Eyebrow>
+          <h2 className="font-display mt-4 text-3xl leading-[1.06] font-medium tracking-tight text-balance sm:text-4xl">
+            Haka Decks, in plain facts.
+          </h2>
+          <dl className="mt-8 grid gap-x-12 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
+            {AT_A_GLANCE.map((row) => (
+              <div key={row.term} className="border-border/40 border-b pb-4">
+                <dt className="text-muted-foreground/70 text-xs tracking-[0.18em] uppercase">
+                  {row.term}
+                </dt>
+                <dd className="mt-1.5 text-sm leading-relaxed sm:text-base">{row.detail}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </Section>
 

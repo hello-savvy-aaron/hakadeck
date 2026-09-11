@@ -14,6 +14,11 @@ export type PostMeta = {
   metaTitle?: string;
   description: string;
   date: string;
+  // Optional last-substantive-edit date (YYYY-MM-DD). Feeds dateModified in
+  // the BlogPosting JSON-LD, the sitemap's lastModified, and the visible
+  // "Updated" stamp — answer engines weight freshness, so only set it for real
+  // content changes, not link tweaks.
+  updated?: string;
   category: string;
   cover?: string;
   readingMinutes: number;
@@ -39,6 +44,7 @@ export async function getAllPosts(): Promise<PostMeta[]> {
         metaTitle: data.metaTitle as string | undefined,
         description: data.description as string,
         date: toDateString(data.date),
+        updated: data.updated ? toDateString(data.updated) : undefined,
         category: data.category as string,
         cover: data.cover as string | undefined,
         readingMinutes: data.readingMinutes as number,
@@ -64,6 +70,7 @@ export async function getPost(slug: string): Promise<Post | null> {
     metaTitle: data.metaTitle as string | undefined,
     description: data.description as string,
     date: toDateString(data.date),
+    updated: data.updated ? toDateString(data.updated) : undefined,
     category: data.category as string,
     cover: data.cover as string | undefined,
     readingMinutes: data.readingMinutes as number,

@@ -41,6 +41,24 @@ export const metadata: Metadata = {
   authors: [{ name: "Pete Borlase" }],
   creator: site.name,
   publisher: site.name,
+  // Snippet controls. Google's defaults already allow unlimited snippets, but
+  // AI Overviews and answer engines honor these explicitly — "max-snippet:-1"
+  // is the documented opt-in for full-length text extraction, and
+  // "max-image-preview:large" lets the deck photos ride along with a citation.
+  robots: {
+    index: true,
+    follow: true,
+    "max-snippet": -1,
+    "max-image-preview": "large",
+    "max-video-preview": -1,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
   // No canonical here on purpose. Next merges metadata root → leaf, so a
   // canonical set on the root layout is *inherited* by every child route that
   // doesn't override it — pointing them all at "/". Each route now declares its

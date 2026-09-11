@@ -11,6 +11,7 @@
     "typecheck": "tsc --noEmit",
     "content:validate": "tsx scripts/validate-content.ts",
     "analytics": "node scripts/analytics-pull.mjs",
+    "indexnow": "node scripts/indexnow.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
