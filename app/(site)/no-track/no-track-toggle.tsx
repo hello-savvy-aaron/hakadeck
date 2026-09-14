@@ -1,34 +1,59 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { NO_TRACK_KEY } from "@/components/analytics/analytics-gate";
 import { Button } from "@/components/ui/button";
 
-type Status = "loading" | "tracking" | "excluded" | "unavailable";
+type Stored = "tracking" | "excluded" | "unavailable";
+type Status = Stored | "loading" | "reloading";
+
+// Read the flag directly rather than through isNoTrack(), which hides storage
+// failures — this page needs to explain when the flag can't be saved here.
+function readStored(): Stored {
+  try {
+    return window.localStorage.getItem(NO_TRACK_KEY) === "1" ? "excluded" : "tracking";
+  } catch {
+    return "unavailable";
+  }
+}
+
+function subscribe(onChange: () => void) {
+  window.addEventListener("storage", onChange);
+  return () => window.removeEventListener("storage", onChange);
+}
+
+const getServerSnapshot = (): Status => "loading";
 
 export function NoTrackToggle() {
-  const [status, setStatus] = useState<Status>("loading");
+  const stored = useSyncExternalStore<Status>(subscribe, readStored, getServerSnapshot);
+  const [reloading, setReloading] = useState(false);
+  const [saveFailed, setSaveFailed] = useState(false);
 
-  useEffect(() => {
-    try {
-      setStatus(window.localStorage.getItem(NO_TRACK_KEY) === "1" ? "excluded" : "tracking");
-    } catch {
-      setStatus("unavailable");
-    }
-  }, []);
+  const status: Status = saveFailed ? "unavailable" : reloading ? "reloading" : stored;
 
   function setExcluded(excluded: boolean) {
     try {
       if (excluded) window.localStorage.setItem(NO_TRACK_KEY, "1");
       else window.localStorage.removeItem(NO_TRACK_KEY);
-      setStatus(excluded ? "excluded" : "tracking");
     } catch {
-      setStatus("unavailable");
+      setSaveFailed(true);
+      return;
     }
+    // Trackers are injected once per full page load and survive client-side
+    // navigation, so a flag flipped mid-session would leave the scripts that
+    // are already running (GA4, GTM, Ads, Reddit) counting until the next
+    // reload. Reload now: AnalyticsGate re-reads the flag on the way back in,
+    // so the trackers never load again — or, when opting back in, load fresh.
+    setReloading(true);
+    window.location.reload();
   }
 
-  if (status === "loading") {
-    return <p className="text-muted-foreground text-sm">Checking this browser&hellip;</p>;
+  if (status === "loading" || status === "reloading") {
+    return (
+      <p className="text-muted-foreground text-sm">
+        {status === "loading" ? "Checking this browser…" : "Applying and reloading…"}
+      </p>
+    );
   }
 
   if (status === "unavailable") {
@@ -64,10 +89,12 @@ export function NoTrackToggle() {
       </Button>
 
       <p className="text-muted-foreground text-xs leading-relaxed">
-        The flag lives in this browser only — repeat this once on each browser and device you use
-        (work laptop, phone, etc.). Clearing site data resets it. This page itself may register
-        one final page view the first time, since the scripts were already loaded when you
-        arrived.
+        Flipping the switch reloads this page so any trackers already running are unloaded on the
+        spot. The flag lives in this browser only — repeat this once on each browser, profile, and
+        device you use (work laptop, phone, private windows), and note it covers www.hakadecks.com
+        only: a preview-deployment URL is a different site to the browser. Clearing site data resets
+        it, and Safari can drop it after about a week without a visit. This page itself is never
+        counted by Vercel, even before you flip the switch.
       </p>
     </div>
   );

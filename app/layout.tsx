@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, Inter } from "next/font/google";
-import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { AnalyticsGate } from "@/components/analytics/analytics-gate";
+import { VercelAnalytics } from "@/components/analytics/vercel-analytics";
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { GoogleTagManager } from "@/components/analytics/google-tag-manager";
 import { GoogleAds } from "@/components/analytics/google-ads";
@@ -101,10 +101,11 @@ export default function RootLayout({
             visits, so owner traffic doesn't skew the numbers that matter. */}
         <SpeedInsights />
         {/* Everything that counts visits/events loads through the gate — the
-            owner opts this browser out once at /no-track. */}
+            owner opts this browser out once at /no-track. Vercel additionally
+            re-checks that flag on every event (see vercel-analytics.tsx). */}
         <AnalyticsGate>
           <GoogleTagManager gtmId={site.gtmId} />
-          <Analytics />
+          <VercelAnalytics />
           <GoogleAnalytics gaId={site.gaId} />
           <GoogleAds adsId={site.googleAdsId} />
           <RedditPixel pixelId={site.redditPixelId} />
