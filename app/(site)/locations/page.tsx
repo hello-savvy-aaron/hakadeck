@@ -78,9 +78,10 @@ export default async function LocationsPage() {
           Everywhere we build
         </h2>
         <p className="text-muted-foreground mt-4 max-w-2xl leading-relaxed">
-          The full list, so there&apos;s no guessing. Linked towns have their own page — permits,
-          snow loads, local offices, what we build there. If your town is on the list, or even just
-          near it, we&apos;ll come take a look.
+          The full list, so there&apos;s no guessing. Linked towns have their own page — what&apos;s
+          happening there through the end of the year, every number a homeowner ends up needing,
+          permits, snow loads, and what we build. If your town is on the list, or even just near it,
+          we&apos;ll come take a look.
         </p>
         <div className="mt-10 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
           {site.serviceAreaRegions.map((group) => (

@@ -1,5 +1,12 @@
 import { getAllPosts, getPost } from "@/lib/blog";
-import { getAllLocations, getLocation } from "@/lib/locations";
+import {
+  categoryLabel,
+  getAllLocations,
+  getLocation,
+  groupResources,
+  upcomingCalendar,
+  type Location,
+} from "@/lib/locations";
 import { getAllServices, getService } from "@/lib/services";
 import { getAllProjects } from "@/lib/portfolio";
 import { costGuide, guides, GUIDES_HUB } from "@/lib/guides";
@@ -208,17 +215,7 @@ export async function buildLlmsFull(): Promise<string> {
       cleanBody(l.body),
       "",
       ...faqBlock(l.faqs, `#### Deck questions ${l.name} homeowners ask`),
-      ...(l.resources.length
-        ? [
-            `#### Local resources in ${l.name}`,
-            "",
-            ...l.resources.map(
-              (r) =>
-                `- ${r.label}: ${r.name}${r.phone ? ` — ${r.phone}` : ""}${r.url ? ` — ${r.url}` : ""}${r.note ? `. ${r.note}` : ""}`,
-            ),
-            "",
-          ]
-        : []),
+      ...hubBlock(l),
       "---",
       "",
     );
@@ -233,4 +230,54 @@ export async function buildLlmsFull(): Promise<string> {
   out.push("");
 
   return out.join("\n");
+}
+
+/**
+ * The local-hub half of a location page — facts, the dated calendar (only
+ * what hasn't passed), the who-to-call directory, quick links — as markdown.
+ * This is the part of the site an answer engine is most likely to quote.
+ */
+function hubBlock(l: Location): string[] {
+  const isCounty = l.slug.endsWith("-county");
+  const upcoming = upcomingCalendar(l.calendar);
+  const span = (c: (typeof upcoming)[number]) =>
+    c.endDate && c.endDate !== c.date ? `${c.date} to ${c.endDate}` : c.date;
+  return [
+    ...(l.facts.length
+      ? [`#### ${l.name} at a glance`, "", ...l.facts.map((f) => `- ${f.label}: ${f.value}`), ""]
+      : []),
+    ...(upcoming.length
+      ? [
+          `#### Coming up in ${l.name}`,
+          "",
+          ...upcoming.map(
+            (c) =>
+              `- ${span(c)} — ${c.name}${c.venue ? ` (${c.venue})` : ""}${c.time ? `, ${c.time}` : ""}: ${c.note}${c.url ? ` ${c.url}` : ""}`,
+          ),
+          "",
+        ]
+      : []),
+    ...(l.resources.length
+      ? [
+          `#### Who to call in ${l.name}`,
+          "",
+          ...groupResources(l.resources).flatMap((g) => [
+            `**${categoryLabel(g.category, isCounty)}**`,
+            ...g.items.map(
+              (r) =>
+                `- ${r.label}: ${r.name}${r.phone ? ` — ${r.phone}` : ""}${r.url ? ` — ${r.url}` : ""}${r.note ? `. ${r.note}` : ""}`,
+            ),
+            "",
+          ]),
+        ]
+      : []),
+    ...(l.links.length
+      ? [
+          `#### ${l.name} quick links`,
+          "",
+          ...l.links.map((k) => `- ${k.label}: ${k.url}${k.note ? ` — ${k.note}` : ""}`),
+          "",
+        ]
+      : []),
+  ];
 }

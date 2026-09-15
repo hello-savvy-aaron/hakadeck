@@ -172,3 +172,40 @@ purpose: Denver and Broomfield are city-counties with one page each.
   keyword-count trend (resource_rank_history).
 - Semrush Traffic/Audience analytics: requires plan upgrade — not
   recommended; GA4 covers it first-party.
+
+## Workstream 6 — Local hub pages (SHIPPED 2026-09-15)
+
+Every one of the 121 location pages (103 towns + 15 county hubs + Denver and
+Broomfield) is now a local resource hub that leads the page — the brief was
+"beat the city's own homepage": an at-a-glance strip (3–4 featured numbers +
+facts), a dated **calendar** for the rest of 2026 (grouped by month, past
+items hidden automatically, daily ISR so it stays current between deploys),
+a **who-to-call directory** grouped emergency / city hall & services /
+utilities / permits & building / community plus five statewide lines
+(911, 811, 511, 988, poison control), and **quick links** into the official
+site (report a problem, pay a bill, calendar, agendas, trash, snow, permits,
+alerts). The deck copy, FAQs, projects and map follow below it. Totals at
+ship: 905 dated happenings, 1,891 verified contacts, 711 quick links,
+822 facts. `/llms-full.txt` carries all of it.
+
+Mechanics: frontmatter keys `facts:`, `calendar:` (ISO dates), `resources:`
+(now with `category` and `featured`), `links:`, `hubUpdated:`; rendered by
+`components/locations/local-hub.tsx`; schema enforced by
+`npm run content:validate`. Research was done per town by agents writing JSON
+(one file per slug) that `scripts/merge-location-research.mjs` folds into the
+frontmatter without touching anything else — reuse that for every refresh.
+Every phone/URL was copied from an official page fetched that day; agents
+were told to omit rather than guess, so a missing entry means "could not be
+verified", not "does not exist".
+
+Maintenance:
+- **Seasonal calendar refresh** (early Jan, early May, early Sept): re-run the
+  research for `calendar:` (and prune the past items the validator warns
+  about); the annual `events:` list only needs a yearly check.
+- **Twice a year**: `node scripts/check-location-links.mjs` — 403s are bot
+  walls, not dead pages; fix real 404s.
+- Known unverifiable-at-ship gaps to close by phone: Ward and La Salle fire
+  districts; Berthoud library/chamber (dead domains); Eaton PD line (site is
+  Cloudflare-walled); Palmer Lake Star Lighting, Monument Small Town
+  Christmas, Fountain fall/holiday and Breckenridge holiday 2026 dates (not
+  published yet); Denver Zoo Lights 2026 dates.

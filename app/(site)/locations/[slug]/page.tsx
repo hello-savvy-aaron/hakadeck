@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ArrowLeft, ArrowRight, Check, ExternalLink, MapPin, Phone } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, MapPin, Phone } from "lucide-react";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Eyebrow, Section, SectionHeading } from "@/components/sections/section";
 import { CtaFinal } from "@/components/sections/cta-final";
@@ -12,9 +12,14 @@ import { FaqJsonLd } from "@/components/seo/faq-jsonld";
 import { Button } from "@/components/ui/button";
 import { ProjectCard } from "@/components/portfolio/project-card";
 import { LocationJsonLd } from "@/components/seo/location-jsonld";
+import { HubCalendar, HubDirectory, HubGlance } from "@/components/locations/local-hub";
 import { countySlug, getAllLocations, getLocation } from "@/lib/locations";
 import { getProject } from "@/lib/portfolio";
 import { site } from "@/lib/site";
+
+// The calendar hides what has passed, so re-render daily instead of only on
+// deploy — a listing should fall off the morning after it ends.
+export const revalidate = 86400;
 
 export async function generateStaticParams() {
   const locations = await getAllLocations();
@@ -42,12 +47,6 @@ export async function generateMetadata({
       images: [location.image],
     },
   };
-}
-
-// "303-235-2855 Option 1" → "tel:3032352855"; "811" stays "tel:811".
-function telHref(phone: string): string {
-  const m = phone.match(/\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}/);
-  return `tel:${(m ? m[0] : phone).replace(/\D/g, "")}`;
 }
 
 export default async function LocationPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -124,12 +123,15 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
             <p className="text-muted-foreground mt-6 max-w-2xl text-lg leading-relaxed">
               {location.summary}
             </p>
-            <div className="mt-8">
+            <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg" className="h-12 px-6 text-base">
                 <Link href={site.cta.href}>
                   {site.cta.label}
                   <ArrowRight className="ml-1.5 h-4 w-4" />
                 </Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="h-12 px-6 text-base">
+                <a href={site.phoneHref}>Call {site.phone}</a>
               </Button>
             </div>
           </div>
@@ -150,18 +152,29 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
         </div>
       </Section>
 
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <div className="border-border/40 relative aspect-[16/9] overflow-hidden rounded-2xl border">
+      {/* The local hub leads — this page is meant to be the most useful
+          single page about living in this town, and the deck work follows. */}
+      <HubGlance location={location} isCounty={isCounty} />
+      <HubCalendar location={location} isCounty={isCounty} />
+      <HubDirectory location={location} isCounty={isCounty} />
+
+      <Section id="decks" top="tight" bottom="none">
+        <Eyebrow>Our work in {location.name}</Eyebrow>
+        <SectionHeading className="mt-4 text-3xl sm:text-4xl lg:text-5xl">
+          {isCounty
+            ? `Decks across ${location.name}, built by a crew that knows it.`
+            : `Decks in ${location.name}, built by a crew that knows the town.`}
+        </SectionHeading>
+        <div className="border-border/40 relative mt-10 aspect-[16/9] overflow-hidden rounded-2xl border">
           <Image
             src={location.image}
             alt={location.imageAlt ?? `Deck built by ${site.name} near ${location.name}, CO`}
             fill
-            priority
             sizes="(min-width: 1216px) 1088px, 100vw"
             className="object-cover"
           />
         </div>
-      </div>
+      </Section>
 
       <Section top="tight" bottom="tight">
         <article className="prose prose-haka mx-auto max-w-3xl">
@@ -171,71 +184,6 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
 
       {location.faqs.length > 0 ? (
         <Faq faqs={location.faqs} heading={`Deck questions ${location.name} homeowners ask.`} />
-      ) : null}
-
-      {location.resources.length > 0 ? (
-        <Section top="none" bottom="tight">
-          <Eyebrow>Local resources</Eyebrow>
-          <SectionHeading className="mt-4 text-3xl sm:text-4xl">
-            Who to call in {location.name}.
-          </SectionHeading>
-          <p className="text-muted-foreground mt-5 max-w-2xl text-sm leading-relaxed sm:text-base">
-            The offices that actually touch a deck project here — permits, inspections, the planning
-            counter. We handle the filing on every build; these are for when you want to check
-            something yourself.
-          </p>
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              ...location.resources,
-              {
-                label: "Before you dig",
-                name: "Colorado 811",
-                phone: "811",
-                url: "https://colorado811.org/",
-                note: "Free utility locates, required by state law before any footing goes in.",
-              },
-            ].map((r) => (
-              <li
-                key={`${r.label}-${r.name}`}
-                className="border-border/40 bg-card/40 flex h-full flex-col rounded-2xl border p-6"
-              >
-                <span className="text-muted-foreground text-xs tracking-widest uppercase">
-                  {r.label}
-                </span>
-                <span className="font-display mt-2 text-lg font-medium tracking-tight">
-                  {r.name}
-                </span>
-                {r.note ? (
-                  <span className="text-muted-foreground mt-2 text-sm leading-relaxed">
-                    {r.note}
-                  </span>
-                ) : null}
-                <span className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm">
-                  {r.phone ? (
-                    <a
-                      href={telHref(r.phone)}
-                      className="text-foreground/85 hover:text-foreground inline-flex items-center gap-1.5 font-medium"
-                    >
-                      <Phone className="h-3.5 w-3.5" />
-                      {r.phone}
-                    </a>
-                  ) : null}
-                  {r.url ? (
-                    <a
-                      href={r.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-foreground/85 hover:text-foreground inline-flex items-center gap-1.5 font-medium"
-                    >
-                      <ExternalLink className="h-3.5 w-3.5" />
-                      {new URL(r.url).hostname.replace(/^www\./, "")}
-                    </a>
-                  ) : null}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </Section>
       ) : null}
 
       {cityProjects.length > 0 ? (
@@ -288,37 +236,6 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
           </div>
         </div>
       </Section>
-
-      {location.events.length > 0 ? (
-        <Section top="none" bottom="tight">
-          <Eyebrow>Around town</Eyebrow>
-          <SectionHeading className="mt-4 text-3xl sm:text-4xl">
-            Out and about in {location.name}.
-          </SectionHeading>
-          <p className="text-muted-foreground mt-5 max-w-2xl text-sm leading-relaxed sm:text-base">
-            Outdoor season is what a deck is for — and {location.name}&apos;s community calendar is
-            a good reminder of how much of the year gets lived outside here.
-          </p>
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {location.events.map((event) => (
-              <li
-                key={event.name}
-                className="border-border/40 bg-card/40 flex h-full flex-col rounded-2xl border p-6"
-              >
-                <span className="text-muted-foreground text-xs tracking-widest uppercase">
-                  {event.when}
-                </span>
-                <span className="font-display mt-2 text-xl font-medium tracking-tight">
-                  {event.name}
-                </span>
-                <span className="text-muted-foreground mt-3 text-sm leading-relaxed">
-                  {event.note}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </Section>
-      ) : null}
 
       {others.length > 0 ? (
         <Section top="none">

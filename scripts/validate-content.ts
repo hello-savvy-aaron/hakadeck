@@ -28,22 +28,70 @@ const SITE_ROUTES = join(ROOT, "app", "(site)");
 
 const Faq = z.object({ q: z.string().min(1), a: z.string().min(1) });
 
+// Mirrors RESOURCE_CATEGORIES in lib/locations.ts — the directory groups on these.
+const RESOURCE_CATEGORIES = ["emergency", "city", "utilities", "building", "community"] as const;
+
 const LocationResource = z.object({
+  category: z.enum(RESOURCE_CATEGORIES),
   label: z.string().min(1),
   name: z.string().min(1),
-  // Loose: "303-271-8260", "(303) 271-8260", "719-687-9246 ext. 2"
+  // Loose: "303-271-8260", "(303) 271-8260", "719-687-9246 ext. 2", "1-800-895-1999"
   phone: z
     .string()
-    .regex(/^\(?\d{3}\)?[-. ]\d{3}[-. ]\d{4}/)
+    .regex(/^(1-)?\(?\d{3}\)?[-. ]\d{3}[-. ]\d{4}/)
     .optional(),
   url: z.string().url().optional(),
+  address: z.string().min(1).optional(),
+  hours: z.string().min(1).optional(),
   note: z.string().min(1).optional(),
+  // Puts the entry in the at-a-glance strip; 3–4 per page (soft-checked below).
+  featured: z.boolean().optional(),
 });
 
 const LocationEvent = z.object({
   name: z.string().min(1),
   when: z.string().min(1),
   note: z.string().min(1),
+});
+
+const LocationFact = z.object({ label: z.string().min(1), value: z.string().min(1) });
+
+// Quoted ISO dates only: an unquoted YAML date parses to a Date, and the
+// calendar helpers in lib/locations.ts compare strings.
+const IsoDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "must be a quoted YYYY-MM-DD");
+
+const CalendarItem = z
+  .object({
+    name: z.string().min(1),
+    date: IsoDate,
+    endDate: IsoDate.optional(),
+    time: z.string().min(1).optional(),
+    venue: z.string().min(1).optional(),
+    note: z.string().min(1),
+    url: z.string().url().optional(),
+    host: z.string().min(1).optional(),
+    tag: z
+      .enum([
+        "festival",
+        "holiday",
+        "market",
+        "arts",
+        "outdoors",
+        "civic",
+        "family",
+        "sports",
+        "services",
+        "food",
+        "music",
+      ])
+      .optional(),
+  })
+  .refine((c) => !c.endDate || c.endDate >= c.date, { message: "endDate is before date" });
+
+const LocationLink = z.object({
+  label: z.string().min(1),
+  url: z.string().url(),
+  note: z.string().min(1).optional(),
 });
 
 // YAML gives us a Date for unquoted dates and a string for quoted ones; the
@@ -81,6 +129,10 @@ const LocationFrontmatter = z.object({
   faqs: z.array(Faq).min(1),
   events: z.array(LocationEvent).optional(),
   resources: z.array(LocationResource).optional(),
+  facts: z.array(LocationFact).optional(),
+  calendar: z.array(CalendarItem).optional(),
+  links: z.array(LocationLink).optional(),
+  hubUpdated: IsoDate.optional(),
 });
 
 const ServiceFrontmatter = z.object({
@@ -189,6 +241,10 @@ async function main() {
         }
       }
 
+      if (type === "locations") {
+        for (const message of locationHubWarnings(data)) warnings.push({ file: rel, message });
+      }
+
       for (const [key, limit] of Object.entries(SEO_LIMITS)) {
         const value = (data as Record<string, unknown>)[key];
         if (typeof value === "string" && value.length > limit) {
@@ -261,6 +317,33 @@ function routeExists(
   return collection ? slugs[collection].has(second) : false;
 }
 
+/**
+ * Soft checks on the local-hub data. These rot rather than break: a calendar
+ * entry that ended a month ago, or a glance strip with one card, still
+ * renders — it just looks neglected.
+ */
+function locationHubWarnings(data: Record<string, unknown>): string[] {
+  const out: string[] = [];
+  const resources = Array.isArray(data.resources)
+    ? (data.resources as { featured?: boolean }[])
+    : [];
+  const featured = resources.filter((r) => r.featured === true).length;
+  if (resources.length > 0 && (featured < 3 || featured > 4)) {
+    out.push(`resources: ${featured} featured (the glance strip wants 3–4)`);
+  }
+  const calendar = Array.isArray(data.calendar)
+    ? (data.calendar as { name: string; date: string; endDate?: string }[])
+    : [];
+  const cutoff = new Date(Date.now() - 30 * 86_400_000).toISOString().slice(0, 10);
+  const stale = calendar.filter((c) => (c.endDate ?? c.date) < cutoff);
+  if (stale.length > 0) {
+    out.push(
+      `calendar: ${stale.length} item(s) ended over a month ago ("${stale[0].name}") — prune at the next refresh`,
+    );
+  }
+  return out;
+}
+
 function asStringArray(value: unknown): string[] {
   return Array.isArray(value) ? value.filter((v): v is string => typeof v === "string") : [];
 }
@@ -274,7 +357,7 @@ function report(errors: Problem[], warnings: Problem[]) {
   if (verbose) {
     for (const w of warnings) console.warn(`warn  ${w.file}: ${w.message}`);
   } else if (warnings.length) {
-    console.warn(`${warnings.length} SEO length warning(s) — rerun with --verbose to list`);
+    console.warn(`${warnings.length} warning(s) — rerun with --verbose to list`);
   }
 
   for (const e of errors) console.error(`error ${e.file}: ${e.message}`);
