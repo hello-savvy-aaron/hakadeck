@@ -57,6 +57,25 @@ Priority order:
 - [ ] **Chambers**: Castle Rock Chamber (castlerockco.com links a competitor) and South Metro
       Denver Chamber — directory links are legitimate and local.
 
+## Phase 4c — Littleton "deck builder" push (added 2026-09-19)
+
+Semrush 2026-09-19: "deck builder littleton" #20, "deck builders littleton co" #28,
+"littleton deck builder" #28. The results page is a local map pack plus directories
+(Yelp, Facebook, BBB, Angi, Thumbtack, Nextdoor) and Littleton-named competitors.
+
+- [ ] **Reviews that name Littleton** — ask every Littleton customer to mention the town and
+      the job type (e.g. "deck replacement in Littleton"). Reply to every review. GBP
+      reviews are the biggest map-pack lever for a Centennial shop targeting Littleton.
+- [ ] **GBP photos + posts from Littleton jobs** — add the Littleton project photos and
+      caption them with the neighborhood/job type.
+- [ ] **Send Claude 2–3 finished Littleton projects** (photos, brief, materials, and a
+      customer quote with permission). The Littleton page has only one project today and
+      no local quote; competitors show galleries.
+- [ ] **BBB, Thumbtack, Nextdoor** — these directory pages rank on page 1 for the Littleton
+      queries. Claim and complete each (covered by the Phase 4b fixes above).
+- [ ] **Littleton Business Chamber** + downtown Littleton business groups — directory
+      listings; a local link the out-of-town competitors lack.
+
 ## Phase 5 — Measurement
 
 - [ ] **Find the Search Console account** (verification TXT exists in name.com DNS, so a
