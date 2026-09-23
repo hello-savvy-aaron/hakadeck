@@ -7,8 +7,9 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { Eyebrow, Section, SectionHeading } from "@/components/sections/section";
 import { CtaFinal } from "@/components/sections/cta-final";
 import { ProjectCard } from "@/components/portfolio/project-card";
+import { ProjectFlyover } from "@/components/portfolio/project-flyover";
 import { BreadcrumbJsonLd } from "@/components/seo/breadcrumb-jsonld";
-import { getAllProjects, getProject } from "@/lib/portfolio";
+import { getAllProjects, getProject, projectVideo } from "@/lib/portfolio";
 
 export async function generateStaticParams() {
   const projects = await getAllProjects();
@@ -39,6 +40,9 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
   const { slug } = await params;
   const project = await getProject(slug);
   if (!project) notFound();
+  // The flyover's indexable home is its own watch page (/portfolio/<slug>/video);
+  // here it is an ambient hero that links there.
+  const video = projectVideo(project);
 
   // Cross-link sibling projects so every build has more than one incoming
   // internal link. A cyclic window (the next 3 projects, wrapping around) spreads
@@ -89,20 +93,8 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       </Section>
 
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        {project.video ? (
-          <div className="border-border/40 relative aspect-[16/9] overflow-hidden rounded-2xl border">
-            <video
-              className="absolute inset-0 h-full w-full object-cover"
-              playsInline
-              muted
-              loop
-              autoPlay
-              preload="metadata"
-              poster={project.videoPoster}
-            >
-              <source src={project.video} type="video/mp4" />
-            </video>
-          </div>
+        {video ? (
+          <ProjectFlyover video={video} />
         ) : (
           <div className="border-border/40 relative aspect-[16/9] overflow-hidden rounded-2xl border">
             <Image

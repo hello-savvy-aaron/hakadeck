@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/blog";
 import { getAllLocations } from "@/lib/locations";
-import { getAllProjects } from "@/lib/portfolio";
+import { getAllProjects, projectVideo } from "@/lib/portfolio";
 import { getAllServices } from "@/lib/services";
 import { guideRoutes } from "@/lib/guides";
 import { site } from "@/lib/site";
@@ -73,11 +73,39 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
+  // Flyover watch pages, with the video-sitemap extension so Google gets the
+  // clip's title, thumbnail, file, and length without having to discover them
+  // by rendering (see app/(site)/portfolio/[slug]/video/page.tsx).
+  const videoEntries = projects.flatMap((p) => {
+    const video = projectVideo(p);
+    if (!video) return [];
+    return [
+      {
+        url: `${base}${video.path}`,
+        lastModified: new Date(video.uploadDate),
+        changeFrequency: "yearly" as const,
+        priority: 0.6,
+        videos: [
+          {
+            title: video.title,
+            description: video.description,
+            thumbnail_loc: `${base}${video.poster}`,
+            content_loc: `${base}${video.src}`,
+            duration: video.durationSeconds,
+            publication_date: video.uploadDate,
+            family_friendly: "yes" as const,
+          },
+        ],
+      },
+    ];
+  });
+
   return [
     ...staticEntries,
     ...serviceEntries,
     ...locationEntries,
     ...postEntries,
     ...projectEntries,
+    ...videoEntries,
   ];
 }

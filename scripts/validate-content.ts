@@ -157,17 +157,33 @@ const ServiceFrontmatter = z.object({
     .optional(),
 });
 
-const ProjectFrontmatter = z.object({
-  title: z.string().min(1),
-  summary: z.string().min(1),
-  location: z.string().min(1),
-  year: z.number().int(),
-  category: z.string().min(1),
-  cover: z.string().startsWith("/"),
-  gallery: z.array(z.string().startsWith("/")),
-  video: z.string().startsWith("/").optional(),
-  videoPoster: z.string().startsWith("/").optional(),
-});
+const ProjectFrontmatter = z
+  .object({
+    title: z.string().min(1),
+    summary: z.string().min(1),
+    location: z.string().min(1),
+    year: z.number().int(),
+    category: z.string().min(1),
+    cover: z.string().startsWith("/"),
+    gallery: z.array(z.string().startsWith("/")),
+    // Drone flyover. `video` brings the other four with it: together they are
+    // the clip's record for its /portfolio/<slug>/video watch page, the
+    // VideoObject JSON-LD, and the video sitemap (projectVideo() in
+    // lib/portfolio.ts) — a partial record would silently drop that page.
+    video: z.string().startsWith("/").optional(),
+    videoPoster: z.string().startsWith("/").optional(),
+    videoDescription: z.string().min(1).optional(),
+    videoDate: IsoDate.optional(),
+    videoDuration: z.number().int().positive().optional(),
+  })
+  .superRefine((p, ctx) => {
+    if (!p.video) return;
+    for (const key of ["videoPoster", "videoDescription", "videoDate", "videoDuration"] as const) {
+      if (p[key] === undefined) {
+        ctx.addIssue({ code: "custom", path: [key], message: "required when `video` is set" });
+      }
+    }
+  });
 
 const SCHEMAS = {
   blog: BlogFrontmatter,
@@ -186,6 +202,8 @@ const SEO_LIMITS: Record<string, number> = {
   metaTitle: 60,
   metaDescription: 160,
   description: 160,
+  // Meta description of the clip's watch page.
+  videoDescription: 160,
 };
 
 type Problem = { file: string; message: string };
@@ -310,7 +328,12 @@ function routeExists(
   if (existsSync(join(PUBLIC, path))) return true;
 
   const [first, second, ...rest] = path.replace(/^\//, "").split("/");
-  if (!first || rest.length > 0) return false;
+  if (!first) return false;
+
+  // The one nested route: a project's flyover watch page, /portfolio/<slug>/video.
+  if (rest.length > 0) {
+    return first === "portfolio" && rest.join("/") === "video" && slugs.portfolio.has(second ?? "");
+  }
 
   const collection = TYPES.find((t) => t === first);
   if (!second) return Boolean(collection) || staticRoutes.has(first);

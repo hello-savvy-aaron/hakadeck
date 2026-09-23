@@ -4,10 +4,10 @@ import Link from "next/link";
 import { CtaFinal } from "@/components/sections/cta-final";
 import { DeckStyleChooserFigure } from "@/components/guides/figure-process";
 import { NewsletterSignup } from "@/components/guides/newsletter-signup";
-import { getAllProjects } from "@/lib/portfolio";
+import { getAllProjects, projectVideo } from "@/lib/portfolio";
 import { guideBySlug, GUIDES_HUB } from "@/lib/guides";
 import { site } from "@/lib/site";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const guide = guideBySlug("deck-design-ideas-colorado")!;
@@ -53,10 +53,17 @@ const TILES: { slug: string; caption: string; blurb: string }[] = [
   },
 ];
 
+// The flyover tile links to the clip's watch page rather than embedding the
+// file: Google indexes a video only where it is the page's main content, and
+// the embed that used to sit here was reported as "Video isn't on a watch page".
+const FLYOVER_SLUG = "ranch-deck";
+
 export default async function GalleryPage() {
   const projects = await getAllProjects();
   const bySlug = new Map(projects.map((p) => [p.slug, p]));
   const tiles = TILES.map((t) => ({ ...t, project: bySlug.get(t.slug) })).filter((t) => t.project);
+  const flyoverProject = bySlug.get(FLYOVER_SLUG);
+  const flyover = flyoverProject ? projectVideo(flyoverProject) : null;
 
   return (
     <>
@@ -93,7 +100,7 @@ export default async function GalleryPage() {
                 />
               </div>
               <p className="text-[13.5px]">
-                <span className="text-foreground font-semibold group-hover:text-haka-pine">
+                <span className="text-foreground group-hover:text-haka-pine font-semibold">
                   {caption}
                 </span>{" "}
                 <span className="text-muted-foreground">{blurb}</span>
@@ -102,40 +109,34 @@ export default async function GalleryPage() {
           ))}
         </div>
 
-        <div className="mt-6 flex flex-col gap-2">
-          <video
-            controls
-            playsInline
-            muted
-            preload="none"
-            poster="/images/projects/ranch-drone/drone-poster.jpeg"
-            src="/images/projects/ranch-drone/drone.mp4"
-            className="border-border aspect-[4/3] w-full rounded-xl border object-cover"
-          />
-          <p className="text-[13.5px]">
-            <span className="text-foreground font-semibold">Flyover.</span>{" "}
-            <span className="text-muted-foreground">
-              The ground-level build above from the air — how a Colorado custom deck sits in its
-              yard.
-            </span>
-          </p>
-        </div>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "VideoObject",
-              name: "Colorado custom deck flyover — ground-level composite build",
-              description:
-                "Drone flyover of a Haka Decks ground-level composite deck in the south Denver metro.",
-              thumbnailUrl: `${site.url}/images/projects/ranch-drone/drone-poster.jpeg`,
-              contentUrl: `${site.url}/images/projects/ranch-drone/drone.mp4`,
-              uploadDate: "2026-06-05",
-              publisher: { "@id": `${site.url}/#business` },
-            }),
-          }}
-        />
+        {flyover ? (
+          <Link href={flyover.path} className="group mt-6 flex flex-col gap-2">
+            <div className="border-border relative aspect-[4/3] w-full overflow-hidden rounded-xl border">
+              <Image
+                src={flyover.poster}
+                alt={flyover.title}
+                fill
+                sizes="(min-width: 700px) 640px, 92vw"
+                className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+              />
+              <span className="absolute inset-0 flex items-center justify-center">
+                <span className="inline-flex items-center gap-2 rounded-full bg-black/60 px-4 py-2 text-sm font-medium text-white backdrop-blur">
+                  <Play className="h-3.5 w-3.5 fill-current" aria-hidden />
+                  Watch · {flyover.durationLabel}
+                </span>
+              </span>
+            </div>
+            <p className="text-[13.5px]">
+              <span className="text-foreground group-hover:text-haka-pine font-semibold">
+                Flyover.
+              </span>{" "}
+              <span className="text-muted-foreground">
+                The build above from the air — how a Colorado custom deck sits in its yard. Opens
+                the {flyover.durationSeconds}-second drone pass.
+              </span>
+            </p>
+          </Link>
+        ) : null}
 
         <div className="mt-6 flex flex-wrap gap-2.5">
           <Button asChild className="h-11">
@@ -146,15 +147,15 @@ export default async function GalleryPage() {
           </Button>
         </div>
 
-        <div className="text-muted-foreground mt-12 space-y-4 text-[15px] leading-relaxed [&_a]:font-medium [&_a]:text-foreground [&_a]:underline [&_a]:decoration-border [&_a]:underline-offset-4 [&_h2]:font-display [&_h2]:mt-8 [&_h2]:text-xl [&_h2]:font-medium [&_h2]:tracking-tight [&_h2]:text-foreground">
+        <div className="text-muted-foreground [&_a]:text-foreground [&_a]:decoration-border [&_h2]:font-display [&_h2]:text-foreground mt-12 space-y-4 text-[15px] leading-relaxed [&_a]:font-medium [&_a]:underline [&_a]:underline-offset-4 [&_h2]:mt-8 [&_h2]:text-xl [&_h2]:font-medium [&_h2]:tracking-tight">
           <h2>What makes a Colorado custom deck different</h2>
           <p>
             Every photo above started with the same constraint: a Colorado custom deck has to be
             designed for a mile of altitude before it&apos;s designed for anything else. That means
-            framing sized for real snow loads, footings below the frost line, surfaces that
-            tolerate 300-plus days of UV, and shade planned like a room — not added later as an
-            umbrella. Get those right and the fun decisions (levels, curves, covers, kitchens) have
-            something solid to stand on.
+            framing sized for real snow loads, footings below the frost line, surfaces that tolerate
+            300-plus days of UV, and shade planned like a room — not added later as an umbrella. Get
+            those right and the fun decisions (levels, curves, covers, kitchens) have something
+            solid to stand on.
           </p>
 
           <h2>Let the slope pick the layout</h2>
@@ -186,15 +187,16 @@ export default async function GalleryPage() {
           <h2>The details that read as custom</h2>
           <p>
             Picture-frame borders in a contrasting board, stair-riser lighting, built-in benches
-            along a rail line, a curve traced around a mature tree — these are the moves that make
-            a deck look designed rather than assembled. Most cost hundreds, not thousands, when
+            along a rail line, a curve traced around a mature tree — these are the moves that make a
+            deck look designed rather than assembled. Most cost hundreds, not thousands, when
             they&apos;re planned into the build; our{" "}
             <Link href="/blog/deck-stairs-railings-cost-guide">add-on cost guide</Link> puts real
             numbers on each.
           </p>
           <p>
-            Want any of these ideas priced for your yard? <Link href="/contact">Tell us what
-            you&apos;re picturing</Link> and we&apos;ll walk the site with samples.
+            Want any of these ideas priced for your yard?{" "}
+            <Link href="/contact">Tell us what you&apos;re picturing</Link> and we&apos;ll walk the
+            site with samples.
           </p>
         </div>
 

@@ -108,7 +108,9 @@ readingMinutes: 4
 
 ### A new portfolio project
 
-Drop a new `.mdx` file under `content/portfolio/`. Look at `content/portfolio/double-decker.mdx` for the frontmatter shape — needs title, summary, location, year, category, cover, gallery array, and optional video + videoPoster. Slug = filename (no `.mdx`).
+Drop a new `.mdx` file under `content/portfolio/`. Look at `content/portfolio/double-decker.mdx` for the frontmatter shape — needs title, summary, location, year, category, cover, gallery array. Slug = filename (no `.mdx`).
+
+A drone clip is optional but all-or-nothing: `video` + `videoPoster` + `videoDescription` (≤160 chars, it doubles as a meta description) + `videoDate` (quoted `YYYY-MM-DD`) + `videoDuration` (whole seconds); `content:validate` rejects a partial record. A project with a clip also gets a watch page at `/portfolio/<slug>/video` — the only page that embeds the file as indexable video, with VideoObject JSON-LD and a video-sitemap entry. Google only indexes a video that is the main content of its page (Search Console: "Video isn't on a watch page"), so the project page and the design-ideas gallery show the poster and link there instead of embedding the file.
 
 ### Updating site-wide content
 

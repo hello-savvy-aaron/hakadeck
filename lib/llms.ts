@@ -8,7 +8,7 @@ import {
   type Location,
 } from "@/lib/locations";
 import { getAllServices, getService } from "@/lib/services";
-import { getAllProjects } from "@/lib/portfolio";
+import { getAllProjects, projectVideo } from "@/lib/portfolio";
 import { costGuide, guides, GUIDES_HUB } from "@/lib/guides";
 import { FAQS, type Faq } from "@/lib/faqs";
 import { site } from "@/lib/site";
@@ -223,8 +223,10 @@ export async function buildLlmsFull(): Promise<string> {
 
   out.push("## Portfolio (selected builds)", "");
   for (const pr of projects) {
+    const video = projectVideo(pr);
     out.push(
-      `- **${pr.title}** — ${pr.location}, ${pr.year}. ${pr.summary} (${abs(`/portfolio/${pr.slug}`)})`,
+      `- **${pr.title}** — ${pr.location}, ${pr.year}. ${pr.summary} (${abs(`/portfolio/${pr.slug}`)})` +
+        (video ? ` Drone flyover video: ${abs(video.path)}` : ""),
     );
   }
   out.push("");
