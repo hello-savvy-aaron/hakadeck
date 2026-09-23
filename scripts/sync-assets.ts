@@ -1,11 +1,14 @@
 /**
- * Sync curated assets from public/library/ into web/public/images/ with predictable paths.
+ * Sync curated assets into web/public/images/ with predictable paths.
+ *
+ * Sources: certs + reviews come from public/library/ (gitignored). The full-res project photo
+ * sets (showcase-1, showcase-2, misc) live in the shared Haka photo library at ../images/library/.
  *
  *   pnpm tsx scripts/sync-assets.ts          # run, optimizing JPEGs through sharp
  *   pnpm tsx scripts/sync-assets.ts --dry    # list operations without writing
  *   pnpm tsx scripts/sync-assets.ts --raw    # copy bytes verbatim, no resize/re-encode
  *
- * Re-run after dropping new files into public/library/.
+ * Re-run after dropping new files into either source folder.
  */
 import { mkdir, copyFile, readdir, stat } from "node:fs/promises";
 import { existsSync } from "node:fs";
@@ -16,6 +19,8 @@ const DRY = process.argv.includes("--dry");
 const RAW = process.argv.includes("--raw");
 const ROOT = resolve(import.meta.dirname, "..");
 const LIBRARY = resolve(ROOT, "public", "library");
+// Full-res project photo sets; moved to haka/images/library/ on 2026-09-23.
+const PHOTO_LIBRARY = resolve(ROOT, "..", "images", "library");
 const OUT = resolve(ROOT, "public", "images");
 
 const MAX_W = 2400;
@@ -103,29 +108,36 @@ async function plan(): Promise<Op[]> {
 
   ops.push(
     ...(await planShowcase(
-      join(LIBRARY, "showcase-1"),
+      join(PHOTO_LIBRARY, "showcase-1"),
       "double-decker",
       "double-decker-drone.mp4",
     )),
   );
-  ops.push(...(await planShowcase(join(LIBRARY, "showcase-2"), "ranch-drone", "ranch-drone.mp4")));
+  ops.push(
+    ...(await planShowcase(join(PHOTO_LIBRARY, "showcase-2"), "ranch-drone", "ranch-drone.mp4")),
+  );
 
-  ops.push(...(await planMisc(join(LIBRARY, "misc"))));
+  ops.push(...(await planMisc(join(PHOTO_LIBRARY, "misc"))));
 
   return ops;
 }
 
 async function run() {
-  if (!existsSync(LIBRARY)) {
-    console.error(`library/ not found at ${LIBRARY}`);
-    process.exit(1);
+  for (const dir of [LIBRARY, PHOTO_LIBRARY]) {
+    if (!existsSync(dir)) {
+      console.error(`source folder not found at ${dir}`);
+      process.exit(1);
+    }
   }
   const ops = await plan();
   console.log(`${DRY ? "[dry-run] " : ""}${ops.length} files\n`);
   for (const { src, dst } of ops) {
     const rel = dst.replace(ROOT + "/", "");
     if (!existsSync(src)) {
-      console.warn(`  MISS  ${src.replace(LIBRARY + "/", "library/")}`);
+      const srcRel = src
+        .replace(PHOTO_LIBRARY + "/", "images/library/")
+        .replace(LIBRARY + "/", "library/");
+      console.warn(`  MISS  ${srcRel}`);
       continue;
     }
     const isJpeg = /\.jpe?g$/i.test(dst);

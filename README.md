@@ -34,7 +34,7 @@ The dev port is 3001, not 3000 — easy to free up if there's something else run
 | `pnpm lint`                       | eslint                                                        |
 | `pnpm typecheck`                  | tsc --noEmit                                                  |
 | `pnpm format`                     | prettier --write .                                            |
-| `pnpm tsx scripts/sync-assets.ts` | resync `public/images/` from the `public/library/` source kit |
+| `pnpm tsx scripts/sync-assets.ts` | resync `public/images/` from the two source kits (see Assets) |
 | `pnpm tsx scripts/import-blog.ts` | regenerate `content/blog/*.mdx` from `../docs/blog/*.md`      |
 
 ## Environment variables
@@ -77,10 +77,10 @@ lib/
   site.ts             # name, contact, social, nav, rating — single source of truth
   blog.ts portfolio.ts contact-schema.ts utils.ts
 public/
-  images/             # synced from public/library/ via sync-assets.ts (~100MB of project + reviews + brand)
-  library/            # gitignored local source kit — full-res originals to pull from (not committed/deployed)
+  images/             # synced via sync-assets.ts (~100MB of project + reviews + brand)
+  library/            # gitignored local source kit: certs, reviews, brand (not committed/deployed)
 scripts/
-  sync-assets.ts      # public/library/ → public/images/, resizes JPEGs through sharp
+  sync-assets.ts      # public/library/ + ../images/library/ → public/images/, resizes JPEGs through sharp
   import-blog.ts      # docs/blog/*.md → content/blog/*.mdx
 ```
 
@@ -117,6 +117,8 @@ Drop a new `.mdx` file under `content/portfolio/`. Look at `content/portfolio/do
 ## Assets
 
 `public/images/` is committed because Vercel doesn't see the gitignored `public/library/` source. Total ≈ 100MB after `sync-assets.ts` resizes the 25 iPhone JPEGs through sharp (mozjpeg q=82, max 2400px wide).
+
+The full-res project photo sets (`showcase-1/`, `showcase-2/`, `misc/`) live outside the repo in the shared Haka photo library at `../images/library/` (moved there 2026-09-23; see `../images/README.md`). Certs, reviews and brand assets stay in `public/library/`.
 
 **Known TODO:** the two drone `.mp4`s are still 48 MB and 26 MB respectively — no `ffmpeg` was available to transcode them. On cellular this is a real download hit. To improve: `brew install ffmpeg`, then add a transcode pass to `sync-assets.ts` targeting H.264 720p @ ~5 Mbps.
 
