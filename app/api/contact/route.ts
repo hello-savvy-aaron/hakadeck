@@ -92,12 +92,22 @@ export async function POST(req: Request) {
   try {
     const { Resend } = await import("resend");
     const resend = new Resend(apiKey);
-    const { phone, email, referralSource, message, projectType, squareFootage, features, photos } =
-      parsed.data;
+    const {
+      name,
+      phone,
+      email,
+      referralSource,
+      message,
+      projectType,
+      squareFootage,
+      features,
+      photos,
+    } = parsed.data;
     // Phone leads first — schema guarantees at least one of the two exists.
     const action = phone ? "call back" : "email back";
     const reachBack = phone || email!;
     const text = [
+      `Name: ${name}`,
       phone ? `Phone: ${phone}` : null,
       email ? `Email: ${email}` : null,
       `How they found us (their answer): ${referralSource}`,
@@ -120,7 +130,7 @@ export async function POST(req: Request) {
       // Only wire replyTo when the lead left an email — a phone number isn't a
       // valid reply address and would make Resend reject the send.
       ...(email ? { replyTo: email } : {}),
-      subject: `New lead — ${action}: ${reachBack}`,
+      subject: `New lead — ${action} ${name}: ${reachBack}`,
       text,
       ...(photos && photos.length
         ? {

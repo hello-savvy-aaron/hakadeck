@@ -47,8 +47,16 @@ export function isValidEmail(v: string): boolean {
   return /^\S+@\S+\.\S+$/.test((v || "").trim());
 }
 
+// Minimum name length. Kept low on purpose — "Al", "Bo", and "Li" are real
+// names, and rejecting one is exactly the irritation the required field
+// shouldn't cause. Two characters still filters out a stray keystroke.
+export const NAME_MIN_LENGTH = 2;
+
 export const contactSchema = z
   .object({
+    // Loose here, gated in superRefine below for the same reason as
+    // referralSource — a base-parse failure would hide every other error.
+    name: z.string().trim().max(100),
     phone: z.string().trim().max(40).optional().or(z.literal("")),
     email: z.string().trim().max(120).optional().or(z.literal("")),
     // Loose here, gated to REFERRAL_SOURCES in superRefine below — an enum
@@ -78,6 +86,15 @@ export const contactSchema = z
     website: z.string().max(0).optional().or(z.literal("")),
   })
   .superRefine((d, ctx) => {
+    if (d.name.length < NAME_MIN_LENGTH) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["name"],
+        message: d.name
+          ? "That name looks a little short — please enter your full name."
+          : "Please enter your name so Pete knows who he's calling.",
+      });
+    }
     if (!d.phone && !d.email) {
       ctx.addIssue({
         code: "custom",

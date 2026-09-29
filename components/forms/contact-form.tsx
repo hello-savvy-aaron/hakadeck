@@ -6,7 +6,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { track } from "@vercel/analytics";
 import { trackGa } from "@/lib/gtag";
 import { toast } from "sonner";
-import { ArrowRight, Camera, Check, ChevronDown, Loader2, Phone, X } from "lucide-react";
+import {
+  AlertCircle,
+  ArrowRight,
+  Camera,
+  Check,
+  ChevronDown,
+  Loader2,
+  Phone,
+  X,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -90,6 +99,7 @@ async function compressPhoto(
 
 export function ContactForm() {
   const [sentContact, setSentContact] = useState<string | null>(null);
+  const [sentName, setSentName] = useState("");
   const [photos, setPhotos] = useState<File[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
   // Fire quote_form_start once per mount, on the first focus of any field —
@@ -182,6 +192,7 @@ export function ContactForm() {
         value: 1.0,
         currency: "USD",
       });
+      setSentName(values.name.trim().split(/\s+/)[0] ?? "");
       setSentContact((values.phone || values.email || "").trim());
       setPhotos([]);
       reset();
@@ -197,7 +208,7 @@ export function ContactForm() {
           <Check className="h-6 w-6" strokeWidth={2.5} />
         </div>
         <p className="font-display text-foreground mt-5 text-3xl font-medium tracking-tight">
-          Got it.
+          {sentName ? `Thanks, ${sentName}.` : "Got it."}
         </p>
         <p className="text-foreground/70 mt-3 leading-relaxed">
           We&apos;ll reach out at <strong className="text-foreground">{sentContact}</strong> within
@@ -238,6 +249,44 @@ export function ContactForm() {
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} onFocusCapture={trackFormStart}>
+        {/* Required, and marked so up front — nobody should learn that from an
+            error. Rendered first so react-hook-form's focus-on-error (which
+            follows registration order) lands here when it's missing. */}
+        <div className="mb-4">
+          <label htmlFor="contact-name" className="text-foreground/80 text-sm font-medium">
+            Your name{" "}
+            <span className="text-[#a05252]" aria-hidden="true">
+              *
+            </span>{" "}
+            <span className="text-muted-foreground font-normal">(required)</span>
+          </label>
+          <Input
+            id="contact-name"
+            type="text"
+            autoComplete="name"
+            autoCapitalize="words"
+            placeholder="First and last name"
+            aria-required="true"
+            aria-invalid={errors.name ? true : undefined}
+            aria-describedby={errors.name ? "contact-name-error" : undefined}
+            className={cn(
+              "mt-1.5 h-14 text-base",
+              errors.name && "border-[#a05252] bg-[#a05252]/5 ring-[#a05252]/25",
+            )}
+            {...register("name")}
+          />
+          {errors.name && (
+            <p
+              id="contact-name-error"
+              role="alert"
+              className="mt-2 flex items-center gap-1.5 px-0.5 text-sm font-medium text-[#a05252]"
+            >
+              <AlertCircle className="h-4 w-4 shrink-0" />
+              {errors.name.message}
+            </p>
+          )}
+        </div>
+
         {/* Phone and email — at least one required, enforced by the schema. */}
         <div className="grid gap-3 sm:grid-cols-2">
           <Input
