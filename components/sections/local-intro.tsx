@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Eyebrow, Section, SectionHeading } from "./section";
 import { site } from "@/lib/site";
 
@@ -15,8 +16,12 @@ export function LocalIntro() {
         <div className="text-muted-foreground space-y-5 text-base leading-relaxed sm:text-lg">
           <p>
             {site.name} is a licensed deck builder based in the {site.address.district} — custom
-            deck and patio design, pergola builders, and covered outdoor living for homeowners {site.serviceArea}. Since {site.founded} we&apos;ve designed and built
-            backyard decks and outdoor spaces in Greenwood Village, Cherry Hills Village, Lone
+            deck and patio design, pergola builders, and covered outdoor living for homeowners {site.serviceArea}. Since {site.founded}, we&apos;ve designed and built
+            custom decks in Denver neighborhoods{" "}
+            <Link href="/locations/denver" className="text-foreground underline underline-offset-3 hover:no-underline">
+              from Wash Park to Central Park
+            </Link>
+            , and backyard decks and outdoor spaces in Greenwood Village, Cherry Hills Village, Lone
             Tree, Highlands Ranch, Castle Rock, and the surrounding Denver suburbs.
           </p>
           <p>
@@ -29,8 +34,8 @@ export function LocalIntro() {
           <p>
             Whether you want a low-maintenance composite deck, a cedar or hardwood build, a pergola
             or patio roof, roof decking over an exposed slab, an outdoor kitchen, or new deck and
-            stair railings, we handle the design, HOA and permit paperwork, and the build end to
-            end. Recycled-core composite boards make for genuinely eco-friendly decks that shrug
+            stair railings, we handle the deck design, HOA and permit paperwork, and the build end
+            to end. Recycled-core composite boards make for genuinely eco-friendly decks that shrug
             off Denver sun without a drop of stain. Most projects start with a free on-site
             walkthrough, anywhere in the service area.
           </p>

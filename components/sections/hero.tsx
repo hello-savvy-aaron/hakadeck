@@ -60,8 +60,15 @@ export function Hero() {
             <span className="text-foreground/70">({site.rating.count}) Google Reviews</span>
           </a>
 
-          <h1 className="font-display mt-8 text-5xl leading-[0.95] font-medium tracking-tight text-balance text-white sm:text-7xl lg:text-[6.5rem] xl:text-[7.5rem]">
-            Custom Colorado Decks.
+          {/* The small first line carries the Denver keyword in the H1 (the homepage ranks
+              #17–26 for "custom decks denver" variants); the display line stays the brand line. */}
+          <h1 className="mt-8 text-white">
+            <span className="block text-xs font-medium tracking-[0.18em] text-white/80 uppercase sm:text-sm">
+              Custom decks in Denver, Colorado
+            </span>
+            <span className="font-display mt-4 block text-5xl leading-[0.95] font-medium tracking-tight text-balance sm:text-7xl lg:text-[6.5rem] xl:text-[7.5rem]">
+              Custom Colorado Decks.
+            </span>
           </h1>
 
           <p className="mt-7 max-w-xl text-lg leading-relaxed text-white/85 sm:text-xl">
