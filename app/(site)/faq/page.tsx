@@ -31,15 +31,15 @@ const CATEGORIES: { name: string; faqs: Faq[] }[] = [
       },
       {
         q: "Why isn't Haka the cheapest quote I'll get?",
-        a: "Because the cheapest deck in Colorado is usually the one built to sea-level habits. Our decks are engineered for altitude — footings below the frost line, framing sized for snow load, hardware and flashing specced for freeze-thaw — installed by manufacturer-certified crews whose certification tiers unlock the longest warranty coverage those brands offer, permitted and inspected every time, and backed by a written workmanship warranty we've honored past its own term. We'd rather explain an itemized number once than have you pay for a rebuilt ledger later. If a lower bid itemizes the same scope, engineering, and warranty, take it — we've just never seen one that does.",
+        a: "Because the cheapest deck in Colorado is usually the one built to sea-level habits. Ours are engineered for altitude — footings below the frost line, framing sized for snow load, hardware and flashing specced for freeze-thaw — installed by manufacturer-certified crews, permitted and inspected every time, and backed by a written workmanship warranty we've honored past its own term. If a lower bid itemizes the same scope, engineering, and warranty, take it — we've just never seen one that does.",
       },
       {
         q: "Do you require a big deposit?",
-        a: "No. A deposit should cover materials mobilization, not shift the whole job's risk onto you — we take a modest deposit with payments tied to project milestones, and you never pay the balance until the final walkthrough. Treat any builder asking for half down as a red flag.",
+        a: "No. A deposit should cover materials mobilization, not shift the whole job's risk onto you — we take a modest deposit with payments tied to project milestones, and you never pay the balance until the final walkthrough. Treat a 50% deposit as a red flag.",
       },
       {
         q: "Do you offer financing?",
-        a: "Many of our clients pay from savings or a HELOC, but there are several good routes to financing a deck in Colorado — we've laid out the honest pros and cons of each on our financing page, and we're glad to talk through what fits your project.",
+        a: "Many clients pay from savings or a HELOC, but there are several good financing routes — we've laid out the honest pros and cons on our financing page, and we're glad to talk through what fits your project.",
       },
     ],
   },
@@ -52,7 +52,7 @@ const CATEGORIES: { name: string; faqs: Faq[] }[] = [
       },
       {
         q: "Will you deal with my HOA?",
-        a: "Yes — completely. Most south-metro neighborhoods run architectural review before the city sees anything, and we prepare and file the submittal drawings, material and color specs, and site plans. We've been through the process with the HRCA in Highlands Ranch and the big associations in Parker, Lone Tree, and Centennial enough times to know what each one wants to see.",
+        a: "Yes — completely. Most south-metro neighborhoods run architectural review before the city sees anything, and we prepare and file the submittal drawings, specs, and site plans. We've been through the process with the HRCA in Highlands Ranch and the big associations in Parker, Lone Tree, and Centennial enough times to know what each wants.",
       },
       {
         q: "How long do permits take?",
@@ -65,15 +65,15 @@ const CATEGORIES: { name: string; faqs: Faq[] }[] = [
     faqs: [
       {
         q: "Composite or wood — which should I choose?",
-        a: "In Colorado, composite wins for most homeowners: our altitude UV, hail, and freeze-thaw age natural wood fast, and capped composite shrugs all three off with 25–50 year warranties and a soap-and-water maintenance schedule. Wood costs less on day one and looks like nothing else — if you'll genuinely re-oil it every year or two. Our materials guide has the full honest comparison.",
+        a: "In Colorado, composite wins for most homeowners: our altitude UV, hail, and freeze-thaw age natural wood fast, and capped composite shrugs all three off with 25–50 year warranties and a soap-and-water maintenance schedule. Wood costs less upfront and looks like nothing else — if you'll re-oil it every year or two. Our materials guide has the full honest comparison.",
       },
       {
         q: "Which composite brands do you install?",
-        a: "Deckorators is our go-to line — we're a Deckorators Pro Elite certified installer — plus Trex (Platinum Pro tier) and TimberTech when a specific color, grain, or budget calls for it. Those certification tiers matter beyond the badge: they unlock the longest labor-coverage warranty terms each manufacturer offers.",
+        a: "Deckorators is our go-to line — we're a Deckorators Pro Elite certified installer — plus Trex (Platinum Pro tier) and TimberTech when a specific color, grain, or budget calls for it. Those certification tiers unlock the longest labor-coverage warranty terms each manufacturer offers.",
       },
       {
         q: "Does composite get too hot for bare feet?",
-        a: "Dark boards in full July sun do warm up — it's the honest trade-off. Lighter colors run cooler, mineral-based boards like Deckorators shed heat noticeably better than wood-flour composites, and a pergola over the hottest exposure solves it completely. We factor sun orientation into every design.",
+        a: "Dark boards warm up in full July sun — the honest trade-off. Lighter colors run cooler, mineral-based boards like Deckorators shed heat noticeably better than wood-flour composites, and a pergola over the hottest exposure solves it completely. We factor sun orientation into every design.",
       },
     ],
   },
@@ -82,15 +82,15 @@ const CATEGORIES: { name: string; faqs: Faq[] }[] = [
     faqs: [
       {
         q: "How long does a deck project take?",
-        a: "Most decks take 3–10 days of on-site build time, after a 2–4 week permit and HOA window we use to order materials. Bigger builds — covered decks, multi-tier, outdoor kitchens — run 2–4 weeks on site. You get a realistic schedule in writing before you sign, and our process page walks through all six steps.",
+        a: "Most decks take 3–10 days of on-site build time, after a 2–4 week permit and HOA window. Bigger builds — covered decks, multi-tier, outdoor kitchens — run 2–4 weeks on site. You get a realistic schedule in writing before you sign, and our process page walks through all six steps.",
       },
       {
         q: "When's the best time of year to build?",
-        a: "Earlier than you think. We build nearly year-round in Colorado — composite doesn't need a staining-weather window — and the calendar bottleneck is paperwork, not snow. Sign in fall or winter and you're on the new deck by late spring while everyone else is still waiting on permits.",
+        a: "Earlier than you think — we build nearly year-round in Colorado, and the bottleneck is paperwork, not snow. Sign in fall or winter and you're on the new deck by late spring while everyone else waits on permits.",
       },
       {
         q: "Who will actually be in my yard?",
-        a: "Our crew, led day-to-day by the same people you met at the estimate — and Pete, the owner, walks every project personally. You'll always know who's on site and what happens next, and you can reach us directly throughout the build.",
+        a: "Our crew, led day-to-day by the people you met at the estimate — and Pete, the owner, walks every project personally. You'll know who's on site, and can reach us directly throughout the build.",
       },
     ],
   },
@@ -99,15 +99,15 @@ const CATEGORIES: { name: string; faqs: Faq[] }[] = [
     faqs: [
       {
         q: "What does your warranty cover?",
-        a: "Three layers. Our 2-year written workmanship warranty covers everything about how the deck was built. The manufacturer's warranties cover the boards themselves — 25 years to lifetime on the lines we install. And in practice we've stood behind serious workmanship issues well past the written term, because our name is on the work. One call to us starts any claim; we run it end to end.",
+        a: "Three layers. Our 2-year written workmanship warranty covers everything about how the deck was built. The manufacturer's warranties cover the boards themselves — 25 years to lifetime on the lines we install. One call to us starts any claim; we run it end to end.",
       },
       {
         q: "What happens after the build is done?",
-        a: "A final walkthrough, your closed permit and registered warranty paperwork — and then the step nobody else promises: we come back around the one-year mark, after the deck's first Colorado winter, and fix anything we don't think is perfect. Happy is the only finish line we recognize.",
+        a: "A final walkthrough, closed permit, and registered warranty paperwork — then the step nobody else promises: we return at the one-year mark, after the deck's first Colorado winter, to fix anything that isn't perfect.",
       },
       {
         q: "Do you repair decks you didn't build?",
-        a: "Yes. We inspect the structure the way an engineer would — ledger, footings, hangers, framing — and give you a straight written report on whether repair, re-decking over sound framing, or replacement is the honest answer. We take over half-finished DIY projects more often than you'd think, too.",
+        a: "Yes. We inspect the structure the way an engineer would — ledger, footings, hangers, framing — and give you a straight written report on whether repair, re-decking over sound framing, or replacement is the honest answer. We take over half-finished DIY projects more often than you'd think.",
       },
     ],
   },
@@ -127,8 +127,8 @@ export default function FaqPage() {
           Every question, answered straight.
         </h1>
         <p className="text-muted-foreground mt-6 max-w-2xl text-lg leading-relaxed">
-          The questions homeowners across the Denver metro actually ask us — including the one
-          about our price. Do the homework. We&apos;ll wait.
+          The questions homeowners across the Denver metro actually ask us — including the one about
+          our price.
         </p>
         <div className="mt-8">
           <ProofBadge />
@@ -161,20 +161,32 @@ export default function FaqPage() {
       <Section top="none" bottom="tight">
         <p className="text-muted-foreground max-w-2xl text-base leading-relaxed">
           Deeper answers live in our{" "}
-          <Link href="/deck-guides-and-tools" className="text-foreground font-medium underline underline-offset-3 hover:no-underline">
+          <Link
+            href="/deck-guides-and-tools"
+            className="text-foreground font-medium underline underline-offset-3 hover:no-underline"
+          >
             free guides
           </Link>{" "}
           — the cost guide, the permit guide, the materials comparison, and the DIY build guide —
           plus pages on{" "}
-          <Link href="/process" className="text-foreground font-medium underline underline-offset-3 hover:no-underline">
+          <Link
+            href="/process"
+            className="text-foreground font-medium underline underline-offset-3 hover:no-underline"
+          >
             our process
           </Link>{" "}
           and{" "}
-          <Link href="/warranty" className="text-foreground font-medium underline underline-offset-3 hover:no-underline">
+          <Link
+            href="/warranty"
+            className="text-foreground font-medium underline underline-offset-3 hover:no-underline"
+          >
             our warranty
           </Link>
           . Didn&apos;t find yours?{" "}
-          <Link href="/contact" className="text-foreground font-medium underline underline-offset-3 hover:no-underline">
+          <Link
+            href="/contact"
+            className="text-foreground font-medium underline underline-offset-3 hover:no-underline"
+          >
             Ask us directly
           </Link>{" "}
           — replies within one business day.

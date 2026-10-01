@@ -11,9 +11,9 @@ import {
   P,
   Muted,
   Callout,
-  InlineCta,
   DataTable,
   StatRows,
+  InlineCta,
 } from "@/components/guides/guide-content";
 import { guideBySlug } from "@/lib/guides";
 import { site } from "@/lib/site";
@@ -55,16 +55,15 @@ export default function DiyChecklistPage() {
         <Lead>
           Building it yourself? Respect. This is the order we run every job in, with the details
           that actually matter at each step — skip one and it usually costs a weekend (or an
-          inspection). Tap the boxes as you go, use the span table and worked example at the
-          bottom for your drawings, and download the PDF for the garage wall.
+          inspection). Tap the boxes as you go, and download the PDF for the garage wall.
         </Lead>
 
         <div className="mt-4">
           <Callout>
             The steps and numbers here reflect how decks are typically built to code on the Front
-            Range, but they are general guidance — your stamped permit drawings and your
-            jurisdiction&apos;s adopted code govern your build, and this page isn&apos;t
-            engineering advice for your specific site.
+            Range, but they&apos;re general guidance — your stamped permit drawings and
+            jurisdiction&apos;s adopted code govern your build; this page isn&apos;t engineering
+            advice for your site.
           </Callout>
         </div>
 
@@ -77,7 +76,7 @@ export default function DiyChecklistPage() {
           between the ledger and the beam at 16-inch spacing:
         </P>
         <DataTable
-          headers={["Joist size", "16\" on center", "12\" on center"]}
+          headers={["Joist size", '16" on center', '12" on center']}
           rows={[
             ["2×6", "9' 0\"", "9' 11\""],
             ["2×8", "11' 10\"", "13' 1\""],
@@ -88,21 +87,21 @@ export default function DiyChecklistPage() {
         <Muted>
           Beams are sized from the joist span they carry — a doubled 2×10 typically runs 7–9 ft
           between posts on a 12-ft joist span. Your plan reviewer (or the lumberyard&apos;s free
-          takeoff desk) will confirm both against IRC Table R507.5 for your exact layout, and some
-          foothills jurisdictions require higher snow-load designs.
+          takeoff desk) will confirm both against IRC Table R507.5, and some foothills jurisdictions
+          require higher snow-load designs.
         </Muted>
 
         <H2>A worked example: 12×16 attached composite deck</H2>
         <P>
-          To make the framing plan concrete, here&apos;s the complete structure for the most common
-          starter deck — 12 ft deep, 16 ft wide, about 2 ft off grade, attached to the house: a
-          ledger on the house wall, one doubled 2×10 beam on three posts near the outer edge, and
-          2×8 joists at 16&quot; on center spanning the 12 ft between them.
+          Here&apos;s the complete structure for the most common starter deck — 12 ft deep, 16 ft
+          wide, about 2 ft off grade, attached to the house: a ledger on the house wall, one doubled
+          2×10 beam on three posts near the outer edge, and 2×8 joists at 16&quot; on center
+          spanning the 12 ft between them.
         </P>
         <DeckAnatomyFigure />
         <StatRows
           rows={[
-            { label: "Footings — 12\" dia × 36\" deep", value: "3" },
+            { label: 'Footings — 12" dia × 36" deep', value: "3" },
             { label: "Concrete, 80-lb bags (~4 per hole)", value: "12" },
             { label: "Posts — 6×6 pressure-treated", value: "3" },
             { label: "Beam — 2×10×16' PT (doubled)", value: "2" },
@@ -118,23 +117,22 @@ export default function DiyChecklistPage() {
         <Muted>
           Quantities include normal cut waste on decking but no mistakes allowance — first build,
           buy one extra board per bunk. Every metal part (hangers, post bases, screws) must be
-          hot-dip galvanized or better; modern pressure-treated lumber corrodes bare steel. At
-          2026 prices this bill of materials lands around $4,500–6,500 — the labor you&apos;re
-          supplying is the $15–35 per sq ft a crew would charge. Budget 3–4 full weekends for a
-          first build; a pro crew frames and decks this size in about a week.
+          hot-dip galvanized or better; modern pressure-treated lumber corrodes bare steel. At 2026
+          prices this bill of materials lands around $4,500–6,500 — the labor you&apos;re supplying
+          is the $15–35 per sq ft a crew would charge. Budget 3–4 full weekends for a first build; a
+          pro crew frames and decks this size in about a week.
         </Muted>
 
         <H2>The tools that actually get used</H2>
         <P>
-          Beyond a normal homeowner kit (drill, tape, hammer, speed square, chalk line):
-          a <strong className="font-semibold">two-person power auger</strong> (rent it — about
-          $75–100 a day),
-          a <strong className="font-semibold">4-ft level</strong> plus a string or laser level for
-          post heights, an <strong className="font-semibold">impact driver</strong> — structural
-          ledger screws will smoke a drill — a circular saw, a miter saw for railing and decking
-          cuts, batter-board stakes and mason&apos;s string, and two sawhorses. For composite,
-          the manufacturer&apos;s hidden-fastener bit saves hours. Budget rental days, not
-          ownership, for the auger and (if you skirt the deck) a small concrete mixer.
+          Beyond a normal homeowner kit (drill, tape, hammer, speed square, chalk line): a{" "}
+          <strong className="font-semibold">two-person power auger</strong> (rent it — about $75–100
+          a day), a <strong className="font-semibold">4-ft level</strong> or a laser level for post
+          heights, an <strong className="font-semibold">impact driver</strong>, a circular saw, a
+          miter saw for railing and decking cuts, batter-board stakes and mason&apos;s string, and
+          two sawhorses. For composite, the manufacturer&apos;s hidden-fastener bit saves hours.
+          Budget rental days, not ownership, for the auger and (if you skirt the deck) a small
+          concrete mixer.
         </P>
 
         <InlineCta
@@ -144,19 +142,24 @@ export default function DiyChecklistPage() {
 
         <H2>Where DIY builds actually go wrong</H2>
         <P>
-          After taking over a lot of half-finished decks, the pattern is consistent: the ledger
-          (attached with lag screws through siding, no flashing), footings poured before
-          inspection, railing posts lagged instead of through-bolted, and stringers cut with
-          9-inch treads. None of these look wrong from a lawn chair; all four fail inspection.
-          If you read one section of your code book, make it the ledger and guard details — and
-          our <Link href="/deck-permits-south-denver-metro" className="text-primary font-semibold hover:underline">permit guide</Link>{" "}
+          After taking over half-finished decks, the pattern is consistent: the ledger (attached
+          with lag screws through siding, no flashing), footings poured before inspection, railing
+          posts lagged instead of through-bolted, and stringers cut with 9-inch treads. None look
+          wrong from a lawn chair; all four fail inspection. If you read one section of your code
+          book, make it the ledger and guard details — and our{" "}
+          <Link
+            href="/deck-permits-south-denver-metro"
+            className="text-primary font-semibold hover:underline"
+          >
+            permit guide
+          </Link>{" "}
           covers what each south-metro city checks hardest.
         </P>
 
         <div className="mt-5">
           <Callout>
-            In over your head at any step? No judgment — we take over half-finished decks more
-            often than you&apos;d think, and the framing inspection is the usual breaking point.
+            In over your head at any step? No judgment — we take over half-finished decks more often
+            than you&apos;d think, and the framing inspection is the usual breaking point.
             We&apos;ll tell you honestly what&apos;s salvageable.{" "}
             <Link href="/contact" className="text-primary font-semibold hover:underline">
               Send us photos

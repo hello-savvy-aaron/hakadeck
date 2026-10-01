@@ -10,11 +10,11 @@ import {
   P,
   Muted,
   Callout,
-  InlineCta,
   StatRows,
   DataTable,
   CostBar,
   Steps,
+  InlineCta,
 } from "@/components/guides/guide-content";
 import { TenYearCostFigure } from "@/components/guides/figure-charts";
 import { costGuide } from "@/lib/guides";
@@ -55,8 +55,7 @@ export default function DeckCostGuidePage() {
         <Lead>
           Most deck pricing online quotes <strong className="font-semibold">materials only</strong>
           {" — "}then the real bids land at double. Here&apos;s the honest math, using manufacturer
-          material data plus what installation actually adds — and further down, a real bid broken
-          into line items so you can see where every dollar goes.
+          material data plus what installation actually adds.
         </Lead>
 
         <H2>Step 1 — Materials</H2>
@@ -72,9 +71,8 @@ export default function DeckCostGuidePage() {
         <P>
           Industry-wide, labor runs 40–60% of a finished deck&apos;s total cost — professional
           installation adds <strong className="font-semibold">$15–35 per sq ft</strong> on top of
-          materials. The rule of thumb: take your materials number and add 50–100%. A $12,000
-          materials list is a $18,000–24,000 finished deck. Height, slope, access, and design
-          complexity decide which end you land on.
+          materials. A $12,000 materials list is a $18,000–24,000 finished deck. Height, slope,
+          access, and design complexity decide which end you land on.
         </P>
 
         <CostBar
@@ -88,8 +86,7 @@ export default function DeckCostGuidePage() {
           caption={
             <>
               Substructure + its labor ~38% · decking &amp; railing labor ~30% · railing material
-              ~12% · decking boards &amp; fasteners ~20%. The boards you agonize over are a fifth of
-              the bill.
+              ~12% · decking boards &amp; fasteners ~20%.
             </>
           }
         />
@@ -108,15 +105,12 @@ export default function DeckCostGuidePage() {
           ]}
         />
         <Muted>
-          For calibration: the 2025 Zonda Cost vs Value report puts the national-average 16×20
-          composite deck addition at about $25,000 — and wood at about $18,000.
+          The 2025 Zonda Cost vs Value report puts the national-average 16×20 composite deck
+          addition at about $25,000 — and wood at about $18,000.
         </Muted>
 
         <H2>What your budget builds</H2>
-        <P>
-          Numbers anchor better with pictures. Real Haka projects, typical of what each range
-          delivers in the Denver metro:
-        </P>
+        <P>Real Haka projects, typical of what each range delivers in the Denver metro:</P>
         <div className="mb-5 grid gap-3 sm:grid-cols-2">
           {[
             {
@@ -189,10 +183,12 @@ export default function DeckCostGuidePage() {
           ]}
         />
         <Muted>
-          Same substructure under all of them — the framing doesn&apos;t care what you walk on,
-          which is why the cheap surface only saves you the board delta, not half the deck. Full
-          comparison in the{" "}
-          <Link href="/composite-vs-hardwood-decking-colorado" className="text-primary font-semibold hover:underline">
+          Same substructure under all of them — the framing doesn&apos;t care what you walk on, so
+          the cheap surface only saves the board delta, not half the deck. Full comparison in the{" "}
+          <Link
+            href="/composite-vs-hardwood-decking-colorado"
+            className="text-primary font-semibold hover:underline"
+          >
             materials guide
           </Link>
           .
@@ -213,16 +209,16 @@ export default function DeckCostGuidePage() {
         />
         <P>
           These stack, and they&apos;re why two 320 sq ft decks can be $14,000 and $27,000 without
-          either builder being wrong. An elevated deck is taller posts, engineered footings,
-          railing at height, and staging — real structure, not margin. If a bid for a walk-out
-          matches a bid for a ground-level deck, one of them misread the job.
+          either builder being wrong. An elevated deck means taller posts, engineered footings,
+          railing at height, and staging. If a bid for a walk-out matches a bid for a ground-level
+          deck, one of them misread the job.
         </P>
 
         <H2>A real bid, line by line</H2>
         <P>
           Here&apos;s what an itemized quote for a common project actually looks like — replacing a
-          worn-out 16×20 wood deck with capped composite, mid-height, 36 lin ft of aluminum
-          railing, four steps:
+          worn-out 16×20 wood deck with capped composite, mid-height, 36 lin ft of aluminum railing,
+          four steps:
         </P>
         <DataTable
           headers={["Line item", "Installed"]}
@@ -241,8 +237,8 @@ export default function DeckCostGuidePage() {
         />
         <Muted>
           Landing right in the middle of the 16×20 installed range once tear-out is counted. Yours
-          will differ — the point is the shape: if a bid can&apos;t be broken into lines like
-          these, you can&apos;t compare it to anything.
+          will differ, but if a bid can&apos;t be broken into lines like these, you can&apos;t
+          compare it to anything.
         </Muted>
 
         <H2>The add-ons bids include (and calculators don&apos;t)</H2>
@@ -266,9 +262,9 @@ export default function DeckCostGuidePage() {
           ]}
         />
         <Muted>
-          Covers and kitchens are engineered structures with their own permits — priced per
-          project, not per square foot. They&apos;re also the classic phase-two items: build the
-          deck framed to accept them now, add them next season.
+          Covers and kitchens are engineered structures with their own permits — priced per project,
+          not per square foot. They&apos;re also the classic phase-two items: build the deck framed
+          to accept them now, add them next season.
         </Muted>
 
         <H2>The ten-year math</H2>
@@ -276,11 +272,10 @@ export default function DeckCostGuidePage() {
           Wood wins the day-one bid and loses the decade. A 320 sq ft pressure-treated deck at
           roughly $9,000 wants cleaning and re-staining every other year — $400–900 each round if
           you hire it out — plus board and fastener repairs as UV and freeze-thaw do their work.
-          Call it <strong className="font-semibold">$3,000–5,000 over ten years</strong>, on a
-          surface that&apos;s aging anyway. The same deck in capped composite at $16,000 needs
-          soap, water, and nothing else, with 25–50 year fade-and-stain warranties. The gap
-          narrows to a few thousand dollars over a decade — and past year ten, composite is
-          simply ahead.
+          Call it <strong className="font-semibold">$3,000–5,000 over ten years</strong>. The same
+          deck in capped composite at $16,000 needs soap, water, and nothing else, with 25–50 year
+          fade-and-stain warranties. The gap narrows to a few thousand dollars over a decade — and
+          composite wins after that.
         </P>
         <TenYearCostFigure />
 
@@ -289,8 +284,8 @@ export default function DeckCostGuidePage() {
           items={[
             <>
               <strong className="font-semibold">One lump-sum number.</strong> If it isn&apos;t
-              itemized roughly like the example above, you can&apos;t compare it — and change
-              orders have nowhere honest to land.
+              itemized like the example above, you can&apos;t compare it — and change orders have
+              nowhere honest to land.
             </>,
             <>
               <strong className="font-semibold">No footing or hardware spec.</strong> A real bid
@@ -303,27 +298,28 @@ export default function DeckCostGuidePage() {
               inspected. The permit protects you at resale.
             </>,
             <>
-              <strong className="font-semibold">Half down.</strong> A deposit should cover
-              materials mobilization, not the whole job&apos;s risk. Colorado norm is a modest
-              deposit with payments tied to milestones.
+              <strong className="font-semibold">Half down.</strong> A deposit should cover materials
+              mobilization, not the whole job&apos;s risk. Colorado norm is a modest deposit with
+              payments tied to milestones.
             </>,
             <>
               <strong className="font-semibold">No workmanship warranty in writing.</strong> The
-              boards carry 25–50 year manufacturer warranties; ask who stands behind the structure
-              underneath, and for how long.
+              boards carry their own warranty — ask who stands behind the structure, and for how
+              long.
             </>,
           ]}
         />
 
         <H2>Honest ways to bring the number down</H2>
         <P>
-          Keep the footprint a simple rectangle — corners and angles cost framing hours. Stay low
-          if the yard allows it; height is the biggest multiplier on the list. Put the premium
-          railing on the view side and standard aluminum everywhere else. Pick stock colors
-          (special-order boards add cost and weeks). Phase the pergola or kitchen to next year on
-          framing that&apos;s ready for them. And time it right — signing in the off-season buys
-          schedule flexibility and a spring deck, as our{" "}
-          <Link href="/blog/best-time-to-build-deck-colorado" className="text-primary font-semibold hover:underline">
+          A simple rectangle footprint saves framing hours. Stay low if the yard allows it — height
+          costs the most. Put premium railing on the view side, standard aluminum elsewhere. Pick
+          stock colors (special-order boards add cost and weeks). Time it right — signing in the
+          off-season buys schedule flexibility and a spring deck, as our{" "}
+          <Link
+            href="/blog/best-time-to-build-deck-colorado"
+            className="text-primary font-semibold hover:underline"
+          >
             timing guide
           </Link>{" "}
           lays out. What doesn&apos;t save money: skipping the permit, undersizing footings, or
@@ -335,9 +331,9 @@ export default function DeckCostGuidePage() {
         </P>
 
         <Callout>
-          These are planning numbers from national cost surveys and manufacturer calculators — not
-          a Haka bid. Elevated decks, walk-outs, and covered structures run above these ranges.
-          Want to play with your own numbers first? The{" "}
+          These are planning numbers from national cost surveys and manufacturer calculators — not a
+          Haka bid. Elevated decks, walk-outs, and covered structures run above these ranges. Play
+          with your own numbers first — the{" "}
           <Link href="/deck-cost-calculator" className="text-primary font-semibold hover:underline">
             cost calculator
           </Link>{" "}

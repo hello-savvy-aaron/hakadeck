@@ -23,7 +23,7 @@ const STEPS = [
   {
     title: "The call and the walkthrough",
     time: "This week",
-    body: "Tell us what you're picturing — a rough idea is plenty. We come walk the yard with you: sun exposure, grade, sightlines, how you actually want to use the space. It's free, it's usually within the week, and you're talking to the people who will build it, not a salesperson.",
+    body: "Tell us what you're picturing — a rough idea is plenty. We come walk the yard with you: sun exposure, grade, sightlines, how you actually want to use the space. It's free, and you're talking to the people who will build it, not a salesperson.",
   },
   {
     title: "Design and an itemized number",
@@ -33,12 +33,12 @@ const STEPS = [
   {
     title: "Permits and HOA, off your plate",
     time: "2–4 weeks",
-    body: "We produce the drawings, pull the permit, file the HOA architectural paperwork, and handle corrections if a reviewer wants something adjusted. You never stand at a counter. We order materials during the wait so the build starts the day approvals land.",
+    body: "We produce the drawings, pull the permit, file the HOA paperwork, and handle any corrections. You never stand at a counter. We order materials during the wait so the build starts the day approvals land.",
   },
   {
     title: "The build",
     time: "3–10 days on site",
-    body: "Footings, framing, decking, railing — with the city's inspections passed at every required stage and the site left clean every evening. Pete walks every project personally, and you'll always know who's in your yard and what happens next.",
+    body: "Footings, framing, decking, railing — with the city's inspections passed at every stage and the site left clean every evening. Pete walks every project personally, and you'll know who's in your yard.",
   },
   {
     title: "Walkthrough and handoff",
@@ -48,7 +48,7 @@ const STEPS = [
   {
     title: "The year-later checkback",
     time: "A year on",
-    body: "This is the step nobody else promises: we come back. Colorado's first winter is the real test of any deck, and if we think anything isn't perfect — a board that moved, a gate that sags — we fix it. We won't quit until you're thrilled; happy is the only finish line.",
+    body: "This is the step nobody else promises: we come back. Colorado's first winter is the real test of any deck, and if we think anything isn't perfect — a board that moved, a gate that sags — we fix it. We won't quit until you're thrilled.",
   },
 ];
 
@@ -63,8 +63,8 @@ export default function ProcessPage() {
           Six steps from first call to first barbecue.
         </h1>
         <p className="text-muted-foreground mt-6 max-w-2xl text-lg leading-relaxed">
-          Most homeowners have never hired a deck builder before, so here&apos;s exactly how it
-          runs — including the step that comes a year after we&apos;re done.
+          Most homeowners have never hired a deck builder, so here&apos;s exactly how it runs
+          — including the step that comes a year after we&apos;re done.
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-4">
           <Button asChild size="lg" className="h-12 px-6 text-base">
@@ -106,18 +106,24 @@ export default function ProcessPage() {
           </div>
           <div className="text-muted-foreground space-y-4 text-base leading-relaxed">
             <p>
-              Add the steps up and a typical project runs four to eight weeks door to door — most
-              of it paperwork lead time, not construction. That&apos;s why the homeowners on new
-              decks by Memorial Day are the ones who called in winter. If you&apos;re aiming at a
-              date, our{" "}
-              <Link href="/blog/best-time-to-build-deck-colorado" className="text-foreground font-medium underline underline-offset-3 hover:no-underline">
+              Add the steps up and a typical project runs four to eight weeks — most of
+              it paperwork lead time, not construction. That&apos;s why homeowners with new decks
+              by Memorial Day called in winter. If you&apos;re aiming at a date,
+              our{" "}
+              <Link
+                href="/blog/best-time-to-build-deck-colorado"
+                className="text-foreground font-medium underline underline-offset-3 hover:no-underline"
+              >
                 guide to timing a Colorado deck build
               </Link>{" "}
               maps the calendar, and the{" "}
-              <Link href="/deck-cost-calculator" className="text-foreground font-medium underline underline-offset-3 hover:no-underline">
+              <Link
+                href="/deck-cost-calculator"
+                className="text-foreground font-medium underline underline-offset-3 hover:no-underline"
+              >
                 cost calculator
               </Link>{" "}
-              gets you a planning number before we ever talk.
+              gets you a planning number first.
             </p>
           </div>
         </div>

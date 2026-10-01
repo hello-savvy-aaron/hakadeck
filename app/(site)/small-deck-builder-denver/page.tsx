@@ -19,11 +19,11 @@ const description =
 const FAQS: Faq[] = [
   {
     q: "How much does a small deck cost in Denver?",
-    a: "The same honest math as any deck we build: capped composite runs $40–$70 per square foot installed, so a 120–200 square foot deck typically lands between $7,000 and $16,000 depending on height, railing, and stairs. Ground-level floating decks trend toward the bottom of that range because they often skip railing entirely — that's $30–90 per linear foot you never spend. Our calculator gives you a planning range in thirty seconds.",
+    a: "The same honest math as any deck we build: capped composite runs $40–$70 per square foot installed, so a 120–200 square foot deck typically lands between $7,000 and $16,000 depending on height, railing, and stairs. Ground-level floating decks trend toward the bottom of that range because they often skip railing entirely. Our calculator gives you a planning range in thirty seconds.",
   },
   {
     q: "Does a small deck need a permit?",
-    a: "Often not — and that's one of the small deck's quiet advantages. Most Front Range jurisdictions exempt a deck that passes all three tests at once: under 200 square feet, under 30 inches above grade at every point, and freestanding rather than attached to the house. Miss any one and it's a normal permit. We confirm the rules for your specific city either way, because a few metro towns regulate lower structures too.",
+    a: "Often not — and that's one of the small deck's quiet advantages. Most Front Range jurisdictions exempt a deck under 200 square feet, under 30 inches above grade, and freestanding from the house. Miss any one test and it's a normal permit. We confirm the rules for your specific city either way, because a few metro towns regulate lower structures too.",
   },
   {
     q: "How long does a small deck take to build?",
@@ -31,7 +31,7 @@ const FAQS: Faq[] = [
   },
   {
     q: "Is a small project worth a custom deck builder's time?",
-    a: "It's worth ours. Small decks, landings, balcony re-decks, and platform rebuilds are exactly what we schedule through fall and winter, and they get the same crew, the same engineered footings below frost line, and the same 2-year written workmanship warranty as a $60,000 build. The structure math doesn't shrink with the square footage — Colorado frost heave doesn't care how big the deck is.",
+    a: "It's worth ours. They get the same crew, the same engineered footings below frost line, and the same 2-year written workmanship warranty as a $60,000 build. The structure math doesn't shrink with the square footage — Colorado frost heave doesn't care how big the deck is.",
   },
 ];
 
@@ -57,9 +57,8 @@ export default function SmallDeckPage() {
         </h1>
         <p className="text-muted-foreground mt-6 max-w-2xl text-lg leading-relaxed">
           Ground-level platforms, landings and steps, balcony re-decks, and sub-200-square-foot
-          builds — the projects most &ldquo;custom&rdquo; builders won&apos;t return calls for.
-          We schedule them all fall and winter, on the same engineered footings and the same
-          written warranty as our biggest work.
+          builds — the projects most &ldquo;custom&rdquo; builders won&apos;t return calls for. We
+          schedule them all fall and winter.
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-4">
           <Button asChild size="lg" className="h-12 px-6 text-base">
@@ -97,17 +96,16 @@ export default function SmallDeckPage() {
             <p>
               Most Front Range codes exempt a deck from permitting when it clears three tests at
               once: <span className="text-foreground font-medium">under 200 square feet</span>,{" "}
-              <span className="text-foreground font-medium">under 30 inches above grade</span>,
-              and <span className="text-foreground font-medium">freestanding</span> — not bolted
-              to the house. A 14×14 platform floating in the yard can skip the permit queue and
-              the guardrail requirement entirely, which is real money: railing runs $30–90 per
-              linear foot that a ground-hugging deck never spends.
+              <span className="text-foreground font-medium">under 30 inches above grade</span>, and{" "}
+              <span className="text-foreground font-medium">freestanding</span> — not bolted to the
+              house. A 14×14 platform floating in the yard can skip the permit queue and the
+              guardrail requirement entirely, which is real money: railing runs $30–90 per linear
+              foot that a ground-hugging deck never spends.
             </p>
             <p>
-              What doesn&apos;t disappear is the structure. Colorado frost depth runs 30–36
-              inches, and a small deck set on blocks-on-dirt turns into a gentle wave within a few
-              winters. We build small decks on proper frost-depth footings — the full argument is
-              in our{" "}
+              What doesn&apos;t disappear is the structure. Colorado frost depth runs 30–36 inches,
+              and a small deck set on blocks-on-dirt turns into a gentle wave within a few winters.
+              We build small decks on proper frost-depth footings — the full argument is in our{" "}
               <Link
                 href="/blog/floating-deck-guide-colorado"
                 className="text-foreground font-medium underline underline-offset-3 hover:no-underline"
@@ -142,14 +140,13 @@ export default function SmallDeckPage() {
               properly, footings included.{" "}
               <span className="text-foreground font-medium">Landings and steps</span> — the
               back-door rebuild that fixes the wobbly stair nobody trusts.{" "}
-              <span className="text-foreground font-medium">Balcony and small deck re-decks</span>{" "}
-              — new composite surface over sound framing at $20–35 per square foot.{" "}
+              <span className="text-foreground font-medium">Balcony and small deck re-decks</span> —
+              new composite surface over sound framing at $20–35 per square foot.{" "}
               <span className="text-foreground font-medium">Spa and hot-tub platforms</span> —
               engineered for the real load, which is the part that matters.
             </p>
             <p>
-              Small builds fit fall weather windows: one to two weeks on site, and permit-exempt
-              projects skip the review queue entirely. Our guide to the{" "}
+              Small builds fit fall weather windows nicely. Our guide to the{" "}
               <Link
                 href="/blog/best-time-to-build-deck-colorado"
                 className="text-foreground font-medium underline underline-offset-3 hover:no-underline"
@@ -166,7 +163,7 @@ export default function SmallDeckPage() {
               built now is ready for the first snow soak.
             </p>
             <p>
-              Want the planning numbers first? The{" "}
+              The{" "}
               <Link
                 href="/deck-cost-calculator"
                 className="text-foreground font-medium underline underline-offset-3 hover:no-underline"

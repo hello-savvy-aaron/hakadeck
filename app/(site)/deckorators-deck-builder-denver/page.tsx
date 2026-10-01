@@ -31,7 +31,7 @@ const FAQS: Faq[] = [
   },
   {
     q: "How much does a Deckorators deck cost installed in Denver?",
-    a: "The same $40–$70 per square foot installed range as the other capped composites we build — a typical 300–400 square foot deck lands around $15,000–$30,000 with stairs, railing, and permits included. Voyage's deep-grain boards sit toward the middle of the range; every estimate we send is itemized so you can see exactly what the board choice is worth.",
+    a: "The same $40–$70 per square foot installed range as the other capped composites we build — a typical 300–400 square foot deck lands around $15,000–$30,000 with stairs, railing, and permits included. Voyage's deep-grain boards sit toward the middle of the range; every estimate we send is itemized so you can see what the board costs.",
   },
 ];
 
@@ -56,9 +56,8 @@ export default function DeckoratorsPage() {
           The board we&apos;d put on our own houses.
         </h1>
         <p className="text-muted-foreground mt-6 max-w-2xl text-lg leading-relaxed">
-          We install every major composite brand, and Deckorators is the one we recommend first
-          for most Colorado yards — cooler in full sun, more stable through big temperature
-          swings, and backed by our Certified Pro Elite installer status with the brand.
+          We install every major composite brand, and Deckorators — Certified Pro Elite — is the one
+          we recommend first for most Colorado yards.
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-4">
           <Button asChild size="lg" className="h-12 px-6 text-base">
@@ -94,20 +93,21 @@ export default function DeckoratorsPage() {
           </div>
           <div className="text-muted-foreground space-y-4 text-base leading-relaxed">
             <p>
-              Most composite decking is a wood-flour-and-polymer blend — good boards, but the
-              wood content still absorbs a little moisture and still moves with temperature.
-              Deckorators&apos; Surestone core swaps the wood for mineral composite. Nothing in
-              the core absorbs water, swells, or feeds mold, which is precisely the failure
-              mode Colorado&apos;s freeze-thaw cycle hunts for. The boards run measurably cooler
-              underfoot in July sun and move far less across our thirty-degree spring days —
-              the two things people actually notice about a composite deck after the first year.
+              Good composite boards still have wood content that absorbs a little moisture and moves
+              with temperature. Deckorators&apos; Surestone core swaps the wood for mineral —
+              precisely the failure mode Colorado&apos;s freeze-thaw cycle hunts for. The boards run
+              measurably cooler underfoot in July sun and move far less across our thirty-degree
+              spring days — the two things people actually notice about a composite deck after the
+              first year.
             </p>
             <p>
-              That&apos;s why Voyage and Vault are our default recommendation on unshaded
-              south- and west-facing decks, walk-outs, and the open lots where sun exposure is
-              the whole design problem. On a shaded lot where heat matters less, we&apos;ll say
-              so — our{" "}
-              <Link href="/blog/trex-vs-timbertech-vs-fiberon" className="text-foreground font-medium underline underline-offset-3 hover:no-underline">
+              That&apos;s why Voyage and Vault are our default recommendation on unshaded south- and
+              west-facing decks, walk-outs, and the open lots where sun exposure matters most. On a
+              shaded lot where heat matters less, we&apos;ll say so — our{" "}
+              <Link
+                href="/blog/trex-vs-timbertech-vs-fiberon"
+                className="text-foreground font-medium underline underline-offset-3 hover:no-underline"
+              >
                 brand comparison
               </Link>{" "}
               treats every manufacturer honestly, and the sample box comes to every consultation.
@@ -128,23 +128,31 @@ export default function DeckoratorsPage() {
             <p>
               Certified Pro Elite is Deckorators&apos; top installer designation — training,
               install-spec compliance, and a track record with the brand, not a sticker. It means
-              the crew on your deck installs the board the way the manufacturer engineered it to
-              be installed: correct gapping for our temperature swings, the right fasteners, and
-              framing details that keep the 50-year structural and 25-year fade-and-stain
-              warranties clean, with the first five years covering labor too.
+              the crew on your deck installs the board the way the manufacturer engineered it to be
+              installed: correct gapping for our temperature swings, the right fasteners, and
+              framing that keeps the manufacturer&apos;s warranties clean.
             </p>
             <p>
-              Under every board is the same structure we build for every brand: engineered
-              framing, footings below frost line, and{" "}
-              <Link href="/warranty" className="text-foreground font-medium underline underline-offset-3 hover:no-underline">
+              The same structure sits under every brand: engineered framing, footings below frost
+              line, and{" "}
+              <Link
+                href="/warranty"
+                className="text-foreground font-medium underline underline-offset-3 hover:no-underline"
+              >
                 our written guarantee
               </Link>{" "}
               on all of it. Start with the{" "}
-              <Link href="/deck-cost-calculator" className="text-foreground font-medium underline underline-offset-3 hover:no-underline">
+              <Link
+                href="/deck-cost-calculator"
+                className="text-foreground font-medium underline underline-offset-3 hover:no-underline"
+              >
                 cost calculator
               </Link>{" "}
               for a planning range, or see the{" "}
-              <Link href="/portfolio" className="text-foreground font-medium underline underline-offset-3 hover:no-underline">
+              <Link
+                href="/portfolio"
+                className="text-foreground font-medium underline underline-offset-3 hover:no-underline"
+              >
                 portfolio
               </Link>{" "}
               for what the finished work looks like.

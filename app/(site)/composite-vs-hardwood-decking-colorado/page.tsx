@@ -8,8 +8,8 @@ import {
   P,
   Muted,
   Callout,
-  InlineCta,
   DataTable,
+  InlineCta,
 } from "@/components/guides/guide-content";
 import { GuideArticleJsonLd } from "@/components/seo/guide-article-jsonld";
 import { SurfaceCostRangeFigure } from "@/components/guides/figure-charts";
@@ -29,7 +29,7 @@ const description =
 const FAQS: Faq[] = [
   {
     q: "Is composite decking worth it at Colorado altitude?",
-    a: "Usually, yes — altitude is exactly where composite earns its premium. At 5,000+ feet our UV is roughly 25% stronger than sea level, which is what fades and dries out wood finishes so fast here. A capped composite board carries a 25–50 year fade and stain warranty instead of an annual refinishing clock, so the harder your deck's sun exposure, the stronger the case.",
+    a: "Usually, yes — altitude is exactly where composite earns its premium. At 5,000+ feet, UV and freeze-thaw cycles fade and dry out wood finishes fast. A capped composite board carries a 25–50 year fade and stain warranty instead of an annual refinishing clock, so the harder your deck's sun exposure, the stronger the case.",
   },
   {
     q: "How much more does composite cost than cedar?",
@@ -37,7 +37,7 @@ const FAQS: Faq[] = [
   },
   {
     q: "Does composite get too hot in the Colorado sun?",
-    a: "Dark composite in full July sun does get warmer than wood — it's the honest trade-off. It's also solvable: lighter colors run cooler, mineral-based boards like Deckorators shed heat noticeably better than wood-flour composites, and a pergola over the hottest exposure fixes it completely. We factor sun orientation into every design.",
+    a: "Dark composite in full July sun does get warmer than wood — it's the honest trade-off. Lighter colors run cooler, mineral-based boards like Deckorators shed heat noticeably better than wood-flour composites, and a pergola over the hottest exposure fixes it completely. We factor sun orientation into every design.",
   },
 ];
 
@@ -73,8 +73,7 @@ export default function MaterialsGuidePage() {
         <Lead>
           Short version: composite costs more per board and less per decade. Hardwood looks and
           feels like nothing else — if you&apos;ll actually maintain it. Here&apos;s how they
-          compare at Colorado altitude, where UV and freeze-thaw cycles punish both, and how to
-          pick for your specific yard rather than in the abstract.
+          compare at Colorado altitude, where UV and freeze-thaw cycles punish both.
         </Lead>
 
         <div className="mt-5">
@@ -92,9 +91,12 @@ export default function MaterialsGuidePage() {
           />
         </div>
         <Muted>
-          Installed ranges for the Denver metro; the same engineered substructure sits under
-          either surface. Full pricing math lives in the{" "}
-          <Link href="/deck-cost-guide-denver" className="text-primary font-semibold hover:underline">
+          Installed ranges for the Denver metro; the same engineered substructure sits under either
+          surface. Full pricing math lives in the{" "}
+          <Link
+            href="/deck-cost-guide-denver"
+            className="text-primary font-semibold hover:underline"
+          >
             cost guide
           </Link>
           .
@@ -105,29 +107,31 @@ export default function MaterialsGuidePage() {
           This comparison reads differently at 5,800 feet than it does in a national buying guide.
           Three things do most of the damage here. <strong className="font-semibold">UV</strong>:
           our sun is roughly 25% stronger than sea level, and it bleaches stain and dries wood
-          fibers until boards check and split. <strong className="font-semibold">Freeze-thaw</strong>:
-          the Front Range runs roughly 35–90 freeze-thaw cycles a year, and the thirty-degree
-          daily swings of spring and fall work moisture in and out of wood, backing fasteners out
-          and opening end-grain. <strong className="font-semibold">Hail</strong>:
-          the Front Range sits in one of the most hail-prone corridors in the country, and soft,
-          finished surfaces show every strike. Composite&apos;s polymer cap was effectively
-          designed for this checklist — which is why about 90% of what we build is composite. The
-          other 10% is homeowners who want real wood badly enough to care for it, and that&apos;s
-          a legitimate choice when it&apos;s made with open eyes.
+          fibers until boards check and split.{" "}
+          <strong className="font-semibold">Freeze-thaw</strong>: the Front Range runs roughly 35–90
+          freeze-thaw cycles a year, and the thirty-degree daily swings of spring and fall work
+          moisture in and out of wood, backing fasteners out and opening end-grain.{" "}
+          <strong className="font-semibold">Hail</strong>: the Front Range sits in one of the most
+          hail-prone corridors in the country, and soft, finished surfaces show every strike.
+          Composite&apos;s polymer cap was effectively designed for this checklist — which is why
+          about 90% of what we build is composite. The other 10% is homeowners who want real wood
+          badly enough to care for it — a legitimate choice.
         </P>
 
         <H2>Pick composite if…</H2>
         <P>
-          You want weekends on the deck, not maintaining it. Modern capped boards (Trex,
-          TimberTech, Deckorators — we install all three; our{" "}
-          <Link href="/blog/trex-vs-timbertech-vs-fiberon" className="text-primary font-semibold hover:underline">
+          You want weekends on the deck, not maintaining it. Modern capped boards (Trex, TimberTech,
+          Deckorators — we install all three; our{" "}
+          <Link
+            href="/blog/trex-vs-timbertech-vs-fiberon"
+            className="text-primary font-semibold hover:underline"
+          >
             installer&apos;s brand comparison
           </Link>{" "}
           covers which line fits which project) carry real 25–50 year fade and stain warranties.
-          Unlike the first-generation composites from twenty years ago, today&apos;s boards
-          don&apos;t gray out, don&apos;t grow mold in shaded corners, and never see sandpaper.
-          Composite is also the default answer for elevated and walk-out decks — surfaces you
-          really don&apos;t want to be refinishing off a ladder.
+          Unlike first-generation composites from twenty years ago, today&apos;s boards don&apos;t
+          gray out, grow mold, or need sanding. Composite is also the default answer for elevated
+          and walk-out decks — surfaces you really don&apos;t want to be refinishing off a ladder.
         </P>
 
         <H2>Pick hardwood if…</H2>
@@ -138,17 +142,20 @@ export default function MaterialsGuidePage() {
           ground — a neglected hardwood deck costs more to rescue than it did to build. If you go
           wood, the build details carry the weight: hidden fasteners, sealed end-grain, gapping
           sized for our dry air. That&apos;s covered on our{" "}
-          <Link href="/services/hardwood-cedar-decks" className="text-primary font-semibold hover:underline">
+          <Link
+            href="/services/hardwood-cedar-decks"
+            className="text-primary font-semibold hover:underline"
+          >
             hardwood &amp; cedar page
           </Link>
-          , along with the annual maintenance plans we offer if you&apos;d rather hand us the oiling.
+          , along with the maintenance plans we offer if you&apos;d rather hand us the oiling.
         </P>
 
         <H2>What about redwood or cedar?</H2>
         <P>
           The budget-friendly classic. Lower upfront cost ($25–45 / sq ft installed), but softer
-          boards and yearly staining in our climate. Fine for ground-level decks you plan to
-          replace in 15–20 years; we&apos;d steer walk-outs and high decks to composite.
+          boards and yearly staining. Fine for ground-level decks you plan to replace in 15–20
+          years; we&apos;d steer walk-outs and high decks to composite.
         </P>
 
         <H2>The wildcards: PVC, mineral board, and modified wood</H2>
@@ -172,14 +179,15 @@ export default function MaterialsGuidePage() {
         <H2>The ten-year math</H2>
         <P>
           Day one, wood wins the invoice. Year ten is a different story: a wood deck that&apos;s
-          been professionally cleaned and re-stained every other year has quietly spent
-          $3,000–5,000 on upkeep — while fighting fade the whole time — and composite has spent
-          roughly nothing. On a 320 sq ft deck, that closes most of the gap between a roughly
-          $9,000 pressure-treated build and a $16,000 composite one. Past year ten, composite is simply ahead, which is why we describe the
-          choice as paying for the maintenance up front versus paying for it forever. Either way,
-          the substructure should outlast the surface: same engineered framing, footings below
-          frost line, and{" "}
-          <Link href="/deck-permits-south-denver-metro" className="text-primary font-semibold hover:underline">
+          been professionally cleaned and re-stained every other year has quietly spent $3,000–5,000
+          on upkeep — and composite has spent roughly nothing. On a 320 sq ft deck, that closes most
+          of the gap between a roughly $9,000 pressure-treated build and a $16,000 composite one.
+          Past year ten, composite is simply ahead. Either way, the substructure should outlast the
+          surface: same engineered framing, footings below frost line, and{" "}
+          <Link
+            href="/deck-permits-south-denver-metro"
+            className="text-primary font-semibold hover:underline"
+          >
             permits
           </Link>{" "}
           handled regardless of what you walk on.
@@ -192,7 +200,9 @@ export default function MaterialsGuidePage() {
               <summary className="flex cursor-pointer list-none items-start justify-between gap-3 py-2.5 text-[14px] font-semibold [&::-webkit-details-marker]:hidden">
                 {f.q}
                 <span className="text-muted-foreground mt-0.5 text-xs group-open:hidden">+</span>
-                <span className="text-muted-foreground mt-0.5 hidden text-xs group-open:inline">−</span>
+                <span className="text-muted-foreground mt-0.5 hidden text-xs group-open:inline">
+                  −
+                </span>
               </summary>
               <p className="text-muted-foreground pb-3 text-[13.5px] leading-relaxed">{f.a}</p>
             </details>
@@ -200,13 +210,13 @@ export default function MaterialsGuidePage() {
         </div>
 
         <Callout>
-          Still on the fence? We keep samples of every line we install — composite, PVC, cedar,
-          and hardwood — and a{" "}
+          Still on the fence? We keep samples of every line we install — composite, PVC, cedar, and
+          hardwood — and a{" "}
           <Link href="/contact" className="text-primary font-semibold hover:underline">
             free on-site consultation
           </Link>{" "}
-          puts them in your actual light, against your actual house. That settles it faster than
-          any comparison table, including this one. Deck near{" "}
+          puts them in your actual light, against your actual house. That settles it faster than any
+          comparison table. Deck near{" "}
           <Link href="/locations/centennial" className="text-primary font-semibold hover:underline">
             Centennial
           </Link>

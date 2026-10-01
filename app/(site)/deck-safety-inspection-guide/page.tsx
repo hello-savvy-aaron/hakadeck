@@ -8,8 +8,8 @@ import {
   P,
   Muted,
   Callout,
-  InlineCta,
   StatRows,
+  InlineCta,
 } from "@/components/guides/guide-content";
 import { GuideArticleJsonLd } from "@/components/seo/guide-article-jsonld";
 import { InspectionMapFigure } from "@/components/guides/figure-diagrams";
@@ -33,32 +33,38 @@ const CHECKS: { area: string; look: string; worry: string }[] = [
   {
     area: "The ledger (where the deck meets the house)",
     look: "From underneath, find the horizontal board bolted against the house. Look for metal flashing over its top edge, real bolts or structural screws (not just nails), and dry, solid wood.",
-    worry: "No visible flashing, rust streaks, soft or dark wet wood, or a ledger attached with nails alone. Industry post-mortems trace the large majority of catastrophic deck collapses to this one connection — anything suspicious here is a call-a-pro finding, not a watch-it finding.",
+    worry:
+      "No visible flashing, rust streaks, soft or dark wet wood, or a ledger attached with nails alone. Most catastrophic deck collapses trace to this one connection — anything suspicious here is a call-a-pro finding.",
   },
   {
     area: "Footings and posts",
     look: "Posts should sit on concrete footings via metal brackets — not buried in dirt, not resting on patio blocks. Sight down each post for lean; look at the footing tops for cracking or heaving.",
-    worry: "Posts in ground contact (they rot from the bottom, invisibly), a footing that's lifted or tilted with frost, or daylight between post and bracket. Frost heave is Colorado's signature deck disease.",
+    worry:
+      "Posts in ground contact (they rot from the bottom, invisibly), a footing that's lifted or tilted with frost, or daylight between post and bracket.",
   },
   {
     area: "Joists and framing",
     look: "Underneath, probe a few joists with a screwdriver — especially near the ledger and any stains. Solid wood resists; rot gives. Check that joist hangers have nails in every hole and no orange rust bloom.",
-    worry: "A screwdriver that sinks in easily anywhere, hangers missing fasteners, or joists pulling away from the ledger. Blackened wood that's still hard is usually cosmetic; soft wood never is.",
+    worry:
+      "A screwdriver that sinks in easily anywhere, hangers missing fasteners, or joists pulling away from the ledger. Blackened wood that's still hard is usually cosmetic; soft wood never is.",
   },
   {
     area: "Railings and posts",
     look: "Grab the top rail and push hard, at several points — code expects a guardrail to resist a 200-pound load in any direction. It should feel like part of the structure, not furniture. Check that balusters are tight and spacing is under 4 inches.",
-    worry: "Any visible movement at the post base. A railing that wobbles today fails on the day someone actually falls against it — and post connections are the most common failure we find on older and DIY decks.",
+    worry:
+      "Any visible movement at the post base. A railing that wobbles fails on the day someone falls against it — and post connections fail most often on older and DIY decks.",
   },
   {
     area: "Stairs",
     look: "Walk them heavily. Check the stringers (the sawtooth boards) where they meet the deck and the ground, the tread fasteners, and the handrail's steadiness. Eyeball the geometry too — risers over 7¾ inches or treads under 10 inches fail code.",
-    worry: "Bounce or flex mid-flight, stringers resting on bare dirt, treads cupped enough to hold water, or a handrail you wouldn't trust with your full weight. Stairs are where most deck injuries actually happen.",
+    worry:
+      "Bounce or flex mid-flight, stringers resting on bare dirt, treads cupped enough to hold water, or a handrail you wouldn't trust with your full weight. Most deck injuries happen on stairs.",
   },
   {
     area: "The surface",
     look: "Scan for cupped, split, or spongy boards, popped fasteners, and gaps that have closed up (drainage matters). Note whether wear is cosmetic — graying, checking — or structural.",
-    worry: "Soft spots underfoot mean the problem is below the boards, not in them. Widespread splitting on a 20+ year old wood deck usually means the surface is done even if the frame is sound — which is exactly what re-decking is for.",
+    worry:
+      "Soft spots underfoot mean the problem is below the boards. Widespread splitting on a 20+ year old wood deck usually means the surface is done even if the frame is sound.",
   },
 ];
 
@@ -78,14 +84,16 @@ export default function InspectionGuidePage() {
         title="The 10-minute deck safety inspection."
         meta={`${guide.readLabel} · Updated ${guide.updated}`}
         crossLink={{ href: "/services/deck-repair", label: "Deck repair service →" }}
-        nextUp={{ href: "/questions-to-ask-your-deck-builder", label: "10 questions to ask before you sign" }}
+        nextUp={{
+          href: "/questions-to-ask-your-deck-builder",
+          label: "10 questions to ask before you sign",
+        }}
       >
         <Lead>
-          Most homeowners have never looked underneath their own deck. Ten minutes with a
-          flashlight and a screwdriver will tell you more than any sales visit — here&apos;s the
-          same sequence we run on every structural inspection, in order of what actually fails.
-          Print it, walk your deck, and you&apos;ll know whether you&apos;re looking at nothing,
-          a repair, or a real problem before anyone quotes you a dollar.
+          Most homeowners have never looked underneath their own deck. Ten minutes with a flashlight
+          and a screwdriver tell you more than any sales visit — the same sequence we run on every
+          structural inspection, in order of what actually fails. Print it, walk your deck, and know
+          what you&apos;re dealing with before anyone quotes you a dollar.
         </Lead>
 
         <div className="mt-5">
@@ -126,7 +134,10 @@ export default function InspectionGuidePage() {
         <StatRows
           rows={[
             { label: "Surface wear only, structure checks out", value: "Restore or re-deck" },
-            { label: "One or two isolated findings (a post, some boards)", value: "Targeted repair" },
+            {
+              label: "One or two isolated findings (a post, some boards)",
+              value: "Targeted repair",
+            },
             { label: "Ledger, footing, or framing findings", value: "Pro inspection now" },
             { label: "Multiple structural findings on a 20+ yr deck", value: "Likely replacement" },
           ]}
@@ -137,12 +148,15 @@ export default function InspectionGuidePage() {
             re-deck
           </Link>{" "}
           over sound framing costs meaningfully less than a{" "}
-          <Link href="/services/deck-replacement" className="text-primary font-semibold hover:underline">
+          <Link
+            href="/services/deck-replacement"
+            className="text-primary font-semibold hover:underline"
+          >
             full replacement
           </Link>{" "}
-          — as of 2026, about $20–35 per sq ft to re-deck over sound framing versus $40–70 per
-          sq ft (plus $1,500–3,500 of tear-out) to rebuild in composite. An honest structural
-          verdict is worth real dollars, which is why ours comes as a written report, free.
+          — as of 2026, about $20–35 per sq ft to re-deck over sound framing versus $40–70 per sq ft
+          (plus $1,500–3,500 of tear-out) to rebuild in composite. An honest structural verdict is
+          worth real dollars, which is why ours comes as a written report, free.
         </Muted>
 
         <InlineCta
@@ -153,11 +167,11 @@ export default function InspectionGuidePage() {
         <H2>When to run this</H2>
         <P>
           Once a year, ideally in spring — Colorado&apos;s freeze-thaw cycle does its damage over
-          winter, and you want to find what moved before the deck&apos;s busiest season. Run it
-          too when you&apos;re buying a house (an unpermitted or failing deck is a classic
+          winter, and you want to find what moved before the deck&apos;s busiest season. Run it too
+          when you&apos;re buying a house (an unpermitted or failing deck is a classic
           inspection-report surprise), and before any big party puts thirty people on a structure
-          built for ten. The odds aren&apos;t trivial: of the roughly 40 million residential decks
-          in the U.S., industry groups estimate about half are past their intended service life.
+          built for ten. Of the roughly 40 million residential decks in the U.S., industry groups
+          estimate about half are past their intended service life.
         </P>
 
         <Callout>
@@ -166,7 +180,7 @@ export default function InspectionGuidePage() {
             Send us photos
           </Link>{" "}
           and we&apos;ll give you a straight answer, or book a free on-site structural inspection.
-          No judgment, no pressure: if the bones are good, we&apos;ll be the first to tell you.
+          No judgment: if the bones are good, we&apos;ll tell you first.
         </Callout>
       </GuideLayout>
 

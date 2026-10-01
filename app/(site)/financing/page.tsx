@@ -24,15 +24,15 @@ export const metadata: Metadata = {
 const FAQS: Faq[] = [
   {
     q: "Does Haka Decks offer in-house financing?",
-    a: "Not currently — and that's deliberate. Contractor-arranged financing in home improvement often carries promotional terms that don't survive comparison with your own bank, and we'd rather compete on the deck than on the loan. What we do provide is an itemized, fixed quote you can take to any lender, and honest guidance on which routes tend to fit which project sizes.",
+    a: "Not currently — and that's deliberate. Contractor-arranged financing in home improvement often carries promotional terms that don't survive comparison with your own bank, and we'd rather compete on the deck than on the loan. What we do provide is an itemized, fixed quote, and honest guidance on which routes tend to fit which project sizes.",
   },
   {
     q: "What credit options work best for a deck project?",
-    a: "For most Denver-metro homeowners it comes down to home equity — a HELOC or home equity loan — because rates run well below unsecured borrowing and Front Range homes tend to carry real equity. Personal home-improvement loans make sense for smaller projects where speed matters more than rate. And phasing the project — deck now, cover later, designed for it from day one — is the option people overlook most.",
+    a: "For most Denver-metro homeowners it comes down to home equity — a HELOC or home equity loan — because rates run well below unsecured borrowing. Personal home-improvement loans make sense for smaller projects where speed matters more than rate. And phasing the project — deck now, cover later — is the option people overlook most.",
   },
   {
     q: "Can I get a quote before talking to a lender?",
-    a: "That's exactly the right order. Lenders want a number, and a guess isn't one. Our free on-site consultation produces an itemized written quote — every line visible, fixed scope — that you can hand directly to a bank or credit union. The cost calculator on our site gets you a planning range even earlier, in about thirty seconds.",
+    a: "That's exactly the right order. Lenders want a number, and a guess isn't one. Our free on-site consultation produces an itemized written quote — every line visible, fixed scope — that you can hand directly to a bank or credit union.",
   },
 ];
 
@@ -73,9 +73,9 @@ export default function FinancingPage() {
         <p className="text-muted-foreground mt-6 max-w-2xl text-lg leading-relaxed">
           A quality composite deck in the Denver metro runs $15,000–$50,000+, and most homeowners
           don&apos;t pay that from a checking account. Here are the routes Colorado homeowners
-          actually take — wherever in the metro you are, the options and the math are the same.
-          One thing up front: we build decks, we don&apos;t give financial advice — treat this as
-          a map, and talk to your bank about which route fits your situation.
+          actually take. One thing up front: we build decks, we don&apos;t give financial advice
+          — treat this as a map,
+          and talk to your bank about which route fits your situation.
         </p>
       </Section>
 
@@ -105,24 +105,30 @@ export default function FinancingPage() {
             <p>
               First, decks hold resale value well — cost-vs-value studies consistently put deck
               additions among the stronger outdoor returns, and in Colorado&apos;s outdoor-living
-              market a quality composite build reads as a straight asset. Second, the cheap deck
-              is often the expensive one: a builder-grade deck that needs replacing in twelve
-              years costs more per year of service than an engineered build that runs thirty. If
-              borrowing is the difference between building once and building twice, the math can
-              genuinely favor borrowing — run it for your own numbers.
+              market a quality composite build reads as a straight asset. Second, the cheap deck is
+              often the expensive one: a builder-grade deck that needs replacing in twelve years
+              costs more per year of service than an engineered build that runs thirty. If borrowing
+              is the difference between building once and building twice, the math can genuinely
+              favor it — run your own numbers.
             </p>
             <p>
-              Whatever the route, start with a real figure instead of a guess. The{" "}
-              <Link href="/deck-cost-calculator" className="text-foreground font-medium underline underline-offset-3 hover:no-underline">
+              Whatever the route, start with a real number. The{" "}
+              <Link
+                href="/deck-cost-calculator"
+                className="text-foreground font-medium underline underline-offset-3 hover:no-underline"
+              >
                 cost calculator
               </Link>{" "}
               gives you a 2026 planning range in thirty seconds, our{" "}
-              <Link href="/blog/deck-financing-options-colorado" className="text-foreground font-medium underline underline-offset-3 hover:no-underline">
+              <Link
+                href="/blog/deck-financing-options-colorado"
+                className="text-foreground font-medium underline underline-offset-3 hover:no-underline"
+              >
                 full financing guide
               </Link>{" "}
               goes deeper on every option above (including the fine print on contractor-arranged
               &ldquo;same-as-cash&rdquo; offers), and a free on-site consultation turns the range
-              into an itemized quote you can actually take to a lender.
+              into an itemized quote for a lender.
             </p>
           </div>
         </div>

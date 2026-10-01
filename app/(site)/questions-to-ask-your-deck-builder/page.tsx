@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CtaFinal } from "@/components/sections/cta-final";
 import { GuideLayout } from "@/components/guides/guide-layout";
-import { Lead, H2, P, Muted, Callout, InlineCta } from "@/components/guides/guide-content";
+import { Lead, H2, P, Muted, InlineCta } from "@/components/guides/guide-content";
 import { BidComparisonFigure } from "@/components/guides/figure-process";
 import { GuideArticleJsonLd } from "@/components/seo/guide-article-jsonld";
 import { guideBySlug } from "@/lib/guides";
@@ -95,8 +95,7 @@ export default function ContractChecklistPage() {
         <Lead>
           About to sign a deck contract? Good — ask these ten questions first, whoever the builder
           is. They take five minutes, they expose the weak bids fast, and any builder worth hiring
-          will enjoy answering them. No email required for the PDF; do the homework, we&apos;ll
-          wait.
+          will enjoy answering them. No email required for the PDF.
         </Lead>
 
         <div className="mt-5">
@@ -134,13 +133,19 @@ export default function ContractChecklistPage() {
         <H2>Why we publish this</H2>
         <P>
           Because we win every question on this list, and we&apos;d rather you ask them everywhere
-          than sign somewhere that hopes you won&apos;t. Bring the printed version to every
-          estimate — including ours. If you want the deeper background first, the{" "}
-          <Link href="/deck-cost-guide-denver" className="text-primary font-semibold hover:underline">
+          than sign somewhere that hopes you won&apos;t. Bring the printed version to every estimate
+          — including ours. If you want the deeper background first, the{" "}
+          <Link
+            href="/deck-cost-guide-denver"
+            className="text-primary font-semibold hover:underline"
+          >
             cost guide
           </Link>{" "}
-          shows what an itemized bid looks like line by line, and the{" "}
-          <Link href="/deck-permits-south-denver-metro" className="text-primary font-semibold hover:underline">
+          breaks down a real bid, and the{" "}
+          <Link
+            href="/deck-permits-south-denver-metro"
+            className="text-primary font-semibold hover:underline"
+          >
             permit guide
           </Link>{" "}
           covers what your city will require regardless of who builds.
@@ -152,12 +157,6 @@ export default function ContractChecklistPage() {
           </Link>
           .
         </Muted>
-
-        <Callout>
-          Red-flag shorthand, if you only remember three: a lump-sum bid, &ldquo;half down,&rdquo;
-          and &ldquo;you can pull the permit yourself to save money.&rdquo; Any one of them is
-          your cue to keep shopping.
-        </Callout>
       </GuideLayout>
 
       <CtaFinal />
