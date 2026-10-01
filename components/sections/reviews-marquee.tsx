@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Star } from "lucide-react";
+import { Icon } from "@/components/icons/icon";
 import { Eyebrow, Section } from "./section";
 import { site } from "@/lib/site";
 
@@ -75,7 +75,7 @@ export function ReviewsMarquee() {
                 <span className="font-semibold">{site.rating.value.toFixed(1)}</span>
                 <span className="flex" aria-hidden>
                   {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className="text-haka-gold h-3.5 w-3.5 fill-current" />
+                    <Icon name="star" key={i} className="text-haka-gold h-3.5 w-3.5 fill-current" />
                   ))}
                 </span>
                 <span className="text-white/90">({site.rating.count}) on Google</span>
@@ -86,7 +86,7 @@ export function ReviewsMarquee() {
                 rel="noreferrer"
                 className="text-haka-pine inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-white/90"
               >
-                <Star className="h-3.5 w-3.5 fill-current" />
+                <Icon name="star" className="h-3.5 w-3.5 fill-current" />
                 Leave a review
               </a>
             </div>

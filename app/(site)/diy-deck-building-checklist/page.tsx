@@ -20,7 +20,7 @@ import { site } from "@/lib/site";
 
 const guide = guideBySlug("diy-deck-building-checklist")!;
 
-const title = "The DIY Deck Building Guide & Checklist — Plans, Steps, Spans (2026) | Haka Decks";
+const title = "DIY Deck Building Guide & Checklist (2026) | Haka Decks";
 const description =
   "A real DIY deck build guide for Colorado — every step with actual instructions, joist span tables, a worked 12×16 materials plan, tool list, and inspection checkpoints. Free printable PDF.";
 

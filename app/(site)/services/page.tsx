@@ -1,7 +1,7 @@
 import Image from "next/image";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { Icon } from "@/components/icons/icon";
 import { Eyebrow, Section, SectionHeading } from "@/components/sections/section";
 import { CtaFinal } from "@/components/sections/cta-final";
 import { BrandLogoMarquee } from "@/components/sections/brand-logo-marquee";
@@ -71,7 +71,7 @@ export default async function ServicesPage() {
                       <Button asChild size="lg" className="h-12 px-6 text-base">
                         <Link href={`/services/${s.slug}`}>
                           Learn more
-                          <ArrowRight className="ml-1.5 h-4 w-4" />
+                          <Icon name="arrow-right" className="ml-1.5 h-4 w-4" />
                         </Link>
                       </Button>
                       <Button asChild size="lg" variant="ghost" className="h-12 px-6 text-base">

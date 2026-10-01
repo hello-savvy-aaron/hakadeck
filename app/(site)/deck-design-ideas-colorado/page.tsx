@@ -9,7 +9,7 @@ import { NewsletterSignup } from "@/components/guides/newsletter-signup";
 import { getAllProjects, projectVideo } from "@/lib/portfolio";
 import { guideBySlug, GUIDES_HUB } from "@/lib/guides";
 import { site } from "@/lib/site";
-import { ArrowLeft, Play } from "lucide-react";
+import { Icon } from "@/components/icons/icon";
 import { Button } from "@/components/ui/button";
 
 const guide = guideBySlug("deck-design-ideas-colorado")!;
@@ -82,7 +82,7 @@ export default async function GalleryPage() {
           href={GUIDES_HUB}
           className="text-primary hover:text-haka-pine inline-flex items-center gap-1.5 text-[13px] font-semibold transition-colors"
         >
-          <ArrowLeft className="h-3.5 w-3.5" />
+          <Icon name="arrow-left" className="h-3.5 w-3.5" />
           All guides &amp; tools
         </Link>
 
@@ -131,7 +131,7 @@ export default async function GalleryPage() {
               />
               <span className="absolute inset-0 flex items-center justify-center">
                 <span className="inline-flex items-center gap-2 rounded-full bg-black/60 px-4 py-2 text-sm font-medium text-white backdrop-blur">
-                  <Play className="h-3.5 w-3.5 fill-current" aria-hidden />
+                  <Icon name="play" className="h-3.5 w-3.5 fill-current" aria-hidden />
                   Watch · {flyover.durationLabel}
                 </span>
               </span>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { Icon } from "@/components/icons/icon";
 import { Button } from "@/components/ui/button";
 import { site } from "@/lib/site";
 import { Section } from "./section";
@@ -30,7 +30,7 @@ export function CtaFinal({
           >
             <Link href={site.cta.href}>
               {site.cta.label}
-              <ArrowRight className="ml-1.5 h-4 w-4" />
+              <Icon name="arrow-right" className="ml-1.5 h-4 w-4" />
             </Link>
           </Button>
           <Button

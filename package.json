@@ -13,7 +13,8 @@
     "analytics": "node scripts/analytics-pull.mjs",
     "indexnow": "node scripts/indexnow.mjs",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "icons": "tsx scripts/build-icon-sprite.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.5.0",

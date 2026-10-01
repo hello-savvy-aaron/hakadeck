@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
+import { Icon } from "@/components/icons/icon";
 import type { ProjectMeta } from "@/lib/portfolio";
 
 export function ProjectCard({
@@ -42,7 +42,10 @@ export function ProjectCard({
         </p>
         <div className="text-foreground/80 group-hover:text-foreground inline-flex items-center gap-1 text-sm font-medium whitespace-nowrap">
           View
-          <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          <Icon
+            name="arrow-up-right"
+            className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+          />
         </div>
       </div>
     </Link>

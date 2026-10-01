@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { Icon } from "@/components/icons/icon";
 import { DeckEstimator, EstimatorFooterLinks } from "@/components/guides/deck-estimator";
 import { WhatMovesTheNumberFigure } from "@/components/guides/figure-charts";
 import { GUIDES_HUB } from "@/lib/guides";
@@ -22,7 +22,7 @@ export default function DeckCostEstimatorPage() {
         href={GUIDES_HUB}
         className="text-primary hover:text-haka-pine inline-flex items-center gap-1.5 text-[13px] font-semibold transition-colors"
       >
-        <ArrowLeft className="h-3.5 w-3.5" />
+        <Icon name="arrow-left" className="h-3.5 w-3.5" />
         All guides &amp; tools
       </Link>
 

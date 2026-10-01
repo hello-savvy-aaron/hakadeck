@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { Icon } from "@/components/icons/icon";
 import { Button } from "@/components/ui/button";
 import { GUIDES_HUB } from "@/lib/guides";
 import { PdfGate, PdfTrigger } from "@/components/guides/pdf-gate";
@@ -37,7 +37,7 @@ export function GuideLayout({
           href={GUIDES_HUB}
           className="text-primary hover:text-haka-pine inline-flex items-center gap-1.5 text-[13px] font-semibold transition-colors"
         >
-          <ArrowLeft className="h-3.5 w-3.5" />
+          <Icon name="arrow-left" className="h-3.5 w-3.5" />
           All guides &amp; tools
         </Link>
 
@@ -45,8 +45,7 @@ export function GuideLayout({
           {title}
         </h1>
         <p className="text-muted-foreground mt-2 text-[13px]">
-          {meta} ·{" "}
-          <PdfTrigger variant="link">Download the PDF</PdfTrigger>
+          {meta} · <PdfTrigger variant="link">Download the PDF</PdfTrigger>
         </p>
 
         <article className="border-border bg-card mt-6 rounded-[14px] border p-6 shadow-[0_1px_3px_rgba(34,48,42,0.06)] sm:px-6">

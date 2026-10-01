@@ -175,6 +175,9 @@ const ProjectFrontmatter = z
     videoDescription: z.string().min(1).optional(),
     videoDate: IsoDate.optional(),
     videoDuration: z.number().int().positive().optional(),
+    // What to look for in the clip, one feature per line — the watch page's
+    // "What to look for" list. Optional; the page falls back to the summary.
+    videoNotes: z.array(z.string().min(1)).optional(),
   })
   .superRefine((p, ctx) => {
     if (!p.video) return;

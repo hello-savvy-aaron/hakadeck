@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { Icon } from "@/components/icons/icon";
 import { CtaFinal } from "@/components/sections/cta-final";
 import { GuideArticleJsonLd } from "@/components/seo/guide-article-jsonld";
 import { NewsletterSignup } from "@/components/guides/newsletter-signup";
@@ -48,7 +48,7 @@ export default function AnatomyGuidePage() {
           href={GUIDES_HUB}
           className="text-primary hover:text-haka-pine inline-flex items-center gap-1.5 text-[13px] font-semibold transition-colors"
         >
-          <ArrowLeft className="h-3.5 w-3.5" />
+          <Icon name="arrow-left" className="h-3.5 w-3.5" />
           All guides &amp; tools
         </Link>
 

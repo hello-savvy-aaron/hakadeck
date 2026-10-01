@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import { Icon } from "@/components/icons/icon";
 import { Eyebrow, Section, SectionHeading } from "@/components/sections/section";
 import { CtaFinal } from "@/components/sections/cta-final";
 import { ProofBadge } from "@/components/sections/review-quotes";
@@ -64,7 +64,7 @@ export default function DeckoratorsPage() {
           <Button asChild size="lg" className="h-12 px-6 text-base">
             <Link href={site.cta.href}>
               {site.cta.label}
-              <ArrowRight className="ml-1.5 h-4 w-4" />
+              <Icon name="arrow-right" className="ml-1.5 h-4 w-4" />
             </Link>
           </Button>
           <ProofBadge />

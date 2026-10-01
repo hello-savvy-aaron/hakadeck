@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ArrowLeft, ArrowRight, Check } from "lucide-react";
+import { Icon } from "@/components/icons/icon";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Eyebrow, Section, SectionHeading } from "@/components/sections/section";
 import { CtaFinal } from "@/components/sections/cta-final";
@@ -70,7 +70,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
           href="/services"
           className="text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 text-sm"
         >
-          <ArrowLeft className="h-3.5 w-3.5" />
+          <Icon name="arrow-left" className="h-3.5 w-3.5" />
           All services
         </Link>
 
@@ -87,7 +87,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
               <Button asChild size="lg" className="h-12 px-6 text-base">
                 <Link href={site.cta.href}>
                   {site.cta.label}
-                  <ArrowRight className="ml-1.5 h-4 w-4" />
+                  <Icon name="arrow-right" className="ml-1.5 h-4 w-4" />
                 </Link>
               </Button>
             </div>
@@ -100,7 +100,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                   key={b}
                   className="text-foreground/85 flex items-start gap-3 text-sm sm:text-base"
                 >
-                  <Check className="text-haka-cream mt-0.5 h-4 w-4 shrink-0" />
+                  <Icon name="check" className="text-haka-cream mt-0.5 h-4 w-4 shrink-0" />
                   {b}
                 </li>
               ))}
@@ -176,7 +176,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                 </span>
                 <span className="text-foreground/80 mt-4 inline-flex items-center text-sm font-medium">
                   Learn more
-                  <ArrowRight className="ml-1 h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                  <Icon name="arrow-right" className="ml-1 h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                 </span>
               </Link>
             </li>

@@ -1,14 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
+import { Icon } from "@/components/icons/icon";
 import type { PostMeta } from "@/lib/blog";
 
 export function PostCard({ post }: { post: PostMeta }) {
   return (
-    <Link
-      href={`/blog/${post.slug}`}
-      className="group border-border/40 bg-card/40 hover:border-border block overflow-hidden rounded-2xl border transition-colors"
-    >
+    <Link href={`/blog/${post.slug}`} className="post-card group">
       {post.cover ? (
         <div className="bg-muted relative aspect-[16/10] overflow-hidden">
           {/* Decorative: the card heading labels the link, so the thumbnail
@@ -23,20 +20,18 @@ export function PostCard({ post }: { post: PostMeta }) {
         </div>
       ) : null}
       <div className="space-y-3 p-6">
-        <div className="text-muted-foreground flex items-center gap-3 text-xs tracking-widest uppercase">
+        <div className="post-card-meta">
           <span>{post.category}</span>
           <span aria-hidden>•</span>
           <span>{post.readingMinutes} min read</span>
         </div>
-        <h3 className="font-display text-xl leading-tight font-medium tracking-tight text-balance sm:text-2xl">
-          {post.title}
-        </h3>
+        <h3 className="post-card-title">{post.title}</h3>
         <p className="text-muted-foreground line-clamp-3 text-sm leading-relaxed">
           {post.description}
         </p>
-        <div className="text-foreground/80 group-hover:text-foreground inline-flex items-center gap-1.5 pt-2 text-sm font-medium">
+        <div className="post-card-more">
           Read the guide
-          <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          <Icon name="arrow-up-right" />
         </div>
       </div>
     </Link>

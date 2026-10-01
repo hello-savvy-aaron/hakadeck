@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Award, HandshakeIcon, ShieldCheck } from "lucide-react";
+import { Icon } from "@/components/icons/icon";
+import type { IconName } from "@/components/icons/icon-names";
 import { Eyebrow, Section, SectionHeading } from "@/components/sections/section";
 import { CtaFinal } from "@/components/sections/cta-final";
 import { ProofBadge } from "@/components/sections/review-quotes";
@@ -19,19 +20,19 @@ export const metadata: Metadata = {
   openGraph: { title, description, url: `${site.url}/warranty` },
 };
 
-const LAYERS = [
+const LAYERS: { icon: IconName; title: string; body: string }[] = [
   {
-    icon: ShieldCheck,
+    icon: "shield-check",
     title: "Two years on our workmanship, in writing",
     body: "Framing, fastening, board layout, railing installation, stairs, and every connection in between. If something we built fails because of how we built it within two years, we come back and fix it — no paperwork on your end, no fight.",
   },
   {
-    icon: Award,
+    icon: "award",
     title: "25 to 50 years on the boards",
     body: "Every capped composite and PVC line we install carries the manufacturer's structural and fade-and-stain warranties — 25 years to lifetime depending on the line. Our Deckorators Pro Elite, Trex Platinum Pro, and TimberTech dealer credentials unlock the longest labor-coverage tiers those programs offer.",
   },
   {
-    icon: HandshakeIcon,
+    icon: "handshake",
     title: "And the part that isn't a clause",
     body: "In practice we've stood behind serious workmanship issues well past the written two years — five years and beyond — because we'd rather lose money on a bad job than leave a homeowner stuck with one. If something isn't right, we make it right.",
   },
@@ -55,7 +56,7 @@ export default function WarrantyPage() {
           <Button asChild size="lg" className="h-12 px-6 text-base">
             <Link href={site.cta.href}>
               {site.cta.label}
-              <ArrowRight className="ml-1.5 h-4 w-4" />
+              <Icon name="arrow-right" className="ml-1.5 h-4 w-4" />
             </Link>
           </Button>
           <ProofBadge />
@@ -64,9 +65,9 @@ export default function WarrantyPage() {
 
       <Section top="tight" bottom="tight">
         <ul className="grid gap-6 lg:grid-cols-3">
-          {LAYERS.map(({ icon: Icon, title: t, body }) => (
+          {LAYERS.map(({ icon, title: t, body }) => (
             <li key={t} className="border-border/40 bg-card/40 rounded-2xl border p-7">
-              <Icon className="text-haka-cream h-6 w-6" />
+              <Icon name={icon} className="text-haka-cream h-6 w-6" />
               <h2 className="font-display mt-4 text-xl font-medium tracking-tight">{t}</h2>
               <p className="text-muted-foreground mt-3 text-[15px] leading-relaxed">{body}</p>
             </li>
@@ -100,15 +101,18 @@ export default function WarrantyPage() {
               The long manufacturer terms are real but nuanced — labor coverage runs on its own
               clock, and the fine print matters. We published the full brand-by-brand breakdown,
               including what &ldquo;50-year warranty&rdquo; actually pays for in year 30, in our{" "}
-              <Link href="/blog/haka-warranties-guide" className="text-foreground font-medium underline underline-offset-3 hover:no-underline">
+              <Link
+                href="/blog/haka-warranties-guide"
+                className="text-foreground font-medium underline underline-offset-3 hover:no-underline"
+              >
                 plain-English warranty guide
               </Link>
               .
             </p>
             <p>
               And because manufacturer warranties require professional installation and filed
-              paperwork, we register your project documentation on day one — so coverage is never
-              in question when you need it, including when you sell the house.
+              paperwork, we register your project documentation on day one — so coverage is never in
+              question when you need it, including when you sell the house.
             </p>
           </div>
         </div>

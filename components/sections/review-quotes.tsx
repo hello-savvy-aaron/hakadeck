@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ShieldCheck, Star } from "lucide-react";
+import { Icon } from "@/components/icons/icon";
 import { Section } from "./section";
 import { quotesFor } from "@/lib/reviews";
 import { site } from "@/lib/site";
@@ -16,7 +16,7 @@ export function ProofBadge({ className = "" }: { className?: string }) {
       className={`border-border/50 bg-card/60 text-foreground/85 hover:border-foreground/30 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-[13px] transition-colors ${className}`}
     >
       <span className="font-semibold">{site.rating.value.toFixed(1)}</span>
-      <Star className="text-haka-gold h-3.5 w-3.5 fill-current" aria-hidden />
+      <Icon name="star" className="text-haka-gold h-3.5 w-3.5 fill-current" aria-hidden />
       <span>· {site.rating.count} Google reviews · 250+ decks built</span>
     </a>
   );
@@ -31,13 +31,10 @@ export function ReviewQuotes({ seed }: { seed: string }) {
     <Section top="none" bottom="tight">
       <div className="grid gap-6 lg:grid-cols-2">
         {quotes.map((q) => (
-          <figure
-            key={q.name}
-            className="border-border/40 bg-card/40 flex h-full flex-col rounded-2xl border p-6"
-          >
+          <figure key={q.name} className="hub-card">
             <div className="flex gap-0.5" aria-label="5 out of 5 stars">
               {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} className="text-haka-gold h-4 w-4 fill-current" aria-hidden />
+                <Icon name="star" key={i} className="star-gold" />
               ))}
             </div>
             <blockquote className="text-foreground/90 mt-4 flex-1 text-base leading-relaxed">
@@ -55,7 +52,7 @@ export function ReviewQuotes({ seed }: { seed: string }) {
           href="/warranty"
           className="border-border/50 bg-card/60 text-foreground/85 hover:border-foreground/30 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-[13px] transition-colors"
         >
-          <ShieldCheck className="text-haka-cream h-3.5 w-3.5" aria-hidden />
+          <Icon name="shield-check" className="text-haka-cream h-3.5 w-3.5" aria-hidden />
           Everything we build is guaranteed
         </Link>
       </div>

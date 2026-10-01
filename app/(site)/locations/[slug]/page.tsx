@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ArrowLeft, ArrowRight, Check, MapPin, Phone } from "lucide-react";
+import { Icon } from "@/components/icons/icon";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Eyebrow, Section, SectionHeading } from "@/components/sections/section";
 import { CtaFinal } from "@/components/sections/cta-final";
@@ -100,7 +100,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
           href="/locations"
           className="text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 text-sm"
         >
-          <ArrowLeft className="h-3.5 w-3.5" />
+          <Icon name="arrow-left" className="h-3.5 w-3.5" />
           All service areas
         </Link>
 
@@ -127,7 +127,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
               <Button asChild size="lg" className="h-12 px-6 text-base">
                 <Link href={site.cta.href}>
                   {site.cta.label}
-                  <ArrowRight className="ml-1.5 h-4 w-4" />
+                  <Icon name="arrow-right" className="ml-1.5 h-4 w-4" />
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="h-12 px-6 text-base">
@@ -143,7 +143,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
                   key={b}
                   className="text-foreground/85 flex items-start gap-3 text-sm sm:text-base"
                 >
-                  <Check className="text-haka-cream mt-0.5 h-4 w-4 shrink-0" />
+                  <Icon name="check" className="text-haka-cream mt-0.5 h-4 w-4 shrink-0" />
                   {b}
                 </li>
               ))}
@@ -211,14 +211,14 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
             </SectionHeading>
             <div className="text-muted-foreground mt-6 space-y-3 text-sm leading-relaxed">
               <p className="flex items-start gap-2">
-                <MapPin className="text-foreground/60 mt-0.5 h-4 w-4 shrink-0" />
+                <Icon name="map-pin" className="text-foreground/60 mt-0.5 h-4 w-4 shrink-0" />
                 <span>
                   {site.name} · {site.address.street}, {site.address.city}, {site.address.state}{" "}
                   {site.address.zip}
                 </span>
               </p>
               <p className="flex items-start gap-2">
-                <Phone className="text-foreground/60 mt-0.5 h-4 w-4 shrink-0" />
+                <Icon name="phone" className="text-foreground/60 mt-0.5 h-4 w-4 shrink-0" />
                 <a href={site.phoneHref} className="hover:text-foreground">
                   {site.phone}
                 </a>
@@ -268,19 +268,12 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
           <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {others.map((l) => (
               <li key={l.slug}>
-                <Link
-                  href={`/locations/${l.slug}`}
-                  className="border-border/40 hover:border-foreground/30 hover:bg-card/40 group flex h-full flex-col rounded-2xl border p-6 transition-colors"
-                >
-                  <span className="text-muted-foreground text-xs tracking-widest uppercase">
-                    {l.name}, CO
-                  </span>
-                  <span className="font-display mt-2 text-xl font-medium tracking-tight">
-                    {l.title}
-                  </span>
-                  <span className="text-foreground/80 mt-4 inline-flex items-center text-sm font-medium">
+                <Link href={`/locations/${l.slug}`} className="area-card group">
+                  <span className="hub-kicker">{l.name}, CO</span>
+                  <span className="area-title">{l.title}</span>
+                  <span className="area-more">
                     Learn more
-                    <ArrowRight className="ml-1 h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                    <Icon name="arrow-right" />
                   </span>
                 </Link>
               </li>

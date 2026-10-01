@@ -18,7 +18,7 @@ import { site } from "@/lib/site";
 
 const guide = guideBySlug("deck-safety-inspection-guide")!;
 
-const title = "The 10-Minute Deck Safety Inspection — Check Your Own Deck (2026) | Haka Decks";
+const title = "10-Minute Deck Safety Inspection Checklist | Haka Decks";
 const description =
   "Inspect your own deck the way a pro would: the ledger, footings, posts, railings, and stairs, in order of what actually fails. Know whether you need repair, re-decking, or replacement — free printable PDF.";
 

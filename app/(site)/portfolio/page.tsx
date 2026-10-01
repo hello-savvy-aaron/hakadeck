@@ -3,7 +3,9 @@ import Image from "next/image";
 import { Eyebrow, Section, SectionHeading } from "@/components/sections/section";
 import { ProjectCard } from "@/components/portfolio/project-card";
 import { CtaFinal } from "@/components/sections/cta-final";
-import { getAllProjects } from "@/lib/portfolio";
+import Link from "next/link";
+import { Icon } from "@/components/icons/icon";
+import { getAllProjects, projectVideo } from "@/lib/portfolio";
 import { FIELD_PHOTOS } from "@/lib/field-gallery";
 
 export const metadata: Metadata = {
@@ -31,11 +33,25 @@ export default async function PortfolioPage() {
 
       <Section top="none">
         <ul className="grid gap-8 lg:grid-cols-2">
-          {projects.map((project) => (
-            <li key={project.slug}>
-              <ProjectCard project={project} featured />
-            </li>
-          ))}
+          {projects.map((project) => {
+            // A project with a drone clip also links to its watch page from here,
+            // so each clip has an inbound link beyond its own project page.
+            const video = projectVideo(project);
+            return (
+              <li key={project.slug}>
+                <ProjectCard project={project} featured />
+                {video ? (
+                  <Link
+                    href={video.path}
+                    className="text-foreground/80 hover:text-foreground mt-3 inline-flex items-center gap-1.5 text-sm font-medium"
+                  >
+                    <Icon name="play" className="h-3.5 w-3.5 fill-current" />
+                    Watch the drone flyover ({video.durationLabel})
+                  </Link>
+                ) : null}
+              </li>
+            );
+          })}
         </ul>
       </Section>
 

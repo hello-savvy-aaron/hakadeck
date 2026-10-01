@@ -1,29 +1,30 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Award, ShieldCheck, Sparkles } from "lucide-react";
+import { Icon } from "@/components/icons/icon";
+import type { IconName } from "@/components/icons/icon-names";
 import { Eyebrow, Section } from "./section";
 
 const PILLARS: {
-  icon: typeof Award;
+  icon: IconName;
   title: string;
   body: string;
   href?: string;
   linkLabel?: string;
 }[] = [
   {
-    icon: Award,
+    icon: "award",
     title: "Pro Elite with Deckorators",
     body: "Deckorators Certified Pro Elite Installer. We build with the most trusted composite brands in the industry — and every install is backed by our own craftsmanship guarantee.",
   },
   {
-    icon: ShieldCheck,
+    icon: "shield-check",
     title: "All Work Guaranteed",
     body: "We guarantee everything we build. If something isn't right, we make it right — no fine print, no fight. Our name goes on every project, so we stand behind all of it.",
     href: "/warranty",
     linkLabel: "Read the guarantee",
   },
   {
-    icon: Sparkles,
+    icon: "sparkles",
     title: "We Don't Stop Until You're Happy",
     body: "We're perfectionists. If we think the work isn't perfect, we'll come back a year later to fix it. We won't quit until you're thrilled — happy is the only finish line.",
   },
@@ -63,7 +64,7 @@ export function Certifications() {
       <div className="mt-16 grid gap-10 lg:grid-cols-3">
         {PILLARS.map((p) => (
           <div key={p.title} className="space-y-4">
-            <p.icon className="text-haka-cream h-11 w-11" strokeWidth={1.5} />
+            <Icon name={p.icon} className="text-haka-cream h-11 w-11" strokeWidth={1.5} />
             <h3 className="font-display text-2xl font-medium tracking-tight">{p.title}</h3>
             {/* Darker than the usual muted tone — this section sits on the Sky
                 background, where muted-foreground falls below AA contrast. */}

@@ -4,15 +4,38 @@
     {
       "name": "haka-web",
       "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["dev", "--port", "3001"],
+      "runtimeArgs": [
+        "dev",
+        "--port",
+        "3001"
+      ],
       "port": 3001,
       "autoPort": false
     },
     {
       "name": "haka-web-mail-off",
       "runtimeExecutable": "env",
-      "runtimeArgs": ["RESEND_API_KEY=", "pnpm", "dev", "--port", "3001"],
+      "runtimeArgs": [
+        "RESEND_API_KEY=",
+        "pnpm",
+        "dev",
+        "--port",
+        "3001"
+      ],
       "port": 3001,
+      "autoPort": false
+    },
+    {
+      "name": "haka-web-prod",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "exec",
+        "next",
+        "start",
+        "--port",
+        "3011"
+      ],
+      "port": 3011,
       "autoPort": false
     }
   ]

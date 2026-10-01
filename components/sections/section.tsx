@@ -2,17 +2,20 @@ import { cn } from "@/lib/utils";
 
 type Pad = "default" | "tight" | "loose" | "none";
 
+// Padding scales live in globals.css (.sec-t*, .sec-b*, .sec-inner) — a
+// class name per section instead of eight utilities, on every section of
+// every page. Utilities passed in className still override them.
 const TOP: Record<Pad, string> = {
-  default: "pt-14 sm:pt-20 lg:pt-24",
-  tight: "pt-12 sm:pt-16 lg:pt-20",
-  loose: "pt-32 sm:pt-40 lg:pt-44",
+  default: "sec-t",
+  tight: "sec-t-tight",
+  loose: "sec-t-loose",
   none: "",
 };
 
 const BOTTOM: Record<Pad, string> = {
-  default: "pb-14 sm:pb-20 lg:pb-24",
-  tight: "pb-8 sm:pb-12 lg:pb-16",
-  loose: "pb-32 sm:pb-40 lg:pb-44",
+  default: "sec-b",
+  tight: "sec-b-tight",
+  loose: "sec-b-loose",
   none: "",
 };
 
@@ -33,7 +36,7 @@ export function Section({
 }) {
   return (
     <section id={id} className={cn(TOP[top], BOTTOM[bottom], className)}>
-      <div className={cn("mx-auto max-w-7xl px-5 sm:px-8", innerClassName)}>{children}</div>
+      <div className={cn("sec-inner", innerClassName)}>{children}</div>
     </section>
   );
 }
@@ -45,16 +48,7 @@ export function Eyebrow({
   children: React.ReactNode;
   className?: string;
 }) {
-  return (
-    <p
-      className={cn(
-        "text-foreground/60 text-xs font-medium tracking-[0.18em] uppercase",
-        className,
-      )}
-    >
-      {children}
-    </p>
-  );
+  return <p className={cn("eyebrow", className)}>{children}</p>;
 }
 
 export function SectionHeading({
@@ -64,14 +58,5 @@ export function SectionHeading({
   children: React.ReactNode;
   className?: string;
 }) {
-  return (
-    <h2
-      className={cn(
-        "font-display text-4xl leading-[1.04] font-medium tracking-tight text-balance sm:text-5xl lg:text-6xl",
-        className,
-      )}
-    >
-      {children}
-    </h2>
-  );
+  return <h2 className={cn("section-heading", className)}>{children}</h2>;
 }

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight } from "lucide-react";
+import { Icon } from "@/components/icons/icon";
 import { Eyebrow, Section } from "@/components/sections/section";
 import { CtaFinal } from "@/components/sections/cta-final";
 import { getAllLocations } from "@/lib/locations";
@@ -60,7 +60,7 @@ export default async function LocationsPage() {
                   </span>
                   <span className="text-foreground/80 mt-4 inline-flex items-center text-sm font-medium">
                     See the county
-                    <ArrowRight className="ml-1 h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                    <Icon name="arrow-right" className="ml-1 h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                   </span>
                 </Link>
               </li>

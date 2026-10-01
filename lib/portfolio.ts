@@ -26,6 +26,9 @@ export type ProjectMeta = {
   videoDate?: string;
   /** Running time in whole seconds. */
   videoDuration?: number;
+  /** Features to watch for in the clip, in the order they appear — the watch
+   *  page lists them. Optional. */
+  videoNotes?: string[];
 };
 
 export type Project = ProjectMeta & {
@@ -45,6 +48,8 @@ export type ProjectVideo = {
   durationLabel: string;
   /** Site-root-relative path of the clip's watch page. */
   path: string;
+  /** What to look for, from `videoNotes` (may be empty). */
+  notes: string[];
 };
 
 export async function getAllProjects(): Promise<ProjectMeta[]> {
@@ -92,6 +97,7 @@ export function projectVideo(project: ProjectMeta): ProjectVideo | null {
     durationSeconds: videoDuration,
     durationLabel: `${minutes}:${seconds}`,
     path: `/portfolio/${project.slug}/video`,
+    notes: project.videoNotes ?? [],
   };
 }
 
@@ -114,5 +120,6 @@ function projectFromFrontmatter(slug: string, data: Record<string, unknown>): Pr
         ? data.videoDate.toISOString().slice(0, 10)
         : (data.videoDate as string | undefined),
     videoDuration: data.videoDuration as number | undefined,
+    videoNotes: data.videoNotes as string[] | undefined,
   };
 }

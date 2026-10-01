@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ArrowLeft, MapPin } from "lucide-react";
+import { Icon } from "@/components/icons/icon";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Eyebrow, Section, SectionHeading } from "@/components/sections/section";
 import { CtaFinal } from "@/components/sections/cta-final";
@@ -67,7 +67,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           href="/portfolio"
           className="text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 text-sm"
         >
-          <ArrowLeft className="h-3.5 w-3.5" />
+          <Icon name="arrow-left" className="h-3.5 w-3.5" />
           All projects
         </Link>
 
@@ -81,7 +81,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           <dl className="grid grid-cols-2 gap-x-6 gap-y-4 text-sm sm:gap-x-10">
             <Meta label="Location">
               <span className="inline-flex items-center gap-1.5">
-                <MapPin className="text-haka-cream h-3.5 w-3.5" />
+                <Icon name="map-pin" className="text-haka-cream h-3.5 w-3.5" />
                 {project.location}
               </span>
             </Meta>

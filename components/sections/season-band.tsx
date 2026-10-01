@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { Icon } from "@/components/icons/icon";
 import { Eyebrow } from "./section";
 
 // Seasonal band (fall/winter 2026): routes the small-jobs pipeline — repairs,
@@ -37,7 +37,10 @@ export function SeasonBand() {
                 <span className="font-display text-base font-medium tracking-tight sm:text-lg">
                   {job.label}
                 </span>
-                <ArrowRight className="text-foreground/60 group-hover:text-foreground h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5" />
+                <Icon
+                  name="arrow-right"
+                  className="text-foreground/60 group-hover:text-foreground h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5"
+                />
               </Link>
             </li>
           ))}
