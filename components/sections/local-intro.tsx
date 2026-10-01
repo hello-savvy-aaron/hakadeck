@@ -27,7 +27,7 @@ export function LocalIntro() {
           <p>
             Decks here have to survive 300-plus days of high-altitude sun, summer hail, and a
             freeze-thaw cycle that tears apart anything built to flatland standards. As a dedicated
-            deck company — deck contractors and installers who do this and nothing else, not a
+            deck company — the deck builders, contractors and installers who do this and nothing else, not a
             general construction outfit that builds decks on the side — every structure we engineer
             is permitted, code-compliant, and built for Colorado&apos;s climate from the footings up.
           </p>

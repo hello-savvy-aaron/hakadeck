@@ -11,9 +11,9 @@ import { Button } from "@/components/ui/button";
 import { site } from "@/lib/site";
 import type { Faq } from "@/lib/faqs";
 
-const title = "Trex Deck Builder in Denver, CO — Platinum Pro Contractor | Haka Decks";
+const title = "Trex Installer & Deck Builder in Denver, CO | Haka Decks";
 const description =
-  "Haka Decks is a Trex Platinum Pro contractor — the brand's top installer tier — building Trex composite decks across the Denver metro. Lines, warranties, and real installed pricing.";
+  "Haka Decks is a Trex Platinum Pro installer, Trex's top tier, building Trex decks across the Denver metro. Trex decking lines, warranties and installed pricing.";
 
 // Rendered below AND fed to FaqJsonLd — schema must match visible copy.
 const FAQS: Faq[] = [
@@ -28,6 +28,10 @@ const FAQS: Faq[] = [
   {
     q: "How much does a Trex deck cost installed in Denver?",
     a: "The same $40–$70 per square foot installed range as other capped composites we build — a typical 300–400 square foot Trex deck lands around $15,000–$30,000 with stairs, railing, and permits included. Board tier moves the number within that range: Enhance keeps projects near the bottom, Transcend and Signature push toward the top. Every estimate is itemized so you can see exactly what the board choice is worth.",
+  },
+  {
+    q: "How do I find a certified Trex installer in Denver?",
+    a: "Start with the tier. Trex ranks its installers by volume and training, and Platinum Pro is the top tier, so ask any contractor which tier they hold and check it with Trex. Then ask to see finished Trex decks, ask how they gap and fasten the boards to Trex's install guide, and ask who handles a warranty claim. We're a Platinum Pro Trex installer building across the Denver metro, and we answer all of that in writing.",
   },
   {
     q: "Is Trex the best composite for Colorado?",
@@ -51,7 +55,7 @@ export default function TrexPage() {
       <Section top="loose" bottom="tight">
         <Eyebrow>Trex Platinum Pro</Eyebrow>
         <h1 className="font-display mt-4 max-w-3xl text-4xl leading-[1.03] font-medium tracking-tight text-balance sm:text-5xl lg:text-6xl">
-          Trex deck builder in Denver — at the brand&apos;s top installer tier.
+          Trex deck builder in Denver, and a Platinum Pro Trex installer.
         </h1>
         <p className="text-muted-foreground mt-6 max-w-2xl text-lg leading-relaxed">
           Anyone can buy Trex boards. Platinum Pro status is Trex&apos;s own recognition of how a
@@ -158,6 +162,59 @@ export default function TrexPage() {
                 composite deck page
               </Link>{" "}
               covers how we build every brand we install.
+            </p>
+          </div>
+        </div>
+      </Section>
+
+      <Section top="tight" bottom="tight">
+        <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
+          <div>
+            <Eyebrow>Hiring a Trex installer</Eyebrow>
+            <SectionHeading className="mt-4 text-3xl sm:text-4xl">
+              Four questions for any Trex installer in Denver.
+            </SectionHeading>
+          </div>
+          <div className="text-muted-foreground space-y-4 text-base leading-relaxed">
+            <p>
+              Trex decking is sold through lumberyards, so anyone with a truck can install it.
+              Here&apos;s how to tell a Trex deck builder from someone who just bought the boards:
+            </p>
+            <ol className="list-decimal space-y-2 pl-5">
+              <li>
+                <span className="text-foreground font-medium">Which Trex tier do you hold?</span>{" "}
+                Trex ranks installers on volume and training. Platinum Pro, the tier we hold, is the
+                top one.
+              </li>
+              <li>
+                <span className="text-foreground font-medium">Can I see Trex decks you&apos;ve
+                finished?</span>{" "}
+                Look at the gaps at board ends and the fastener lines, not just the color.
+              </li>
+              <li>
+                <span className="text-foreground font-medium">How do you gap and fasten the
+                boards?</span>{" "}
+                Trex publishes an install guide for joist spacing, gapping and fasteners. A Trex
+                installer should be able to walk you through it, and following it is what keeps the
+                warranty valid.
+              </li>
+              <li>
+                <span className="text-foreground font-medium">Who handles a warranty
+                claim?</span>{" "}
+                With us it&apos;s one call, whether the problem is a board for Trex or a build issue
+                for us.
+              </li>
+            </ol>
+            <p>
+              We build Trex decks across the{" "}
+              <Link href="/locations/denver" className="text-foreground font-medium underline underline-offset-3 hover:no-underline">
+                Denver metro
+              </Link>
+              , from Highlands Ranch and Littleton to Aurora and Parker. Our{" "}
+              <Link href="/blog/how-to-choose-a-deck-builder-denver" className="text-foreground font-medium underline underline-offset-3 hover:no-underline">
+                guide to choosing a deck builder
+              </Link>{" "}
+              covers the rest of the hiring questions.
             </p>
           </div>
         </div>

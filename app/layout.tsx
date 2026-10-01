@@ -24,10 +24,13 @@ const bricolage = Bricolage_Grotesque({
 });
 
 // Lead with the primary category + "Denver" (the head-term the site was
-// ranking ~#60 for with no strong target). The /locations/denver hub owns the
-// deep "custom decks denver" intent; the homepage just stops hiding "Denver"
-// behind "Denver Tech Center" (which still leads the local-intro + NAP copy).
-// Lands the title in the 50–60 char SERP sweet spot.
+// ranking ~#60 for with no strong target). The homepage owns "custom decks
+// Denver" (it outranks /locations/denver on 4 of 5 variants, Oct 2026); the
+// Denver hub is aimed at "Denver deck builder / deck company" plus
+// neighborhoods so the two pages stop splitting the same query. The homepage
+// just stops hiding "Denver" behind "Denver Tech Center" (which still leads
+// the local-intro + NAP copy). Lands the title in the 50–60 char SERP sweet
+// spot.
 const homeTitle = `${site.name} — Custom Deck Builder in Denver, CO`;
 
 export const metadata: Metadata = {
