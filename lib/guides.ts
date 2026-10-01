@@ -130,7 +130,7 @@ export const guides: Guide[] = [
     landingBlurb: "A gallery of finished Haka projects to steal ideas from.",
     chip: "GALLERY",
     readLabel: "Gallery",
-    updated: "July 2026",
+    updated: "October 2026",
   },
   {
     key: "anatomy-guide",

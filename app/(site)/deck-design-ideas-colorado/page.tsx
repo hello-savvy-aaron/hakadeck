@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { CtaFinal } from "@/components/sections/cta-final";
+import { ReviewQuotes } from "@/components/sections/review-quotes";
+import { GuideArticleJsonLd } from "@/components/seo/guide-article-jsonld";
 import { DeckStyleChooserFigure } from "@/components/guides/figure-process";
 import { NewsletterSignup } from "@/components/guides/newsletter-signup";
 import { getAllProjects, projectVideo } from "@/lib/portfolio";
@@ -67,6 +69,14 @@ export default async function GalleryPage() {
 
   return (
     <>
+      <GuideArticleJsonLd
+        title={title}
+        description={description}
+        path={guide.href}
+        datePublished="2026-07-17"
+        dateModified="2026-10-01"
+      />
+
       <div className="mx-auto max-w-[42.5rem] px-5 pt-28 pb-16 sm:px-8 sm:pt-32">
         <Link
           href={GUIDES_HUB}
@@ -158,6 +168,24 @@ export default async function GalleryPage() {
             solid to stand on.
           </p>
 
+          <h2>Start with how you&apos;ll use the outdoor space</h2>
+          <p>
+            Before boards or railing, decide what the deck is for and give each job its own zone. A
+            dining table for six needs a clear area of roughly 10 by 12 feet once the chairs pull
+            back; a lounge group of a sofa and two chairs wants about the same. Two zones plus a
+            walkway between them is why so many decks land at 300 to 400 square feet — and why a
+            deck sized off a sketch of the house, rather than off the furniture, so often feels
+            cramped.
+          </p>
+          <p>
+            Some uses are structural decisions, not furniture ones. A{" "}
+            <Link href="/blog/hot-tub-deck-guide">hot tub</Link> puts 100-plus pounds per square
+            foot on framing normally designed for 40, so its spot has to be chosen before the
+            footings go in. An <Link href="/services/outdoor-kitchens">outdoor kitchen</Link> brings
+            stone counters, gas, and power, and gets framed for those loads from the start. Decide
+            them up front, even if you build them later.
+          </p>
+
           <h2>Let the slope pick the layout</h2>
           <p>
             The south metro rolls, and the best deck designs use that instead of fighting it. A
@@ -165,6 +193,14 @@ export default async function GalleryPage() {
             while a flat ranch lot often wants the opposite: one wide, ground-hugging platform that
             keeps the view open. If your yard has grade, look hard at the two-tier builds above
             before you settle for one big rectangle on stilts.
+          </p>
+          <p>
+            Multi-level decks also break up the climb. Instead of one long flight from a
+            second-story door to the lawn, a mid-level landing becomes a place to sit, and each
+            level gets its own purpose. Curves are the other layout move worth knowing about: a
+            radius edge traced around a mature tree or a garden bed softens a big deck more than any
+            material choice, though curved framing and heat-formed border boards take more layout
+            time and cost more than straight runs.
           </p>
 
           <h2>Design the shade with the deck</h2>
@@ -174,6 +210,35 @@ export default async function GalleryPage() {
             over part of the deck — not all of it — gives you a cool room and a sunny one, and a
             tongue-and-groove ceiling with lighting turns the covered half into a genuine outdoor
             living room, October snow showers included.
+          </p>
+          <p>
+            Hail changes the roof conversation here. Open pergolas only filter the sun; a solid roof
+            or a <Link href="/blog/polycarbonate-roof-covers-guide">polycarbonate cover</Link> keeps
+            furniture and grills out of the May-to-September storms, and a{" "}
+            <Link href="/blog/screened-porch-three-season-room-colorado">
+              screened porch or three-season room
+            </Link>{" "}
+            takes the same structure one step further for bug-free evenings well into the fall.
+          </p>
+
+          <h2>Pick materials and color in the sun, not on a screen</h2>
+          <p>
+            Most of our builds are capped composite — Deckorators is our go-to — because it handles
+            Colorado&apos;s freeze-thaw and UV without a restaining schedule, but the brand and line
+            matter less than people think. Our{" "}
+            <Link href="/composite-vs-hardwood-decking-colorado">materials guide</Link> covers
+            composite against hardwood, and our{" "}
+            <Link href="/blog/trex-vs-timbertech-vs-fiberon">Trex vs. TimberTech vs. Fiberon</Link>{" "}
+            comparison sorts out the brands. The decision that changes how a deck feels is color: a
+            light gray or tan board runs 10 to 30 degrees cooler underfoot than a dark one in the
+            same line. Set physical samples on the actual deck site and look at them morning and
+            evening before you commit.
+          </p>
+          <p>
+            Mixing materials is where a design starts to look custom: a contrasting picture-frame
+            border, a cedar pergola over composite boards, black aluminum railing against a warm
+            wood tone, or a stone landing at the bottom of the stairs. Two or three materials that
+            repeat the house&apos;s trim and stone usually beat five that compete.
           </p>
 
           <h2>Railing decides what you see</h2>
@@ -194,6 +259,48 @@ export default async function GalleryPage() {
             numbers on each.
           </p>
           <p>
+            Lighting deserves its own mention, because it decides whether the deck gets used after
+            dark. Low-voltage post caps, recessed stair-riser lights, and a soft strip under the
+            rail or bench cost far less to wire while the framing is open than to retrofit later —
+            run the wiring during the build even if some fixtures wait a year.
+          </p>
+
+          <h2>Design for January, too</h2>
+          <p>
+            Front Range decks see snow from October into May, and the best designs plan for it.
+            Framing is sized for the snow load, not just for a summer party; stairs face away from
+            the roof&apos;s drip line so they don&apos;t ice over; and there&apos;s an obvious edge
+            to push snow off, using a plastic shovel along the length of the boards. Our guide to{" "}
+            <Link href="/blog/how-much-snow-can-my-deck-hold">how much snow a deck can hold</Link>{" "}
+            explains the numbers, and a covered section means less of the deck to clear at all.
+          </p>
+
+          <h2>A five-step design checklist</h2>
+          <ol className="list-decimal space-y-2 pl-5">
+            <li>
+              List what the deck is for — dining, lounging, grilling, a hot tub — and size a zone
+              for each.
+            </li>
+            <li>Note where the sun sits at 5 p.m. in July; that&apos;s where the shade goes.</li>
+            <li>Walk the slope and decide between one level and two before anything else.</li>
+            <li>Choose the railing for the view you want to keep, not from a catalog.</li>
+            <li>
+              Decide now on covers, kitchens, lighting, and hot tubs — even ones you&apos;ll add
+              later — so the framing is ready for them.
+            </li>
+          </ol>
+
+          <h2>From design to finished product</h2>
+          <p>
+            Designing and building with the same team means the drawing you approve is the deck that
+            gets built. We measure the site, draw the layout, file the permit and HOA paperwork,
+            frame it to the plan, and Pete walks every project personally — the attention to detail
+            that separates a designed deck from an assembled one happens on site, not just on paper.
+            Everything we build is guaranteed. Our <Link href="/process">process page</Link> lays
+            out each step, and the <Link href="/portfolio">portfolio</Link> shows the finished
+            builds behind every photo here.
+          </p>
+          <p>
             Want any of these ideas priced for your yard?{" "}
             <Link href="/contact">Tell us what you&apos;re picturing</Link> and we&apos;ll walk the
             site with samples.
@@ -203,6 +310,7 @@ export default async function GalleryPage() {
         <NewsletterSignup />
       </div>
 
+      <ReviewQuotes seed="deck-design-ideas-colorado" />
       <CtaFinal />
     </>
   );

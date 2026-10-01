@@ -154,8 +154,9 @@ export function LocalBusinessJsonLd() {
     description: site.description,
     inLanguage: "en-US",
     publisher: { "@id": BUSINESS_ID },
-    // Plain-text site summary for LLM crawlers (llms.txt convention).
-    significantLink: [`${site.url}/llms.txt`, `${site.url}/llms-full.txt`],
+    // No significantLink to /llms.txt here: that property belongs to WebPage,
+    // not WebSite, and validators (Semrush Site Audit) flag it as a markup
+    // error on every page. LLM crawlers find llms.txt at its conventional root.
   };
 
   const data = {
