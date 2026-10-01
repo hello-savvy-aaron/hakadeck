@@ -29,6 +29,11 @@ const nextConfig: NextConfig = {
       { source: "/portfolio/outdoor-space", destination: "/portfolio", permanent: true },
       { source: "/portfolio/sustainable-habitat", destination: "/portfolio", permanent: true },
       { source: "/portfolio/tree-house", destination: "/portfolio", permanent: true },
+      // Old Wix site (hakaconstruction.com, domain-redirected here with its
+      // path kept) — pages with no same-named page on this site
+      { source: "/company", destination: "/about", permanent: true },
+      { source: "/privacy-policy", destination: "/", permanent: true },
+      { source: "/terms-conditions", destination: "/", permanent: true },
     ];
   },
 };
