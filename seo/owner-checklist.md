@@ -11,9 +11,11 @@ Canonical NAP for every listing: **Haka Decks · 9707 E Easter Ln, Centennial, C
       Pergola/Patio construction if offered by GBP's category list)
 - [ ] Fill the **Services** section with every service page: composite decks, cedar/hardwood,
       deck replacement, deck repair, pergolas & patio covers, outdoor kitchens, railings
-- [ ] Get the **direct review link**: GBP → "Ask for reviews" → copy the `g.page/r/…/review`
+- [x] Get the **direct review link** (2026-10-01: `https://g.page/r/CX-fRHFH4pMdEAE/review`): GBP → "Ask for reviews" → copy the `g.page/r/…/review`
       URL. Text it at every project completion. Target: 89 → 100+ reviews by fall
-- [ ] Post **weekly photos** from active builds (GBP posts + photo uploads both count)
+- [ ] Post **weekly photos** from active builds (GBP posts + photo uploads both count).
+      Restarted 2026-10-01 (composite job post live; snow-load post scheduled Oct 15).
+      Next: Oct 22, Oct 29. No phone numbers in post text (Google rejects them)
 - [ ] Seed the **Q&A** section: ask and answer the FAQ questions from the site (cost, timeline,
       permits, materials) — owners can post both sides
 - [ ] Add all 8 service-area cities to the GBP service-area list (Centennial, Greenwood Village,
@@ -42,8 +44,9 @@ Priority order:
 - [ ] **Facebook — create a business page** (none exists; needed for Nextdoor tie-ins and
       review diversity)
 - [ ] **Nextdoor — create a business page** (competitors are established there in the same geo)
-- [ ] **hakaconstruction.com → 301 to www.hakadecks.com** — it is still LIVE (200, "HOME |
-      Haka Construction") and, per the 2026-09-11 Semrush pull, holds our best links:
+- [x] **hakaconstruction.com → 301 to www.hakadecks.com** — LIVE 2026-10-01 via Vercel
+      (path-preserving; MX untouched). Still open: GSC Change of Address, auto-renew
+      before 2026-12-08, cancel Wix so it can't reclaim the domain. Before the 301, per the 2026-09-11 Semrush pull, holds our best links:
       Yellow Pages (AS 60), HomeAdvisor (54), DexKnows (35), Superpages (35), n49 (32),
       bikestreets.com (26). One DNS/host change roughly doubles our real referring
       domains. Then update those five listings to link the new domain directly.
@@ -78,7 +81,8 @@ Semrush 2026-09-19: "deck builder littleton" #20, "deck builders littleton co" #
 
 ## Phase 5 — Measurement
 
-- [ ] **Find the Search Console account** (verification TXT exists in name.com DNS, so a
+- [x] **Find the Search Console account** (found: the hakadecks.com property is under
+      Pete's Google account). (verification TXT exists in name.com DNS, so a
       property exists somewhere — check Pete's accounts; not aaroncasserole@gmail.com). If it
       can't be found, add a new Domain property under the preferred account: GSC → Add property
       → Domain → hakadecks.com → add the new TXT at name.com → verify
@@ -91,6 +95,28 @@ Semrush 2026-09-19: "deck builder littleton" #20, "deck builders littleton co" #
       keywords from keyword-strategy.md; note which cities' location pages earn impressions
 - [ ] Success bar (6 months): map-pack presence for "deck builder [city]" in served cities;
       top-5 organic for 5+ Tier 1 terms
+
+## Status 2026-10-01 — what is still open outside the codebase
+
+Full detail in `improvement-plan-2026-10.md` and `map-pack-plan-2026-10.md`.
+
+- [ ] **Google Ads** (by hand; the Ads UI blocks automation): August Search Blitz →
+      Settings → Networks → untick Display; Goals → `generate_lead` + calls primary,
+      `quote_click` secondary; link GA4 property 540234854; upload the new square logo
+      (`public/images/brand/haka-logo-square-1200.png`)
+- [ ] **GSC** (Pete's account): Change of Address hakaconstruction.com → www.hakadecks.com
+      (verify the old domain with a *new* TXT at GoDaddy, never edit SPF); request
+      indexing on the two `/portfolio/<slug>/video` pages + Validate fix
+- [ ] **GBP profile**: Services, 750-char description, secondary categories, Q&A seeds,
+      hours, address-hide decision, new square logo (copy in the October Kit)
+- [ ] **Spam reports**: Denver Deck Builders ×4 (redressal form), the Utah and Florida
+      pins (Suggest an edit). Evidence in `seo/research/map-pack-2026-10/`
+- [ ] **New directories**: TheBlueBook, TheHomeMag, ShowMeLocal (claim), NADRA (paid)
+- [ ] **Semrush**: add freedomdeckbuilders.com, denverdeckbuilder.com, denverdecks.com and
+      Mosaic to the 80112 campaign (31443159_5576200); hide the bot-wall "broken/403
+      external link" issues in Site Audit
+- [ ] **Pete's decisions**: staining, paid inspections, gazebos, 8–12 jobs for project pages,
+      LSA budget, Nextdoor alert categories (Deck and Porches + Carpentry), Instagram rename
 
 ## Update cadence
 
