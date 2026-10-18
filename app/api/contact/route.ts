@@ -130,7 +130,7 @@ export async function POST(req: Request) {
       // Only wire replyTo when the lead left an email — a phone number isn't a
       // valid reply address and would make Resend reject the send.
       ...(email ? { replyTo: email } : {}),
-      subject: `New lead — ${action} ${name}: ${reachBack}`,
+      subject: `🔥 New lead — ${action} ${name}: ${reachBack}`,
       text,
       ...(photos && photos.length
         ? {

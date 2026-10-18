@@ -89,7 +89,7 @@ export async function POST(req: Request) {
       from: FROM,
       to: TO,
       replyTo: email,
-      subject: `New lead — ${label}: ${email}`,
+      subject: `${label}: ${email}`,
       text: [`${label}`, `Email: ${email}`, `At: ${new Date().toISOString()}`].join("\n"),
     });
     if (result.error) {
